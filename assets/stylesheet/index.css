@@ -1372,6 +1372,23 @@ footer {
         }
     }
 
+    @media (max-width: 400px) {
+        
+    @keyframes caidaCafe {
+        0% {
+            transform: rotate(0deg) translateY(0);
+        }
+        50% {
+            transform: rotate(45deg) translateY(50px);
+        }
+        100% {
+            top: 80%;
+            transform: rotate(90deg) translateY(50px);
+            left:26%;
+        }
+    }
+    }
+
     .right-btn {
         right: 3rem; 
         top: 60rem;/* Mueve el botón más cerca del borde derecho */
