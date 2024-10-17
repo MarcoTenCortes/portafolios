@@ -27,7 +27,7 @@
     <script src="https://kit.fontawesome.com/ae0fd6f99f.js" crossorigin="anonymous"></script>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/images/iconM.png" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
@@ -38,7 +38,7 @@
     </div>
 
     <header class="header">
-        <img src="./assets/images/logo-ma.png" alt="Logo Portafolio" class="logo__header">
+        <img src="./assets/images/logoMTC.png" alt="Logo Portafolio" class="logo__header">
 
         <nav class="nav_menu not-active">
             <a href="#home" class="active">Home</a>
@@ -471,29 +471,43 @@
         </section>
 
         <!-- Contacto -->
-        <section class="contacto" id="contacto">
-            <h1 data-section="contacto" data-value="title" data-aos="fade-up">Contacto</h1>
+<section class="contacto" id="contacto">
+    <h1 data-section="contacto" data-value="title" data-aos="fade-up">Contacto</h1>
 
-            <div class="container_box--contacto" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
-    
-                <div class="container--contacto">
-                    <div class="container_text--contacto">
-                        <p data-section="contacto" data-value="text">Completa el siguiente formulario y me pondré en contacto contigo lo antes posible.</p>
-                    </div>
-    
-                    <form id="form" class="form-contact" name="contacto-portafolio" netlify>
-                        <input id="nombre" type="text" name="name" placeholder="Nombre | Name" required>
-                        <input id="email" type="email" name="email" placeholder="E-mail" required>
-                        <input id="asunto" type="text" name="affair" placeholder="Asunto | Subject" required>
-                        <textarea id="mensaje" cols="20" rows="4" name="message" placeholder="Mensaje | Message" required></textarea>
-    
-                        <div class="btn_form--contacto">
-                            <button id="btn-enviar" type="submit" data-section="contacto" data-value="btn-enviar">Enviar</button>
-                        </div>
-                    </form>
-                </div>
+    <div class="container_box--contacto" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+
+        <div class="container--contacto">
+            <div class="container_text--contacto">
+                <p data-section="contacto" data-value="text">Completa el siguiente formulario y me pondré en contacto contigo lo antes posible.</p>
             </div>
-        </section>
+
+            <!-- Modified form to work with Formspree -->
+            <form id="form" class="form-contact" action="https://formspree.io/f/xpwzzbnb" method="POST">
+                <label>
+                    Nombre | Name:
+                    <input id="nombre" type="text" name="name" placeholder="Nombre | Name" required>
+                </label>
+                <label>
+                    E-mail:
+                    <input id="email" type="email" name="email" placeholder="E-mail" required>
+                </label>
+                <label>
+                    Asunto | Subject:
+                    <input id="asunto" type="text" name="affair" placeholder="Asunto | Subject" required>
+                </label>
+                <label>
+                    Mensaje | Message:
+                    <textarea id="mensaje" cols="20" rows="4" name="message" placeholder="Mensaje | Message" required></textarea>
+                </label>
+
+                <div class="btn_form--contacto">
+                    <button id="btn-enviar" type="submit" data-section="contacto" data-value="btn-enviar">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
     </main>
 
     <footer>
