@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Vela Realista con Goteo de Cera y Charco</title>
+    <style>
+        body {
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .vela {
+            position: relative;
+            width: 60px;
+            height: 200px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cuerpo {
+            width: 40px;
+            height: 200px;
+            background: linear-gradient(to bottom, #fff7e6, #e6d3b3);
+            border-radius: 20px;
+            position: relative;
+            overflow: visible;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        /* Mecha de la vela */
+        .cuerpo::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            width: 6px;
+            height: 20px;
+            background: #333;
+            border-radius: 3px;
+            transform: translateX(-50%);
+        }
+
+        /* Llama */
+        .llama {
+            position: absolute;
+            top: -60px;
+            width: 20px;
+            height: 60px;
+            background: radial-gradient(ellipse at center, rgba(255,200,0,1) 0%, rgba(255,140,0,0.8) 70%, rgba(255,255,255,0) 100%);
+            border-radius: 50% 50% 20% 20%;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        /* Efecto de parpadeo */
+        @keyframes parpadeo {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.9;
+            }
+            50% {
+                transform: translateY(-5px) scale(1.1);
+                opacity: 1;
+            }
+        }
+
+        .llama.encendida {
+            opacity: 1;
+            animation: parpadeo 0.5s infinite;
+        }
+
+        /* Gotas de cera */
+        .gota {
+            position: absolute;
+            width: 6px;
+            height: 10px;
+            background: #fff7e6;
+            border-radius: 50%;
+            opacity: 0;
+            animation-play-state: paused; /* Pausamos la animación por defecto */
+        }
+
+        /* Posicionamos y animamos las gotas */
+        .gota1 {
+            left: 45%;
+            animation: caerGota1 3s infinite;
+        }
+
+        .gota2 {
+            left: 55%;
+            animation: caerGota2 3s infinite 1s;
+        }
+
+        .gota3 {
+            left: 50%;
+            animation: caerGota3 3s infinite 2s;
+        }
+
+        /* Animaciones de las gotas */
+        @keyframes caerGota1 {
+            0% {
+                top: 30px;
+                opacity: 0;
+                transform: translateX(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                top: 180px;
+                opacity: 1;
+                transform: translateX(-10px);
+            }
+            100% {
+                top: 180px;
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+        }
+
+        @keyframes caerGota2 {
+            0% {
+                top: 30px;
+                opacity: 0;
+                transform: translateX(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                top: 180px;
+                opacity: 1;
+                transform: translateX(10px);
+            }
+            100% {
+                top: 180px;
+                opacity: 0;
+                transform: translateX(10px);
+            }
+        }
+
+        @keyframes caerGota3 {
+            0% {
+                top: 30px;
+                opacity: 0;
+                transform: translateX(0);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                top: 180px;
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100% {
+                top: 180px;
+                opacity: 0;
+                transform: translateX(0);
+            }
+        }
+
+        /* Charco de cera */
+        .charco {
+            position: absolute;
+            bottom: -5px;
+            width: 0px;
+            height: 5px;
+            background: #fff7e6;
+            border-radius: 50%;
+            opacity: 0;
+            transition: width 10s linear, opacity 1s;
+        }
+
+        .charco.visible {
+            opacity: 1;
+            animation: crecerCharco 10s forwards linear;
+        }
+
+        @keyframes crecerCharco {
+            from {
+                width: 0px;
+            }
+            to {
+                width: 80px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="vela" id="vela">
+        <div class="llama" id="llama"></div>
+        <div class="cuerpo" id="cuerpo">
+            <div class="gota gota1"></div>
+            <div class="gota gota2"></div>
+            <div class="gota gota3"></div>
+        </div>
+        <div class="charco" id="charco"></div>
+    </div>
+
+    <script>
+        const vela = document.getElementById('vela');
+        const llama = document.getElementById('llama');
+        const gotas = document.querySelectorAll('.gota');
+        const charco = document.getElementById('charco');
+        let encendida = false;
+
+        vela.addEventListener('click', () => {
+            encendida = !encendida;
+            if (encendida) {
+                llama.classList.add('encendida');
+                gotas.forEach(gota => {
+                    gota.style.opacity = '1';
+                    gota.style.animationPlayState = 'running';
+                });
+                charco.classList.add('visible');
+            } else {
+                llama.classList.remove('encendida');
+                gotas.forEach(gota => {
+                    gota.style.opacity = '0';
+                    gota.style.animationPlayState = 'paused';
+                });
+                charco.classList.remove('visible');
+                charco.style.width = '0px'; // Reiniciamos el tamaño del charco
+            }
+        });
+    </script>
+</body>
+</html>

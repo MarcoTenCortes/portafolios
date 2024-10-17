@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio | Mariana Arias Desarrolladora Web">
+    <meta name="robots" content="index,follow">
+
+    <title>Marco Tenorio Cortés | Ingeniero Informático y Desarrollador de Software</title>
+
+    <!-- Librerías -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Hojas de estilo -->
+    <link rel="stylesheet" href="./assets/stylesheet/loader.css">
+    <link rel="stylesheet" href="./assets/stylesheet/index.css">
+    <link rel="stylesheet" href="./assets/stylesheet/tablet.css" media="screen and (min-width: 760px)">
+    <link rel="stylesheet" href="./assets/stylesheet/desktop.css" media="screen and (min-width: 980px)">
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <!-- Fontawesome -->
+    <script src="https://kit.fontawesome.com/ae0fd6f99f.js" crossorigin="anonymous"></script>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="./assets/images/favicon.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="mouse-gradient" class="pointer-events-none fixed inset-0 z-30 transition duration-300 lg:absolute"></div>
+    <div class="container--loader">
+        <div class="loader"></div>
+    </div>
+
+    <header class="header">
+        <img src="./assets/images/logo-ma.png" alt="Logo Portafolio" class="logo__header">
+
+        <nav class="nav_menu not-active">
+            <a href="#home" class="active">Home</a>
+            <a href="#sobreMi" data-section="menu" data-value="item2">Sobre mí</a>
+            <a href="#habilidades" data-section="menu" data-value="item3">Habilidades</a>
+            <a href="#formacion" data-section="menu" data-value="item4">Formación</a>
+            <a href="#proyectos" data-section="menu" data-value="item5">Proyectos</a>
+            <a href="#contacto" data-section="menu" data-value="item6">Contacto</a>
+
+            <!-- Idiomas de la página -->
+            <div id="flags" class="flags">
+                <div class="flags__item" data-language="es">
+                    <img src="./assets/images/icon-spain.png" alt="Español/Spain">
+                </div>
+                <div class="flags__item" data-language="en">
+                    <img src="./assets/images/icon-en.png" alt="Inglés/English">
+                </div>
+            </div>
+        </nav>
+
+        <div id="button" class="btn not-active">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <main>
+ 
+        <!-- Home -->
+        <section class="home" id="home">
+            <picture class="container_image-home" data-aos="zoom-in">
+                <img class="image_home" src="./assets/images/bf_marco.png" alt="Ilustración mujer y plantas">
+            </picture>
+            
+            <div class="home_info">
+                <div class="container_text-info">
+                    <p class="home_text-1" data-section="home" data-value="home_text-1">Hola! Soy</p>
+                    <p class="home_text-2">Marco Tenorio Cortés</p>
+                </div>
+
+                <div>
+                    <p class="home_text-3 text-type" data-section="home" data-value="home_text-3">Desarrollador de Software</p>
+                </div>
+
+                <div class="container_parrafo-info">
+                    <p data-section="home" data-value="parrafo-info">Estudiante de Ingeniería Informática y programación enfocado al Desarrollo de Software.</p>
+                </div>
+
+                <div class="container_button">
+                    <a href="https://drive.google.com/file/d/1sxgdFgYML1JuP3J_Sfpz_lWD5DIY8Owc/view" target="_blank">
+                        <button class="cv_button" data-section="home" data-value="cv_button">Descargar CV</button>
+                    </a>
+                    <a href="#contacto">
+                        <button class="contact_button" data-section="home" data-value="contact_button">Contacto</button>
+                    </a>
+                </div>
+            </div>
+
+            <div class="links">
+                <a href="https://www.linkedin.com/in/marcotencortes/" target="_blank">
+                    <img src="./assets/images/icon-linkedin.png" alt="LinkedIn" class="icon-linkedin">
+                </a>
+                <a href="https://github.com/MarcoTenCortes" target="_blank">
+                    <img src="./assets/images/icon-github.png" alt="GitHub" class="icon-github">
+                </a>
+                <!--<a href="https://codepen.io/mariasmoUN" target="_blank">
+                    <img src="./assets/images/icon-codepen.png" alt="CodePen" class="icon-CodePen">
+                </a>-->
+                <!--<a href="https://www.instagram.com/mar.am0410/?next=%2F" target="_blank">
+                    <img src="./assets/images/icon-instagram.png" alt="Instagram" class="icon-instagram">
+                </a>-->
+            </div>
+        </section>
+
+        <!-- Sobre mí -->
+        <section class="sobreMi" id="sobreMi">
+            <h1 data-section="sobre-mi" data-value="title" data-aos="fade-up">Sobre mí</h1>
+
+            <div class="container_content-sobreMi" data-aos="fade-right">
+                <div class="container_texto-sobreMi">
+                    <span class="title_sobreMi">Marco Tenorio Cortés</span>
+                    <span class="texto_sobreMi" data-section="sobre-mi" data-value="texto_sobreMi">Soy Ingeniero Informático al borde de finalizar sus estudios .<br>Aspiro a poder desarrollar mis conocimientos y poder aplicarlos en diferentes tecnologías y fortalecer mi vida profesional.<br><br>Soy una persona trabajadora y constante, con diferentes competencias enfocadas en el trabajo en equipo, resolución de problemas, responsable y proactiva. Me encanta aprender y poder superarme a mi mismo.</span>
+                </div>
+    
+                <picture class="container_image-sobreMi">
+                    <img class="image_sobreMi" src="./assets/images/marcotest.png" alt="Ilustración hombre y café">
+                    <img class="labios" src="./assets/images/labios.png" alt="labios">
+                    <img class="ojos" src="./assets/images/ojosmarco.png" alt="ojos">
+                    <img class="ceja1" src="./assets/images/ceja1.png" alt="ceja1">
+                    <img class="ceja2" src="./assets/images/ceja2.png" alt="ceja2">
+                    <img class="gafas" src="./assets/images/gafas.png" alt="gafas">
+                    <img class="image_mano" src="./assets/images/manocafe.png" alt="mano">
+                    <img class="cafe" src="./assets/images/cafe.png" alt="cafe">
+                    
+                    <!-- Gotas de café -->
+                    <div class="gota cafe-gota1"></div>
+                    <div class="gota cafe-gota2"></div>
+                    <div class="gota cafe-gota3"></div>
+                    <div id="lagrima"></div>
+                    <div class="charco"></div>
+
+                </picture>
+                
+            </div>
+        </section>
+
+        <!-- Habilidades -->
+<!-- Habilidades -->
+ 
+<section class="habilidades" id="habilidades">
+    <h1 data-section="habilidades" data-value="title" data-aos="fade-up">Habilidades</h1>
+
+    <!-- Contenedor del Slider -->
+    <div class="slider-container">
+        <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos1-habilidades">
+        <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos2-habilidades">
+        <!-- Botón de navegación izquierda -->
+        
+        
+        <!-- Contenedor de Slides -->
+        <div class="slides-wrapper">
+            
+            <!-- Slide: QA -->
+            <div class="slide" data-section="QA">
+                <h2>QA</h2>
+                <div class="cards_container--habilidades">
+                    <!-- Tecnologías de QA -->
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/Selenium_Logo.png" alt="Selenium">
+                        </div>
+                        <div class="card--p--container">
+                            <p>Selenium</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/junitlogo.png" alt="JUnit">
+                        </div>
+                        <div class="card--p--container">
+                            <p>JUnit</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <br>
+                            <img src="./assets/images/logoAp.png" alt="Appium">
+                            <br>
+                        </div>
+                        <div class="card--p--container">
+                            <p>Appium</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <br>
+                            <img src="./assets/images/cucumber.png" alt="Cucumber">
+                            <br>
+                        </div>
+                        <div class="card--p--container">
+                            <p>Cucumber</p>
+                        </div>
+                    </div>
+                    <!-- Añade más tecnologías de QA según sea necesario -->
+                </div>
+            </div>
+
+            <!-- Slide: Frontend -->
+            <div class="slide" data-section="Frontend">
+                <h2>Frontend</h2>
+                <div class="cards_container--habilidades">
+                    <!-- Tecnologías de Frontend -->
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/icon-html.png" alt="HTML">
+                        </div>
+                        <div class="card--p--container">
+                            <p>HTML 5</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/icon-css.png" alt="CSS">
+                        </div>
+                        <div class="card--p--container">
+                            <p>CSS 3</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/icon-js.png" alt="JavaScript">
+                        </div>
+                        <div class="card--p--container">
+                            <p>JavaScript</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/icon-tailwind.png" alt="Tailwind">
+                        </div>
+                        <div class="card--p--container">
+                            <p>Tailwind CSS</p>
+                        </div>
+                    </div>
+                    <!-- Añade más tecnologías de Frontend según sea necesario -->
+                </div>
+            </div>
+
+            <!-- Slide: Backend -->
+            <div class="slide" data-section="Backend">
+                <h2>Backend</h2>
+                <div class="cards_container--habilidades">
+                    <!-- Tecnologías de Backend -->
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/django-icon.png" alt="Django">
+                        </div>
+                        <div class="card--p--container">
+                            <p>Django</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/spring.png" alt="Spring">
+                        </div>
+                        <div class="card--p--container">
+                            <p>Spring Boot</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/mysql.png" alt="mysql">
+                        </div>
+                        <div class="card--p--container">
+                            <p>MySQL</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/mongologo.png" alt="mongoDB">
+                        </div>
+                        <div class="card--p--container">
+                            <p>mongoDB</p>
+                        </div>
+                    </div>
+                    <!-- Añade más tecnologías de Backend según sea necesario -->
+                </div>
+            </div>
+
+            <!-- Slide: Control de Versiones -->
+            <div class="slide" data-section="Version Control">
+                <h2>Control de Versiones</h2>
+                <div class="cards_container--habilidades">
+                    <!-- Tecnologías de Control de Versiones -->
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/icon-git.png" alt="Git">
+                        </div>
+                        <div class="card--p--container">
+                            <p>Git</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/icon-github-hab.png" alt="GitHub">
+                        </div>
+                        <div class="card--p--container">
+                            <p>GitHub</p>
+                        </div>
+                    </div>
+                    <!-- Añade más tecnologías de Control de Versiones según sea necesario -->
+                </div>
+            </div>
+
+            <!-- Slide: Gestión de Proyectos -->
+            <div class="slide" data-section="Project Management">
+                <h2>Gestión de Proyectos</h2>
+                <div class="cards_container--habilidades">
+                    <!-- Herramientas de Gestión de Proyectos -->
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/icon-notion.png" alt="Notion">
+                        </div>
+                        <div class="card--p--container">
+                            <p>Notion</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/icon-trello.png" alt="Trello">
+                        </div>
+                        <div class="card--p--container">
+                            <p>Trello</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/jiralogo.png" alt="Jira">
+                        </div>
+                        <div class="card--p--container">
+                            <p>Jira</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Añade más herramientas según sea necesario -->
+                </div>
+            </div>
+        </div>
+        <button class="slider-btn left-btn">&#10094;</button>
+        <!-- Botón de navegación derecha -->
+        <button class="slider-btn right-btn">&#10095;</button>
+    </div>
+</section>
+
+        <!-- Formación -->
+        <section class="formacion" id="formacion">
+            <h1 data-section="formacion" data-value="title" data-aos="fade-up">Formación</h1>
+
+            <div class="cards_container--formacion">
+                <div class="cards--formacion" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="500">
+                    <img class="logo-unal" src="./assets/images/US-marca-principal.png" alt="Logo - Universidad Nacional de Colombia">
+                    <div class="container_texto--formacion">
+                        <p data-section="formacion" data-value="formacion1">Ingeniería Informática - Tecnologías Informáticas</p>
+                        <p data-section="formacion" data-value="tiempo-formacion1">2020 - En curso</p>
+                    </div>
+                </div>
+
+                <div class="cards--formacion" data-aos="fade-up" data-aos-duration="500">
+                    <img class="logo-unal" src="./assets/images/logoCesur.png" alt="Logo - CESUR">
+                    <div class="container_texto--formacion">
+                        <p data-section="formacion" data-value="formacion2">FP Superior - Desarrollo de Aplicaciones Multiplataforma</p>
+                        <p data-section="formacion" data-value="tiempo-formacion2">2018 - 2020</p>
+                    </div>
+                </div>
+
+                <div class="cards--formacion" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="500">
+                    <img class="logo-sena" src="./assets/images/Logo-Azul.png" alt="Logo - SENA">
+                    <div class="container_texto--formacion">
+                        <p data-section="formacion" data-value="formacion3">FP Medio - Sistemas Microinformáticos y Redes</p>
+                        <p>2016 - 2018</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proyectos -->
+        <section class="proyectos" id="proyectos">
+            <h1 data-section="proyectos" data-value="title" data-aos="fade-up">Proyectos</h1>
+
+            <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos1-proyectos">
+            <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos2-proyectos">
+
+            <div class="cards_container--proyectos">
+                <div class="cards--proyectos card_JuegoAhorcado" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
+                    <div class="container_imgCard--proyectos">
+                        <img src="./assets/images/nakoa.png" alt="Proyecto: Juego del ahorcado">
+                    </div>
+
+                    <div class="container_textCard--proyectos">
+                        <h2 data-section="proyectos" data-value="title-proyecto1">Videojuego Nakoa</h2>
+                        <p data-section="proyectos" data-value="info-proyecto1">Un videojuego multiplataforma desarrollado en Unity, disponible para iOS, Android, PC, webGL... donde el usuario podrá escoger entre diferentes personajes y escenarios, almacenando su puntuación y comparandola con otros jugadores.</p>
+                    </div>
+
+                    <div class="container_btn--proyectos">
+                        <a href="https://marcotencortes.github.io/Videojuego-Multiplataforma-Nakoa/" target="_blank">
+                            <button class="btn_demo">
+                                <img src="./assets/images/icon-demoProyecto.png" alt="Demostración">DEMO
+                            </button>
+                        </a>
+
+                        <a href="https://github.com/MarcoTenCortes/Videojuego-Multiplataforma-Nakoa" target="_blank">
+                            <button class="btn_repo">
+                                <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github">REPO
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="cards--proyectos card_portafolio" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
+                    <div class="container_imgCard--proyectos">
+                        <img src="./assets/images/cinema.png" alt="Proyecto: cinema">
+                    </div>
+
+                    <div class="container_textCard--proyectos text-portafolio">
+                        <h2 data-section="proyectos" data-value="title-proyecto2">Cinema</h2>
+                        <p data-section="proyectos" data-value="info-proyecto2">Mi portafolio web personal, donde se encuentran algunos de mis proyectos más destacados, mis habilidades técnicas y un poco sobre mi formación.</p>
+                    </div>
+
+                    <div class="container_btn--proyectos">
+                        <a href="https://cinema.mtcor.es/" target="_blank">
+                            <button class="btn_demo">
+                                <img src="./assets/images/icon-demoProyecto.png" alt="Demostración">DEMO
+                            </button>
+                        </a>
+
+                        <a href="https://github.com/MarcoTenCortes/Harvard-CS50" target="_blank">
+                            <button class="btn_repo">
+                                <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github">REPO
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="cards--proyectos card_encriptador" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
+                    <div class="container_imgCard--proyectos">
+                        <img src="./assets/images/componentes-de-un-autoencoder.png" alt="Proyecto: Encriptador">
+                    </div>
+
+                    <div class="container_textCard--proyectos">
+                        <h2 data-section="proyectos" data-value="title-proyecto3">Diagnóstico de cáncer</h2>
+                        <p data-section="proyectos" data-value="info-proyecto3">Un ecriptador donde el usuario puede escribir un texto y el encriptador lo codifica con llaves ya programadas. El encriptador también permite desencriptar el texto.</p>
+                    </div>
+
+                    <div class="container_btn--proyectos">
+                        <a href="https://sanidad.mtcor.es" target="_blank">
+                            <button class="btn_demo">
+                                <img src="./assets/images/icon-demoProyecto.png" alt="Demostración">DEMO
+                            </button>
+                        </a>
+
+                        <a href="https://github.com/MarcoTenCortes/TFG-Autoencoder" target="_blank">
+                            <button class="btn_repo">
+                                <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github">REPO
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div> 
+        </section>
+
+        <!-- Contacto -->
+        <section class="contacto" id="contacto">
+            <h1 data-section="contacto" data-value="title" data-aos="fade-up">Contacto</h1>
+
+            <div class="container_box--contacto" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+    
+                <div class="container--contacto">
+                    <div class="container_text--contacto">
+                        <p data-section="contacto" data-value="text">Completa el siguiente formulario y me pondré en contacto contigo lo antes posible.</p>
+                    </div>
+    
+                    <form id="form" class="form-contact" name="contacto-portafolio" netlify>
+                        <input id="nombre" type="text" name="name" placeholder="Nombre | Name" required>
+                        <input id="email" type="email" name="email" placeholder="E-mail" required>
+                        <input id="asunto" type="text" name="affair" placeholder="Asunto | Subject" required>
+                        <textarea id="mensaje" cols="20" rows="4" name="message" placeholder="Mensaje | Message" required></textarea>
+    
+                        <div class="btn_form--contacto">
+                            <button id="btn-enviar" type="submit" data-section="contacto" data-value="btn-enviar">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="contianer--footer">
+            <div class="container_redes-footer">
+                <a href="https://www.linkedin.com/in/marcotencortes/" target="_blank">
+                    <img src="./assets/images/icon-linkedin.png" alt="LinkedIn">
+                </a>
+                <a href="https://github.com/MarcoTenCortes" target="_blank">
+                    <img src="./assets/images/icon-github.png" alt="GitHub">
+                </a>
+
+            </div>
+
+            <div class="container_text--footer">
+                <span>Copyright © | Coded with</span>
+                <img src="./assets/images/icon-corazon.png" alt="Corazón">
+                <span>by</span>
+                <span>Marco Tenorio</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="go-top-container">
+        <div class="go-top-button">
+            <i class="fas fa-chevron-up"></i>
+        </div>
+    </div>
+
+    
+    <!-- Archivo Js -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Librería de animaciones -->
+    <script>
+        AOS.init();
+    </script>
+
+    <!-- Mi script -->
+    <script src="./script.js"></script>
+</body>
+
+
+</html>
