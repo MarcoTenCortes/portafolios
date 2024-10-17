@@ -216,15 +216,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-    document.addEventListener('mousemove', (e) => {
-        const ojos = document.querySelector('.ojos'); // Seleccionamos el elemento de los ojos
-        const ojosRect = ojos.getBoundingClientRect(); // Obtenemos la posición y tamaño del elemento ojos
-        const centroX = ojosRect.left + ojosRect.width / 2; // Centro del ojo en el eje X
-        const centroY = ojosRect.top + ojosRect.height / 2; // Centro del ojo en el eje Y
-    
-        const distanciaX = (e.clientX - centroX) / 300; // Distancia en el eje X ajustada
-        const distanciaY = (e.clientY - centroY) / 200; // Distancia en el eje Y ajustada
-    
-        ojos.style.transform = `translate(${distanciaX}px, ${distanciaY}px)`; // Movemos los ojos ligeramente
-    });
-    
+document.addEventListener('mousemove', (e) => {
+    const ojos = document.querySelector('.ojos'); // Seleccionamos el elemento de los ojos
+    const ojosRect = ojos.getBoundingClientRect(); // Obtenemos la posición y tamaño del elemento ojos
+    const centroX = ojosRect.left + ojosRect.width / 2; // Centro del ojo en el eje X
+    const centroY = ojosRect.top + ojosRect.height / 2; // Centro del ojo en el eje Y
+
+    const maxMovimientoX = ojosRect.width / 18; // Máximo movimiento permitido en X
+    const maxMovimientoY = ojosRect.height / 18; // Máximo movimiento permitido en Y
+
+    // Calculamos la distancia relativa al centro del ojo con límites
+    const distanciaX = Math.min(Math.max((e.clientX - centroX) / 50, -maxMovimientoX), maxMovimientoX);
+    const distanciaY = Math.min(Math.max((e.clientY - centroY) / 50, -maxMovimientoY), maxMovimientoY);
+
+    ojos.style.transform = `translate(${distanciaX}px, ${distanciaY}px)`; // Movemos los ojos ligeramente
+});
