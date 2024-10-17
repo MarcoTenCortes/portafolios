@@ -435,7 +435,7 @@ span+span {
     top: 61%;
     left: 6%;
     pointer-events: none; 
-    z-index: 1;
+    z-index: 2;
     width: 33%; /* Ajusta el tamaño según sea necesario */
 }
 
@@ -444,7 +444,7 @@ span+span {
     position: absolute;
     top: 64%;
     left: 18%;
-    
+    z-index: 1;
     width: 25%; /* Ajusta el tamaño según sea necesario */
 }
 
@@ -1356,6 +1356,20 @@ footer {
         top: 60rem;
         width: 7rem;
         height: 7rem;
+    }
+
+    @keyframes caidaCafe {
+        0% {
+            transform: rotate(0deg) translateY(0);
+        }
+        50% {
+            transform: rotate(45deg) translateY(50px);
+        }
+        100% {
+            top: 80%;
+            transform: rotate(90deg) translateY(50px);
+            left:22%;
+        }
     }
 
     .right-btn {

@@ -6,43 +6,37 @@
         "item5": "Projects",
         "item6": "Contact"
     },
-
     "home": {
         "home_text-1": "Hi! I'm",
-        "home_text-3": "Front-End Web Developer",
-        "parrafo-info": "Statistics and programming student focused on Frontend Web Development. As a person who loves intuitive and aesthetically pleasing designs I seek to create projects that provide the best user experience.",
+        "home_text-3": "Software Developer",
+        "parrafo-info": "Student of Computer Engineering and programming focused on Software Development.",
         "cv_button": "Download CV",
         "contact_button": "Contact"
     },
-
     "sobre-mi": {
         "title": "About me",
-        "texto_sobreMi": "I'm a Statistics undergraduate student and a self-taught Web Development student focused on Frontend programming.<br>I aspire to get a job in the Web Development world, gain experience, new knowledge and strengthen my professional life.<br><br>I'm an empathetic and enthusiastic person, with skills focused on teamwork, assertive communication, problem solving, responsible and proactive, I like to learn from others and continuously improve myself."
+        "texto_sobreMi": "I'm a Computer Engineering student about to finish my studies. I aspire to develop my knowledge and apply it to various technologies, strengthening my professional life.<br><br>I'm a hardworking and consistent person, with various skills focused on teamwork, problem-solving, responsibility, and proactivity. I love learning and surpassing myself."
     },
-
     "habilidades": {
         "title": "Skills"
     },
-
     "formacion": {
         "title": "Training",
-        "formacion1": "Statistic",
-        "tiempo-formacion1": "2019 - In progress",
-        "formacion2": "Full-Stack Developer",
-        "tiempo-formacion2": "2022 - In progress",
-        "formacion3": "Accounting for Commercial and Financial Transactions"
+        "formacion1": "Computer Engineering - IT Technologies",
+        "tiempo-formacion1": "2020 - In progress",
+        "formacion2": "Advanced Vocational Training - Multiplatform App Development",
+        "tiempo-formacion2": "2018 - 2020",
+        "formacion3": "Intermediate Vocational Training - Microcomputer Systems and Networks"
     },
-
     "proyectos": {
         "title": "Projects",
-        "title-proyecto1": "Hangman Game",
-        "info-proyecto1": "A game where the user must guess the secret word with a certain number of chances. The word is chosen randomly by the program and the user will lose the moment the gallows is completed.",
-        "title-proyecto2": "Portfolio",
-        "info-proyecto2": "My personal web portfolio, where you can find some of my most outstanding projects, my technical skills and a bit about my background.",
-        "title-proyecto3": "Text Encryptor",
-        "info-proyecto3": "An encryptor where the user can type a text and the encryptor encrypts it with pre-programmed keys. The encryptor can also decrypt the text."
+        "title-proyecto1": "Nakoa Video Game",
+        "info-proyecto1": "A multiplatform video game developed in Unity, available for iOS, Android, PC, and webGL. The user can choose between different characters and scenarios, and scores are stored and compared with other players.",
+        "title-proyecto2": "Cinema",
+        "info-proyecto2": "Developed as part of Harvard's CS50 course. This project's goal is to create a web application for managing and displaying movie information using a third-party API, with a user-friendly interface.",
+        "title-proyecto3": "Breast Cancer Diagnosis with Neural Networks",
+        "info-proyecto3": "This project focuses on developing and evaluating an advanced autoencoder model for detecting anomalies in breast cancer samples."
     },
-
     "contacto": {
         "title": "Contact",
         "text": "Complete the form below and I will contact you as soon as possible.",
