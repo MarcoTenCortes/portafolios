@@ -1146,9 +1146,10 @@ img.logo-sena {
 
 footer {
     background-color: var(--eerie-black);
+
 }
 
-.contianer--footer {
+.container--footer {
     border-top: 1px solid var(--jet);
     width: 90%;
     margin: 0 auto;
