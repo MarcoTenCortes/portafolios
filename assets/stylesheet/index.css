@@ -1159,6 +1159,20 @@ footer {
     align-items: center;
 }
 
+.container_redes-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.heartIcon {
+  
+
+    margin: 0 auto !important; /* Centrar el corazón y añadir algo de margen */
+
+
+}
+
 .container_redes-footer a {
     text-decoration: none;
 }
@@ -1175,6 +1189,7 @@ footer {
 
 .container_text--footer {
     padding-bottom: 1rem;
+    text-align: center; /* Centrar todos los elementos horizontalmente */
 }
 
 .container_text--footer span {
@@ -1354,6 +1369,7 @@ footer {
 .card--p--container {
     height: 30%;
 }
+
 @media (max-width: 700px) {
     /* Ajustar posición de los botones en móviles */
     .left-btn {
