@@ -4,6 +4,7 @@ const inputName = document.querySelector('#nombre');
 const inputEmail = document.querySelector('#email');
 const flagsElement = document.getElementById('flags');
 const textsToChange = document.querySelectorAll('[data-section]');
+const animacionTyping = document.querySelector('.home_text-3');
 
 /* ===== Loader =====*/
 window.addEventListener('load', () => {
@@ -38,6 +39,14 @@ btn.addEventListener('click', function() {
 const changeLanguage = async language => {
     const requestJson = await fetch(`./languages/${language}.json`);
     const texts = await requestJson.json();
+    console.log(language);
+    console.log(language==="en");
+    if (language==="en") { 
+        animacionTyping.style.width='23rem'
+    }
+    else if (language==="es") {
+        animacionTyping.style.width='31rem'
+    }
 
     for(const textToChange of textsToChange) {
         const section = textToChange.dataset.section;
