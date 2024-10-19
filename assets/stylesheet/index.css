@@ -1017,6 +1017,189 @@ img.logo-sena {
     width: 100%;
     height: auto;
     padding: 0 2rem 5rem 2rem;
+    position: relative;
+    
+}
+
+.contacto::before {
+    content: "";
+	position: absolute;
+	width: 97%;
+	height: 100%;
+    background: repeating-conic-gradient(#FFF9 0%, #fff0 .000075%, #fff0 .0005%, #fff0 .12345%);
+	filter: blur(0.5px) drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
+
+}
+.intento {
+    position:relative;
+}
+
+
+.container--farola{
+    position: relative;
+    top: 50%;
+    display: flex;
+    z-index: 0;
+
+}
+
+.bench {
+    position: relative;
+    top: 45rem;
+    width: 80%;
+    left: 10%;
+    
+    
+}
+
+
+
+.mantener {
+    position: absolute;
+}
+.benchImg {
+    z-index: 1;
+    width: 40rem;
+    position: absolute;
+}
+.pierna {
+    position: absolute;
+    width: 14rem;
+    top: 18rem;
+    left: 22rem;
+    z-index:1;
+
+
+}
+
+
+.handBench {
+    position: absolute;
+    width: 15rem;
+    left: 17rem;
+    top: 10.4rem;
+    z-index:2;
+    animation: moverMano 4s forwards infinite;
+
+
+}
+.light {
+    position: absolute;
+    top: -3.5rem;
+    left: 11.5rem;
+
+    transform: translateX(-50%);
+    width: 5rem;
+    height: 8rem;
+    background-color: rgba(255, 255, 204, 0.6); /* Color amarillo pálido para la luz */
+    border-radius: 100%;
+    box-shadow: 0 0 50px 20px rgba(255, 255, 204, 0.8);
+    z-index: 0;
+    animation: flickerl 2s infinite;
+}
+.farola {
+    position: absolute;
+    top: -7rem;
+    width: 70rem;
+    z-index: 0;
+   
+}
+
+.farola img {
+    width: 23rem;
+}
+
+@keyframes flickerl {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.85;
+    }
+}
+
+#movilLuz {
+    content: "";
+    position: absolute;
+    top: 8rem; /* Ajusta esto para colocar la luz sobre la cara */
+    left: 20.2rem; /* Ajusta según la posición de la cara */
+    width: 1rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 132, 255, 0.4) 20%, transparent 80%);
+    box-shadow: 0 0 30px 30px rgba(0, 132, 255, 0.2);
+    filter: blur(8px);
+    z-index: 10; /* Coloca la luz por encima de los elementos */
+    animation: flicker 4s infinite;
+}
+
+/* Animación para el parpadeo */
+@keyframes flicker {
+    0% {
+        opacity: 1;
+        box-shadow: 0 0 30px 30px rgba(0, 132, 255, 0.3);
+    }
+    50% {
+        opacity: 0.95;
+        box-shadow: 0 0 40px 40px rgba(0, 132, 255, 0.16);
+    }
+    100% {
+        opacity: 1;
+        box-shadow: 0 0 30px 30px rgba(0, 132, 255, 0.3);
+    }
+}
+
+
+ @keyframes moverMano {
+    0% {
+        left: 17rem;
+        top: 10.4rem;
+        transform: rotate(2deg);
+    }
+
+    100% {
+        
+        top: 10.4rem;
+        transform: rotate(-2deg); /* Rotación para simular el movimiento hacia la otra pierna */
+    }
+ }
+@keyframes moverPierna {
+    0% {
+        top: 18rem;
+        left: 22rem;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        top:15rem; /* Ajusta este valor según la posición de la pierna izquierda */
+        clip-path: inset(0 0 0 30%);
+        left: 20rem; /* Ajusta este valor según la posición de la pierna izquierda */
+        transform: rotate(-30deg); /* Rotación para simular el movimiento hacia la otra pierna */
+    }
+}
+
+
+.ground-light {
+	background: #dac47080;
+	width: 25rem;
+    position: relative;
+    right: 10rem;
+	top: -10rem;
+	height: 5rem;
+	border-radius: 100%;
+    bottom: 5rem;
+
+}
+
+.mover {
+    animation: moverPierna 5s forwards;
+
+
+}
+.volver {
+    animation: moverPierna 5s reverse forwards; /* La animación hacia atrás (reverse) */
+    animation-fill-mode: forwards; /* Mantener el último estado de la animación */
+
 }
 
 .contacto h1 {
@@ -1039,7 +1222,11 @@ img.logo-sena {
     border-radius: 24px;
     padding: 3rem;
     position: relative;
+    opacity: 0.9;
+    z-index: 10;
+    
 }
+
 
 .container_text--contacto {
     width: 100%;
@@ -1344,7 +1531,7 @@ footer {
     background-color: var(--eerie-black);
     border-radius: 24px;
     width: 13rem;
-    height: 15rem;
+    height: 13rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1352,7 +1539,8 @@ footer {
 }
 
 .cards--habilidades img {
-    width: 9rem;
+    width: 60%;
+    margin: 0 auto;
 }
 
 .cards--habilidades p {
@@ -1364,20 +1552,54 @@ footer {
 
 .card--img--container {
     height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
+
+.card--img--container img {
+    height: 8rem;
+    width: 8rem;
+}
+
 
 .card--p--container {
     height: 30%;
+}
+
+.slide h2 {
+    position: relative;
+    bottom: 2.5rem;
 }
 
 @media (max-width: 700px) {
     /* Ajustar posición de los botones en móviles */
     .left-btn {
         left: 3rem; /* Mueve el botón más cerca del borde izquierdo */
-        top: 60rem;
+        top: 62rem;
         width: 7rem;
         height: 7rem;
+        
     }
+    
+    .right-btn {
+        right: 3rem; 
+        top: 62rem;/* Mueve el botón más cerca del borde derecho */
+        width: 7rem;
+        height: 7rem;
+        
+    }
+    .contacto::before {
+        content: "";
+        position: absolute;
+        width: 80%;
+        height: 100%;
+        background: repeating-conic-gradient(#FFF9 0%, #fff0 .000075%, #fff0 .0005%, #fff0 .12345%);
+        filter: blur(0.5px) drop-shadow(0 0 0.5px #fff) drop-shadow(0 0 0.5px #fff);
+    
+    }
+
 
     @keyframes caidaCafe {
         0% {
@@ -1393,7 +1615,17 @@ footer {
         }
     }
 
-    @media (max-width: 400px) {
+
+
+
+    /* Reducir tamaño de los botones en pantallas pequeñas */
+    .slider-btn {
+        font-size: 1.5rem;
+        padding: 0.75rem;
+    }
+}
+
+@media (max-width: 400px) {
         
     @keyframes caidaCafe {
         0% {
@@ -1409,20 +1641,6 @@ footer {
         }
     }
     }
-
-    .right-btn {
-        right: 3rem; 
-        top: 60rem;/* Mueve el botón más cerca del borde derecho */
-        width: 7rem;
-        height: 7rem;
-    }
-
-    /* Reducir tamaño de los botones en pantallas pequeñas */
-    .slider-btn {
-        font-size: 1.5rem;
-        padding: 0.75rem;
-    }
-}
 #mouse-gradient {
     background: radial-gradient(600px at 50% 50%, rgba(29, 78, 216, 0.15), transparent 80%);
     pointer-events: none; /* No interfiere con el clic del ratón */
@@ -1444,3 +1662,4 @@ footer {
     z-index: -1; /* Asegúrate de que esté detrás del contenido */
     transition: background 0.3s; /* Transición suave del fondo */
 }
+

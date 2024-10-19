@@ -240,3 +240,32 @@ document.addEventListener('mousemove', (e) => {
 
     ojos.style.transform = `translate(${distanciaX}px, ${distanciaY}px)`; // Movemos los ojos ligeramente
 });
+
+const pierna = document.querySelector('.pierna');
+
+function animarPierna() {
+    // Añade la clase para mover hacia adelante
+    pierna.classList.add('mover');
+
+    // Después de 5 segundos, removemos la clase "mover" y aplicamos "volver"
+    setTimeout(() => {
+        pierna.classList.remove('mover');
+        
+        // Forzamos un "repaint" para reiniciar el estado de la animación
+        void pierna.offsetWidth;  // Esto asegura que la animación se reinicie
+
+        pierna.classList.add('volver'); // Mover hacia atrás
+    }, 20000);
+
+    // Después de otros 5 segundos, removemos la clase "volver"
+    setTimeout(() => {
+        pierna.classList.remove('volver');
+
+        // Restablece la posición original si es necesario manualmente
+
+        pierna.style.transform = 'rotate(0deg)'; // Reinicia la posición original
+
+    }, 40000); 
+}
+animarPierna();
+setInterval(animarPierna, 60000);
