@@ -1028,9 +1028,9 @@ img.logo-sena {
     content: "";
 	position: absolute;
 	width: 97%;
-	height: 100%;
-    background: none;
-	filter: blur(0.5px) drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
+	height: 100%;/*
+    background: repeating-conic-gradient(#FFF9 0%, #fff0 .000075%, #fff0 .0005%, #fff0 .12345%);
+	filter: blur(0.5px) drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);*/
 
 }
 
