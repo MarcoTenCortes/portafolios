@@ -1167,17 +1167,17 @@ img.logo-sena {
         transform: rotate(-2deg); /* Rotación para simular el movimiento hacia la otra pierna */
     }
  }
-@keyframes moverPierna {
+ @keyframes moverPierna {
     0% {
-        top: 12rem;
-        left: 15rem;
+        top: 18rem;
+        left: 22rem;
         transform: rotate(0deg);
     }
 
     100% {
-        top:10rem; /* Ajusta este valor según la posición de la pierna izquierda */
+        top:15rem; /* Ajusta este valor según la posición de la pierna izquierda */
         clip-path: inset(0 0 0 30%);
-        left: 13rem; /* Ajusta este valor según la posición de la pierna izquierda */
+        left: 19rem; /* Ajusta este valor según la posición de la pierna izquierda */
         transform: rotate(-30deg); /* Rotación para simular el movimiento hacia la otra pierna */
     }
 }
@@ -1578,7 +1578,21 @@ footer {
 }
 
 @media (max-width: 700px) {
-
+    @keyframes moverPierna {
+        0% {
+            top: 12rem;
+            left: 15rem;
+            transform: rotate(0deg);
+        }
+    
+        100% {
+            top:10rem; /* Ajusta este valor según la posición de la pierna izquierda */
+            clip-path: inset(0 0 0 30%);
+            left: 13rem; /* Ajusta este valor según la posición de la pierna izquierda */
+            transform: rotate(-30deg); /* Rotación para simular el movimiento hacia la otra pierna */
+        }
+    }
+    
     :root {
         --handw: calc(15rem * 0.4);  /* Se reduce el valor actual en un 70% */
         --piernaw: calc(14rem * 0.7);
