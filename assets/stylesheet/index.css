@@ -1034,11 +1034,7 @@ img.logo-sena {
 
 }
 
-@supports not (background: repeating-conic-gradient(#FFF9 0%, #fff0 .000075%, #fff0 .0005%, #fff0 .12345%)) {
-    .contacto::before {
-        background: none;
-    }
-}
+
 .intento {
     position:relative;
 }
@@ -1633,15 +1629,10 @@ footer {
         position: absolute;
         width: 80%;
         height: 100%;
-        background: repeating-conic-gradient(#FFF9 0%, #fff0 .000075%, #fff0 .0005%, #fff0 .12345%);
-        filter: blur(0.5px) drop-shadow(0 0 0.5px #fff) drop-shadow(0 0 0.5px #fff);
+
     }
     
-    @supports not (background: repeating-conic-gradient(#FFF9 0%, #fff0 .000075%, #fff0 .0005%, #fff0 .12345%)) {
-        .contacto::before {
-            background: none;
-        }
-    }
+
 
     @keyframes caidaCafe {
         0% {
