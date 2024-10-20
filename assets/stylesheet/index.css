@@ -1033,6 +1033,12 @@ img.logo-sena {
 	filter: blur(0.5px) drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff);
 
 }
+
+@supports not (background: repeating-conic-gradient(#FFF9 0%, #fff0 .000075%, #fff0 .0005%, #fff0 .12345%)) {
+    .contacto::before {
+        background: none;
+    }
+}
 .intento {
     position:relative;
 }
@@ -1633,7 +1639,7 @@ footer {
     
     @supports not (background: repeating-conic-gradient(#FFF9 0%, #fff0 .000075%, #fff0 .0005%, #fff0 .12345%)) {
         .contacto::before {
-            background: linear-gradient(45deg, #FFF9, #fff0);
+            background: none;
         }
     }
 
