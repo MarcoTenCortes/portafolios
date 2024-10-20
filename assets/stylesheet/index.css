@@ -1084,7 +1084,7 @@ img.logo-sena {
     left: 17rem;
     top: 10.4rem;
     z-index:2;
-    /*animation: moverMano 4s forwards infinite;*/
+    animation: moverMano 4s forwards infinite;
 
 
 }
@@ -1157,28 +1157,27 @@ img.logo-sena {
 
  @keyframes moverMano {
     0% {
-        left: 17rem;
-        top: 10.4rem;
+
         transform: rotate(2deg);
     }
 
     100% {
         
-        top: 10.4rem;
+        
         transform: rotate(-2deg); /* Rotación para simular el movimiento hacia la otra pierna */
     }
  }
 @keyframes moverPierna {
     0% {
-        top: 18rem;
-        left: 22rem;
+        top: 12rem;
+        left: 15rem;
         transform: rotate(0deg);
     }
 
     100% {
-        top:15rem; /* Ajusta este valor según la posición de la pierna izquierda */
+        top:10rem; /* Ajusta este valor según la posición de la pierna izquierda */
         clip-path: inset(0 0 0 30%);
-        left: 20rem; /* Ajusta este valor según la posición de la pierna izquierda */
+        left: 13rem; /* Ajusta este valor según la posición de la pierna izquierda */
         transform: rotate(-30deg); /* Rotación para simular el movimiento hacia la otra pierna */
     }
 }
