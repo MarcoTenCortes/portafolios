@@ -11,6 +11,9 @@
     --black: #141414;
     --eerie-black: #0e1a29;
     --jet: #122235;
+    --piernaw: 14rem;
+    --handw: 15rem;
+    --benchiw: 40rem;
 }
 
 * {
@@ -1059,12 +1062,12 @@ img.logo-sena {
 }
 .benchImg {
     z-index: 1;
-    width: 40rem;
+    width: var(--benchiw);
     position: absolute;
 }
 .pierna {
     position: absolute;
-    width: 14rem;
+    width: var(--piernaw);
     top: 18rem;
     left: 22rem;
     z-index:1;
@@ -1075,11 +1078,11 @@ img.logo-sena {
 
 .handBench {
     position: absolute;
-    width: 15rem;
+    width: var(--handw);
     left: 17rem;
     top: 10.4rem;
     z-index:2;
-    animation: moverMano 4s forwards infinite;
+    /*animation: moverMano 4s forwards infinite;*/
 
 
 }
@@ -1574,6 +1577,35 @@ footer {
 }
 
 @media (max-width: 700px) {
+
+    :root {
+        --handw: calc(15rem * 0.4);  /* Se reduce el valor actual en un 70% */
+        --piernaw: calc(14rem * 0.7);
+        --benchiw: calc(40rem * 0.7);
+    }
+
+    .handBench {
+        top: 7.5rem;
+        left: 12rem;
+    }
+    .pierna {
+        top: 12rem;
+        left: 15rem;
+    }
+
+    .farola {
+        width: 20rem;
+        top: -15rem;
+    }
+    .light {
+        top: -13rem;
+        left: 10rem;
+    }
+
+    #movilLuz {
+        left: 13rem;
+    }
+
     /* Ajustar posición de los botones en móviles */
     .left-btn {
         left: 3rem; /* Mueve el botón más cerca del borde izquierdo */
