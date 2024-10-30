@@ -930,6 +930,8 @@ img.logo-sena {
     width: 100%;
     border-radius: 20px 20px 0 0;
     height: 18rem;
+    display: flex;
+    justify-content: center;
 }
 
 .container_textCard--proyectos {
@@ -1542,6 +1544,15 @@ footer {
     justify-content: center;
 }
 
+#postmanImg {
+    width: 11rem;
+}
+
+#appiumImg {
+    width: 11rem;
+}
+
+
 .cards--habilidades img {
     width: 60%;
     margin: 0 auto;
@@ -1564,7 +1575,7 @@ footer {
 
 .card--img--container img {
     height: 8rem;
-    width: 8rem;
+    width: 9rem;
 }
 
 
