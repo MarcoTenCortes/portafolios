@@ -932,6 +932,7 @@ img.logo-sena {
     height: 18rem;
     display: flex;
     justify-content: center;
+    /*centrado*/
 }
 
 .container_textCard--proyectos {
