@@ -9,13 +9,13 @@
     "home": {
         "home_text-1": "Hola! Soy",
         "home_text-3": "Desarrollador de Software",
-        "parrafo-info": "Estudiante de Ingeniería Informática y programación enfocado al Desarrollo de Software.",
+        "parrafo-info": "Ingeniero Informático enfocado en el Desarrollo de Software y programación.",
         "cv_button": "Descargar CV",
         "contact_button": "Contacto"
     },
     "sobre-mi": {
         "title": "Sobre mí",
-        "texto_sobreMi": "Soy estudiante de Ingeniería Informática al borde de finalizar mis estudios. Aspiro a desarrollar mis conocimientos y aplicarlos en diferentes tecnologías, fortaleciendo mi vida profesional.<br><br>Soy una persona trabajadora y constante, con diversas competencias enfocadas en el trabajo en equipo, la resolución de problemas, la responsabilidad y la proactividad. Me encanta aprender y superarme a mí mismo."
+        "texto_sobreMi": "Soy Ingeniero Informático con una gran pasión por el aprendizaje continuo y la aplicación de mis conocimientos en diversas tecnologías. Me esfuerzo por mantenerme actualizado y fortalecer mi desarrollo profesional en un entorno dinámico y en constante evolución. <br><br>Me caracterizo por ser una persona proactiva, trabajadora y dedicada, con fuertes competencias en el trabajo en equipo, resolución de problemas y responsabilidad. Siempre busco desafíos que me permitan mejorar y alcanzar nuevas metas tanto en lo personal como en lo profesional."
     },
     "habilidades": {
         "title": "Habilidades"

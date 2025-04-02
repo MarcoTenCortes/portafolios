@@ -9,13 +9,13 @@
     "home": {
         "home_text-1": "Hi! I'm",
         "home_text-3": "Software Developer",
-        "parrafo-info": "Student of Computer Engineering and programming focused on Software Development.",
+        "parrafo-info": "Computer Engineer focused on Software Development and Programming.",
         "cv_button": "Download CV",
         "contact_button": "Contact"
     },
     "sobre-mi": {
         "title": "About me",
-        "texto_sobreMi": "I'm a Computer Engineering student about to finish my studies. I aspire to develop my knowledge and apply it to various technologies, strengthening my professional life.<br><br>I'm a hardworking and consistent person, with various skills focused on teamwork, problem-solving, responsibility, and proactivity. I love learning and surpassing myself."
+        "texto_sobreMi": "I am a Computer Engineer with a great passion for continuous learning and applying my knowledge to various technologies. I strive to stay up to date and strengthen my professional development in a dynamic and ever-evolving environment. <br><br>I am characterized by being a proactive, hardworking, and dedicated person, with strong skills in teamwork, problem-solving, and responsibility. I am always looking for challenges that allow me to improve and achieve new goals, both personally and professionally."
     },
     "habilidades": {
         "title": "Skills"
