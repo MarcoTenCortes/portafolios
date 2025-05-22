@@ -275,7 +275,15 @@
                             <img src="./assets/images/Bootstrap_logo.svg.png" alt="Bootstrap">
                         </div>
                         <div class="card--p--container">
-                            <p>Bottstrap</p>
+                            <p>Bootstrap</p>
+                        </div>
+                    </div>
+                    <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/react.png" alt="react">
+                        </div>
+                        <div class="card--p--container">
+                            <p>React</p>
                         </div>
                     </div>
                     <!-- Añade más tecnologías de Frontend según sea necesario -->
@@ -325,6 +333,14 @@
                         </div>
                         <div class="card--p--container">
                             <p>Flask</p>
+                        </div>
+                    </div>
+                        <div class="cards--habilidades">
+                        <div class="card--img--container">
+                            <img src="./assets/images/FirebaseLogo.png" alt="Firebase">
+                        </div>
+                        <div class="card--p--container">
+                            <p>Firebase</p>
                         </div>
                     </div>
                     <!-- Añade más tecnologías de Backend según sea necesario -->
@@ -427,90 +443,127 @@
             </div>
         </section>
 
-        <!-- Proyectos -->
-        <section class="proyectos" id="proyectos">
-            <h1 data-section="proyectos" data-value="title" data-aos="fade-up">Proyectos</h1>
+<!-- Proyectos -->
+<section class="proyectos" id="proyectos">
+  <h1 data-section="proyectos" data-value="title" data-aos="fade-up">Proyectos</h1>
 
-            <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos1-proyectos">
-            <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos2-proyectos">
+  <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos1-proyectos">
+  <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos2-proyectos">
 
-            <div class="cards_container--proyectos">
-                <div class="cards--proyectos card_JuegoAhorcado" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
-                    <div class="container_imgCard--proyectos">
-                        <img src="./assets/images/nakoa.png" alt="Proyecto: Juego del ahorcado">
-                    </div>
+  <div class="cards_container--proyectos">
+    <!-- Proyecto 1 -->
+    <div class="cards--proyectos card_JuegoAhorcado" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
+      <div class="container_imgCard--proyectos">
+        <img src="./assets/images/nakoa.png" alt="Proyecto: Videojuego Nakoa">
+      </div>
+      <div class="container_textCard--proyectos">
+        <h2 data-section="proyectos" data-value="title-proyecto1">Videojuego Nakoa</h2>
+        <p data-section="proyectos" data-value="info-proyecto1">
+          Un videojuego multiplataforma desarrollado en Unity, disponible para iOS, Android, PC, webGL... Además, los datos se almacenan en una API REST en PHP.
+        </p>
+      </div>
+      <div class="container_btn--proyectos">
+        <a href="https://marcotencortes.github.io/Videojuego-Multiplataforma-Nakoa/" target="_blank">
+          <button class="btn_demo">
+            <img src="./assets/images/icon-demoProyecto.png" alt="Demostración"> DEMO
+          </button>
+        </a>
+        <a href="https://github.com/MarcoTenCortes/Videojuego-Multiplataforma-Nakoa" target="_blank">
+          <button class="btn_repo">
+            <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github"> REPO
+          </button>
+        </a>
+      </div>
+    </div>
 
-                    <div class="container_textCard--proyectos">
-                        <h2 data-section="proyectos" data-value="title-proyecto1">Videojuego Nakoa</h2>
-                        <p data-section="proyectos" data-value="info-proyecto1">Un videojuego multiplataforma desarrollado en Unity, disponible para iOS, Android, PC, webGL... donde el usuario podrá escoger entre diferentes personajes y escenarios, almacenando su puntuación y comparandola con otros jugadores.</p>
-                    </div>
+    <!-- Proyecto 2 -->
+    <div class="cards--proyectos card_portafolio" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
+      <div class="container_imgCard--proyectos">
+        <img src="./assets/images/cinema.png" alt="Proyecto: Cinema">
+      </div>
+      <div class="container_textCard--proyectos text-portafolio">
+        <h2 data-section="proyectos" data-value="title-proyecto2">Cinema</h2>
+        <p data-section="proyectos" data-value="info-proyecto2">
+          Desarrollado como parte del curso CS50 de Harvard. El objetivo de este proyecto es crear una aplicación web para la gestión y visualización de información sobre películas.
+        </p>
+      </div>
+      <div class="container_btn--proyectos">
+        <a href="https://cinema.mtcor.es/" target="_blank">
+          <button class="btn_demo">
+            <img src="./assets/images/icon-demoProyecto.png" alt="Demostración"> DEMO
+          </button>
+        </a>
+        <a href="https://github.com/MarcoTenCortes/Harvard-CS50" target="_blank">
+          <button class="btn_repo">
+            <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github"> REPO
+          </button>
+        </a>
+      </div>
+    </div>
 
-                    <div class="container_btn--proyectos">
-                        <a href="https://marcotencortes.github.io/Videojuego-Multiplataforma-Nakoa/" target="_blank">
-                            <button class="btn_demo">
-                                <img src="./assets/images/icon-demoProyecto.png" alt="Demostración">DEMO
-                            </button>
-                        </a>
+    <!-- Proyecto 3 -->
+    <div class="cards--proyectos card_encriptador" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
+      <div class="container_imgCard--proyectos">
+        <img src="./assets/images/Autoencoder.png" alt="Proyecto: Diagnóstico de cáncer" id="autoencoderImg">
+      </div>
+      <div class="container_textCard--proyectos">
+        <h2 data-section="proyectos" data-value="title-proyecto3">Diagnóstico de cáncer con Redes Neuronales</h2>
+        <p data-section="proyectos" data-value="info-proyecto3">
+          Este TFG se centra en el desarrollo y evaluación de un modelo avanzado de autoencoder para la detección de anomalías en muestras de cáncer de mama.
+        </p>
+      </div>
+      <div class="container_btn--proyectos">
+        <a href="https://sanidad.mtcor.es" target="_blank">
+          <button class="btn_demo">
+            <img src="./assets/images/icon-demoProyecto.png" alt="Demostración"> DEMO
+          </button>
+        </a>
+        <a href="https://github.com/MarcoTenCortes/TFG-Autoencoder" target="_blank">
+          <button class="btn_repo">
+            <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github"> REPO
+          </button>
+        </a>
+      </div>
+    </div>
 
-                        <a href="https://github.com/MarcoTenCortes/Videojuego-Multiplataforma-Nakoa" target="_blank">
-                            <button class="btn_repo">
-                                <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github">REPO
-                            </button>
-                        </a>
-                    </div>
-                </div>
+    <!-- Proyecto 4 -->
+    <div class="cards--proyectos project4" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
+      <div class="container_imgCard--proyectos">
+        <img src="./assets/images/bot.png" alt="Proyecto: Bot Telegram Finanzas Piso">
+      </div>
+      <div class="container_textCard--proyectos">
+        <h2>Bot Telegram Finanzas Piso</h2>
+        <p>Un bot de Telegram que automatiza consultas y avisos sobre finanzas del piso compartido. Se conecta mediante una API intermediaria a cualquier banco (Santander, Caixabank,...) </p>
+      </div>
+      <div class="container_btn--proyectos">
+        <a href="https://github.com/MarcoTenCortes/botTelegramFinanzasPiso" target="_blank">
+          <button class="btn_repo">
+            <img src="./assets/images/icon-githubProyecto.png" alt="GitHub"> REPO
+          </button>
+        </a>
+      </div>
+    </div>
 
-                <div class="cards--proyectos card_portafolio" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
-                    <div class="container_imgCard--proyectos">
-                        <img src="./assets/images/cinema.png" alt="Proyecto: cinema">
-                    </div>
+    <!-- Proyecto 5 -->
+    <div class="cards--proyectos project5" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
+      <div class="container_imgCard--proyectos">
+        <img src="./assets/images/persona_compartiendo.png" alt="Proyecto: Repartir Tareas">
+      </div>
+      <div class="container_textCard--proyectos">
+        <h2>App Repartir Tareas</h2>
+        <p>Aplicación móvil multiplataforma para distribuir y asignar tareas, gestionar pagos, recordatorios y otros de forma colaborativa entre miembros de un equipo.</p>
+      </div>
+      <div class="container_btn--proyectos">
+        <a href="https://github.com/MarcoTenCortes/repartir-tareas" target="_blank">
+          <button class="btn_repo">
+            <img src="./assets/images/icon-githubProyecto.png" alt="GitHub"> REPO
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <div class="container_textCard--proyectos text-portafolio">
-                        <h2 data-section="proyectos" data-value="title-proyecto2">Cinema</h2>
-                        <p data-section="proyectos" data-value="info-proyecto2">Desarrollado como parte del curso CS50 de Harvard. El objetivo de este proyecto es crear una aplicación web para la gestión y visualización de información sobre películas.</p>
-                    </div>
-
-                    <div class="container_btn--proyectos">
-                        <a href="https://cinema.mtcor.es/" target="_blank">
-                            <button class="btn_demo">
-                                <img src="./assets/images/icon-demoProyecto.png" alt="Demostración">DEMO
-                            </button>
-                        </a>
-
-                        <a href="https://github.com/MarcoTenCortes/Harvard-CS50" target="_blank">
-                            <button class="btn_repo">
-                                <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github">REPO
-                            </button>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="cards--proyectos card_encriptador" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
-                    <div class="container_imgCard--proyectos">
-                        <img src="./assets/images/Autoencoder.png" alt="Proyecto: Encriptador" id="autoencoderImg">
-                    </div>
-
-                    <div class="container_textCard--proyectos">
-                        <h2 data-section="proyectos" data-value="title-proyecto3">Diagnóstico de cáncer con Redes Neuronales</h2>
-                        <p data-section="proyectos" data-value="info-proyecto3">Este TFG se centra en el desarrollo y evaluación de un modelo avanzado de autoencoder para la detección de anomalías en muestras de cáncer de mama.</p>
-                    </div>
-
-                    <div class="container_btn--proyectos">
-                        <a href="https://sanidad.mtcor.es" target="_blank">
-                            <button class="btn_demo">
-                                <img src="./assets/images/icon-demoProyecto.png" alt="Demostración">DEMO
-                            </button>
-                        </a>
-
-                        <a href="https://github.com/MarcoTenCortes/TFG-Autoencoder" target="_blank">
-                            <button class="btn_repo">
-                                <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github">REPO
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div> 
-        </section>
 
         <!-- Contacto -->
 <section class="contacto" id="contacto">
