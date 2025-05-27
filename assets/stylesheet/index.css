@@ -872,11 +872,14 @@ img.logo-sena {
     font-size: 1.4rem;
 }
 
+
+
 /* Proyectos */
 
 .proyectos {
     background-color: var(--jet);
     width: 100%;
+
     height: auto;
     padding: 0 1rem 1rem 1rem;
 }
@@ -974,7 +977,8 @@ img.logo-sena {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 15.8rem;
+    width: 100%;
+    max-width: 15.8rem;
     letter-spacing: .1rem;
     font-weight: bold;
     cursor: pointer;
@@ -1681,6 +1685,7 @@ footer {
         font-size: 1.5rem;
         padding: 0.75rem;
     }
+    
 }
 
 @media (max-width: 400px) {
@@ -1734,3 +1739,17 @@ footer {
     z-index: 0;
   }
 /*test*/
+/* Estilo para pantallas medianas */
+/* Estilo para pantallas medianas */
+@media (min-width: 700px) and (max-width: 1580px) {
+  .cards_container--proyectos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    gap: 2rem; /* Espacio entre las tarjetas */
+    justify-items: center;
+  }
+
+  .cards--proyectos {
+    width: 100%; /* O ajusta el ancho como prefieras */
+  }
+}
