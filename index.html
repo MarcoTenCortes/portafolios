@@ -1,678 +1,952 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portafolio | Marco Tenorio  Desarrollador de Software">
-    <meta name="robots" content="index,follow">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title data-i18n="meta.title">Marco Tenorio Cortés · Software Engineer</title>
+  <meta name="description" content="Software Engineer en Minsait y arquitecto de soluciones en SIMPL-Open, el middleware europeo de espacios de datos. Auditoría técnica, APIs REST y automatización de pruebas. Sevilla." data-i18n-attr="content:meta.description">
+  <meta name="robots" content="index,follow">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#05070b">
+  <link rel="canonical" href="https://portafolios.mtcor.es/">
 
-    <title>Marco Tenorio Cortés | Ingeniero Informático y Desarrollador de Software</title>
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://portafolios.mtcor.es/">
+  <meta property="og:site_name" content="Marco Tenorio Cortés">
+  <meta property="og:title" content="Marco Tenorio Cortés · Software Engineer" data-i18n-attr="content:meta.title">
+  <meta property="og:description" content="Software Engineer en Minsait y arquitecto de soluciones en SIMPL-Open, el middleware europeo de espacios de datos. Auditoría técnica, APIs REST y automatización de pruebas. Sevilla." data-i18n-attr="content:meta.description">
+  <meta property="og:image" content="https://portafolios.mtcor.es/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Marco Tenorio Cortés, dibujado, con un café en la mano">
+  <meta property="og:locale" content="es_ES" id="og-locale">
+  <meta property="og:locale:alternate" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Marco Tenorio Cortés · Software Engineer" data-i18n-attr="content:meta.title">
+  <meta name="twitter:description" content="Software Engineer en Minsait y arquitecto de soluciones en SIMPL-Open, el middleware europeo de espacios de datos. Auditoría técnica, APIs REST y automatización de pruebas. Sevilla." data-i18n-attr="content:meta.description">
+  <meta name="twitter:image" content="https://portafolios.mtcor.es/og.png">
 
-    <!-- Librerías -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
-    <!-- Hojas de estilo -->
-    <link rel="stylesheet" href="./assets/stylesheet/loader.css">
-    <link rel="stylesheet" href="./assets/stylesheet/index.css">
-    <link rel="stylesheet" href="./assets/stylesheet/tablet.css" media="screen and (min-width: 760px)">
-    <link rel="stylesheet" href="./assets/stylesheet/desktop.css" media="screen and (min-width: 980px)">
+  <link rel="preload" href="/src/assets/fonts/inter-latin-var.woff2" as="font" type="font/woff2" crossorigin>
+  <script>document.documentElement.classList.add('js');</script>
 
-    <!-- Fuentes -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
-
-    <!-- Fontawesome -->
-    <script src="https://kit.fontawesome.com/ae0fd6f99f.js" crossorigin="anonymous"></script>
-
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="./assets/images/iconM.png" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Marco Tenorio Cortés",
+    "jobTitle": "Software Engineer · Technical Analyst",
+    "url": "https://portafolios.mtcor.es/",
+    "image": "https://portafolios.mtcor.es/og.png",
+    "email": "mailto:marcotencortes@hotmail.com",
+    "worksFor": { "@type": "Organization", "name": "Minsait" },
+    "alumniOf": [
+      { "@type": "CollegeOrUniversity", "name": "Universidad de Sevilla" },
+      { "@type": "EducationalOrganization", "name": "Cesur" }
+    ],
+    "address": { "@type": "PostalAddress", "addressLocality": "Sevilla", "addressCountry": "ES" },
+    "sameAs": [
+      "https://www.linkedin.com/in/marcotencortes",
+      "https://github.com/MarcoTenCortes"
+    ],
+    "knowsAbout": ["Software architecture", "Java", "Spring Boot", "OpenAPI", "QA automation", "Deep learning", "Google Cloud"]
+  }
+  </script>
 </head>
-
 <body>
-    <div id="mouse-gradient" class="pointer-events-none fixed inset-0 z-30 transition duration-300 lg:absolute"></div>
-    <div class="container--loader">
-        <div class="loader"></div>
-    </div>
+  <a class="skip" href="#main" data-i18n="a11y.skip">Saltar al contenido</a>
 
-    <header class="header">
-        <img src="./assets/images/logoMTC.png" alt="Logo Portafolio" class="logo__header">
+  <header class="nav" id="nav">
+    <div class="nav__inner container">
+      <a class="nav__brand" href="#inicio" aria-label="Inicio">
+        <svg class="monogram" viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="16" cy="16" r="14.5" stroke-width="1.5" opacity=".45"/>
+          <polyline points="9.5,22 9.5,10.5 16,17 22.5,10.5 22.5,22" stroke-width="2.4"/>
+        </svg>
+        <span class="nav__name">Marco Tenorio</span>
+      </a>
 
-        <nav class="nav_menu not-active">
-            <a href="#home" class="active">Home</a>
-            <a href="#sobreMi" data-section="menu" data-value="item2">Sobre mí</a>
-            <a href="#habilidades" data-section="menu" data-value="item3">Habilidades</a>
-            <a href="#formacion" data-section="menu" data-value="item4">Formación</a>
-            <a href="#proyectos" data-section="menu" data-value="item5">Proyectos</a>
-            <a href="#contacto" data-section="menu" data-value="item6">Contacto</a>
+      <nav class="nav__links" aria-label="Secciones">
+        <ul>
+          <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
+          <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
+          <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+          <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
+          <li><a href="#formacion" data-i18n="nav.education">Formación</a></li>
+          <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+        </ul>
+      </nav>
 
-            <!-- Idiomas de la página -->
-            <div id="flags" class="flags">
-                <div class="flags__item" data-language="es">
-                    <img src="./assets/images/icon-spain.png" alt="Español/Spain">
-                </div>
-                <div class="flags__item" data-language="en">
-                    <img src="./assets/images/icon-en.png" alt="Inglés/English">
-                </div>
-            </div>
-        </nav>
-
-        <div id="button" class="btn not-active">
-            <span></span>
-            <span></span>
-            <span></span>
+      <div class="nav__tools">
+        <div class="lang" role="group" aria-label="Idioma" data-i18n-attr="aria-label:a11y.lang_group">
+          <button type="button" class="lang__btn" data-lang="es" lang="es" aria-pressed="true">ES</button>
+          <button type="button" class="lang__btn" data-lang="en" lang="en" aria-pressed="false">EN</button>
         </div>
-    </header>
-
-    <main>
- 
-        <!-- Home -->
-        <section class="home" id="home">
-            <picture class="container_image-home" data-aos="zoom-in">
-                <img class="image_home" src="./assets/images/bf_marco.png" alt="Ilustración mujer y plantas">
-            </picture>
-            
-            <div class="home_info">
-                <div class="container_text-info">
-                    <p class="home_text-1" data-section="home" data-value="home_text-1">¡Hola! Soy</p>
-                    <p class="home_text-2">Marco Tenorio Cortés</p>
-                </div>
-
-                <div>
-                    <p class="home_text-3 text-type" data-section="home" data-value="home_text-3">Desarrollador de Software</p>
-                </div>
-
-                <div class="container_parrafo-info">
-                    <p data-section="home" data-value="parrafo-info">Ingeniero Informático enfocado en el Desarrollo de Software y programación.</p>
-                </div>
-                
-
-                <div class="container_button">
-                    <!--<a href="https://drive.google.com/file/d/1Z_46PRCO5QWV-Q3YR7EvYjbNDmERZJY2/view?usp=drive_link" target="_blank">-->
-                    <a href="https://drive.google.com/file/d/1wtf33CIqrKQOgxM0mWdxyp5PQEYY6e2A/view?usp=sharing" target="_blank">
-                        <button class="cv_button" data-section="home" data-value="cv_button">Descargar CV</button>
-                    </a>
-                    <a href="#contacto">
-                        <button class="contact_button" data-section="home" data-value="contact_button">Contacto</button>
-                    </a>
-                </div>
-            </div>
-
-            <div class="links">
-<a href="https://www.linkedin.com/in/marcotencortes/" target="_blank">
-                    <img src="./assets/images/icon-linkedin.png" alt="LinkedIn" class="icon-linkedin">
-                </a>
-                <a href="https://github.com/MarcoTenCortes" target="_blank">
-                    <img src="./assets/images/icon-github.png" alt="GitHub" class="icon-github">
-                </a>
-                <!--<a href="https://codepen.io/mariasmoUN" target="_blank">
-                    <img src="./assets/images/icon-codepen.png" alt="CodePen" class="icon-CodePen">
-                </a>-->
-                <!--<a href="https://www.instagram.com/mar.am0410/?next=%2F" target="_blank">
-                    <img src="./assets/images/icon-instagram.png" alt="Instagram" class="icon-instagram">
-                </a>-->
-            </div>
-        </section>
-
-        <!-- Sobre mí -->
-        <section class="sobreMi" id="sobreMi">
-            <h1 data-section="sobre-mi" data-value="title" data-aos="fade-up">Sobre mí</h1>
-
-            <div class="container_content-sobreMi" data-aos="fade-right">
-                <div class="container_texto-sobreMi">
-                    <span class="title_sobreMi">Marco Tenorio Cortés</span>
-                    <span class="texto_sobreMi" data-section="sobre-mi" data-value="texto_sobreMi">
-                        Soy Ingeniero Informático con una gran pasión por el aprendizaje continuo y la aplicación de mis conocimientos en diversas tecnologías. Me esfuerzo por mantenerme actualizado y fortalecer mi desarrollo profesional en un entorno dinámico y en constante evolución.<br><br>
-                        Me caracterizo por ser una persona proactiva, trabajadora y dedicada, con fuertes competencias en el trabajo en equipo, resolución de problemas y responsabilidad. Siempre busco desafíos que me permitan mejorar y alcanzar nuevas metas tanto en lo personal como en lo profesional.
-                    </span>
-                    
-                </div>
-    
-                <figure class="container_image-sobreMi">
-                    <img class="image_sobreMi" src="./assets/images/marcotest.png" alt="Ilustración hombre y café">
-                    <img class="labios" src="./assets/images/labios.png" alt="labios">
-                    <img class="ojos" src="./assets/images/ojosmarco.png" alt="ojos">
-                    <img class="ceja1" src="./assets/images/ceja1.png" alt="ceja1">
-                    <img class="ceja2" src="./assets/images/ceja2.png" alt="ceja2">
-                    <img class="gafas" src="./assets/images/gafas.png" alt="gafas">
-                    <img class="image_mano" src="./assets/images/manocafe.png" alt="mano">
-                    <img class="cafe" src="./assets/images/cafe.png" alt="cafe">
-
-                    <!-- Gotas de café -->
-                    <div class="gota cafe-gota1"></div>
-                    <div class="gota cafe-gota2"></div>
-                    <div class="gota cafe-gota3"></div>
-                    <div id="lagrima"></div>
-                    <div class="charco"></div>
-
-                </figure>
-                
-            </div>
-        </section>
-
-        <!-- Habilidades -->
-<!-- Habilidades -->
- 
-<section class="habilidades" id="habilidades">
-    <h1 data-section="habilidades" data-value="title" data-aos="fade-up">Habilidades</h1>
-
-    <!-- Contenedor del Slider -->
-    <div class="slider-container">
-        <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos1-habilidades">
-        <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos2-habilidades">
-        <!-- Botón de navegación izquierda -->
-        
-        
-        <!-- Contenedor de Slides -->
-        <div class="slides-wrapper">
-            
-            <!-- Slide: QA -->
-            <div class="slide" data-section="QA">
-                <h2>QA</h2>
-                <div class="cards_container--habilidades">
-                    <!-- Tecnologías de QA -->
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/Selenium_Logo.png" alt="Selenium">
-                        </div>
-                        <div class="card--p--container">
-                            <p>Selenium</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/junitlogo.png" alt="JUnit">
-                        </div>
-                        <div class="card--p--container">
-                            <p>JUnit</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <br>
-                            <img src="./assets/images/logoAp.png" alt="Appium" id="appiumImg">
-                            <br>
-                        </div>
-                        <div class="card--p--container">
-                            <p>Appium</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <br>
-                            <img src="./assets/images/cucumber.png" alt="Cucumber">
-                            <br>
-                        </div>
-                        <div class="card--p--container">
-                            <p>Cucumber</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <br>
-                            <img src="./assets/images/Rest Assured.png" alt="Cucumber">
-                            <br>
-                        </div>
-                        <div class="card--p--container">
-                            <p>Rest Assured</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <br>
-                            <img src="./assets/images/postman.png" alt="Postman" id="postmanImg">
-                            <br>
-                        </div>
-                        <div class="card--p--container">
-                            <p>Postman</p>
-                        </div>
-                    </div>
-                    <!-- Añade más tecnologías de QA según sea necesario -->
-                </div>
-            </div>
-
-            <!-- Slide: Frontend -->
-            <div class="slide" data-section="Frontend">
-                <h2>Frontend</h2>
-                <div class="cards_container--habilidades">
-                    <!-- Tecnologías de Frontend -->
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/icon-html.png" alt="HTML">
-                        </div>
-                        <div class="card--p--container">
-                            <p>HTML 5</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/icon-css.png" alt="CSS">
-                        </div>
-                        <div class="card--p--container">
-                            <p>CSS 3</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/icon-js.png" alt="JavaScript">
-                        </div>
-                        <div class="card--p--container">
-                            <p>JavaScript</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/icon-tailwind.png" alt="Tailwind">
-                        </div>
-                        <div class="card--p--container">
-                            <p>Tailwind CSS</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/Bootstrap_logo.svg.png" alt="Bootstrap">
-                        </div>
-                        <div class="card--p--container">
-                            <p>Bootstrap</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/react.png" alt="react">
-                        </div>
-                        <div class="card--p--container">
-                            <p>React</p>
-                        </div>
-                    </div>
-                    <!-- Añade más tecnologías de Frontend según sea necesario -->
-                </div>
-            </div>
-
-            <!-- Slide: Backend -->
-            <div class="slide" data-section="Backend">
-                <h2>Backend</h2>
-                <div class="cards_container--habilidades">
-                    <!-- Tecnologías de Backend -->
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/django-icon.png" alt="Django">
-                        </div>
-                        <div class="card--p--container">
-                            <p>Django</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/spring.png" alt="Spring">
-                        </div>
-                        <div class="card--p--container">
-                            <p>Spring Boot</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/mysql.png" alt="mysql">
-                        </div>
-                        <div class="card--p--container">
-                            <p>MySQL</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/mongologo.png" alt="mongoDB">
-                        </div>
-                        <div class="card--p--container">
-                            <p>mongoDB</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/flaskLogo.png" alt="Flask">
-                        </div>
-                        <div class="card--p--container">
-                            <p>Flask</p>
-                        </div>
-                    </div>
-                        <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/fire.png" alt="Firebase">
-                        </div>
-                        <div class="card--p--container">
-                            <p>Firebase</p>
-                        </div>
-                    </div>
-                    <!-- Añade más tecnologías de Backend según sea necesario -->
-                </div>
-            </div>
-
-            <!-- Slide: Control de Versiones -->
-            <div class="slide" data-section="Version Control">
-                <h2>Control de Versiones</h2>
-                <div class="cards_container--habilidades">
-                    <!-- Tecnologías de Control de Versiones -->
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/icon-git.png" alt="Git">
-                        </div>
-                        <div class="card--p--container">
-                            <p>Git</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/icon-github-hab.png" alt="GitHub">
-                        </div>
-                        <div class="card--p--container">
-                            <p>GitHub</p>
-                        </div>
-                    </div>
-                    <!-- Añade más tecnologías de Control de Versiones según sea necesario -->
-                </div>
-            </div>
-
-            <!-- Slide: Gestión de Proyectos -->
-            <div class="slide" data-section="Project Management">
-                <h2>Gestión de Proyectos</h2>
-                <div class="cards_container--habilidades">
-                    <!-- Herramientas de Gestión de Proyectos -->
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/confluence.png" alt="Confluence">
-                        </div>
-                        <div class="card--p--container">
-                            <p>Confluence</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/icon-trello.png" alt="Trello">
-                        </div>
-                        <div class="card--p--container">
-                            <p>Trello</p>
-                        </div>
-                    </div>
-                    <div class="cards--habilidades">
-                        <div class="card--img--container">
-                            <img src="./assets/images/jiralogo.png" alt="Jira">
-                        </div>
-                        <div class="card--p--container">
-                            <p>Jira</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Añade más herramientas según sea necesario -->
-                </div>
-            </div>
-        </div>
-        <button class="slider-btn left-btn">&#10094;</button>
-        <!-- Botón de navegación derecha -->
-        <button class="slider-btn right-btn">&#10095;</button>
-    </div>
-</section>
-
-        <!-- Formación -->
-        <section class="formacion" id="formacion">
-            <h1 data-section="formacion" data-value="title" data-aos="fade-up">Formación</h1>
-
-            <div class="cards_container--formacion">
-                <div class="cards--formacion" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="500">
-                    <img class="logo-unal" src="./assets/images/US-marca-principal.png" alt="Logo - Universidad Nacional de Colombia">
-                    <div class="container_texto--formacion">
-                        <p data-section="formacion" data-value="formacion1">Ingeniería Informática - Tecnologías Informáticas</p>
-                        <p data-section="formacion" data-value="tiempo-formacion1">2020 - 2024</p>
-                    </div>
-                </div>
-
-                <div class="cards--formacion" data-aos="fade-up" data-aos-duration="500">
-                    <img class="logo-unal" src="./assets/images/logoCesur.png" alt="Logo - CESUR">
-                    <div class="container_texto--formacion">
-                        <p data-section="formacion" data-value="formacion2">FP Superior - Desarrollo de Aplicaciones Multiplataforma</p>
-                        <p data-section="formacion" data-value="tiempo-formacion2">2018 - 2020</p>
-                    </div>
-                </div>
-
-                <div class="cards--formacion" data-aos="fade-down" data-aos-easing="linear" data-aos-duration="500">
-                    <img class="logo-sena" src="./assets/images/Logo-Azul.png" alt="Logo - SENA">
-                    <div class="container_texto--formacion">
-                        <p data-section="formacion" data-value="formacion3">FP Medio - Sistemas Microinformáticos y Redes</p>
-                        <p>2016 - 2018</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-<!-- Proyectos -->
-<section class="proyectos" id="proyectos">
-  <h1 data-section="proyectos" data-value="title" data-aos="fade-up">Proyectos</h1>
-
-  <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos1-proyectos">
-  <img src="./assets/images/puntos.png" alt="Decoración puntos" class="puntos2-proyectos">
-
-  <div class="cards_container--proyectos">
-    <!-- Proyecto 1 -->
-    <div class="cards--proyectos card_JuegoAhorcado" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
-      <div class="container_imgCard--proyectos">
-        <img src="./assets/images/nakoa.png" alt="Proyecto: Videojuego Nakoa">
+        <a class="btn btn--secondary btn--sm nav__cv" href="https://drive.google.com/file/d/1wtf33CIqrKQOgxM0mWdxyp5PQEYY6e2A/view?usp=sharing" data-cv target="_blank" rel="noopener noreferrer"><span data-i18n="nav.cv">CV</span></a>
+        <button type="button" class="nav__burger" aria-expanded="false" aria-controls="sheet" aria-label="Abrir menú" data-i18n-attr="aria-label:a11y.menu_open">
+          <span class="nav__burger-bar" aria-hidden="true"></span>
+          <span class="nav__burger-bar" aria-hidden="true"></span>
+        </button>
       </div>
-      <div class="container_textCard--proyectos">
-        <h2 data-section="proyectos" data-value="title-proyecto1">Videojuego Nakoa</h2>
-        <p data-section="proyectos" data-value="info-proyecto1">
-          Un videojuego multiplataforma desarrollado en Unity, disponible para iOS, Android, PC, webGL... Además, los datos se almacenan mediante una API REST en PHP.
+    </div>
+  </header>
+
+  <nav class="sheet" id="sheet" aria-label="Menú" hidden>
+    <ul class="sheet__list">
+      <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
+      <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
+      <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+      <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
+      <li><a href="#formacion" data-i18n="nav.education">Formación</a></li>
+      <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+    </ul>
+    <div class="sheet__footer">
+      <a class="btn btn--secondary" href="https://drive.google.com/file/d/1wtf33CIqrKQOgxM0mWdxyp5PQEYY6e2A/view?usp=sharing" data-cv target="_blank" rel="noopener noreferrer"><span data-i18n="hero.cta_cv_external">Ver CV</span><span class="arrow" aria-hidden="true">↗</span></a>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero tile tile--black" id="inicio" aria-labelledby="hero-title">
+      <div class="container hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow" data-reveal data-i18n="hero.role">Software Engineer · Technical Analyst</p>
+          <h1 class="display-xl" id="hero-title" data-reveal>Marco Tenorio Cortés</h1>
+          <p class="lead hero__tagline" data-reveal data-i18n="hero.tagline">Diseño arquitecturas de integración y audito código en Minsait. Ahora, en SIMPL-Open: el middleware de la Comisión Europea para espacios de datos.</p>
+          <div class="hero__actions" data-reveal>
+            <a class="btn btn--primary" href="#proyectos"><span data-i18n="hero.cta_projects">Ver proyectos</span></a>
+            <a class="btn btn--secondary" href="https://drive.google.com/file/d/1wtf33CIqrKQOgxM0mWdxyp5PQEYY6e2A/view?usp=sharing" data-cv target="_blank" rel="noopener noreferrer"><span data-i18n="hero.cta_cv_external">Ver CV</span><span class="arrow" aria-hidden="true">↗</span></a>
+          </div>
+          <div class="hero__meta" data-reveal>
+            <p class="caption" data-i18n="hero.meta">Sevilla · Minsait · Máster en Ingeniería Informática</p>
+            <ul class="social" aria-label="Redes">
+              <li><a href="https://www.linkedin.com/in/marcotencortes" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 10.2v6.3M7.5 7.6v.1M11.3 16.5v-3.6c0-1.5 1-2.5 2.4-2.5s2.3 1 2.3 2.5v3.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></a></li>
+              <li><a href="https://github.com/MarcoTenCortes" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><svg width="22" height="22" aria-hidden="true"><use href="/icons/sprite.svg#github"/></svg></a></li>
+              <li><a href="mailto:marcotencortes@hotmail.com" aria-label="Email"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 8l8 5.5L20 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="hero__media" data-reveal data-reveal-media>
+          <div class="hero__disc" aria-hidden="true"></div>
+          <img class="hero__bust ill" src="/src/assets/img/character/hero-bust-800.webp" srcset="/src/assets/img/character/hero-bust-520.webp 520w, /src/assets/img/character/hero-bust-800.webp 800w, /src/assets/img/character/hero-bust-1024.webp 1024w" sizes="(min-width: 1080px) 480px, (min-width: 768px) 380px, 260px" width="1024" height="930" fetchpriority="high" decoding="sync" alt="Ilustración de Marco Tenorio Cortés con gafas y chaqueta azul" data-i18n-attr="alt:hero.bust_alt">
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SOBRE MÍ + RIG ============ -->
+    <section class="about tile tile--1" id="sobre-mi" aria-labelledby="about-title">
+      <div class="container about__grid">
+        <div class="about__media" data-reveal data-reveal-media>
+          <div class="window rig" id="rig" data-state="idle" data-busy="false" data-spills="0" data-input="pointer">
+            <div class="window__bar" aria-hidden="true">
+              <span class="window__dots"><i></i><i></i><i></i></span>
+              <span class="window__title mono" data-i18n="coffee.window_title">café.svg — interactivo</span>
+            </div>
+            <div class="rig__body">
+              <svg class="rig__stage" viewBox="0 0 1000 1100" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="rig-title" focusable="false">
+                <title id="rig-title" data-i18n="coffee.fallback_alt">Marco sujetando una taza de café</title>
+                <defs>
+                  <clipPath id="rig-lids">
+                    <ellipse cx="420" cy="233" rx="31" ry="18"/>
+                    <ellipse cx="512" cy="233" rx="31" ry="18"/>
+                  </clipPath>
+                </defs>
+
+                <image id="rig-base" data-layer="base" href="/src/assets/img/rig/base.webp" x="0" y="0" width="1000" height="1000"/>
+
+                <g id="lips" class="part" style="transform-origin:474px 341px">
+                  <image data-layer="lips" x="370" y="274" width="186" height="132"/>
+                </g>
+                <g id="eyes" class="part" style="transform-origin:466px 233px">
+                  <image data-layer="eyes" x="364" y="174" width="206" height="104"/>
+                </g>
+                <g id="lids" class="part" style="transform-origin:466px 215px">
+                  <image data-layer="base" x="0" y="0" width="1000" height="1000" clip-path="url(#rig-lids)"/>
+                </g>
+                <g id="brow-l" class="part" style="transform-origin:409px 209px">
+                  <image data-layer="brow-l" x="332" y="152" width="246" height="104"/>
+                </g>
+                <g id="brow-r" class="part" style="transform-origin:516px 200px">
+                  <image data-layer="brow-r" x="332" y="152" width="246" height="104"/>
+                </g>
+                <image data-layer="glasses" x="300" y="168" width="346" height="150"/>
+
+                <g id="puddle" class="part" style="transform-origin:730px 1076px">
+                  <ellipse cx="730" cy="1074" rx="150" ry="20" fill="#7a4b2e" stroke="rgba(41,151,255,.45)" stroke-width="2"/>
+                  <ellipse cx="700" cy="1069" rx="60" ry="5" fill="rgba(41,151,255,.35)"/>
+                </g>
+
+                <g id="cup" class="part" style="transform-origin:440px 830px">
+                  <image data-layer="cup" x="266" y="578" width="442" height="414"/>
+                </g>
+                <g id="hand" class="part" style="transform-origin:200px 1000px">
+                  <image data-layer="hand" x="114" y="648" width="456" height="468"/>
+                </g>
+
+                <g id="drops" fill="#7a4b2e" stroke="rgba(41,151,255,.45)" stroke-width="2">
+                  <circle r="9" cx="526" cy="704"/>
+                  <circle r="8" cx="538" cy="712"/>
+                  <circle r="7" cx="518" cy="716"/>
+                </g>
+                <g id="steam" fill="none" stroke="rgba(245,247,250,.28)" stroke-width="5" stroke-linecap="round">
+                  <path d="M438 670 q-14 -32 0 -64 q14 -32 0 -62"/>
+                  <path d="M492 664 q14 -32 0 -64 q-14 -32 0 -62"/>
+                </g>
+                <ellipse id="tear" cx="540" cy="262" rx="8" ry="12" fill="#2997ff"/>
+                <line class="rig__floor" x1="40" y1="1040" x2="960" y2="1040" stroke="rgba(255,255,255,.08)" stroke-width="2"/>
+              </svg>
+
+              <button type="button" id="rig-hit" class="rig__hit" aria-label="Quitarle el café a Marco" data-i18n-attr="aria-label:coffee.aria" hidden></button>
+              <span class="rig__hint keycap" id="rig-hint" aria-hidden="true" hidden>
+                <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M5 8h11v7a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4V8zm11 2h1.5a2 2 0 0 1 0 4H16M8 3.5v2M11 3.5v2M14 3.5v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span data-i18n="coffee.hint">Toca el café</span>
+              </span>
+              <span class="rig__count keycap mono" id="rig-count" hidden></span>
+              <noscript><img class="rig__fallback" src="/src/assets/img/rig/fallback.webp" width="500" height="500" alt="Marco, dibujado, con un café en la mano"></noscript>
+            </div>
+            <div class="window__status">
+              <p class="rig__status" id="rig-status" aria-live="polite" aria-atomic="true"></p>
+              <span class="keycap rig__key" id="rig-key" aria-hidden="true" data-i18n="coffee.key_click">Click</span>
+              <button type="button" class="btn btn--secondary btn--sm rig__reset" id="rig-reset" hidden>
+                <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span data-i18n="coffee.reset">Otro café</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__copy">
+          <p class="eyebrow" data-reveal data-i18n="about.eyebrow">Sobre mí</p>
+          <h2 class="display-lg" id="about-title" data-reveal data-i18n="about.title">Del código a la arquitectura</h2>
+          <p class="body" data-reveal data-i18n="about.p1">Soy Software Engineer en Minsait. Trabajo como arquitecto de soluciones en SIMPL-Open, el middleware de espacios de datos de la Comisión Europea, y audito microservicios Java y APIs de clientes para detectar problemas de seguridad, escalabilidad y rendimiento antes de que lleguen a producción.</p>
+          <p class="body" data-reveal><span data-i18n="about.p2">Antes automaticé pruebas para banca en NTT DATA, y ahora curso el Máster en Ingeniería Informática en la Universidad de Sevilla mientras trabajo. Me interesa entender el porqué de cada herramienta, no solo usarla. Y ese café es mío.</span> <a class="link-rig" href="#rig" data-i18n="about.p2_cta">Prueba a quitármelo.</a></p>
+          <dl class="facts" data-reveal>
+            <div><dt data-i18n="about.facts.location_label">Ubicación</dt><dd data-i18n="about.facts.location">Sevilla, España</dd></div>
+            <div><dt data-i18n="about.facts.now_label">Ahora</dt><dd data-i18n="about.facts.now">Software Engineer en Minsait</dd></div>
+            <div><dt data-i18n="about.facts.studying_label">Estudiando</dt><dd data-i18n="about.facts.studying">Máster en Ingeniería Informática · Universidad de Sevilla</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCIA ============ -->
+    <section class="experience tile tile--2" id="experiencia" aria-labelledby="exp-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal data-i18n="experience.eyebrow">Experiencia</p>
+        <h2 class="display-lg" id="exp-title" data-reveal data-i18n="experience.title">Dónde he trabajado</h2>
+        <ol class="timeline">
+          <li class="timeline__item" data-reveal>
+            <div class="timeline__when">
+              <span class="mono timeline__period" data-i18n="experience.minsait.period">ago. 2025 – actualidad</span>
+              <span class="badge badge--action" data-i18n="experience.minsait.badge">Actual</span>
+            </div>
+            <div class="timeline__what">
+              <h3 class="heading-lg"><span data-i18n="experience.minsait.role">Software Engineer</span> · <span class="timeline__org">Minsait</span></h3>
+              <p class="body" data-i18n="experience.minsait.summary">Desarrollo en un proyecto internacional con el inglés como idioma de trabajo, combinado con consultoría técnica y auditoría para clientes.</p>
+              <ul class="bullets">
+                <li data-i18n="experience.minsait.b1">Arquitecto de soluciones en SIMPL-Open, el middleware de espacios de datos de la Comisión Europea: arquitectura de integración, requisitos de interoperabilidad, seguridad y gobernanza, y contratos OpenAPI.</li>
+                <li data-i18n="experience.minsait.b2">Auditorías técnicas de microservicios Java/Spring Boot y APIs de clientes, con propuestas concretas de mejora en seguridad, escalabilidad y rendimiento.</li>
+                <li data-i18n="experience.minsait.b3">Definición y revisión de contratos de API REST y estándares de desarrollo para mantener sistemas consistentes y mantenibles.</li>
+              </ul>
+              <ul class="chips chips--inline" aria-label="Tecnologías">
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#openjdk"/></svg><span>Java</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#springboot"/></svg><span>Spring Boot</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#openapiinitiative"/></svg><span>OpenAPI</span></li>
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Data Spaces</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#jira"/></svg><span>Jira</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#confluence"/></svg><span>Confluence</span></li>
+              </ul>
+            </div>
+          </li>
+          <li class="timeline__item" data-reveal>
+            <div class="timeline__when">
+              <span class="mono timeline__period" data-i18n="experience.ntt.period">sept. 2024 – mar. 2025 · Sevilla, híbrido</span>
+            </div>
+            <div class="timeline__what">
+              <h3 class="heading-lg"><span data-i18n="experience.ntt.role">Junior QA Tester</span> · <span class="timeline__org">NTT DATA Europe &amp; Latam</span></h3>
+              <p class="body" data-i18n="experience.ntt.summary">Automatización de pruebas para el sector bancario.</p>
+              <ul class="bullets">
+                <li data-i18n="experience.ntt.b1">Diseño y ejecución de pruebas automatizadas con Selenium, JUnit y Cucumber, reduciendo el tiempo de testing y respetando los estándares de calidad del sector financiero.</li>
+                <li data-i18n="experience.ntt.b2">Antes del puesto junior, prácticas de QA Tester en la misma compañía.</li>
+              </ul>
+              <ul class="chips chips--inline" aria-label="Tecnologías">
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#selenium"/></svg><span>Selenium</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#junit5"/></svg><span>JUnit</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#cucumber"/></svg><span>Cucumber</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#git"/></svg><span>Git</span></li>
+              </ul>
+            </div>
+          </li>
+          <li class="timeline__item" data-reveal>
+            <div class="timeline__when">
+              <span class="mono timeline__period" data-i18n="experience.dynos.period">mar. – jun. 2018 · Lepe</span>
+            </div>
+            <div class="timeline__what">
+              <h3 class="heading-lg"><span data-i18n="experience.dynos.role">Administrador de sistemas (prácticas)</span> · <span class="timeline__org">Dynos</span></h3>
+              <p class="body" data-i18n="experience.dynos.summary">Prácticas de administración de sistemas durante el ciclo de SMR.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ PROYECTOS ============ -->
+    <section class="projects tile tile--canvas" id="proyectos" aria-labelledby="projects-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal data-i18n="projects.eyebrow">Proyectos</p>
+        <h2 class="display-lg" id="projects-title" data-reveal data-i18n="projects.title">Cosas que he construido</h2>
+        <p class="lead projects__subtitle" data-reveal data-i18n="projects.subtitle">Del trabajo, la universidad y el tiempo libre. Casi todo con código público.</p>
+
+        <div class="projects__grid">
+          <!-- 1. SIMPL-Open (destacado) -->
+          <article class="card card--featured" data-reveal>
+            <div class="card__media card__media--svg">
+              <!-- partial:simpl-graph -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Grafo de un espacio de datos: participante, catálogo, autoridad, conector, identidad, gobernanza y datos dentro del marco de la UE" data-i18n-attr="aria-label:projects.simpl.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- EU ring -->
+  <circle cx="320" cy="200" r="185" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1.5"/>
+  <text x="320" y="378" text-anchor="middle" fill="var(--mute, #8e98a8)" font-size="12" letter-spacing=".2em">EU</text>
+
+  <!-- edges -->
+  <g fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1.5" stroke-linecap="round">
+    <line x1="320" y1="178" x2="320" y2="90"/>
+    <line x1="320" y1="222" x2="320" y2="310"/>
+    <line x1="255" y1="200" x2="165" y2="130"/>
+    <line x1="255" y1="200" x2="165" y2="270"/>
+    <line x1="385" y1="200" x2="475" y2="130"/>
+    <line x1="385" y1="200" x2="470" y2="270"/>
+    <line x1="110" y1="150" x2="110" y2="250"/>
+    <line x1="530" y1="150" x2="530" y2="250"/>
+    <line x1="265" y1="70" x2="165" y2="130"/>
+    <line x1="375" y1="70" x2="475" y2="130"/>
+    <line x1="275" y1="330" x2="165" y2="270"/>
+    <line x1="365" y1="330" x2="470" y2="270"/>
+  </g>
+
+  <!-- outer nodes -->
+  <g fill="var(--surface-elevated, #222a3a)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1">
+    <rect x="265" y="50" width="110" height="40" rx="12"/>
+    <rect x="55" y="110" width="110" height="40" rx="12"/>
+    <rect x="55" y="250" width="110" height="40" rx="12"/>
+    <rect x="475" y="110" width="110" height="40" rx="12"/>
+    <rect x="470" y="250" width="120" height="40" rx="12"/>
+    <rect x="275" y="310" width="90" height="40" rx="12"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" font-size="13" text-anchor="middle">
+    <text x="320" y="75">Catálogo</text>
+    <text x="110" y="135">Autoridad</text>
+    <text x="110" y="275">Conector</text>
+    <text x="530" y="135">Identidad</text>
+    <text x="530" y="275">Gobernanza</text>
+    <text x="320" y="335">Datos</text>
+  </g>
+
+  <!-- central node -->
+  <g class="simpl-pulse">
+    <rect x="255" y="178" width="130" height="44" rx="12" fill="var(--action, #2997ff)" stroke="var(--action, #2997ff)" stroke-width="1"/>
+    <text x="320" y="205" text-anchor="middle" fill="var(--tile-black, #05070b)" font-size="13" font-weight="600">Participante</text>
+  </g>
+</svg>
+<!-- /partial:simpl-graph -->
+            </div>
+            <div class="card__body">
+              <h3 class="heading-xl" data-i18n="projects.simpl.title">SIMPL-Open</h3>
+              <p class="body" data-i18n="projects.simpl.desc">Middleware de código abierto de la Comisión Europea para espacios de datos. Arquitectura de integración y contratos OpenAPI como arquitecto de soluciones.</p>
+              <ul class="chips chips--inline" aria-label="Tecnologías">
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Data Spaces</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#openapiinitiative"/></svg><span>OpenAPI</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#springboot"/></svg><span>Java / Spring</span></li>
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.solution_architecture">Arquitectura de soluciones</span></li>
+              </ul>
+              <div class="card__actions">
+                <span class="badge" data-i18n="projects.private_note">Proyecto privado · sin repositorio público</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. QA banca + framework -->
+          <article class="card" data-reveal>
+            <div class="card__media card__media--svg">
+              <!-- partial:qa-terminal -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Terminal con una suite de pruebas Cucumber para banca: 12 escenarios y 48 pasos superados" data-i18n-attr="aria-label:projects.qa.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- window -->
+  <rect x="20" y="20" width="600" height="360" rx="14" fill="var(--tile-black, #05070b)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+
+  <!-- title bar -->
+  <g fill="var(--hairline-strong, rgba(255,255,255,.16))" stroke="none">
+    <circle cx="44" cy="44" r="5"/>
+    <circle cx="62" cy="44" r="5"/>
+    <circle cx="80" cy="44" r="5"/>
+  </g>
+  <text x="320" y="48" text-anchor="middle" fill="var(--mute, #8e98a8)" font-size="12">cucumber · banking-suite</text>
+  <line x1="20" y1="64" x2="620" y2="64" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- output -->
+  <g font-size="14">
+    <text x="44" y="96" xml:space="preserve" fill="var(--ink, #f5f7fa)">Característica: Transferencias entre cuentas</text>
+    <text x="44" y="122" xml:space="preserve" fill="var(--body, #c6cfdb)">  Escenario: Transferencia con saldo suficiente</text>
+    <text x="44" y="148" xml:space="preserve" fill="var(--mute, #8e98a8)">    Dado un cliente autenticado</text>
+    <text x="44" y="174" xml:space="preserve" fill="var(--mute, #8e98a8)">    Cuando transfiere 250 € a la cuenta destino</text>
+    <text x="44" y="200" xml:space="preserve" fill="var(--mute, #8e98a8)">    Entonces el saldo se actualiza y se registra el movimiento</text>
+    <text x="44" y="236" xml:space="preserve" fill="var(--success, #59d499)">✓ 12 escenarios superados</text>
+    <text x="44" y="262" xml:space="preserve" fill="var(--mute, #8e98a8)">✓ 48 pasos (2,31 s)</text>
+    <text x="44" y="298" xml:space="preserve" fill="var(--ink, #f5f7fa)">$ mvn test</text>
+    <rect class="term-cursor" x="134" y="284" width="8" height="16" fill="var(--action, #2997ff)" stroke="none"/>
+  </g>
+</svg>
+<!-- /partial:qa-terminal -->
+            </div>
+            <div class="card__body">
+              <h3 class="heading-lg" data-i18n="projects.qa.title">Automatización QA y framework de testing de APIs</h3>
+              <p class="body" data-i18n="projects.qa.desc">Pruebas automatizadas para banca con Cucumber, Selenium y JUnit, más una API REST en Spring Boot y un framework de testing de APIs con Rest Assured.</p>
+              <ul class="chips chips--inline" aria-label="Tecnologías">
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#cucumber"/></svg><span>Cucumber</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#selenium"/></svg><span>Selenium</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#junit5"/></svg><span>JUnit</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#springboot"/></svg><span>Spring Boot</span></li>
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Rest Assured</span></li>
+              </ul>
+              <div class="card__actions">
+                <a class="btn btn--secondary btn--sm" href="https://github.com/marcotenorioNTT/automation-api-framework" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 3. TFG Autoencoder -->
+          <article class="card" data-reveal>
+            <div class="card__media card__media--svg">
+              <!-- partial:autoencoder -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de un autoencoder: capas de 30, 16, 4, 16 y 30 neuronas con un cuello de botella central y un indicador de error de reconstrucción" data-i18n-attr="aria-label:projects.tfg.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- connections -->
+  <g fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1">
+    <line x1="80" y1="44" x2="200" y2="100"/>
+    <line x1="80" y1="44" x2="200" y2="184"/>
+    <line x1="80" y1="72" x2="200" y2="128"/>
+    <line x1="80" y1="72" x2="200" y2="212"/>
+    <line x1="80" y1="100" x2="200" y2="156"/>
+    <line x1="80" y1="100" x2="200" y2="240"/>
+    <line x1="80" y1="128" x2="200" y2="100"/>
+    <line x1="80" y1="128" x2="200" y2="184"/>
+    <line x1="80" y1="156" x2="200" y2="128"/>
+    <line x1="80" y1="156" x2="200" y2="212"/>
+    <line x1="80" y1="184" x2="200" y2="156"/>
+    <line x1="80" y1="184" x2="200" y2="240"/>
+    <line x1="80" y1="212" x2="200" y2="100"/>
+    <line x1="80" y1="212" x2="200" y2="184"/>
+    <line x1="80" y1="240" x2="200" y2="128"/>
+    <line x1="80" y1="240" x2="200" y2="212"/>
+    <line x1="80" y1="268" x2="200" y2="156"/>
+    <line x1="80" y1="268" x2="200" y2="240"/>
+    <line x1="80" y1="296" x2="200" y2="100"/>
+    <line x1="80" y1="296" x2="200" y2="184"/>
+    <line x1="200" y1="100" x2="320" y2="128"/>
+    <line x1="200" y1="100" x2="320" y2="156"/>
+    <line x1="200" y1="100" x2="320" y2="184"/>
+    <line x1="200" y1="100" x2="320" y2="212"/>
+    <line x1="200" y1="128" x2="320" y2="128"/>
+    <line x1="200" y1="128" x2="320" y2="156"/>
+    <line x1="200" y1="128" x2="320" y2="184"/>
+    <line x1="200" y1="128" x2="320" y2="212"/>
+    <line x1="200" y1="156" x2="320" y2="128"/>
+    <line x1="200" y1="156" x2="320" y2="156"/>
+    <line x1="200" y1="156" x2="320" y2="184"/>
+    <line x1="200" y1="156" x2="320" y2="212"/>
+    <line x1="200" y1="184" x2="320" y2="128"/>
+    <line x1="200" y1="184" x2="320" y2="156"/>
+    <line x1="200" y1="184" x2="320" y2="184"/>
+    <line x1="200" y1="184" x2="320" y2="212"/>
+    <line x1="200" y1="212" x2="320" y2="128"/>
+    <line x1="200" y1="212" x2="320" y2="156"/>
+    <line x1="200" y1="212" x2="320" y2="184"/>
+    <line x1="200" y1="212" x2="320" y2="212"/>
+    <line x1="200" y1="240" x2="320" y2="128"/>
+    <line x1="200" y1="240" x2="320" y2="156"/>
+    <line x1="200" y1="240" x2="320" y2="184"/>
+    <line x1="200" y1="240" x2="320" y2="212"/>
+    <line x1="320" y1="128" x2="440" y2="100"/>
+    <line x1="320" y1="128" x2="440" y2="128"/>
+    <line x1="320" y1="128" x2="440" y2="156"/>
+    <line x1="320" y1="128" x2="440" y2="184"/>
+    <line x1="320" y1="128" x2="440" y2="212"/>
+    <line x1="320" y1="128" x2="440" y2="240"/>
+    <line x1="320" y1="156" x2="440" y2="100"/>
+    <line x1="320" y1="156" x2="440" y2="128"/>
+    <line x1="320" y1="156" x2="440" y2="156"/>
+    <line x1="320" y1="156" x2="440" y2="184"/>
+    <line x1="320" y1="156" x2="440" y2="212"/>
+    <line x1="320" y1="156" x2="440" y2="240"/>
+    <line x1="320" y1="184" x2="440" y2="100"/>
+    <line x1="320" y1="184" x2="440" y2="128"/>
+    <line x1="320" y1="184" x2="440" y2="156"/>
+    <line x1="320" y1="184" x2="440" y2="184"/>
+    <line x1="320" y1="184" x2="440" y2="212"/>
+    <line x1="320" y1="184" x2="440" y2="240"/>
+    <line x1="320" y1="212" x2="440" y2="100"/>
+    <line x1="320" y1="212" x2="440" y2="128"/>
+    <line x1="320" y1="212" x2="440" y2="156"/>
+    <line x1="320" y1="212" x2="440" y2="184"/>
+    <line x1="320" y1="212" x2="440" y2="212"/>
+    <line x1="320" y1="212" x2="440" y2="240"/>
+    <line x1="440" y1="100" x2="560" y2="44"/>
+    <line x1="440" y1="100" x2="560" y2="128"/>
+    <line x1="440" y1="100" x2="560" y2="212"/>
+    <line x1="440" y1="100" x2="560" y2="296"/>
+    <line x1="440" y1="128" x2="560" y2="72"/>
+    <line x1="440" y1="128" x2="560" y2="156"/>
+    <line x1="440" y1="128" x2="560" y2="240"/>
+    <line x1="440" y1="156" x2="560" y2="100"/>
+    <line x1="440" y1="156" x2="560" y2="184"/>
+    <line x1="440" y1="156" x2="560" y2="268"/>
+    <line x1="440" y1="184" x2="560" y2="44"/>
+    <line x1="440" y1="184" x2="560" y2="128"/>
+    <line x1="440" y1="184" x2="560" y2="212"/>
+    <line x1="440" y1="184" x2="560" y2="296"/>
+    <line x1="440" y1="212" x2="560" y2="72"/>
+    <line x1="440" y1="212" x2="560" y2="156"/>
+    <line x1="440" y1="212" x2="560" y2="240"/>
+    <line x1="440" y1="240" x2="560" y2="100"/>
+    <line x1="440" y1="240" x2="560" y2="184"/>
+    <line x1="440" y1="240" x2="560" y2="268"/>
+  </g>
+  <!-- neurons -->
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="80" cy="44" r="5"/>
+    <circle cx="80" cy="72" r="5"/>
+    <circle cx="80" cy="100" r="5"/>
+    <circle cx="80" cy="128" r="5"/>
+    <circle cx="80" cy="156" r="5"/>
+    <circle cx="80" cy="184" r="5"/>
+    <circle cx="80" cy="212" r="5"/>
+    <circle cx="80" cy="240" r="5"/>
+    <circle cx="80" cy="268" r="5"/>
+    <circle cx="80" cy="296" r="5"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="200" cy="100" r="5"/>
+    <circle cx="200" cy="128" r="5"/>
+    <circle cx="200" cy="156" r="5"/>
+    <circle cx="200" cy="184" r="5"/>
+    <circle cx="200" cy="212" r="5"/>
+    <circle cx="200" cy="240" r="5"/>
+  </g>
+  <g fill="var(--action, #2997ff)" stroke="none" class="ae-bottleneck">
+    <circle cx="320" cy="128" r="5"/>
+    <circle cx="320" cy="156" r="5"/>
+    <circle cx="320" cy="184" r="5"/>
+    <circle cx="320" cy="212" r="5"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="440" cy="100" r="5"/>
+    <circle cx="440" cy="128" r="5"/>
+    <circle cx="440" cy="156" r="5"/>
+    <circle cx="440" cy="184" r="5"/>
+    <circle cx="440" cy="212" r="5"/>
+    <circle cx="440" cy="240" r="5"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="560" cy="44" r="5"/>
+    <circle cx="560" cy="72" r="5"/>
+    <circle cx="560" cy="100" r="5"/>
+    <circle cx="560" cy="128" r="5"/>
+    <circle cx="560" cy="156" r="5"/>
+    <circle cx="560" cy="184" r="5"/>
+    <circle cx="560" cy="212" r="5"/>
+    <circle cx="560" cy="240" r="5"/>
+    <circle cx="560" cy="268" r="5"/>
+    <circle cx="560" cy="296" r="5"/>
+  </g>
+  <!-- labels -->
+  <g fill="var(--mute, #8e98a8)" font-size="12" text-anchor="middle">
+    <text x="80" y="322">30</text>
+    <text x="80" y="342">entrada</text>
+    <text x="200" y="322">16</text>
+    <text x="200" y="342">codificador</text>
+    <text x="320" y="322">4</text>
+    <text x="320" y="342">código</text>
+    <text x="440" y="322">16</text>
+    <text x="440" y="342">decodificador</text>
+    <text x="560" y="322">30</text>
+    <text x="560" y="342">salida</text>
+  </g>
+  <!-- reconstruction error gauge -->
+  <text x="610" y="370" text-anchor="end" fill="var(--mute, #8e98a8)" font-size="12">error de reconstrucción</text>
+  <rect x="430" y="378" width="180" height="6" rx="3" fill="var(--surface-elevated, #222a3a)" stroke="none"/>
+  <rect class="ae-gauge" x="430" y="378" width="111.6" height="6" rx="3" fill="var(--action, #2997ff)" stroke="none"/>
+</svg>
+<!-- /partial:autoencoder -->
+            </div>
+            <div class="card__body">
+              <h3 class="heading-lg" data-i18n="projects.tfg.title">Detección de cáncer con autoencoders (TFG)</h3>
+              <p class="body" data-i18n="projects.tfg.desc">Autoencoder en Keras/TensorFlow que detecta anomalías en el dataset Breast Cancer Wisconsin por error de reconstrucción, con demo web en Flask.</p>
+              <ul class="chips chips--inline" aria-label="Tecnologías">
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#keras"/></svg><span>Keras</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#tensorflow"/></svg><span>TensorFlow</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#flask"/></svg><span>Flask</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#python"/></svg><span>Python</span></li>
+              </ul>
+              <div class="card__actions">
+                <a class="btn btn--primary btn--sm" href="https://sanidad.mtcor.es" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_demo">Ver demo</span><span class="arrow" aria-hidden="true">↗</span></a>
+                <a class="btn btn--secondary btn--sm" href="https://github.com/MarcoTenCortes/TFG-Autoencoder" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 4. Cinema -->
+          <article class="card" data-reveal>
+            <div class="card__media">
+              <img src="/src/assets/img/projects/cinema-640.webp" srcset="/src/assets/img/projects/cinema-640.webp 640w, /src/assets/img/projects/cinema-960.webp 960w, /src/assets/img/projects/cinema-1120.webp 1120w" sizes="(min-width: 1080px) 560px, (min-width: 768px) 50vw, 100vw" width="1120" height="700" loading="lazy" decoding="async" alt="Vista previa de la aplicación web Cinema" data-i18n-attr="alt:projects.cinema.alt">
+              <span class="card__media-overlay" aria-hidden="true"></span>
+            </div>
+            <div class="card__body">
+              <h3 class="heading-lg" data-i18n="projects.cinema.title">Cinema</h3>
+              <p class="body" data-i18n="projects.cinema.desc">Reserva de entradas de cine con selección de película y asientos. Proyecto final de CS50 Web, en Django, SQLite y JavaScript.</p>
+              <ul class="chips chips--inline" aria-label="Tecnologías">
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#django"/></svg><span>Django</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#sqlite"/></svg><span>SQLite</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#javascript"/></svg><span>JavaScript</span></li>
+              </ul>
+              <div class="card__actions">
+                <a class="btn btn--primary btn--sm" href="https://cinema.mtcor.es/" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_demo">Ver demo</span><span class="arrow" aria-hidden="true">↗</span></a>
+                <a class="btn btn--secondary btn--sm" href="https://github.com/MarcoTenCortes/Harvard-CS50" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 5. Nakoa -->
+          <article class="card" data-reveal>
+            <div class="card__media">
+              <img src="/src/assets/img/projects/nakoa-640.webp" srcset="/src/assets/img/projects/nakoa-640.webp 640w, /src/assets/img/projects/nakoa-960.webp 960w, /src/assets/img/projects/nakoa-1280.webp 1280w" sizes="(min-width: 1080px) 560px, (min-width: 768px) 50vw, 100vw" width="1280" height="720" loading="lazy" decoding="async" alt="Vista previa del videojuego Nakoa" data-i18n-attr="alt:projects.nakoa.alt">
+            </div>
+            <div class="card__body">
+              <h3 class="heading-lg" data-i18n="projects.nakoa.title">Nakoa</h3>
+              <p class="body" data-i18n="projects.nakoa.desc">Videojuego multijugador en Unity para Android, iOS, PC y WebGL, pensado para jugarse igual de bien en cualquier plataforma.</p>
+              <p class="caption" data-i18n="projects.nakoa.note">Demo WebGL con el multijugador desactivado.</p>
+              <ul class="chips chips--inline" aria-label="Tecnologías">
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#unity"/></svg><span>Unity</span></li>
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>C#</span></li>
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>WebGL</span></li>
+              </ul>
+              <div class="card__actions">
+                <a class="btn btn--primary btn--sm" href="https://marcotencortes.github.io/Videojuego-Multiplataforma-Nakoa/" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_demo">Ver demo</span><span class="arrow" aria-hidden="true">↗</span></a>
+                <a class="btn btn--secondary btn--sm" href="https://github.com/MarcoTenCortes/Videojuego-Multiplataforma-Nakoa" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 6. Bot Telegram -->
+          <article class="card" data-reveal>
+            <div class="card__media card__media--contain">
+              <img src="/src/assets/img/projects/bot-640.webp" srcset="/src/assets/img/projects/bot-640.webp 640w, /src/assets/img/projects/bot-960.webp 960w, /src/assets/img/projects/bot-1280.webp 1280w" sizes="(min-width: 1080px) 560px, (min-width: 768px) 50vw, 100vw" width="1280" height="853" loading="lazy" decoding="async" alt="Vista previa del bot de Telegram de finanzas del piso" data-i18n-attr="alt:projects.telegram.alt">
+            </div>
+            <div class="card__body">
+              <h3 class="heading-lg" data-i18n="projects.telegram.title">Bot de Telegram para las finanzas del piso</h3>
+              <p class="body" data-i18n="projects.telegram.desc">Bot que responde consultas y lanza avisos sobre los gastos compartidos del piso a través de una API de agregación bancaria.</p>
+              <ul class="chips chips--inline" aria-label="Tecnologías">
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#python"/></svg><span>Python</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#telegram"/></svg><span>Telegram Bot API</span></li>
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Open Banking API</span></li>
+              </ul>
+              <div class="card__actions">
+                <a class="btn btn--secondary btn--sm" href="https://github.com/MarcoTenCortes/botTelegramFinanzasPiso" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+              </div>
+            </div>
+          </article>
+
+          <!-- 7. Repartir Tareas -->
+          <article class="card" data-reveal>
+            <div class="card__media card__media--contain">
+              <img src="/src/assets/img/projects/tareas-640.webp" srcset="/src/assets/img/projects/tareas-640.webp 640w, /src/assets/img/projects/tareas-960.webp 960w, /src/assets/img/projects/tareas-1280.webp 1280w" sizes="(min-width: 1080px) 560px, (min-width: 768px) 50vw, 100vw" width="1280" height="853" loading="lazy" decoding="async" alt="Vista previa de la app Repartir Tareas" data-i18n-attr="alt:projects.tareas.alt">
+            </div>
+            <div class="card__body">
+              <h3 class="heading-lg" data-i18n="projects.tareas.title">Repartir Tareas</h3>
+              <p class="body" data-i18n="projects.tareas.desc">App móvil multiplataforma para repartir tareas domésticas, gestionar pagos y recordatorios en grupo. React Native, Expo y Firebase.</p>
+              <ul class="chips chips--inline" aria-label="Tecnologías">
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#react"/></svg><span>React Native</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#expo"/></svg><span>Expo</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#firebase"/></svg><span>Firebase</span></li>
+              </ul>
+              <div class="card__actions">
+                <a class="btn btn--secondary btn--sm" href="https://github.com/MarcoTenCortes/repartir-tareas" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <p class="projects__more" data-reveal>
+          <a class="link" href="https://github.com/MarcoTenCortes?tab=repositories" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.more">Más en GitHub</span><span class="arrow" aria-hidden="true">↗</span></a>
         </p>
       </div>
-      <div class="container_btn--proyectos">
-        <a href="https://marcotencortes.github.io/Videojuego-Multiplataforma-Nakoa/" target="_blank">
-          <button class="btn_demo">
-            <img src="./assets/images/icon-demoProyecto.png" alt="Demostración"> DEMO
-          </button>
-        </a>
-        <a href="https://github.com/MarcoTenCortes/Videojuego-Multiplataforma-Nakoa" target="_blank">
-          <button class="btn_repo">
-            <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github"> REPO
-          </button>
-        </a>
-      </div>
-    </div>
+    </section>
 
-    <!-- Proyecto 2 -->
-    <div class="cards--proyectos card_portafolio" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
-      <div class="container_imgCard--proyectos">
-        <img src="./assets/images/cinema.png" alt="Proyecto: Cinema">
+    <!-- ============ HABILIDADES ============ -->
+    <section class="skills tile tile--2" id="habilidades" aria-labelledby="skills-title">
+      <div class="container">
+        <p class="eyebrow" data-reveal data-i18n="skills.eyebrow">Habilidades</p>
+        <h2 class="display-lg" id="skills-title" data-reveal data-i18n="skills.title">Con qué trabajo</h2>
+        <p class="lead skills__subtitle" data-reveal data-i18n="skills.subtitle">Lo que uso a diario y lo que he aprendido a fondo.</p>
+
+        <div class="skills__grid">
+          <section class="skills__group" data-reveal aria-labelledby="sk-arch">
+            <h3 class="heading-md" id="sk-arch" data-i18n="skills.groups.architecture">Arquitectura y análisis</h3>
+            <ul class="chips">
+              <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.solution_architecture">Arquitectura de soluciones</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#openapiinitiative"/></svg><span>OpenAPI</span></li>
+              <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.api_design">Diseño de APIs</span></li>
+              <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.rest">APIs REST</span></li>
+              <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.data_spaces">Espacios de datos</span></li>
+              <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.code_audit">Auditoría de código</span></li>
+            </ul>
+          </section>
+          <section class="skills__group" data-reveal aria-labelledby="sk-back">
+            <h3 class="heading-md" id="sk-back" data-i18n="skills.groups.backend">Backend</h3>
+            <ul class="chips">
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#openjdk"/></svg><span>Java</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#springboot"/></svg><span>Spring Boot</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#python"/></svg><span>Python</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#django"/></svg><span>Django</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#flask"/></svg><span>Flask</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#mysql"/></svg><span>MySQL</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#mongodb"/></svg><span>MongoDB</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#sqlite"/></svg><span>SQLite</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#firebase"/></svg><span>Firebase</span></li>
+            </ul>
+          </section>
+          <section class="skills__group" data-reveal aria-labelledby="sk-qa">
+            <h3 class="heading-md" id="sk-qa" data-i18n="skills.groups.qa">Calidad y testing</h3>
+            <ul class="chips">
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#selenium"/></svg><span>Selenium</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#junit5"/></svg><span>JUnit</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#cucumber"/></svg><span>Cucumber</span></li>
+              <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Rest Assured</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#postman"/></svg><span>Postman</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#appium"/></svg><span>Appium</span></li>
+              <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.test_automation">Automatización de pruebas</span></li>
+            </ul>
+          </section>
+          <section class="skills__group" data-reveal aria-labelledby="sk-front">
+            <h3 class="heading-md" id="sk-front" data-i18n="skills.groups.frontend">Frontend</h3>
+            <ul class="chips">
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#javascript"/></svg><span>JavaScript</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#html5"/></svg><span>HTML5</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#css"/></svg><span>CSS</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#react"/></svg><span>React / React Native</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#expo"/></svg><span>Expo</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#tailwindcss"/></svg><span>Tailwind CSS</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#bootstrap"/></svg><span>Bootstrap</span></li>
+            </ul>
+          </section>
+          <section class="skills__group" data-reveal aria-labelledby="sk-data">
+            <h3 class="heading-md" id="sk-data" data-i18n="skills.groups.data_ai">Datos e IA</h3>
+            <ul class="chips">
+              <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.deep_learning">Deep Learning</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#keras"/></svg><span>Keras</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#tensorflow"/></svg><span>TensorFlow</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#kaggle"/></svg><span>Kaggle</span></li>
+              <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.autoencoders">Autoencoders</span></li>
+            </ul>
+          </section>
+          <section class="skills__group" data-reveal aria-labelledby="sk-cloud">
+            <h3 class="heading-md" id="sk-cloud" data-i18n="skills.groups.cloud_devops">Cloud y DevOps</h3>
+            <ul class="chips">
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#googlecloud"/></svg><span>Google Cloud</span></li>
+              <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.cicd">CI/CD</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#git"/></svg><span>Git</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#github"/></svg><span>GitHub</span></li>
+            </ul>
+          </section>
+          <section class="skills__group" data-reveal aria-labelledby="sk-tools">
+            <h3 class="heading-md" id="sk-tools" data-i18n="skills.groups.tools">Herramientas y metodología</h3>
+            <ul class="chips">
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#jira"/></svg><span>Jira</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#confluence"/></svg><span>Confluence</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#trello"/></svg><span>Trello</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#unity"/></svg><span>Unity</span></li>
+              <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#telegram"/></svg><span>Telegram Bot API</span></li>
+              <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.agile">Metodologías ágiles</span></li>
+            </ul>
+          </section>
+        </div>
       </div>
-      <div class="container_textCard--proyectos text-portafolio">
-        <h2 data-section="proyectos" data-value="title-proyecto2">Cinema</h2>
-        <p data-section="proyectos" data-value="info-proyecto2">
-          Desarrollado como parte del curso CS50 de Harvard. El objetivo de este proyecto es crear una aplicación web para la gestión y visualización de información sobre películas. Se usan Python y Django.
+    </section>
+
+    <!-- ============ FORMACIÓN + CERTIFICACIONES ============ -->
+    <section class="education tile tile--1" id="formacion" aria-labelledby="edu-title">
+      <div class="container education__grid">
+        <div class="education__main">
+          <p class="eyebrow" data-reveal data-i18n="education.eyebrow">Formación</p>
+          <h2 class="display-lg" id="edu-title" data-reveal data-i18n="education.title">Dónde he estudiado</h2>
+          <ol class="edu">
+            <li class="edu__item" data-reveal>
+              <span class="keycap mono edu__year">25</span>
+              <div>
+                <h3 class="heading-md" data-i18n="education.master.name">Máster en Ingeniería Informática</h3>
+                <p class="caption"><span data-i18n="education.master.school">Universidad de Sevilla</span> · <time data-i18n="education.master.period">sept. 2025 – dic. 2026</time></p>
+                <p class="body-sm"><span class="badge badge--action" data-i18n="education.master.note">En curso · Data, Cloud e IA · Habilitante</span></p>
+              </div>
+            </li>
+            <li class="edu__item" data-reveal>
+              <span class="keycap mono edu__year">20</span>
+              <div>
+                <h3 class="heading-md" data-i18n="education.degree.name">Grado en Ingeniería Informática – Tecnologías Informáticas</h3>
+                <p class="caption"><span data-i18n="education.degree.school">Universidad de Sevilla</span> · <time data-i18n="education.degree.period">sept. 2020 – ene. 2025</time></p>
+                <p class="body-sm" data-i18n="education.degree.note">Mención en Computación</p>
+              </div>
+            </li>
+            <li class="edu__item" data-reveal>
+              <span class="keycap mono edu__year">18</span>
+              <div>
+                <h3 class="heading-md" data-i18n="education.dam.name">Ciclo Formativo de Grado Superior</h3>
+                <p class="caption"><span data-i18n="education.dam.school">Cesur</span> · <time data-i18n="education.dam.period">sept. 2018 – jun. 2020</time></p>
+                <p class="body-sm" data-i18n="education.dam.note">Desarrollo de Aplicaciones Multiplataforma (DAM)</p>
+              </div>
+            </li>
+            <li class="edu__item" data-reveal>
+              <span class="keycap mono edu__year">16</span>
+              <div>
+                <h3 class="heading-md" data-i18n="education.smr.name">Ciclo Formativo de Grado Medio</h3>
+                <p class="caption"><span data-i18n="education.smr.school">IES La Arboleda</span> · <time data-i18n="education.smr.period">sept. 2016 – jun. 2018</time></p>
+                <p class="body-sm" data-i18n="education.smr.note">Sistemas Microinformáticos y Redes (SMR)</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <aside class="education__certs" data-reveal aria-labelledby="certs-title">
+          <h3 class="heading-lg" id="certs-title" data-i18n="certs.title">Certificaciones</h3>
+          <table class="certs">
+            <tbody>
+              <tr><th scope="row" data-i18n="certs.cs50w.name">CS50's Web Programming with Python and JavaScript</th><td data-i18n="certs.cs50w.issuer">Harvard University</td><td class="mono" data-i18n="certs.cs50w.date">sept. 2024</td></tr>
+              <tr><th scope="row" data-i18n="certs.gcp.name">Google Associate Cloud Engineer (microcredencial)</th><td data-i18n="certs.gcp.issuer">Universidad de Sevilla</td><td class="mono" data-i18n="certs.gcp.date">may. 2024</td></tr>
+              <tr><th scope="row" data-i18n="certs.kaggle_ml.name">Intro to Machine Learning</th><td data-i18n="certs.kaggle_ml.issuer">Kaggle</td><td class="mono" data-i18n="certs.kaggle_ml.date">feb. 2024</td></tr>
+              <tr><th scope="row" data-i18n="certs.kaggle_dl.name">Intro to Deep Learning</th><td data-i18n="certs.kaggle_dl.issuer">Kaggle</td><td class="mono" data-i18n="certs.kaggle_dl.date">feb. 2024</td></tr>
+              <tr><th scope="row" data-i18n="certs.cambridge.name">Cambridge English B1</th><td data-i18n="certs.cambridge.issuer">Cambridge University Press &amp; Assessment</td><td class="mono" data-i18n="certs.cambridge.date">sept. 2023</td></tr>
+            </tbody>
+          </table>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ PRENSA ============ -->
+    <section class="press tile tile--black" id="prensa" aria-labelledby="press-title">
+      <div class="container press__inner">
+        <p class="eyebrow" data-reveal data-i18n="press.eyebrow">En prensa</p>
+        <blockquote class="press__quote" cite="https://elpais.com/economia/negocios/2025-10-10/la-ia-se-come-a-los-programadores-mas-jovenes-antes-cursabas-dos-anos-de-fp-y-tenias-cuatro-empresas-esperando-para-contratarte-ahora-es-distinto.html" data-reveal>
+          <p class="display-lg" id="press-title">«<span data-i18n="press.quote">La IA se come a los programadores más jóvenes</span>»</p>
+        </blockquote>
+        <p class="body press__caption" data-reveal data-i18n="press.caption">Entrevista en El País (10 de octubre de 2025) sobre la IA y el empleo de los programadores jóvenes: entender el porqué de las herramientas, comunicar bien y colaborar con la IA en lugar de competir con ella.</p>
+        <p data-reveal>
+          <a class="btn btn--secondary" id="press-link" href="https://elpais.com/economia/negocios/2025-10-10/la-ia-se-come-a-los-programadores-mas-jovenes-antes-cursabas-dos-anos-de-fp-y-tenias-cuatro-empresas-esperando-para-contratarte-ahora-es-distinto.html" target="_blank" rel="noopener noreferrer" data-i18n-attr="href:press.url"><span data-i18n="press.cta">Leer el artículo</span><span class="arrow" aria-hidden="true">↗</span></a>
         </p>
       </div>
-      <div class="container_btn--proyectos">
-        <a href="https://cinema.mtcor.es/" target="_blank">
-          <button class="btn_demo">
-            <img src="./assets/images/icon-demoProyecto.png" alt="Demostración"> DEMO
-          </button>
-        </a>
-        <a href="https://github.com/MarcoTenCortes/Harvard-CS50" target="_blank">
-          <button class="btn_repo">
-            <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github"> REPO
-          </button>
-        </a>
-      </div>
-    </div>
+    </section>
 
-    <!-- Proyecto 3 -->
-    <div class="cards--proyectos card_encriptador" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
-      <div class="container_imgCard--proyectos">
-        <img src="./assets/images/Autoencoder.png" alt="Proyecto: Diagnóstico de cáncer" id="autoencoderImg">
-      </div>
-      <div class="container_textCard--proyectos">
-        <h2 data-section="proyectos" data-value="title-proyecto3">Diagnóstico de cáncer con Redes Neuronales</h2>
-        <p data-section="proyectos" data-value="info-proyecto3">
-          Este TFG se centra en el desarrollo y evaluación de un modelo avanzado de autoencoder para la detección de anomalías en muestras de cáncer de mama. Se usa Python y Keras.
-        </p>
-      </div>
-      <div class="container_btn--proyectos">
-        <a href="https://sanidad.mtcor.es" target="_blank">
-          <button class="btn_demo">
-            <img src="./assets/images/icon-demoProyecto.png" alt="Demostración"> DEMO
-          </button>
-        </a>
-        <a href="https://github.com/MarcoTenCortes/TFG-Autoencoder" target="_blank">
-          <button class="btn_repo">
-            <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github"> REPO
-          </button>
-        </a>
-      </div>
-    </div>
-
-    <!-- Proyecto 4 -->
-<div class="cards--proyectos project4" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
-  <div class="container_imgCard--proyectos">
-    <img src="./assets/images/bot.png" alt="Proyecto: Bot Telegram Finanzas Piso">
-  </div>
-  <div class="container_textCard--proyectos">
-    <h2 data-section="proyectos" data-value="title-proyecto4">Bot Telegram Finanzas Piso</h2>
-    <p data-section="proyectos" data-value="info-proyecto4">
-      Un bot de Telegram que automatiza consultas y avisos sobre finanzas del piso compartido. Se conecta mediante una API intermediaria a cualquier banco (Santander, Caixabank,...).
-    </p>
-  </div>
-  <div class="container_btn--proyectos">
-
-    <a href="https://github.com/MarcoTenCortes/botTelegramFinanzasPiso" target="_blank">
-      <button class="btn_repo">
-        <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github"> REPO
-      </button>
-    </a>
-  </div>
-</div>
-
-
-
-    <!-- Proyecto 5 -->
-<div class="cards--proyectos project5" data-aos="zoom-in-up" data-aos-anchor-placement="center-bottom">
-  <div class="container_imgCard--proyectos">
-    <img src="./assets/images/persona_compartiendo.png" alt="Proyecto: Repartir Tareas">
-  </div>
-  <div class="container_textCard--proyectos">
-    <h2 data-section="proyectos" data-value="title-proyecto5">App Repartir Tareas</h2>
-    <p data-section="proyectos" data-value="info-proyecto5">
-      Aplicación móvil multiplataforma para distribuir y asignar tareas, gestionar pagos, recordatorios y otros de forma colaborativa entre miembros de un equipo. Realizada con React, Expo y Firebase.
-    </p>
-  </div>
-  <div class="container_btn--proyectos">
-
-    <a href="https://github.com/MarcoTenCortes/repartir-tareas" target="_blank">
-      <button class="btn_repo">
-        <img src="./assets/images/icon-githubProyecto.png" alt="Repositorio de github"> REPO
-      </button>
-    </a>
-  </div>
-</div>
-
-
-  </div>
-</section>
-
-
-        <!-- Contacto -->
-<section class="contacto" id="contacto">
-    <div class="stars"></div>
-    <div class="container--farola">
-        
-        <div class="mantener">
-            <div class="bench">
-
-                
-                <div class="light"></div>
-                <div class="benchImg"><img src="./assets/images/bancomarcoamp.png" alt="nopierna"></div>
-                <div class="pierna"><img src="./assets/images/pierna.png" alt="nopierna"></div>
-                <div class="handBench"><img src="./assets/images/hand.png" alt="hand"></div>
-                <div id="movil"></div>
-                <div id="movilLuz"></div> <!-- Este div representa la luz que ilumina la cara -->
-                <div class="farola"><img src="./assets/images/farola.png" alt="Farola"></div>
-            
+    <!-- ============ CONTACTO + ESCENA ============ -->
+    <section class="contact tile tile--3" id="contacto" aria-labelledby="contact-title">
+      <div class="container contact__grid">
+        <div class="contact__media" data-reveal data-reveal-media>
+          <div class="window scene-window">
+            <div class="window__bar" aria-hidden="true">
+              <span class="window__dots"><i></i><i></i><i></i></span>
+              <span class="window__title mono">banco.svg — noche</span>
             </div>
-        </div>
-        
-    </div>
-    <h1 data-section="contacto" data-value="title" data-aos="fade-up">Contacto</h1>
+            <div class="scene" id="scene" role="img" aria-label="Ilustración de Marco sentado en un banco bajo una farola, mirando el móvil" data-i18n-attr="aria-label:contact.scene_alt">
+              <div class="scene__stars scene__stars--a" aria-hidden="true"></div>
+              <div class="scene__stars scene__stars--b" aria-hidden="true"></div>
+              <div class="scene__cone" aria-hidden="true"></div>
+              <!-- partial:lamp -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" class="scene__lamp">
+  <!-- base -->
+  <ellipse cx="288" cy="1085" rx="60" ry="14" fill="var(--tile-2, #1a2030)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="2"/>
 
-    <div class="container_box--contacto" data-aos="fade-up" data-aos-anchor-placement="center-bottom">
+  <!-- post -->
+  <rect x="282" y="180" width="12" height="900" fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="2"/>
+  <line x1="288" y1="192" x2="288" y2="1068" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
 
-        <div class="container--contacto">
-            <div class="container_text--contacto">
-                <p data-section="contacto" data-value="text">Completa el siguiente formulario y me pondré en contacto contigo lo antes posible.</p>
+  <!-- lantern head -->
+  <g class="scene__lamp-head">
+    <polygon points="287,95 332,122 332,178 287,205 242,178 242,122" fill="var(--action, #2997ff)" fill-opacity=".6" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
+    <rect x="273" y="82" width="28" height="12" rx="3" fill="var(--tile-2, #1a2030)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="2"/>
+    <line x1="287" y1="82" x2="287" y2="68" fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="287" cy="150" r="6" fill="var(--action, #2997ff)" stroke="none"/>
+  </g>
+</svg>
+<!-- /partial:lamp -->
+              <img class="scene__body ill" src="/src/assets/img/bench/body.webp" srcset="/src/assets/img/bench/body.webp 500w, /src/assets/img/bench/body@2x.webp 1000w" sizes="(min-width: 1080px) 440px, 90vw" width="500" height="500" loading="lazy" decoding="async" alt="">
+              <img class="scene__leg" src="/src/assets/img/bench/leg.webp" srcset="/src/assets/img/bench/leg.webp 175w, /src/assets/img/bench/leg@2x.webp 350w" sizes="(min-width: 1080px) 154px, 32vw" width="175" height="236" loading="lazy" decoding="async" alt="">
+              <img class="scene__hand" src="/src/assets/img/bench/hand.webp" srcset="/src/assets/img/bench/hand.webp 83w, /src/assets/img/bench/hand@2x.webp 166w" sizes="(min-width: 1080px) 85px, 18vw" width="83" height="78" loading="lazy" decoding="async" alt="">
+              <div class="scene__phone" aria-hidden="true"></div>
             </div>
-
-            <!-- Modified form to work with Formspree -->
-            <form id="form" class="form-contact" action="https://formspree.io/f/xpwzzbnb" method="POST">
-                <label>
-                    Nombre | Name:
-                    <input id="nombre" type="text" name="name" placeholder="Nombre | Name" required>
-                </label>
-                <label>
-                    E-mail:
-                    <input id="email" type="email" name="email" placeholder="E-mail" required>
-                </label>
-                <label>
-                    Asunto | Subject:
-                    <input id="asunto" type="text" name="affair" placeholder="Asunto | Subject" required>
-                </label>
-                <label>
-                    Mensaje | Message:
-                    <textarea id="mensaje" cols="20" rows="4" name="message" placeholder="Mensaje | Message" required></textarea>
-                </label>
-
-                <div class="btn_form--contacto">
-                    <button id="btn-enviar" type="submit" data-section="contacto" data-value="btn-enviar">Enviar</button>
-                </div>
-            </form>
+          </div>
         </div>
+
+        <div class="contact__copy">
+          <p class="eyebrow" data-reveal data-i18n="contact.eyebrow">Contacto</p>
+          <h2 class="display-lg" id="contact-title" data-reveal data-i18n="contact.title">Hablemos</h2>
+          <p class="body" data-reveal data-i18n="contact.text">Si tienes un proyecto, una oferta o simplemente una duda, escríbeme.</p>
+          <ul class="actions" data-reveal>
+            <li>
+              <a class="action" id="email-action" href="mailto:marcotencortes@hotmail.com" data-copy="marcotencortes@hotmail.com">
+                <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 8l8 5.5L20 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                <span class="action__text"><span class="action__label" data-i18n="contact.email_label">Correo</span><span class="action__value">marcotencortes@hotmail.com</span></span>
+                <span class="action__hint mono" data-i18n="contact.email_hint">copiar</span>
+                <span class="action__arrow" aria-hidden="true">→</span>
+              </a>
+            </li>
+            <li>
+              <a class="action" href="https://www.linkedin.com/in/marcotencortes" target="_blank" rel="noopener noreferrer">
+                <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><rect x="2" y="2" width="20" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 10.2v6.3M7.5 7.6v.1M11.3 16.5v-3.6c0-1.5 1-2.5 2.4-2.5s2.3 1 2.3 2.5v3.6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+                <span class="action__text"><span class="action__label">LinkedIn</span><span class="action__value">linkedin.com/in/marcotencortes</span></span>
+                <span class="action__hint mono" data-i18n="contact.linkedin_hint">perfil</span>
+                <span class="action__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+            <li>
+              <a class="action" href="https://github.com/MarcoTenCortes" target="_blank" rel="noopener noreferrer">
+                <span class="action__icon" aria-hidden="true"><svg width="22" height="22"><use href="/icons/sprite.svg#github"/></svg></span>
+                <span class="action__text"><span class="action__label">GitHub</span><span class="action__value">github.com/MarcoTenCortes</span></span>
+                <span class="action__hint mono" data-i18n="contact.github_hint">código</span>
+                <span class="action__arrow" aria-hidden="true">↗</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer tile tile--canvas">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <svg class="monogram" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="16" cy="16" r="14.5" stroke-width="1.5" opacity=".45"/>
+          <polyline points="9.5,22 9.5,10.5 16,17 22.5,10.5 22.5,22" stroke-width="2.4"/>
+        </svg>
+        <p class="caption"><span data-i18n="footer.made">Hecho con HTML, CSS y café</span> · © <span id="year">2026</span> Marco Tenorio Cortés</p>
+        <p class="caption footer__privacy" data-i18n="footer.privacy">Sin cookies ni rastreo</p>
+      </div>
+      <ul class="footer__links">
+        <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
+        <li><a href="#experiencia" data-i18n="nav.experience">Experiencia</a></li>
+        <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+        <li><a href="#habilidades" data-i18n="nav.skills">Habilidades</a></li>
+        <li><a href="#formacion" data-i18n="nav.education">Formación</a></li>
+        <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
+      </ul>
+      <ul class="footer__social">
+        <li><a href="https://www.linkedin.com/in/marcotencortes" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        <li><a href="https://github.com/MarcoTenCortes" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+        <li><a href="mailto:marcotencortes@hotmail.com">Email</a></li>
+        <li><a href="#inicio" id="to-top"><span data-i18n="footer.top">Arriba</span> <span aria-hidden="true">↑</span></a></li>
+      </ul>
     </div>
+  </footer>
 
-</section>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
-    </main>
-
-    <footer>
-        <div class="container--footer">
-            <div class="container_redes-footer">
-                <a href="https://www.linkedin.com/in/marcotencortes/" target="_blank">
-                    <img src="./assets/images/icon-linkedin.png" alt="LinkedIn">
-                </a>
-                <a href="https://github.com/MarcoTenCortes" target="_blank">
-                    <img src="./assets/images/icon-github.png" alt="GitHub">
-                </a>
-            </div>
-
-            <div class="container_text--footer">
-                <span>Copyright © | Coded with</span>
-                <img src="./assets/images/icon-corazon.png" class="heartIcon" alt="Corazón">
-                <span>by</span>
-                <span>Marco Tenorio Cortés</span>
-            </div>
-        </div>
-    </footer>
-
-    <div class="go-top-container">
-        <div class="go-top-button">
-            <i class="fas fa-chevron-up"></i>
-        </div>
-    </div>
-
-    
-    <!-- Archivo Js -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <!-- Librería de animaciones -->
-    <script>
-        AOS.init();
-    </script>
-
-    <!-- Mi script -->
-    <script src="./script.js"></script>
+  <script type="module" src="/src/js/main.js"></script>
 </body>
-
-
 </html>

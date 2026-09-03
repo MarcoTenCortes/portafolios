@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Grafo de un espacio de datos: participante, catálogo, autoridad, conector, identidad, gobernanza y datos conectados dentro del marco de la UE" data-i18n-attr="aria-label:projects.simpl.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- EU ring -->
+  <circle cx="320" cy="200" r="185" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1.5"/>
+  <text x="320" y="378" text-anchor="middle" fill="var(--mute, #8e98a8)" font-size="12" letter-spacing=".2em">EU</text>
+
+  <!-- edges -->
+  <g fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1.5" stroke-linecap="round">
+    <line x1="320" y1="178" x2="320" y2="90"/>
+    <line x1="320" y1="222" x2="320" y2="310"/>
+    <line x1="255" y1="200" x2="165" y2="130"/>
+    <line x1="255" y1="200" x2="165" y2="270"/>
+    <line x1="385" y1="200" x2="475" y2="130"/>
+    <line x1="385" y1="200" x2="470" y2="270"/>
+    <line x1="110" y1="150" x2="110" y2="250"/>
+    <line x1="530" y1="150" x2="530" y2="250"/>
+    <line x1="265" y1="70" x2="165" y2="130"/>
+    <line x1="375" y1="70" x2="475" y2="130"/>
+    <line x1="275" y1="330" x2="165" y2="270"/>
+    <line x1="365" y1="330" x2="470" y2="270"/>
+  </g>
+
+  <!-- outer nodes -->
+  <g fill="var(--surface-elevated, #222a3a)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1">
+    <rect x="265" y="50" width="110" height="40" rx="12"/>
+    <rect x="55" y="110" width="110" height="40" rx="12"/>
+    <rect x="55" y="250" width="110" height="40" rx="12"/>
+    <rect x="475" y="110" width="110" height="40" rx="12"/>
+    <rect x="470" y="250" width="120" height="40" rx="12"/>
+    <rect x="275" y="310" width="90" height="40" rx="12"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" font-size="13" text-anchor="middle">
+    <text x="320" y="75">Catálogo</text>
+    <text x="110" y="135">Autoridad</text>
+    <text x="110" y="275">Conector</text>
+    <text x="530" y="135">Identidad</text>
+    <text x="530" y="275">Gobernanza</text>
+    <text x="320" y="335">Datos</text>
+  </g>
+
+  <!-- central node -->
+  <g class="simpl-pulse">
+    <rect x="255" y="178" width="130" height="44" rx="12" fill="var(--action, #2997ff)" stroke="var(--action, #2997ff)" stroke-width="1"/>
+    <text x="320" y="205" text-anchor="middle" fill="var(--tile-black, #05070b)" font-size="13" font-weight="600">Participante</text>
+  </g>
+</svg>

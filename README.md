@@ -1,40 +1,110 @@
+# portafolios.mtcor.es
 
-# Portafolio
+Portafolio de **Marco Tenorio Cortés** (Software Engineer · Technical Analyst). Sitio estático de una página, bilingüe ES/EN, con tema oscuro y azul inspirado en Raycast y Apple, ilustraciones propias y el rig interactivo del café.
 
-Este proyecto es una muestra de un portafolio personal con el fin de exhibir trabajos, habilidades y tecnologías utilizadas.
+**En producción:** <https://portafolios.mtcor.es>
 
-## Tecnologías utilizadas en el proyecto:
+## Stack
 
-<img src="https://img.icons8.com/color/344/html-5--v1.png" alt="html" width="50"/>  
-<img src="https://img.icons8.com/color/344/css3.png" alt="css" width="50"/>  
-<img src="https://img.icons8.com/color/344/javascript--v1.png" alt="JavaScript" width="50"/>
+- [Vite 8](https://vite.dev) como servidor de desarrollo y empaquetador. Sin framework: HTML semántico, CSS moderno (`@layer`, custom properties, `clamp()`, container-free) y JavaScript en módulos ES.
+- Tipografía Inter Variable auto-alojada (subset latino, ~64 KB) con fallback métrico.
+- Iconos de tecnologías desde [simple-icons](https://simpleicons.org) en un sprite SVG generado.
+- Sin analítica, sin cookies, sin dependencias externas en runtime.
 
+## Desarrollo
 
-## Enlace al sitio web
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm run build      # genera dist/
+npm run preview    # sirve dist/ en http://localhost:4173
+```
 
-Puedes visualizar el portafolio en el siguiente enlace:  
-[**Portafolio en línea**](https://portafolios.mtcor.es)
+Durante el desarrollo, `?shot=<id-de-seccion>` fuerza todos los reveals y hace scroll a esa sección; `&rig=<estado>` fija la pose del café (`warned`, `angry`, `spilled`). Solo existe en `npm run dev`.
 
-## Instrucciones para clonar el repositorio
+## Estructura
 
-1. Clona este repositorio en tu máquina local:
-   ```bash
-   git clone <url-del-repositorio>
-   ```
-2. Abre el archivo `index.html` en tu navegador para visualizar el proyecto localmente.
+```
+index.html                 página completa (contenido por defecto en ES)
+public/                    ficheros copiados tal cual a dist/: favicons, og.png, manifest, robots, 404, sprite, cv/
+src/js/main.js             entrada: CSS + i18n + site + rig
+src/js/i18n.js             diccionarios planos (src/i18n/es.json, en.json), data-i18n / data-i18n-attr
+src/js/site.js             nav, menú móvil, scroll-spy, reveals, copiar email, footer
+src/js/rig.js              máquina de estados del café (idle → warned → angry → spilled → refilling)
+src/styles/site.css        capas tokens · base · components · sections · rig · motion · print
+src/styles/stars.css       generado (tools/stars.py)
+src/assets/img/            WebP generados (rig, banco, hero, proyectos); src/assets/fonts/ Inter
+src/partials/*.svg         SVG inline (grafo SIMPL, autoencoder, terminal, farola) inyectados en index.html
+design/source/             originales de las ilustraciones (no se despliegan)
+tools/                     scripts de generación y despliegue
+```
 
-## Estructura del proyecto
+## Regenerar assets
 
-- **index.html**: Página principal del portafolio.
-- **other.html**: Otra página HTML del portafolio.
-- **assets/**: Contiene las imágenes y recursos utilizados en el portafolio.
-- **languages/**: Archivos de idiomas para contenido multilingüe.
-- **script.js**: Archivo JavaScript para interactividad en el sitio.
+Los ficheros generados están commiteados; solo hay que regenerarlos si cambian los originales.
 
----
+```bash
+pip install -r tools/requirements.txt
+python tools/images.py        # rig (+ tools/rig-geometry.json), banco, hero, proyectos
+python tools/stars.py         # src/styles/stars.css
+python tools/og.py            # public/og.png
+node tools/sprite.mjs         # public/icons/sprite.svg (falla si un slug no existe)
+node tools/brand.mjs          # favicons a partir de public/favicon.svg
+python tools/inject-partials.py   # vuelve a inyectar src/partials/*.svg en index.html
+python tools/sync-html-i18n.py    # sincroniza el texto ES del HTML con src/i18n/es.json y valida claves
+python tools/check-rig.py     # hoja de comprobación visual del rig (tools/out/rig-check.png)
+```
 
-Este portafolio está diseñado para ser visualizado correctamente tanto en dispositivos de escritorio como móviles.
+La fuente se regenera con `tools/subset-font.ps1 -Source InterVariable.woff2` (descarga de <https://github.com/rsms/inter/releases>).
 
----
+### Rig del café
 
-Si te gustaría hacer algún ajuste o contribuir a este proyecto, ¡no dudes en hacer un fork y enviar un pull request!
+Un único `<svg viewBox="0 0 1000 1100">` con las capas PNG originales colocadas según `tools/rig-geometry.json` (medido por registro de imagen contra el dibujo completo). Las poses son función de `data-state` (custom properties en CSS); los efectos puntuales (caída, rebote, charco, recarga) usan Web Animations API y encadenan por `animation.finished`. El botón real `#rig-hit` cubre el vaso (teclado y táctil), el texto de estado se anuncia por `aria-live`, y con `prefers-reduced-motion` las poses cambian sin animar. Si alguna capa falla al cargar se muestra `fallback.webp`.
+
+## Contenido
+
+- Textos: `src/i18n/es.json` y `src/i18n/en.json` (mismas claves). Tras editar `es.json`, ejecuta `python tools/sync-html-i18n.py` para que el HTML sin JavaScript muestre el mismo texto.
+- CV: coloca `public/cv/marco-tenorio-cortes-es.pdf` y `-en.pdf` y cambia `hero.cv_href` en ambos diccionarios a `/cv/marco-tenorio-cortes-es.pdf` / `-en.pdf`. Si la ruta es local, el botón pasa a "Descargar CV" con `download`; si es externa (Drive), abre en pestaña nueva.
+- Caducidades: `education.master.note` / `education.master.period` (máster hasta dic. 2026) y `experience.minsait.period` / `experience.minsait.badge` (actualidad). También el JSON-LD de `index.html`.
+
+## Despliegue
+
+`npm run build` genera `dist/` con los assets con hash. Se sube **el contenido de `dist/`** a la raíz del sitio:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File tools/deploy.ps1 -Target usuario@servidor:/var/www/portafolios
+```
+
+o con rsync: `tools/deploy.example.sh usuario@servidor:/var/www/portafolios`. Añade `-DryRun` para listar sin subir.
+
+Configuración recomendada del servidor:
+
+**Apache** (`.htaccess` en la raíz):
+
+```apache
+AddType image/webp .webp
+AddType font/woff2 .woff2
+AddType application/manifest+json .webmanifest
+ErrorDocument 404 /404.html
+<FilesMatch "\.(js|css|webp|woff2|svg|png)$">
+  Header set Cache-Control "public, max-age=31536000, immutable"
+</FilesMatch>
+<FilesMatch "\.(html|webmanifest|xml|txt)$">
+  Header set Cache-Control "no-cache"
+</FilesMatch>
+```
+
+**nginx**:
+
+```nginx
+location / { try_files $uri $uri/ =404; }
+error_page 404 /404.html;
+location /assets/ { add_header Cache-Control "public, max-age=31536000, immutable"; }
+types { image/webp webp; font/woff2 woff2; application/manifest+json webmanifest; }
+```
+
+Los ficheros de `dist/assets/` llevan hash en el nombre, así que la caché larga es segura; `index.html` debe servirse sin caché.
+
+## Licencias
+
+Código propio. Inter © Rasmus Andersson, [SIL Open Font License](src/assets/fonts/OFL.txt). Iconos de simple-icons (CC0). Ilustraciones © Marco Tenorio Cortés.

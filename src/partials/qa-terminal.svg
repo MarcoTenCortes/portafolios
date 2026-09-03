@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Terminal con una suite de pruebas Cucumber para banca: 12 escenarios y 48 pasos superados" data-i18n-attr="aria-label:projects.qa.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- window -->
+  <rect x="20" y="20" width="600" height="360" rx="14" fill="var(--tile-black, #05070b)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+
+  <!-- title bar -->
+  <g fill="var(--hairline-strong, rgba(255,255,255,.16))" stroke="none">
+    <circle cx="44" cy="44" r="5"/>
+    <circle cx="62" cy="44" r="5"/>
+    <circle cx="80" cy="44" r="5"/>
+  </g>
+  <text x="320" y="48" text-anchor="middle" fill="var(--mute, #8e98a8)" font-size="12">cucumber · banking-suite</text>
+  <line x1="20" y1="64" x2="620" y2="64" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- output -->
+  <g font-size="14">
+    <text x="44" y="96" xml:space="preserve" fill="var(--ink, #f5f7fa)">Característica: Transferencias entre cuentas</text>
+    <text x="44" y="122" xml:space="preserve" fill="var(--body, #c6cfdb)">  Escenario: Transferencia con saldo suficiente</text>
+    <text x="44" y="148" xml:space="preserve" fill="var(--mute, #8e98a8)">    Dado un cliente autenticado</text>
+    <text x="44" y="174" xml:space="preserve" fill="var(--mute, #8e98a8)">    Cuando transfiere 250 € a la cuenta destino</text>
+    <text x="44" y="200" xml:space="preserve" fill="var(--mute, #8e98a8)">    Entonces el saldo se actualiza y se registra el movimiento</text>
+    <text x="44" y="236" xml:space="preserve" fill="var(--success, #59d499)">✓ 12 escenarios superados</text>
+    <text x="44" y="262" xml:space="preserve" fill="var(--mute, #8e98a8)">✓ 48 pasos (2,31 s)</text>
+    <text x="44" y="298" xml:space="preserve" fill="var(--ink, #f5f7fa)">$ mvn test</text>
+    <rect class="term-cursor" x="134" y="284" width="8" height="16" fill="var(--action, #2997ff)" stroke="none"/>
+  </g>
+</svg>
