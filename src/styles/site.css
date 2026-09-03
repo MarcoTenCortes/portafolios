@@ -397,9 +397,9 @@
   .hero__tagline { max-width: 34ch; }
   .hero__actions { display: flex; flex-wrap: wrap; gap: 10px; }
   .hero__meta { display: grid; gap: 12px; }
-  .hero__media { position: relative; display: grid; place-items: center; order: -1; }
+  .hero__media { position: relative; display: grid; place-items: center; order: -1; padding: 5% 0; }
   .hero__disc {
-    position: absolute; width: min(560px, 110%); aspect-ratio: 1; border-radius: 50%;
+    position: absolute; height: 100%; max-height: 560px; aspect-ratio: 1; border-radius: 50%;
     background: var(--tile-1); border: 1px solid var(--hairline);
   }
   .hero__bust { position: relative; width: 260px; height: auto; }
