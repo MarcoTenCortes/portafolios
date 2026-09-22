@@ -1,38 +1,50 @@
 import '../styles/site.css';
 import { i18n } from './i18n.js';
 import { initSite, showToast } from './site.js';
-import { initRig } from './rig.js';
 
 let readyResolve;
 window.MTC = { i18n, play: {}, ready: new Promise((r) => { readyResolve = r; }) };
 
 i18n.init();
 initSite({ i18n });
-window.MTC.rig = initRig(document.getElementById('rig'), { i18n });
 
 // Zona de juego: se carga tras `load` y en tiempo ocioso para no competir con el LCP del busto.
 const playTokens = (document.body.dataset.play || '').split(/\s+/).filter(Boolean);
 function bootPlay() {
   const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 0));
   idle(() => {
-    const jobs = [];
     const measure = (name, fn) => {
       const t0 = performance.now();
       const out = fn();
       if (import.meta.env.DEV && performance.now() - t0 > 30) console.warn(`[play] ${name} tardó ${Math.round(performance.now() - t0)} ms`);
       return out;
     };
+    const jobs = [];
+    // los SVG decorativos (medias de tarjetas, farola, zona de juego) viven en src/partials/lazy.html y se estampan aqui
+    const stamped = import('../partials/lazy.html?raw').then(({ default: html }) => {
+      const box = document.createElement('template');
+      box.innerHTML = html;
+      for (const tpl of box.content.querySelectorAll('template[data-for]')) {
+        const host = document.querySelector('[data-lazy="' + tpl.dataset.for + '"]');
+        if (host) host.append(tpl.content.cloneNode(true));
+      }
+    });
+    // el rig del cafe tampoco hace falta para el primer render: se carga aqui, antes que la zona de juego
+    jobs.push(import('./rig.js').then((m) => { window.MTC.rig = measure('initRig', () => m.initRig(document.getElementById('rig'), { i18n })); }));
     if (playTokens.includes('marker') && document.getElementById('marker')) {
-      jobs.push(import('./marker.js').then((m) => { window.MTC.marker = measure('initMarker', () => m.initMarker(document.getElementById('play'), { i18n, showToast })); }));
+      jobs.push(Promise.all([stamped, import('./marker.js')]).then(([, m]) => { window.MTC.marker = measure('initMarker', () => m.initMarker(document.getElementById('play'), { i18n, showToast })); }));
     }
     if (playTokens.includes('dog') && document.getElementById('yard')) {
-      jobs.push(import('./dog.js').then((m) => { window.MTC.dog = measure('initDog', () => m.initDog(document.getElementById('yard'), { i18n, showToast })); }));
+      jobs.push(Promise.all([stamped, import('./dog.js')]).then(([, m]) => { window.MTC.dog = measure('initDog', () => m.initDog(document.getElementById('yard'), { i18n, showToast })); }));
     }
     Promise.all(jobs).then(() => readyResolve(), () => readyResolve());
   });
 }
-if (document.readyState === 'complete') bootPlay();
-else window.addEventListener('load', bootPlay, { once: true });
+// Tras `load` y tras el primer frame pintado (dos rAF + macrotarea), para que el estampado de los SVG y la
+// carga de los modulos no entren en el coste de render del hero ni con una red instantanea.
+const afterFirstPaint = (fn) => requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(fn, 0)));
+if (document.readyState === 'complete') afterFirstPaint(bootPlay);
+else window.addEventListener('load', () => afterFirstPaint(bootPlay), { once: true });
 
 // Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=<estado>&bone=near|dropped&marker=grabbed&ink=demo
 if (import.meta.env.DEV) {

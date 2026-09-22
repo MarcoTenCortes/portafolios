@@ -388,7 +388,8 @@
   html:not(.js) .nav__links { display: block; }
   html:not(.js) .nav__links ul { flex-wrap: wrap; }
   html:not(.js) .nav__burger { display: none; }
-  html:not(.js) :is(.play, .dog-peek, .yard__handle, #dog-feed, #dog-hint, #dog-count) { display: none !important; }
+  html:not(.js) :is(.play, .dog-peek, .yard, .yard__handle, #dog-feed, #dog-hint, #dog-count) { display: none !important; }
+  html:not(.js) .card__media[data-lazy] { display: none; }
 
   /* ---------- hero ---------- */
   .hero { min-height: calc(100vh - var(--nav-h)); min-height: calc(100svh - var(--nav-h)); display: grid; align-items: center; padding-block: 72px 56px; overflow: hidden; }

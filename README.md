@@ -42,7 +42,8 @@ src/js/play/               lógica pura (geom, ink, dog-machine), probada en tes
 src/styles/site.css        capas tokens · base · components · sections · rig · motion · print
 src/styles/stars.css       generado (tools/stars.py)
 src/assets/img/            WebP generados (rig, banco, hero, proyectos); src/assets/fonts/ Inter
-src/partials/*.svg         SVG inline (grafo SIMPL, autoencoder, terminal, farola, mock de Faro, rotulador, hueso, caseta, perro) inyectados en index.html
+src/partials/*.svg         SVG (grafo SIMPL, autoencoder, terminal, farola, mock de Faro, rotulador, hueso, caseta, perro)
+src/partials/lazy.html     plantillas con esos SVG: main.js las estampa tras load en los [data-lazy] (el HTML inicial queda ligero)
 test/                      node:test (npm test)
 design/STYLE.md            guía de estilo de las ilustraciones
 design/source/             originales de las ilustraciones (no se despliegan)

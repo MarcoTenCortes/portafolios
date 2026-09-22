@@ -1,8 +1,14 @@
 // i18n: diccionarios planos (clave.con.puntos) empaquetados por Vite, sin fetch.
 import es from '../i18n/es.json';
-import en from '../i18n/en.json';
 
-const DICT = { es, en };
+// El ingles se carga bajo demanda (un chunk aparte) para no competir con el primer render.
+const DICT = { es };
+const LOADERS = { en: () => import('../i18n/en.json') };
+async function ensure(lang) {
+  if (DICT[lang] || !LOADERS[lang]) return;
+  const mod = await LOADERS[lang]();
+  DICT[lang] = mod.default || mod;
+}
 const DEV = import.meta.env.DEV;
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -33,10 +39,16 @@ export const i18n = {
   init() {
     const saved = storageGet('lang');
     const fromNav = (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'es';
-    this.apply(DICT[saved] ? saved : fromNav, { silent: true });
+    const wanted = saved && LOADERS[saved] || saved === 'es' ? saved : fromNav;
+    if (wanted !== 'es') this.apply('es', { silent: true });
+    this.apply(wanted, { silent: true });
   },
 
   apply(lang, { silent = false } = {}) {
+    if (!DICT[lang] && LOADERS[lang]) {
+      ensure(lang).then(() => this.apply(lang, { silent }), () => {});
+      return;
+    }
     if (!DICT[lang]) lang = 'es';
     this.current = lang;
     const root = document.documentElement;

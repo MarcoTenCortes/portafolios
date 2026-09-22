@@ -7,7 +7,8 @@ import { readFileSync, existsSync } from 'node:fs';
 const url = (rel) => new URL(`../${rel}`, import.meta.url);
 // Python lee con "universal newlines": normalizamos CRLF igual para no depender del checkout.
 const read = (rel) => readFileSync(url(rel), 'utf8').replace(/\r\n/g, '\n');
-const html = read('index.html');
+// index.html y el fragmento de la zona de juego (src/partials/lazy.html) llevan bloques inyectados.
+const html = read('index.html') + (existsSync(url('src/partials/lazy.html')) ? read('src/partials/lazy.html') : '');
 const names = [...new Set([...html.matchAll(/<!-- partial:([a-z0-9-]+) -->/g)].map((m) => m[1]))];
 
 // Mensaje corto con la primera diferencia, en vez del diff completo de un SVG de varios KB.

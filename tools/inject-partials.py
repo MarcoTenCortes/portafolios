@@ -11,7 +11,6 @@ ROOT = Path(__file__).resolve().parents[1]
 HTML = ROOT / "index.html"
 PARTIALS = ROOT / "src" / "partials"
 
-html = HTML.read_text(encoding="utf-8")
 pattern = re.compile(r"<!-- partial:([a-z0-9-]+) -->(?:.*?<!-- /partial:\1 -->)?", re.S)
 
 
@@ -26,9 +25,13 @@ def replace(m: re.Match) -> str:
     return f"<!-- partial:{name} -->\n{body}\n<!-- /partial:{name} -->"
 
 
-new = pattern.sub(replace, html)
-if new != html:
-    HTML.write_text(new, encoding="utf-8")
-    print("index.html actualizado")
-else:
-    print("index.html sin cambios")
+for target in (HTML, PARTIALS / "lazy.html"):
+    if not target.exists():
+        continue
+    html = target.read_text(encoding="utf-8")
+    new = pattern.sub(replace, html)
+    if new != html:
+        target.write_text(new, encoding="utf-8")
+        print(f"{target.name} actualizado")
+    else:
+        print(f"{target.name} sin cambios")
