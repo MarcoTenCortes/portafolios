@@ -10,7 +10,8 @@ export const SLUGS = [
   'selenium', 'junit5', 'cucumber', 'postman', 'appium',
   'javascript', 'html5', 'css', 'react', 'expo', 'tailwindcss', 'bootstrap',
   'keras', 'tensorflow', 'kaggle', 'googlecloud',
-  'git', 'github', 'openapiinitiative', 'jira', 'confluence', 'trello', 'unity', 'telegram'
+  'git', 'github', 'openapiinitiative', 'jira', 'confluence', 'trello', 'unity', 'telegram',
+  'googlechrome', 'opencode', 'modelcontextprotocol', 'nodedotjs'
 ];
 
 const missing = [];

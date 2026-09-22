@@ -27,9 +27,10 @@ for attrs in re.findall(r'data-i18n-attr="([^"]+)"', text):
             used.add(pair.split(":", 1)[1].strip())
 missing_es = sorted(k for k in used if k not in ES)
 missing_en = sorted(k for k in used if k not in EN)
-unused = sorted(k for k in ES if k not in used and not k.startswith("coffee.status") and k not in {
+unused = sorted(k for k in ES if k not in used and not k.startswith("coffee.status") and not k.startswith("play.dog.status") and k not in {
     "coffee.counter", "coffee.key_tap", "coffee.key_click", "hero.cta_cv", "hero.cv_href", "contact.copied",
-    "a11y.menu_close", "coffee.reset_short", "press.url"})
+    "a11y.menu_close", "coffee.reset_short", "press.url",
+    "play.dog.counter", "play.dog.peek_toast", "play.dog.key_tap"})
 if missing_es or missing_en:
     print("Claves usadas en el HTML que faltan:", missing_es, missing_en)
     sys.exit(1)

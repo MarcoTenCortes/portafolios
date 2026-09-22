@@ -11,7 +11,8 @@
     "sprite": "node tools/sprite.mjs",
     "brand": "node tools/brand.mjs",
     "assets": "python tools/images.py && python tools/stars.py",
-    "deploy": "powershell -ExecutionPolicy Bypass -File tools/deploy.ps1"
+    "deploy": "powershell -ExecutionPolicy Bypass -File tools/deploy.ps1",
+    "test": "node --test \"test/**/*.test.mjs\""
   },
   "devDependencies": {
     "sharp": "^0.35.4",
