@@ -70,11 +70,36 @@ export function pointerZone(pointer, boneCenter, wasNear) {
 export function runDuration(px, speed = 380, min = 500, max = 2800) {
   return clamp((Math.abs(px) / speed) * 1000, min, max);
 }
-export function nextPeekDelay(rng = Math.random, min = 12000, max = 28000) {
+export function nextPeekDelay(rng = Math.random, min = 6000, max = 14000) {
   return Math.round(min + rng() * (max - min));
 }
-export function shouldPeek({ hidden, reduced, dragging, sheetOpen, state, idleMs, width }) {
-  return !hidden && !reduced && !dragging && !sheetOpen && state === 'inHouse' && idleMs >= 2500 && width >= 360;
+export function nextPeekHold(rng = Math.random, min = 8000, max = 12000) {
+  return Math.round(min + rng() * (max - min));
+}
+// dogVisible: el perro del patio esta fuera (asomado por el borde o jugando en la puerta): no puede estar en dos sitios.
+export function shouldPeek({ hidden, reduced, dragging, sheetOpen, state, idleMs, width, dogVisible = false }) {
+  return !hidden && !reduced && !dragging && !sheetOpen && state === 'inHouse' && !dogVisible && idleMs >= 2500 && width >= 360;
+}
+// Caja (px de cliente) que ocupa el perro asomado por un borde: solo la parte visible.
+export function peekBox(side, y, size, viewportW, visibleFraction = 0.7) {
+  const vis = Math.round(size.w * visibleFraction);
+  return side === 'left'
+    ? { left: 0, top: y, right: vis, bottom: y + size.h }
+    : { left: viewportW - vis, top: y, right: viewportW, bottom: y + size.h };
+}
+export function distanceToRect(p, r) {
+  const dx = Math.max(r.left - p.x, 0, p.x - r.right);
+  const dy = Math.max(r.top - p.y, 0, p.y - r.bottom);
+  return Math.hypot(dx, dy);
+}
+export const SHY = 90; // px: el perro asomado se esconde si el puntero se acerca a esta distancia
+export function isShy(pointer, box, radius = SHY) {
+  return distanceToRect(pointer, box) <= radius;
+}
+// x del perro (mirando a la izquierda) asomado por la puerta: la cabeza sobresale `out` de su ancho del marco.
+export function homeDogX(house, dogW, out = 0.3) {
+  const s = house.width / HOUSE_VB.w;
+  return house.left + HOUSE_VB.door.x * s - dogW * out;
 }
 export function bonesAfter(prev) {
   return { v: 1, n: (Number.isFinite(prev?.n) ? prev.n : 0) + 1, since: prev?.since ?? null };

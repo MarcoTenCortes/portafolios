@@ -64,7 +64,8 @@ for (const job of jobs) {
   await send('Emulation.setDeviceMetricsOverride', { width, height, deviceScaleFactor: job.scale || 1, mobile: !!job.mobile });
   if (job.mobile) await send('Emulation.setTouchEmulationEnabled', { enabled: true });
   else await send('Emulation.setTouchEmulationEnabled', { enabled: false });
-  if (job.media) await send('Emulation.setEmulatedMedia', { features: job.media });
+  // cada job parte de la misma emulacion de medios: si no la pide, se restablece (antes se colaba de un job al siguiente)
+  await send('Emulation.setEmulatedMedia', { features: job.media || [{ name: 'prefers-reduced-motion', value: 'no-preference' }] });
   events.length = 0;
   await send('Page.navigate', { url: job.url });
   await waitEvent('Page.loadEventFired');

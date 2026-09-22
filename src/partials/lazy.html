@@ -520,7 +520,7 @@
     <ellipse class="house__shadow" cx="112" cy="201" rx="108" ry="5" fill="#000" opacity=".3"/>
     <!-- front wall with the door cut out; the right jamb is the wall's right edge -->
     <path class="house__wall" fill-rule="evenodd" d="M20.6 91.2 C60 89.6 140 90.8 200 90 V200 H20 C19.4 160 20.9 125 20.6 91.2 Z M120 200 V135 a40 40 0 0 1 80 0 V200 Z" fill="var(--tile-2,#1a2030)" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
-    <path class="house__eave-shadow" fill-rule="evenodd" d="M21 92 H199 V105 H21 Z M120 200 V135 a40 40 0 0 1 80 0 V200 Z" fill="#0b0e15" opacity=".35"/>
+    <path class="house__eave-shadow" d="M21 92 H199 V105 H120 V101 H21 Z" fill="#0b0e15" opacity=".35"/>
     <g class="house__planks" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="2" stroke-linecap="round">
       <path d="M25 112 C80 111.2 150 112.6 195 112"/>
       <path d="M25 134 C60 133.4 90 134.4 116 134"/>
@@ -633,7 +633,16 @@
           <path d="M135 42 C131 52 133 62 138 67" fill="none" stroke="#c7bfaf" stroke-width="4" stroke-linecap="round"/>
         </g>
         <path d="M132 30 C148 18 174 20 188 38" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
-        <g class="dog__mouth" transform="translate(178 92)"/>
+        <g class="dog__mouth" transform="translate(178 92)">
+          <!-- bone held crosswise in the mouth (shown with .has-bone) -->
+          <g class="dog__bone" opacity="0" transform="translate(-2 4) rotate(-12) scale(.5) translate(-60 -24)">
+            <path d="M42 17 H78 A13 12.5 0 1 1 97.5 24 A12.5 13 0 1 1 78 31 H42 A12.5 13 0 1 1 22.5 24 A13 12.5 0 1 1 42 17 Z" fill="var(--ill-cream,#f3eedb)"/>
+            <path d="M40 26 C54 24.5 66 24.5 80 26.5 V31 H40 Z" fill="#c7bfaf"/>
+            <circle cx="30.5" cy="35.5" r="10" fill="#c7bfaf"/>
+            <circle cx="90.5" cy="35.5" r="10" fill="#c7bfaf"/>
+            <path d="M42 17 H78 A13 12.5 0 1 1 97.5 24 A12.5 13 0 1 1 78 31 H63 M57 31 H42 A12.5 13 0 1 1 22.5 24 A13 12.5 0 1 1 42 17 L46 16.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </g>
       </g>
     </g>
   </g>

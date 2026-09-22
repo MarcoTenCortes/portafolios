@@ -46,7 +46,7 @@ const afterFirstPaint = (fn) => requestAnimationFrame(() => requestAnimationFram
 if (document.readyState === 'complete') afterFirstPaint(bootPlay);
 else window.addEventListener('load', () => afterFirstPaint(bootPlay), { once: true });
 
-// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo
+// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo
 if (import.meta.env.DEV) {
   const params = new URLSearchParams(window.location.search);
   const shot = params.get('shot');

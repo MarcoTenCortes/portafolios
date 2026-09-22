@@ -2,8 +2,8 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   DOG_STATES, BONE_STATES, PEEK_STATES, HOUSE_VB, NEAR, APPROACH, LEAVE,
-  next, doorRect, doorCenter, isInDoor, isNearDoor, dogStopX, settleBone, spawnX,
-  pointerZone, runDuration, nextPeekDelay, shouldPeek, bonesAfter, announceFor,
+  next, doorRect, doorCenter, isInDoor, isNearDoor, dogStopX, homeDogX, settleBone, spawnX,
+  pointerZone, runDuration, nextPeekDelay, nextPeekHold, shouldPeek, peekBox, distanceToRect, isShy, SHY, bonesAfter, announceFor,
 } from '../src/js/play/dog-machine.js';
 
 // caseta de 220 px de ancho (escala 1) en (500, 300)
@@ -98,16 +98,56 @@ describe('tiempos', () => {
     assert.equal(runDuration(3800), 2800);
     assert.equal(runDuration(760), 2000);
   });
-  it('nextPeekDelay esta entre 12 y 28 s', () => {
-    assert.equal(nextPeekDelay(() => 0), 12000);
-    assert.equal(nextPeekDelay(() => 1), 28000);
+  it('nextPeekDelay esta entre 6 y 14 s (se cuenta desde que se esconde; con 8-12 s de permanencia sale cada ~20 s)', () => {
+    assert.equal(nextPeekDelay(() => 0), 6000);
+    assert.equal(nextPeekDelay(() => 1), 14000);
   });
-  it('shouldPeek exige pestana visible, sin movimiento reducido, sin arrastre, sin menu, perro en casa, 2,5 s quieto y ancho >= 360', () => {
-    const ok = { hidden: false, reduced: false, dragging: false, sheetOpen: false, state: 'inHouse', idleMs: 2500, width: 360 };
+  it('nextPeekHold esta entre 8 y 12 s (el triple que antes)', () => {
+    assert.equal(nextPeekHold(() => 0), 8000);
+    assert.equal(nextPeekHold(() => 1), 12000);
+  });
+  it('shouldPeek exige pestana visible, sin movimiento reducido, sin arrastre, sin menu, perro en casa y no a la vista, 2,5 s quieto y ancho >= 360', () => {
+    const ok = { hidden: false, reduced: false, dragging: false, sheetOpen: false, state: 'inHouse', idleMs: 2500, width: 360, dogVisible: false };
     assert.ok(shouldPeek(ok));
-    for (const [k, v] of Object.entries({ hidden: true, reduced: true, dragging: true, sheetOpen: true, state: 'running', idleMs: 2499, width: 359 })) {
+    for (const [k, v] of Object.entries({ hidden: true, reduced: true, dragging: true, sheetOpen: true, state: 'running', idleMs: 2499, width: 359, dogVisible: true })) {
       assert.ok(!shouldPeek({ ...ok, [k]: v }), k);
     }
+    // sin el campo (llamadas antiguas) se asume que el perro del patio no esta a la vista
+    const { dogVisible, ...legacy } = ok;
+    assert.ok(shouldPeek(legacy));
+  });
+});
+
+describe('perro asomado por el borde', () => {
+  const size = { w: 104, h: 93 };
+  it('peekBox ocupa solo la parte visible pegada al borde', () => {
+    assert.deepEqual(peekBox('left', 300, size, 1280), { left: 0, top: 300, right: 73, bottom: 393 });
+    assert.deepEqual(peekBox('right', 300, size, 1280), { left: 1207, top: 300, right: 1280, bottom: 393 });
+  });
+  it('distanceToRect es 0 dentro y la distancia al borde mas cercano fuera', () => {
+    const r = { left: 0, top: 300, right: 73, bottom: 393 };
+    assert.equal(distanceToRect({ x: 10, y: 350 }, r), 0);
+    assert.equal(distanceToRect({ x: 173, y: 350 }, r), 100);
+    assert.equal(distanceToRect({ x: 10, y: 200 }, r), 100);
+    assert.equal(distanceToRect({ x: 73 + 30, y: 393 + 40 }, r), 50);
+  });
+  it('isShy: el puntero a SHY px o menos lo esconde', () => {
+    const r = { left: 0, top: 300, right: 73, bottom: 393 };
+    assert.ok(isShy({ x: 73 + SHY, y: 350 }, r));
+    assert.ok(!isShy({ x: 73 + SHY + 1, y: 350 }, r));
+  });
+});
+
+describe('perro jugando en la puerta', () => {
+  it('homeDogX deja la cabeza fuera del marco y el resto en la puerta o tras la pared', () => {
+    // casa de 220 (escala 1), puerta 20..100; perro de 120 mirando a la izquierda
+    const x = homeDogX(house, 120);
+    assert.equal(x, 500 + 20 - 36);
+    assert.ok(x < 520, 'la cabeza sobresale del marco');
+    assert.ok(x + 120 <= 700, 'el rabo no asoma por la derecha de la pared');
+    // casa movil de 150: escala 0.68, perro de 90
+    const xm = homeDogX({ left: 220, top: 32, width: 150, height: 136 }, 90);
+    assert.ok(xm < 220 + 20 * (150 / 220) && xm + 90 <= 220 + 150);
   });
 });
 

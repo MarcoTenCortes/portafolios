@@ -3,7 +3,7 @@
     <ellipse class="house__shadow" cx="112" cy="201" rx="108" ry="5" fill="#000" opacity=".3"/>
     <!-- front wall with the door cut out; the right jamb is the wall's right edge -->
     <path class="house__wall" fill-rule="evenodd" d="M20.6 91.2 C60 89.6 140 90.8 200 90 V200 H20 C19.4 160 20.9 125 20.6 91.2 Z M120 200 V135 a40 40 0 0 1 80 0 V200 Z" fill="var(--tile-2,#1a2030)" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
-    <path class="house__eave-shadow" fill-rule="evenodd" d="M21 92 H199 V105 H21 Z M120 200 V135 a40 40 0 0 1 80 0 V200 Z" fill="#0b0e15" opacity=".35"/>
+    <path class="house__eave-shadow" d="M21 92 H199 V105 H120 V101 H21 Z" fill="#0b0e15" opacity=".35"/>
     <g class="house__planks" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="2" stroke-linecap="round">
       <path d="M25 112 C80 111.2 150 112.6 195 112"/>
       <path d="M25 134 C60 133.4 90 134.4 116 134"/>

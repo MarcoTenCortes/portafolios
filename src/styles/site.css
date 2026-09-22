@@ -673,7 +673,7 @@
     touch-action: none; user-select: none; -webkit-user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; cursor: grab;
   }
   .yard__bone:active, .yard__bone.is-dragging { cursor: grabbing; }
-  .yard__bone:focus-visible { outline: 2px solid var(--action); outline-offset: 3px; }
+  .yard__bone:focus-visible { outline: 2px solid var(--action); outline-offset: 1px; }
   .yard__bone .bone__art { display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
   .yard__bone.is-dragging .bone__rim { filter: none; }
   .yard[data-bone="delivering"] .yard__bone, .yard[data-bone="dropped"] .yard__bone, .yard[data-bone="respawn"] .yard__bone { pointer-events: none; }
@@ -702,6 +702,13 @@
   .yard[data-dog="in"] .dog__tail { animation-duration: 520ms; }
   .dog.is-alert .dog__tail, .dog.is-walking .dog__tail { animation-duration: 160ms; }
   .yard[data-dog="in"] .dog__lid { animation: dog-blink 4.2s linear infinite; }
+  .dog__bone { opacity: 0; transition: opacity 120ms; }
+  .dog.has-bone .dog__bone { opacity: 1; }
+  .dog.is-playing .dog__head { animation: dog-chew 640ms ease-in-out infinite alternate; }
+  .dog.is-playing .dog__bob { animation: dog-bob 640ms ease-in-out infinite alternate; }
+  .dog.is-playing .dog__ear--front { animation: dog-ear 1.3s ease-in-out infinite alternate; }
+  .dog.is-playing .dog__tail { animation: dog-tail 300ms ease-in-out infinite alternate; }
+  .yard[data-dog="home"] .dog__lid { animation: dog-blink 3.6s linear infinite; }
   .yard.is-offscreen *, .yard.is-hidden * { animation-play-state: paused !important; }
   @media (max-width: 767px) {
     .yard { height: 168px; }
@@ -732,6 +739,7 @@
   @keyframes dog-bob { from { transform: translateY(0); } to { transform: translateY(-3px); } }
   @keyframes dog-tail { from { transform: rotate(-25deg); } to { transform: rotate(30deg); } }
   @keyframes dog-ear { from { transform: rotate(-6deg); } to { transform: rotate(8deg); } }
+  @keyframes dog-chew { 0% { transform: rotate(4deg); } 55% { transform: rotate(-7deg) translateY(1px); } 100% { transform: rotate(-3deg); } }
   @keyframes dog-blink { 0%, 90%, 100% { transform: scaleY(0); } 93%, 96% { transform: scaleY(1); } }
   @keyframes dog-boop { 0% { transform: scale(1); } 40% { transform: scale(1.08) rotate(-4deg); } 100% { transform: scale(1); } }
   @keyframes house-wiggle { from { transform: translate(-1.5px, 0); } to { transform: translate(1.5px, 0); } }

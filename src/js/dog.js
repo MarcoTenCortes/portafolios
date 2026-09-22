@@ -1,20 +1,23 @@
 // dog.js: la caseta y el hueso estan sueltos al pie de Contacto (franja #yard, a sangre). Cuando el
 // puntero se acerca al hueso, el perro se asoma por el lateral izquierdo de la pantalla a la altura de la
-// caseta; al tocar el hueso alza las orejas; si el hueso se deja en la puerta, corre a la caseta y entra.
+// caseta; al tocar el hueso alza las orejas; si el hueso se deja en la puerta, corre a la caseta, entra y
+// vuelve a asomarse por la puerta jugando con el hueso hasta que sale uno nuevo.
 // Maquina de estados explicita (inHouse -> running -> entering -> inHouse), Web Animations API encadenada
 // por animation.finished, el hueso es un <button> arrastrable (Enter = darselo: alternativa de teclado).
-// Aparte, el perro que se asoma por los bordes de la ventana (#dog-peek, capa fija).
+// Aparte, el perro que se asoma por los bordes de la ventana (#dog-peek, capa fija): nunca mientras el del
+// patio este a la vista (solo hay un perro), y se esconde si el puntero se le acerca.
 import { attachDrag } from './drag.js';
 import { clamp } from './play/geom.js';
 import {
-  next as nextState, doorRect, doorCenter, isInDoor, isNearDoor, dogStopX, settleBone, spawnX,
-  pointerZone, runDuration, nextPeekDelay, shouldPeek, bonesAfter, announceFor,
+  next as nextState, doorRect, doorCenter, isInDoor, isNearDoor, dogStopX, homeDogX, settleBone, spawnX,
+  pointerZone, runDuration, nextPeekDelay, nextPeekHold, shouldPeek, peekBox, isShy, SHY, bonesAfter, announceFor,
 } from './play/dog-machine.js';
 
 const EASE_OUT = 'cubic-bezier(.2,.7,.2,1)';
 const EASE_IN = 'cubic-bezier(.5,0,.8,.5)';
 const EASE_FALL = 'cubic-bezier(.4,0,.6,1)';
-const PEEK_FRACTION = 0.22; // parte del perro que queda fuera de la pantalla cuando se asoma
+const PEEK_FRACTION = 0.22; // parte del perro que queda fuera de la pantalla cuando se asoma por el borde
+const PEEK_VISIBLE = 0.7;   // parte visible del perro asomado por los bordes de la ventana (CSS translateX(-30%))
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
 function storage(kind) {
@@ -39,12 +42,14 @@ function timer(fn, ms) {
   let left = ms;
   let done = false;
   function fire() { done = true; id = null; fn(); }
-  return {
+  const t = {
     pause() { if (done || id == null) return; clearTimeout(id); id = null; left = Math.max(50, left - (performance.now() - start)); },
     resume() { if (done || id != null) return; start = performance.now(); id = setTimeout(fire, left); },
     cancel() { done = true; if (id != null) clearTimeout(id); id = null; },
     get done() { return done; },
   };
+  if (document.hidden) t.pause(); // nace pausado: visibilitychange lo reanuda al volver
+  return t;
 }
 
 export function initDog(yard, { i18n, showToast } = {}) {
@@ -60,6 +65,7 @@ export function initDog(yard, { i18n, showToast } = {}) {
   if (!houseFront || !dog || !bone) return null;
 
   const reducedMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const coarseMQ = window.matchMedia('(hover: none)');
   const reduced = () => reducedMQ.matches;
   const canAnimate = () => 'animate' in Element.prototype && !reduced();
   const t = (k, vars) => (i18n ? i18n.t(k, vars) : k);
@@ -67,12 +73,14 @@ export function initDog(yard, { i18n, showToast } = {}) {
 
   let state = 'inHouse';     // inHouse | running | entering
   let boneState = 'resting'; // resting | dragging | dropped | delivering | away | respawn
-  let shown = 'hidden';      // hidden | in | out  (el perro asomado por el borde)
+  let shown = 'hidden';      // hidden | in | out | home  (asomado por el borde / jugando en la puerta)
+  let home = false;          // desde que entra con el hueso hasta que aparece el siguiente
   let busy = false;
   let bones = readBones();
   let bonePos = { x: 0, y: 0 };
   let dogX = 0;
   let cooldown = null;
+  let playTimer = null;
   let lastAnnounce = '';
   let nearAnnounced = false;
   let nearTimer = 0;
@@ -86,6 +94,7 @@ export function initDog(yard, { i18n, showToast } = {}) {
   function setBone(next) { boneState = next; yard.dataset.bone = next; }
   function setShown(next) { shown = next; yard.dataset.dog = next; }
   function setBusy(v) { busy = v; yard.dataset.busy = String(v); }
+  const dogVisible = () => shown !== 'hidden' || home;
   function announce(keyName) {
     if (!status || !keyName) return;
     lastAnnounce = keyName;
@@ -118,6 +127,7 @@ export function initDog(yard, { i18n, showToast } = {}) {
   const local = (cx, cy) => { const r = client(); return { x: cx - r.left, y: cy - r.top }; };
   const groundY = () => layout.size.height - layout.bone.h - 4;
   const peekX = () => -Math.round(layout.dog.w * PEEK_FRACTION);
+  const hiddenX = () => -layout.dog.w - 4;
   const boneCenter = () => ({ x: bonePos.x + layout.bone.w / 2, y: bonePos.y + layout.bone.h / 2 });
   const tx = (x) => `translateX(${x.toFixed(1)}px)`;
 
@@ -177,12 +187,13 @@ export function initDog(yard, { i18n, showToast } = {}) {
     return a.finished.catch(() => {}).then(() => { a.cancel(); bone.style.opacity = String(to); });
   }
 
-  // ---------- el perro se asoma por el borde ----------
+  // ---------- el perro se asoma por el borde (cerca del hueso) ----------
   async function showDog() {
-    if (state !== 'inHouse' || busy) return;
+    if (state !== 'inHouse' || busy || home) return;
     clearTimeout(hideTimer);
     hideTimer = 0;
     if (shown === 'in') return;
+    hidePeek(true); // solo hay un perro
     setShown('in');
     face('right');
     dog.style.opacity = '1';
@@ -198,32 +209,41 @@ export function initDog(yard, { i18n, showToast } = {}) {
     face('left');
     dog.classList.add('is-walking');
     let ok = true;
-    if (canAnimate()) { await wait(140); ok = await slide(-layout.dog.w - 4, 420, { easing: EASE_IN }); } else { stopDog(); placeDog(-layout.dog.w - 4); }
+    if (canAnimate()) {
+      await wait(140);
+      if (shown !== 'out' || busy || state !== 'inHouse') return; // mientras tanto ha vuelto a salir o ha empezado a correr
+      ok = await slide(hiddenX(), 420, { easing: EASE_IN });
+    } else { stopDog(); placeDog(hiddenX()); }
     if (!ok) return;
     dog.classList.remove('is-walking');
     face('right');
     setShown('hidden');
+    armPeek();
   }
   function alert() {
-    if (state !== 'inHouse' || busy) return;
+    if (state !== 'inHouse' || busy || home) return;
     showDog();
     dog.classList.add('is-alert');
     clearTimeout(alertTimer);
     alertTimer = setTimeout(() => dog.classList.remove('is-alert'), 1800);
+    if (coarseMQ.matches) farSoon(4500);
   }
 
-  // ---------- cercania del puntero al hueso ----------
+  // ---------- cercania del puntero: al hueso (sale el perro) y al perro asomado por el borde (se esconde) ----------
   let pointer = null;
   let proxRaf = 0;
   let nearFlag = false;
   function onPointer(e) {
-    if (e.pointerType === 'touch' || document.hidden || yard.classList.contains('is-offscreen')) return;
+    if (e.pointerType === 'touch' || document.hidden) return;
     pointer = { x: e.clientX, y: e.clientY };
     if (!proxRaf) proxRaf = requestAnimationFrame(checkProximity);
   }
   function checkProximity() {
     proxRaf = 0;
-    if (!pointer || state !== 'inHouse' || (boneState !== 'resting' && boneState !== 'dragging')) return;
+    if (!pointer) return;
+    if (peekState === 'peeking' && peekBoxNow && isShy(pointer, peekBoxNow)) hidePeek(false);
+    if (yard.classList.contains('is-offscreen')) { if (nearFlag) { nearFlag = false; farSoon(); } return; }
+    if (state !== 'inHouse' || home || (boneState !== 'resting' && boneState !== 'dragging')) return;
     const p = local(pointer.x, pointer.y);
     const zone = pointerZone(p, boneCenter(), nearFlag);
     if (zone === 'near') {
@@ -234,16 +254,16 @@ export function initDog(yard, { i18n, showToast } = {}) {
       farSoon();
     }
   }
-  function farSoon() {
+  function farSoon(ms = 1400) {
     clearTimeout(hideTimer);
-    hideTimer = setTimeout(() => { if (!grab && !nearFlag) hideDog(); }, 1400);
+    hideTimer = setTimeout(() => { if (!grab && !nearFlag) hideDog(); }, ms);
   }
   window.addEventListener('pointermove', onPointer, { passive: true });
   html.addEventListener('mouseleave', () => { if (nearFlag) { nearFlag = false; farSoon(); } });
 
-  // ---------- coreografia: correr a la caseta y entrar ----------
+  // ---------- coreografia: correr a la caseta, entrar y volver a asomarse con el hueso ----------
   async function deliver() {
-    if (busy || state !== 'inHouse') return;
+    if (busy || state !== 'inHouse' || home) return;
     setBusy(true);
     clearTimeout(hideTimer);
     hideTimer = 0;
@@ -255,7 +275,7 @@ export function initDog(yard, { i18n, showToast } = {}) {
     announce('running');
     yard.classList.add('is-near');
     if (!canAnimate()) { await deliverReduced(); return; }
-    if (shown === 'hidden') placeDog(-layout.dog.w - 4, 1);
+    if (shown === 'hidden') placeDog(hiddenX(), 1);
     setShown('in');
     face('right');
     dog.classList.remove('is-alert');
@@ -291,31 +311,53 @@ export function initDog(yard, { i18n, showToast } = {}) {
     bone.style.opacity = '0';
   }
   async function arrive() {
+    home = true;
+    if (document.activeElement === bone) { yard.tabIndex = -1; yard.focus({ preventScroll: true }); } // el boton va a desaparecer
     setBone('away');
     bone.style.opacity = '';
     yard.classList.remove('is-near');
-    yard.classList.add('is-peeking'); // ojos en la puerta
+    yard.classList.add('is-peeking'); // ojos en la puerta un instante
     bones = bonesAfter(bones);
     if (!bones.since) bones.since = new Date().toISOString().slice(0, 10);
     writeBones(bones);
     renderCount();
     setState(nextState(state, 'inside')); // inHouse
     dog.classList.remove('is-walking', 'is-running', 'is-alert');
-    face('right');
-    placeDog(-layout.dog.w - 4, 1);
-    setShown('hidden');
     nearFlag = false;
     announce(announceFor(bones.n));
     setBusy(false);
-    await wait(1400);
+    await wait(700);
     yard.classList.remove('is-peeking');
+    await playAtDoor();
+  }
+  // Asomado por la puerta (mirando al patio) con el hueso en la boca, mordisqueandolo.
+  async function playAtDoor() {
+    face('left');
+    dog.classList.add('has-bone');
+    const x = homeDogX(layout.house, layout.dog.w);
+    setShown('home');
+    if (canAnimate()) {
+      placeDog(x + layout.dog.w * 0.35, 0);
+      await slide(x, 520, { fadeTo: 1, easing: EASE_OUT });
+    } else placeDog(x, 1);
+    dog.classList.add('is-playing');
+    playTimer = timer(() => { if (lastAnnounce !== 'playing') announce('playing'); }, 1600);
+    cooldown = timer(goInside, 9000 + Math.random() * 3000);
+  }
+  async function goInside() {
+    cooldown = null;
+    dog.classList.remove('is-playing');
+    if (canAnimate()) await slide(dogXNow() + layout.dog.w * 0.35, 520, { fadeTo: 0, easing: EASE_IN });
+    dog.classList.remove('has-bone');
+    face('right');
+    placeDog(hiddenX(), 1);
+    setShown('hidden');
     yard.classList.add('is-dark');
-    await wait(600);
-    if (lastAnnounce !== 'napping') announce('napping');
-    cooldown = timer(respawn, 5500 + Math.random() * 2500);
+    cooldown = timer(respawn, 1600);
   }
   async function respawn() {
     cooldown = null;
+    home = false;
     yard.classList.remove('is-dark');
     const x = spawnX(Math.random, layout.size, layout.bone, layout.house, layout.gutter);
     const y = groundY();
@@ -330,7 +372,9 @@ export function initDog(yard, { i18n, showToast } = {}) {
     }
     bone.style.opacity = '';
     setBone('resting');
+    if (document.activeElement === yard) { bone.focus({ preventScroll: true }); yard.removeAttribute('tabindex'); }
     announce('idle');
+    armPeek();
   }
   async function dropBone(x, y) {
     if (isInDoor(boneCenter(), layout.house)) {
@@ -360,10 +404,11 @@ export function initDog(yard, { i18n, showToast } = {}) {
       alert();
       setTimeout(() => { if (boneState === 'resting' && !grab) yard.classList.remove('is-near'); }, 2200);
     } else if (lastAnnounce === 'near') announce('idle');
+    if (coarseMQ.matches) { nearFlag = false; farSoon(4500); }
   }
   // Alternativa de teclado (Enter/Espacio sobre el hueso): el hueso vuela a la puerta y el perro corre.
   async function feed() {
-    if (busy || state !== 'inHouse' || boneState !== 'resting' || cooldown) return;
+    if (busy || state !== 'inHouse' || home || boneState !== 'resting' || cooldown) return;
     hideHint();
     yard.dataset.input = 'keyboard';
     const c = doorCenter(layout.house);
@@ -456,6 +501,7 @@ export function initDog(yard, { i18n, showToast } = {}) {
   let peekState = 'hidden';
   let peekTimer = null;
   let peekHold = null;
+  let peekBoxNow = null; // caja visible del perro asomado (px de cliente) para esconderse si el puntero se acerca
   let lastInput = performance.now();
   let lastSides = [];
   const noteInput = () => { lastInput = performance.now(); };
@@ -463,15 +509,15 @@ export function initDog(yard, { i18n, showToast } = {}) {
     window.addEventListener(ev, noteInput, { passive: true });
   }
   const INTERACTIVE = 'a, button, input, select, textarea, summary, [role="button"], [tabindex]:not([tabindex="-1"]), .card, .action';
-  const PEEK_W = () => peek?.offsetWidth || 104;
+  const peekSize = () => ({ w: peek?.offsetWidth || 104, h: peek?.offsetHeight || 93 });
   function peekHits(side, y) {
     // rejilla 3x5 sobre el rect visible del perro pegado al borde
     const hits = [];
-    const vis = Math.round(PEEK_W() * 0.7);
-    const x0 = side === 'left' ? 0 : window.innerWidth - vis;
+    const box = peekBox(side, y, peekSize(), window.innerWidth, PEEK_VISIBLE);
+    const vis = box.right - box.left;
     for (let i = 0; i < 3; i++) {
       for (let j = 0; j < 5; j++) {
-        const x = x0 + 8 + i * ((vis - 16) / 2);
+        const x = box.left + 8 + i * ((vis - 16) / 2);
         const yy = y + 8 + j * 18;
         for (const el of document.elementsFromPoint(x, yy)) {
           if (el === peek || peek?.contains(el)) continue;
@@ -482,8 +528,9 @@ export function initDog(yard, { i18n, showToast } = {}) {
     return hits;
   }
   function forbidden(side, y) {
-    const vis = Math.round(PEEK_W() * 0.7);
-    const R = { left: side === 'left' ? 0 : window.innerWidth - vis, top: y, right: side === 'left' ? vis : window.innerWidth, bottom: y + 96 };
+    const R = peekBox(side, y, peekSize(), window.innerWidth, PEEK_VISIBLE);
+    const vis = R.right - R.left;
+    if (pointer && isShy(pointer, R, SHY + 20)) return true;
     const blockers = ['#nav', '#rig-hit', '#toast', '#yard-bone', '#marker', '[data-no-peek]'];
     for (const sel of blockers) {
       for (const el of document.querySelectorAll(sel)) {
@@ -511,20 +558,22 @@ export function initDog(yard, { i18n, showToast } = {}) {
     }
     return null;
   }
+  function peekGate() {
+    return {
+      hidden: document.hidden, reduced: reduced(), dragging: html.classList.contains('is-dragging') || html.classList.contains('is-inking'),
+      sheetOpen: html.classList.contains('sheet-open'), state, idleMs: performance.now() - lastInput, width: window.innerWidth, dogVisible: dogVisible(),
+    };
+  }
   function armPeek(ms) {
     if (!peek) return;
     peekTimer?.cancel();
     peekTimer = timer(tryPeek, ms ?? nextPeekDelay());
   }
   function tryPeek() {
-    const ok = shouldPeek({
-      hidden: document.hidden, reduced: reduced(), dragging: html.classList.contains('is-dragging') || html.classList.contains('is-inking'),
-      sheetOpen: html.classList.contains('sheet-open'), state, idleMs: performance.now() - lastInput, width: window.innerWidth,
-    });
-    if (!ok || peekState !== 'hidden') { armPeek(3000 + Math.random() * 3000); return; }
+    if (!shouldPeek(peekGate()) || peekState !== 'hidden') { armPeek(3000 + Math.random() * 3000); return; }
     const spot = placePeek();
     if (!spot) { armPeek(); return; }
-    showPeek(spot.side, spot.y, 2600 + Math.random() * 1400);
+    showPeek(spot.side, spot.y, nextPeekHold());
   }
   function showPeek(side, y, holdMs) {
     if (!peek) return;
@@ -532,8 +581,10 @@ export function initDog(yard, { i18n, showToast } = {}) {
     peek.dataset.side = side;
     peek.style.top = `${y}px`;
     peek.hidden = false;
+    peekBoxNow = peekBox(side, y, peekSize(), window.innerWidth, PEEK_VISIBLE);
     peekState = 'peekingIn';
     requestAnimationFrame(() => {
+      if (peekState !== 'peekingIn') return; // un hidePeek(true) se ha adelantado
       peek.classList.add('is-visible');
       peekState = 'peeking';
       peekHold?.cancel();
@@ -543,13 +594,14 @@ export function initDog(yard, { i18n, showToast } = {}) {
   function hidePeek(immediate) {
     if (!peek || peekState === 'hidden') return;
     peekHold?.cancel();
+    peekBoxNow = null;
     peek.classList.remove('is-visible');
     peekState = 'peekingOut';
-    const done = () => { peek.hidden = true; peekState = 'hidden'; armPeek(); };
-    if (immediate || reduced()) done(); else setTimeout(done, 340);
+    const done = () => { peek.hidden = true; peekState = 'hidden'; if (!document.hidden) armPeek(); };
+    if (immediate || reduced()) done(); else setTimeout(done, 420); // = transition de .dog-peek
   }
   if (peek) {
-    peek.addEventListener('pointerenter', () => { if (peekState === 'peeking') { peekHold?.cancel(); peekHold = timer(() => hidePeek(false), 8000); } });
+    // con raton, acercarse lo esconde (checkProximity); con el dedo no hay hover: un toque es un "boop"
     peek.addEventListener('click', () => {
       if (peekState !== 'peeking') return;
       peek.classList.add('is-booped');
@@ -558,6 +610,7 @@ export function initDog(yard, { i18n, showToast } = {}) {
       peekHold?.cancel();
       peekHold = timer(() => hidePeek(false), 1200);
     });
+    window.addEventListener('resize', () => { if (peekState === 'peeking') peekBoxNow = peekBox(peek.dataset.side, parseFloat(peek.style.top) || 0, peekSize(), window.innerWidth, PEEK_VISIBLE); }, { passive: true });
   }
 
   // ---------- pausas y re-medida ----------
@@ -565,12 +618,14 @@ export function initDog(yard, { i18n, showToast } = {}) {
     if (document.hidden) {
       for (const a of live) { try { a.pause(); } catch { /* nada */ } }
       cooldown?.pause();
+      playTimer?.pause();
       peekTimer?.pause();
       peekHold?.pause();
       if (peekState !== 'hidden') hidePeek(true);
     } else {
       for (const a of live) { try { a.play(); } catch { /* nada */ } }
       cooldown?.resume();
+      playTimer?.resume();
       peekTimer?.resume();
       peekHold?.resume();
       if (!peekTimer || peekTimer.done) armPeek(4000 + Math.random() * 4000);
@@ -582,8 +637,11 @@ export function initDog(yard, { i18n, showToast } = {}) {
       const pos = settleBone(bonePos, layout.bone, layout.size, layout.house, layout.gutter);
       placeBone(pos.x, groundY(), 0);
     }
-    if (shown === 'in' && state === 'inHouse' && !dogAnim) placeDog(peekX());
-    if (shown === 'hidden') placeDog(-layout.dog.w - 4);
+    if (!dogAnim && state === 'inHouse') {
+      if (shown === 'in') placeDog(peekX());
+      else if (shown === 'home') placeDog(homeDogX(layout.house, layout.dog.w));
+      else if (shown === 'hidden') placeDog(hiddenX());
+    }
     renderCount();
   }
   if ('ResizeObserver' in window) {
@@ -601,7 +659,7 @@ export function initDog(yard, { i18n, showToast } = {}) {
   // ---------- arranque ----------
   bone.hidden = false;
   measure();
-  placeDog(-layout.dog.w - 4, 1);
+  placeDog(hiddenX(), 1);
   setShown('hidden');
   placeBone(spawnX(Math.random, layout.size, layout.bone, layout.house, layout.gutter), groundY(), 0);
   setBone('resting');
@@ -612,17 +670,32 @@ export function initDog(yard, { i18n, showToast } = {}) {
     const door = doorRect(layout.house);
     if (door.height < layout.dog.h - 6) console.warn('[dog] la puerta es mas baja que el perro', door.height, layout.dog.h);
     if (layout.house.left + layout.house.width > layout.size.width) console.warn('[dog] la caseta se sale de la franja');
+    if (!dog.querySelector('.dog__bone')) console.warn('[dog] el dibujo del perro no trae el hueso en la boca');
   }
   let firstScroll = false;
-  window.addEventListener('scroll', () => { if (!firstScroll) { firstScroll = true; armPeek(7000 + Math.random() * 5000); } }, { passive: true, once: true });
-  armPeek(9000 + Math.random() * 6000);
+  window.addEventListener('scroll', () => { if (!firstScroll) { firstScroll = true; armPeek(5000 + Math.random() * 4000); } }, { passive: true, once: true });
+  armPeek(6000 + Math.random() * 6000);
+
+  function forcePlaying() {
+    home = true;
+    setBone('away');
+    setState('inHouse');
+    setShown('home');
+    face('left');
+    dog.classList.remove('is-walking', 'is-running', 'is-alert');
+    dog.classList.add('has-bone', 'is-playing');
+    placeDog(homeDogX(layout.house, layout.dog.w), 1);
+    announce('playing');
+  }
 
   return {
     get state() { return state; },
     get shown() { return shown; },
+    get home() { return home; },
+    get peekState() { return peekState; },
     get bone() { return { ...bonePos, state: boneState }; },
     feed,
-    peek(side) { const spot = placePeek(side) || { side: side || 'left', y: Math.round(window.innerHeight * 0.45) }; showPeek(spot.side, spot.y, 4000); },
+    peek(side) { const spot = placePeek(side) || { side: side || 'left', y: Math.round(window.innerHeight * 0.45) }; showPeek(spot.side, spot.y, nextPeekHold()); },
     hidePeek: () => hidePeek(true),
     showDog,
     hideDog,
@@ -633,6 +706,8 @@ export function initDog(yard, { i18n, showToast } = {}) {
     },
     force(what) {
       cancelLive();
+      cooldown?.cancel();
+      playTimer?.cancel();
       const c = doorCenter(layout.house);
       switch (what) {
         case 'shown': setShown('in'); placeDog(peekX(), 1); break;
@@ -641,26 +716,29 @@ export function initDog(yard, { i18n, showToast } = {}) {
           setShown('in'); placeDog(layout.size.width * 0.35, 1); dog.classList.add('is-walking', 'is-running');
           setState('running'); setBone('delivering'); placeBone(c.x - layout.bone.w / 2, groundY(), 0); yard.classList.add('is-near'); announce('running'); break;
         case 'entering':
-          setShown('in'); placeDog(layout.house.left + doorRect(layout.house).left - layout.house.left + 6, 0.85); dog.classList.add('is-walking');
+          setShown('in'); placeDog(doorRect(layout.house).left + 6, 0.85); dog.classList.add('is-walking');
           setState('entering'); setBone('delivering'); placeBone(c.x - layout.bone.w / 2, groundY(), 0); yard.classList.add('is-near'); break;
+        case 'playing': forcePlaying(); break;
         case 'peek-left': this.peek('left'); break;
         case 'peek-right': this.peek('right'); break;
         case 'hidden': hidePeek(true); break;
         default:
-          dog.classList.remove('is-walking', 'is-running', 'is-alert'); setShown('hidden'); placeDog(-layout.dog.w - 4, 1);
+          home = false;
+          dog.classList.remove('is-walking', 'is-running', 'is-alert', 'is-playing', 'has-bone'); setShown('hidden'); placeDog(hiddenX(), 1); face('right');
           setState('inHouse'); setBone('resting'); bone.style.opacity = ''; yard.classList.remove('is-near', 'is-dark', 'is-peeking');
           placeBone(spawnX(() => 0.6, layout.size, layout.bone, layout.house, layout.gutter), groundY(), 0);
       }
     },
     debugRects() {
       measure();
-      return { yard: layout.size, house: layout.house, door: doorRect(layout.house), dog: { ...layout.dog, x: dogX }, bone: { ...bonePos, ...layout.bone }, state, boneState, shown };
+      return { yard: layout.size, house: layout.house, door: doorRect(layout.house), dog: { ...layout.dog, x: dogX, classes: dog.className }, bone: { ...bonePos, ...layout.bone }, state, boneState, shown, home };
     },
+    debugShouldPeek() { return { gate: peekGate(), ok: shouldPeek(peekGate()) }; },
     debugPeekHits() {
       if (!peek || peek.hidden) return { visible: false, hits: [] };
       const y = parseFloat(peek.style.top) || 0;
-      return { visible: true, side: peek.dataset.side, y, hits: peekHits(peek.dataset.side, y).map((el) => el.tagName + (el.id ? '#' + el.id : '') + '.' + String(el.className).slice(0, 30)) };
+      return { visible: true, side: peek.dataset.side, y, box: peekBoxNow, hits: peekHits(peek.dataset.side, y).map((el) => el.tagName + (el.id ? '#' + el.id : '') + '.' + String(el.className).slice(0, 30)) };
     },
-    destroy() { drag.destroy(); cancelLive(); cooldown?.cancel(); peekTimer?.cancel(); peekHold?.cancel(); window.removeEventListener('pointermove', onPointer); },
+    destroy() { drag.destroy(); cancelLive(); cooldown?.cancel(); playTimer?.cancel(); peekTimer?.cancel(); peekHold?.cancel(); window.removeEventListener('pointermove', onPointer); },
   };
 }
