@@ -57,7 +57,7 @@
   }
   </script>
 </head>
-<body>
+<body data-play="marker dog">
   <a class="skip" href="#main" data-i18n="a11y.skip">Saltar al contenido</a>
 
   <header class="nav" id="nav">
@@ -303,7 +303,140 @@
         <p class="lead projects__subtitle" data-reveal data-i18n="projects.subtitle">Del trabajo, la universidad y el tiempo libre. Casi todo con código público.</p>
 
         <div class="projects__grid">
-          <!-- 1. SIMPL-Open (destacado) -->
+          <!-- 1. Faro (destacado) -->
+          <article class="card card--featured" data-reveal>
+            <div class="card__media card__media--svg">
+              <!-- partial:faro-panel -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mock del panel lateral de Faro junto a una página de Confluence con un pasaje subrayado y una insignia numerada" data-i18n-attr="aria-label:projects.faro.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- window -->
+  <rect x="20" y="20" width="600" height="360" rx="14" fill="var(--faro-bg, #131218)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <g fill="var(--hairline-strong, rgba(255,255,255,.16))" stroke="none">
+    <circle cx="44" cy="44" r="5"/>
+    <circle cx="62" cy="44" r="5"/>
+    <circle cx="80" cy="44" r="5"/>
+  </g>
+  <text x="320" y="48" text-anchor="middle" fill="var(--faro-mute, #9793A6)" font-size="12">confluence · Faro</text>
+  <line x1="20" y1="64" x2="620" y2="64" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- page (Confluence) -->
+  <g fill="var(--faro-mute, #9793A6)" stroke="none">
+    <g opacity=".3">
+      <rect x="44" y="82" width="40" height="6" rx="3"/>
+      <rect x="92" y="82" width="6" height="6" rx="3"/>
+      <rect x="106" y="82" width="58" height="6" rx="3"/>
+    </g>
+    <rect x="44" y="102" width="172" height="12" rx="4" opacity=".6"/>
+    <g opacity=".28">
+      <rect x="44" y="136" width="304" height="8" rx="3"/>
+      <rect x="44" y="168" width="116" height="8" rx="3"/>
+      <rect x="44" y="200" width="238" height="8" rx="3"/>
+      <rect x="44" y="232" width="296" height="8" rx="3"/>
+      <rect x="44" y="264" width="66" height="8" rx="3"/>
+      <rect x="44" y="296" width="284" height="8" rx="3"/>
+      <rect x="44" y="328" width="176" height="8" rx="3"/>
+    </g>
+  </g>
+  <!-- highlighted passages -->
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none" opacity=".35">
+    <rect x="166" y="163" width="152" height="18" rx="4"/>
+    <rect x="116" y="259" width="142" height="18" rx="4"/>
+  </g>
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none" opacity=".55">
+    <rect x="172" y="168" width="140" height="8" rx="3"/>
+    <rect x="122" y="264" width="130" height="8" rx="3"/>
+  </g>
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none">
+    <circle cx="332" cy="172" r="7"/>
+    <circle cx="272" cy="268" r="7"/>
+  </g>
+  <g fill="var(--faro-on-mark, #1B1405)" font-size="9" font-weight="600" text-anchor="middle">
+    <text x="332" y="175.5">1</text>
+    <text x="272" y="271.5">2</text>
+  </g>
+
+  <!-- side panel -->
+  <path d="M380 64H620V366A14 14 0 0 1 606 380H380Z" fill="var(--faro-surface, #1B1A22)" stroke="none"/>
+  <line x1="380" y1="64" x2="380" y2="380" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- panel header -->
+  <g class="faro-beacon" fill="none" stroke="var(--faro-amber, #E9AC4A)" stroke-width="2">
+    <circle cx="401" cy="83" r="7"/>
+    <circle cx="401" cy="83" r="2" fill="var(--faro-amber, #E9AC4A)" stroke="none"/>
+  </g>
+  <text x="416" y="87" fill="var(--faro-ink, #EDECF2)" font-size="12" font-weight="600">Faro</text>
+  <g fill="none" stroke="var(--faro-mute, #9793A6)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity=".7">
+    <path d="M524 83h10M529 78v10"/>
+    <path d="M549 83a5 5 0 1 0 10 0a5 5 0 1 0 -10 0M554 80v3l2 2"/>
+    <path d="M567 78h10v10h-10zM570 82h4M570 85h3"/>
+    <path d="M585 78h10v10h-10zM588 78v10"/>
+    <path d="M604 80h10M604 83h10M604 86h10"/>
+  </g>
+  <rect x="392" y="98" width="108" height="16" rx="8" fill="var(--faro-surface-2, #22212B)" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+  <text x="446" y="109" text-anchor="middle" fill="var(--faro-mute, #9793A6)" font-size="9">ENG-7 · Requisitos</text>
+  <line x1="380" y1="124" x2="620" y2="124" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- chat -->
+  <path d="M478 136H596A12 12 0 0 1 608 148V168A4 4 0 0 1 604 172H478A12 12 0 0 1 466 160V148A12 12 0 0 1 478 136Z" fill="var(--faro-surface-2, #22212B)" stroke="none"/>
+  <g fill="var(--faro-ink, #EDECF2)" font-size="10">
+    <text x="476" y="151">¿Qué pide ENG-7</text>
+    <text x="476" y="165">para el login?</text>
+  </g>
+  <text x="392" y="196" fill="var(--faro-ink, #EDECF2)" font-size="10">Dos cosas en la página:</text>
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none">
+    <circle cx="398.5" cy="213" r="6.5"/>
+    <circle cx="398.5" cy="231" r="6.5"/>
+  </g>
+  <g fill="var(--faro-on-mark, #1B1405)" font-size="9" font-weight="600" text-anchor="middle">
+    <text x="398.5" y="216.5">1</text>
+    <text x="398.5" y="234.5">2</text>
+  </g>
+  <g fill="var(--faro-mute, #9793A6)" font-size="10">
+    <text x="411" y="216.5"><tspan fill="var(--faro-ink, #EDECF2)">Dato:</tspan> exige MFA</text>
+    <text x="411" y="234.5"><tspan fill="var(--faro-ink, #EDECF2)">Hueco:</tspan> sin TTL de sesión</text>
+  </g>
+  <rect x="392" y="248" width="132" height="34" rx="8" fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <text x="404" y="262" fill="var(--faro-ink, #EDECF2)" font-size="10">Llévame →</text>
+  <text x="404" y="275" fill="var(--faro-mute, #9793A6)" font-size="9">Requisitos › 2.1</text>
+
+  <!-- composer -->
+  <g fill="var(--faro-surface-2, #22212B)" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1">
+    <rect x="392" y="298" width="64" height="18" rx="9"/>
+    <rect x="462" y="298" width="72" height="18" rx="9"/>
+  </g>
+  <g fill="var(--faro-mute, #9793A6)" font-size="9">
+    <text x="402" y="310">Modelo ▾</text>
+    <text x="472" y="310">Análisis ▾</text>
+  </g>
+  <rect x="392" y="324" width="216" height="42" rx="10" fill="var(--faro-bg, #131218)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <text x="404" y="342" fill="var(--faro-mute, #9793A6)" font-size="10" opacity=".7">Pregunta a Faro…</text>
+  <circle cx="592" cy="350" r="11" fill="var(--faro-amber, #E9AC4A)" stroke="none"/>
+  <path d="M592 355V345M587.5 349.5L592 345L596.5 349.5" fill="none" stroke="var(--faro-on-mark, #1B1405)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<!-- /partial:faro-panel -->
+            </div>
+            <div class="card__body">
+              <p class="eyebrow card__kicker" data-i18n="projects.faro.kicker">Proyecto profesional · desarrollo asistido por IA</p>
+              <h3 class="heading-xl" data-i18n="projects.faro.title">Faro — copiloto de Jira y Confluence</h3>
+              <p class="body" data-i18n="projects.faro.desc">Extensión de Chrome que convierte un opencode local en un copiloto dentro de Jira y Confluence: responde, te lleva hasta la página desplegando el árbol y subraya el pasaje exacto.</p>
+              <p class="body"><span data-i18n="projects.faro.method">Hecha con Spec-Driven Development y desarrollo asistido por IA.</span> <a class="link" href="#metodo"><span data-i18n="method.title">Cómo trabajo con IA</span><span class="arrow" aria-hidden="true">↓</span></a></p>
+              <p class="mono card__facts" data-i18n="projects.faro.facts">13 hitos · 13 revisiones adversarias · 145 hallazgos aplicados · 1 283 pruebas sin dependencias</p>
+              <ul class="chips chips--inline" aria-label="Tecnologías">
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Spec-Driven Development</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#googlechrome"/></svg><span>Chrome MV3</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#javascript"/></svg><span>JavaScript (ES modules)</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#opencode"/></svg><span>opencode</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#modelcontextprotocol"/></svg><span>MCP</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#jira"/></svg><span>Jira</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#confluence"/></svg><span>Confluence</span></li>
+                <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#nodedotjs"/></svg><span>Tests sin dependencias</span></li>
+              </ul>
+              <div class="card__actions">
+                <span class="badge" data-i18n="projects.private_note">Proyecto privado · sin repositorio público</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2. SIMPL-Open (destacado) -->
           <article class="card card--featured" data-reveal>
             <div class="card__media card__media--svg">
               <!-- partial:simpl-graph -->
@@ -369,7 +502,7 @@
             </div>
           </article>
 
-          <!-- 2. QA banca + framework -->
+          <!-- 3. QA banca + framework -->
           <article class="card" data-reveal>
             <div class="card__media card__media--svg">
               <!-- partial:qa-terminal -->
@@ -417,7 +550,7 @@
             </div>
           </article>
 
-          <!-- 3. TFG Autoencoder -->
+          <!-- 4. TFG Autoencoder -->
           <article class="card" data-reveal>
             <div class="card__media card__media--svg">
               <!-- partial:autoencoder -->
@@ -596,7 +729,7 @@
             </div>
           </article>
 
-          <!-- 4. Cinema -->
+          <!-- 5. Cinema -->
           <article class="card" data-reveal>
             <div class="card__media">
               <img src="/src/assets/img/projects/cinema-640.webp" srcset="/src/assets/img/projects/cinema-640.webp 640w, /src/assets/img/projects/cinema-960.webp 960w, /src/assets/img/projects/cinema-1120.webp 1120w" sizes="(min-width: 1080px) 560px, (min-width: 768px) 50vw, 100vw" width="1120" height="700" loading="lazy" decoding="async" alt="Vista previa de la aplicación web Cinema" data-i18n-attr="alt:projects.cinema.alt">
@@ -617,7 +750,7 @@
             </div>
           </article>
 
-          <!-- 5. Nakoa -->
+          <!-- 6. Nakoa -->
           <article class="card" data-reveal>
             <div class="card__media">
               <img src="/src/assets/img/projects/nakoa-640.webp" srcset="/src/assets/img/projects/nakoa-640.webp 640w, /src/assets/img/projects/nakoa-960.webp 960w, /src/assets/img/projects/nakoa-1280.webp 1280w" sizes="(min-width: 1080px) 560px, (min-width: 768px) 50vw, 100vw" width="1280" height="720" loading="lazy" decoding="async" alt="Vista previa del videojuego Nakoa" data-i18n-attr="alt:projects.nakoa.alt">
@@ -638,7 +771,7 @@
             </div>
           </article>
 
-          <!-- 6. Bot Telegram -->
+          <!-- 7. Bot Telegram -->
           <article class="card" data-reveal>
             <div class="card__media card__media--contain">
               <img src="/src/assets/img/projects/bot-640.webp" srcset="/src/assets/img/projects/bot-640.webp 640w, /src/assets/img/projects/bot-960.webp 960w, /src/assets/img/projects/bot-1280.webp 1280w" sizes="(min-width: 1080px) 560px, (min-width: 768px) 50vw, 100vw" width="1280" height="853" loading="lazy" decoding="async" alt="Vista previa del bot de Telegram de finanzas del piso" data-i18n-attr="alt:projects.telegram.alt">
@@ -657,7 +790,7 @@
             </div>
           </article>
 
-          <!-- 7. Repartir Tareas -->
+          <!-- 8. Repartir Tareas -->
           <article class="card" data-reveal>
             <div class="card__media card__media--contain">
               <img src="/src/assets/img/projects/tareas-640.webp" srcset="/src/assets/img/projects/tareas-640.webp 640w, /src/assets/img/projects/tareas-960.webp 960w, /src/assets/img/projects/tareas-1280.webp 1280w" sizes="(min-width: 1080px) 560px, (min-width: 768px) 50vw, 100vw" width="1280" height="853" loading="lazy" decoding="async" alt="Vista previa de la app Repartir Tareas" data-i18n-attr="alt:projects.tareas.alt">
@@ -675,6 +808,17 @@
               </div>
             </div>
           </article>
+        </div>
+
+        <div class="method" id="metodo" data-reveal>
+          <p class="eyebrow" data-i18n="method.eyebrow">Método</p>
+          <h3 class="heading-lg" data-i18n="method.title">Cómo trabajo con IA</h3>
+          <ul class="method__list">
+            <li class="method__item"><span class="keycap mono method__key" data-i18n="method.sdd.key">SDD</span><div><h4 class="heading-md" data-i18n="method.sdd.name">Spec-Driven Development</h4><p class="body-sm" data-i18n="method.sdd.desc">La especificación, los contratos y las decisiones no negociables se escriben antes del código; el modelo implementa contra ellas.</p></div></li>
+            <li class="method__item"><span class="keycap mono method__key" data-i18n="method.tdd.key">TDD</span><div><h4 class="heading-md" data-i18n="method.tdd.name">Tests primero</h4><p class="body-sm" data-i18n="method.tdd.desc">Lógica pura en módulos sin DOM, probada en Node; cada arreglo con su test visto fallar antes.</p></div></li>
+            <li class="method__item"><span class="keycap mono method__key" data-i18n="method.review.key">RA</span><div><h4 class="heading-md" data-i18n="method.review.name">Revisión adversaria</h4><p class="body-sm" data-i18n="method.review.desc">Cada hito lo revisan varios agentes con lentes distintas; cada hallazgo se verifica y se aplica antes del siguiente.</p></div></li>
+            <li class="method__item"><span class="keycap mono method__key" data-i18n="method.docs.key">DOC</span><div><h4 class="heading-md" data-i18n="method.docs.name">Documentación viva</h4><p class="body-sm" data-i18n="method.docs.desc">Los tests comprueban que el README y el mapa del proyecto no se alejan del código.</p></div></li>
+          </ul>
         </div>
 
         <p class="projects__more" data-reveal>
@@ -914,6 +1058,205 @@
             </li>
           </ul>
         </div>
+
+        <div class="window yard" id="yard" role="group" aria-label="Patio con una caseta, un perro y un hueso" data-i18n-attr="aria-label:play.dog.aria" data-state="inHouse" data-bone="resting" data-bones="0" data-input="pointer" data-no-peek data-reveal>
+          <div class="window__bar" aria-hidden="true">
+            <span class="window__dots"><i></i><i></i><i></i></span>
+            <span class="window__title mono" data-i18n="play.dog.window_title">patio.svg — interactivo</span>
+          </div>
+          <div class="yard__body">
+            <svg class="yard__stage" viewBox="0 0 800 260" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+              <defs><clipPath id="yard-clip" clipPathUnits="userSpaceOnUse"><rect x="172" y="-40" width="700" height="340"/></clipPath></defs>
+              <line class="yard__ground" x1="0" y1="236" x2="800" y2="236"/>
+              <g class="house house--back" transform="translate(40 16)">
+                <!-- partial:house-back -->
+<svg class="house__art" viewBox="0 0 220 200" width="242" height="220" aria-hidden="true" focusable="false" overflow="visible">
+  <rect class="house__back-wall" x="20" y="90" width="180" height="110" fill="var(--tile-2,#1a2030)"/>
+  <!-- door interior: dark at the top, tile-1 at the floor (stepped bands, no gradient ids) -->
+  <path class="house__door" d="M120,200 V135 a40,40 0 0 1 80,0 V200 Z" fill="var(--tile-1,#131822)"/>
+  <path d="M120,152 V135 a40,40 0 0 1 80,0 V152 Z" fill="#0b0e15"/>
+  <rect x="120" y="150" width="80" height="16" fill="#0b0e15" opacity=".8"/>
+  <rect x="120" y="165" width="80" height="14" fill="#0b0e15" opacity=".55"/>
+  <rect x="120" y="178" width="80" height="12" fill="#0b0e15" opacity=".3"/>
+  <ellipse class="house__glow" cx="160" cy="185" rx="34" ry="10" fill="var(--action,#2997ff)" opacity=".35"/>
+  <g class="house__eyes" opacity="0"><circle cx="150" cy="150" r="4" fill="var(--action,#2997ff)"/><circle cx="170" cy="150" r="4" fill="var(--action,#2997ff)"/></g>
+</svg>
+<!-- /partial:house-back -->
+              </g>
+              <g class="yard__dogclip" clip-path="url(#yard-clip)">
+                <g class="dog dog--yard" id="yard-dog" style="transform: translate(20px, 128px); opacity: 0">
+                  <!-- partial:dog-walk -->
+<svg class="dog__art" viewBox="0 0 200 160" width="144" height="115" aria-hidden="true" focusable="false" overflow="visible">
+  <ellipse class="dog__shadow" cx="100" cy="152" rx="60" ry="6" fill="#000" opacity=".3"/>
+  <g class="dog__flip" style="transform-origin:100px 80px">
+    <g class="dog__bob">
+      <!-- tail: ink under cream (stroke pair), brown tip -->
+      <g class="dog__tail" style="transform-origin:36px 80px" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M48 76 C36 72 24 60 26 46" stroke="var(--ill-ink,#151a24)" stroke-width="16"/>
+        <path d="M26 46 C28 34 40 32 42 42" stroke="var(--ill-ink,#151a24)" stroke-width="12"/>
+        <path d="M48 76 C36 72 24 60 26 46" stroke="var(--ill-cream,#f3eedb)" stroke-width="9"/>
+        <path d="M26 46 C28 34 40 32 42 42" stroke="var(--ill-cream,#f3eedb)" stroke-width="5.5"/>
+        <path d="M27 43 C31 36 38 36 40 40" stroke="#9c6840" stroke-width="4.5"/>
+        <path d="M44 74 C36 70 30 64 28 58" stroke="#c7bfaf" stroke-width="3"/>
+      </g>
+      <!-- far legs -->
+      <g class="dog__leg dog__leg--back-far" style="transform-origin:61px 108px">
+        <rect x="52" y="104" width="18" height="46" rx="9" fill="#d8d2c2"/>
+        <path d="M52 112 V141 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <g class="dog__leg dog__leg--front-far" style="transform-origin:121px 108px">
+        <rect x="112" y="104" width="18" height="46" rx="9" fill="#d8d2c2"/>
+        <path d="M112 112 V141 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <!-- body -->
+      <g class="dog__body">
+        <rect x="42" y="62" width="110" height="60" rx="30" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M46 100 C70 108 110 110 146 100 C144 114 130 122 100 122 C70 122 50 114 46 100 Z" fill="#c7bfaf"/>
+        <path d="M62 68 C84 60 112 60 132 66" fill="none" stroke="#fbfaf1" stroke-width="5" stroke-linecap="round"/>
+        <path d="M68 64 C84 58 106 60 114 68 C118 80 104 90 88 88 C72 86 62 74 68 64 Z" fill="#9c6840"/>
+        <path d="M72 60 C96 57 118 61 124 60" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M124 60 C160 60 160 122 122 120" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+        <path d="M122 120 C116 122 110 121 106 121" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M98 121 C88 122 78 119 70 120 C30 121 30 61 74 59" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M58 64 C82 55 112 56 134 61" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <!-- near legs -->
+      <g class="dog__leg dog__leg--back-near" style="transform-origin:75px 110px">
+        <rect x="66" y="106" width="18" height="46" rx="9" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M66 112 V143 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M72 150 V146 M78 150 V146" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <g class="dog__leg dog__leg--front-near" style="transform-origin:135px 110px">
+        <rect x="126" y="106" width="18" height="46" rx="9" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M126 112 V143 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M132 150 V146 M138 150 V146" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <!-- collar -->
+      <g class="dog__collar">
+        <rect x="112" y="84" width="34" height="12" rx="5" transform="rotate(32 129 90)" fill="var(--action,#2997ff)" stroke="var(--ill-ink,#151a24)" stroke-width="2.5"/>
+        <circle cx="141" cy="101" r="4.5" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="2"/>
+      </g>
+      <!-- head -->
+      <g class="dog__head" style="transform-origin:132px 86px">
+        <g class="dog__ear dog__ear--back" style="transform-origin:128px 34px">
+          <path d="M128 32 C116 36 104 54 108 72 C110 82 120 84 126 76 C132 66 132 48 134 36 Z" fill="#9c6840" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linejoin="round"/>
+        </g>
+        <path d="M156 25 C177 24 193 41 191 61 C192 81 174 98 155 96 C135 98 119 80 120 60 C119 40 135 24 156 25 Z" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M126 76 C136 92 160 98 182 90 C172 97 150 99 136 92 C130 88 127 82 126 76 Z" fill="#c7bfaf"/>
+        <path d="M138 42 C144 32 164 30 170 42 C174 52 166 66 154 66 C142 66 134 54 138 42 Z" fill="#9c6840"/>
+        <path d="M162 68 C174 64 188 68 191 80 C193 90 183 97 169 95 C160 93 158 82 162 68 Z" fill="#fbfaf1" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M140 27 C154 19 178 22 188 40 C197 54 195 76 182 90" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M182 90 C170 100 144 100 130 88 C125 84 122 80 121 76" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M120 66 C118 52 124 36 138 28" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+        <ellipse class="dog__nose" cx="184" cy="80" rx="6.5" ry="5" fill="var(--ill-ink,#151a24)"/>
+        <circle cx="182" cy="78" r="1.6" fill="#fff" opacity=".8"/>
+        <circle class="dog__eye" cx="156" cy="58" r="5" fill="var(--ill-ink,#151a24)"/>
+        <circle cx="158" cy="56" r="1.8" fill="#fff"/>
+        <ellipse class="dog__lid" cx="156" cy="58" rx="7.5" ry="7" fill="#9c6840" style="transform-origin:156px 52px;transform:scaleY(0)"/>
+        <path class="dog__smile" d="M173 90 Q180 97 188 91" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2.5" stroke-linecap="round"/>
+        <g class="dog__ear dog__ear--front" style="transform-origin:150px 30px">
+          <path d="M150 26 C138 20 126 28 124 42 C122 56 126 68 134 72 C142 74 148 62 146 48 C145 40 152 32 150 26 Z" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M135 42 C131 52 133 62 138 67" fill="none" stroke="#c7bfaf" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <path d="M132 30 C148 18 174 20 188 38" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
+        <g class="dog__mouth" transform="translate(178 92)"/>
+      </g>
+    </g>
+  </g>
+</svg>
+<!-- /partial:dog-walk -->
+                </g>
+              </g>
+              <g class="house house--front" transform="translate(40 16)">
+                <!-- partial:house-front -->
+<svg class="house__art" viewBox="0 0 220 200" width="242" height="220" aria-hidden="true" focusable="false" overflow="visible">
+  <g class="house__shake" style="transform-origin:110px 200px">
+    <ellipse class="house__shadow" cx="112" cy="201" rx="108" ry="5" fill="#000" opacity=".3"/>
+    <!-- front wall with the door cut out; the right jamb is the wall's right edge -->
+    <path class="house__wall" fill-rule="evenodd" d="M20.6 91.2 C60 89.6 140 90.8 200 90 V200 H20 C19.4 160 20.9 125 20.6 91.2 Z M120 200 V135 a40 40 0 0 1 80 0 V200 Z" fill="var(--tile-2,#1a2030)" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
+    <path class="house__eave-shadow" fill-rule="evenodd" d="M21 92 H199 V105 H21 Z M120 200 V135 a40 40 0 0 1 80 0 V200 Z" fill="#0b0e15" opacity=".35"/>
+    <g class="house__planks" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="2" stroke-linecap="round">
+      <path d="M25 112 C80 111.2 150 112.6 195 112"/>
+      <path d="M25 134 C60 133.4 90 134.4 116 134"/>
+      <path d="M25 156 C60 155.4 90 156.6 116 156"/>
+      <path d="M25 178 C60 177.4 90 178.4 116 178"/>
+      <path d="M64 92 V111 M136 92 V111 M100 135 V155 M46 157 V177"/>
+    </g>
+    <!-- round window -->
+    <g class="house__window">
+      <circle cx="44" cy="160" r="12.5" fill="var(--tile-1,#131822)" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2"/>
+      <path d="M44 148.5 V171.5 M32.5 160 H55.5" fill="none" stroke="var(--hairline,rgba(255,255,255,.08))" stroke-width="1.5"/>
+    </g>
+    <!-- roof -->
+    <g class="house__roof">
+      <path d="M-2 93 C40 62 76 34 110 9 C144 34 180 62 222 92 Z" fill="var(--action,#2997ff)" fill-opacity=".55" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
+      <g fill="none" stroke="#0f131c" stroke-opacity=".4" stroke-width="2.5" stroke-linecap="round">
+        <path d="M80 34 C96 33 124 35 140 34"/>
+        <path d="M53 54 C90 53 130 55 167 54"/>
+        <path d="M26 74 C80 73 140 75 194 74"/>
+      </g>
+      <path d="M96 19 C102 15 106 12 110 10" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-5 92.5 C60 91 160 93 225 92" fill="none" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- door frame -->
+    <path class="house__frame" d="M120 200 V135 a40 40 0 0 1 80 0 V200" fill="none" stroke="rgba(245,247,250,.28)" stroke-width="3"/>
+    <!-- sign with a tiny bone -->
+    <g class="house__sign" transform="rotate(-2 82 120)">
+      <rect x="60" y="112" width="44" height="16" rx="3" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="1.5"/>
+      <path d="M62 124 H102" fill="none" stroke="#c7bfaf" stroke-width="3"/>
+      <path d="M76.4 118.8 H87.6 A2.6 2.6 0 1 1 91.2 120 A2.6 2.6 0 1 1 87.6 121.2 H76.4 A2.6 2.6 0 1 1 72.8 120 A2.6 2.6 0 1 1 76.4 118.8 Z" fill="#fbfaf1" stroke="var(--ill-ink,#151a24)" stroke-width="1"/>
+      <circle cx="63.5" cy="115.5" r="1" fill="var(--ill-ink,#151a24)"/>
+      <circle cx="100.5" cy="115.5" r="1" fill="var(--ill-ink,#151a24)"/>
+    </g>
+  </g>
+</svg>
+<!-- /partial:house-front -->
+              </g>
+              <g class="bone" id="yard-bone" style="transform: translate(560px, 198px)">
+                <!-- partial:bone -->
+<svg class="bone__art" viewBox="0 0 120 48" width="96" height="38" aria-hidden="true" focusable="false" overflow="visible">
+  <defs>
+    <filter id="rim-bone" x="-10%" y="-25%" width="120%" height="150%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="fat"/>
+      <feFlood flood-color="#2997ff" flood-opacity=".6" result="blue"/>
+      <feComposite in="blue" in2="fat" operator="in" result="rim"/>
+      <feGaussianBlur in="rim" stdDeviation=".8" result="rim-soft"/>
+      <feMerge><feMergeNode in="rim-soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g class="bone__rim" filter="url(#rim-bone)">
+    <!-- fill, off-register from the ink -->
+    <g class="bone__fill" transform="translate(1.5 1.5)">
+      <path d="M42 17 H78 A13 12.5 0 1 1 97.5 24 A12.5 13 0 1 1 78 31 H42 A12.5 13 0 1 1 22.5 24 A13 12.5 0 1 1 42 17 Z" fill="var(--ill-cream,#f3eedb)"/>
+      <path d="M40 26 C54 24.5 66 24.5 80 26.5 V31 H40 Z" fill="#c7bfaf"/>
+      <circle cx="30.5" cy="35.5" r="11" fill="#c7bfaf"/>
+      <circle cx="90.5" cy="35.5" r="11" fill="#c7bfaf"/>
+      <ellipse cx="30" cy="8" rx="5" ry="2.5" fill="#fbfaf1"/>
+      <ellipse cx="91" cy="8.5" rx="4.5" ry="2.2" fill="#fbfaf1"/>
+      <path d="M47 20 H73" fill="none" stroke="#fbfaf1" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <!-- blue brush accent -->
+    <path d="M24 6 Q29 2.5 35 3" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- ink outline: two strokes, a gap on the shaft, an overshoot at the join -->
+    <path d="M42 17 H78 A13 12.5 0 1 1 97.5 24 A12.5 13 0 1 1 78 31 H63" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M57 31 H42 A12.5 13 0 1 1 22.5 24 A13 12.5 0 1 1 42 17 L46 16.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18 36 A12.5 12.5 0 0 0 30 46.5" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M90 46.5 A12.5 12.5 0 0 0 101 39" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round"/>
+  </g>
+</svg>
+<!-- /partial:bone -->
+              </g>
+            </svg>
+            <div class="yard__handle" id="yard-handle" aria-hidden="true" hidden></div>
+            <span class="yard__hint keycap" id="dog-hint" hidden data-i18n="play.dog.hint">Arrastra el hueso</span>
+            <span class="yard__count keycap mono" id="dog-count" hidden></span>
+          </div>
+          <div class="window__status">
+            <p class="window__status-text" id="dog-status" role="status" aria-live="polite" aria-atomic="true" data-i18n-live>El perro duerme en la caseta. Hay un hueso por ahí.</p>
+            <span class="keycap yard__key" id="dog-key" aria-hidden="true" data-i18n="play.dog.key_drag">Arrastra</span>
+            <button type="button" class="btn btn--secondary btn--sm" id="dog-feed" aria-disabled="true"><span data-i18n="play.dog.feed">Darle el hueso</span></button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -944,6 +1287,138 @@
       </ul>
     </div>
   </footer>
+
+  <div class="play" id="play" aria-hidden="true" data-no-peek>
+    <svg class="ink" id="ink" focusable="false"></svg>
+    <div class="marker" id="marker" data-state="lying" hidden>
+      <!-- partial:marker -->
+<svg class="marker__art" viewBox="0 0 1000 260" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" overflow="visible">
+  <defs>
+    <filter id="rim-marker" x="-6%" y="-10%" width="112%" height="120%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="fat"/>
+      <feFlood flood-color="#2997ff" flood-opacity=".6" result="blue"/>
+      <feComposite in="blue" in2="fat" operator="in" result="rim"/>
+      <feGaussianBlur in="rim" stdDeviation=".8" result="rim-soft"/>
+      <feMerge><feMergeNode in="rim-soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <ellipse class="marker__shadow" cx="520" cy="232" rx="476" ry="14" fill="#000" opacity=".35"/>
+  <g class="marker__rim" filter="url(#rim-marker)">
+    <!-- felt tip -->
+    <g class="marker__tip">
+      <polygon points="0,130 40,95 40,165" fill="var(--action,#2997ff)"/>
+      <polygon points="3,131 41,132 41,166" fill="#1f7fe0"/>
+      <path d="M4 130 L40 131" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-1 130 L41 94 M-1 130 L40 166" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- cream neck (extends under the body) -->
+    <g class="marker__neck">
+      <path d="M41 96 L134 57 L134 203 L41 165 Z" fill="var(--ill-cream,#f3eedb)"/>
+      <path d="M43 133 L134 133 L134 203 L43 165 Z" fill="#c7bfaf"/>
+      <path d="M50 102 L118 72" fill="none" stroke="#fbfaf1" stroke-width="7" stroke-linecap="round"/>
+      <path d="M41 94 L110 66 M41 166 L110 194" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M40 92 L40 168" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+    </g>
+    <!-- body -->
+    <g class="marker__body">
+      <path d="M162 42 H792 V218 H162 C128 218 102 192 102 158 V102 C102 68 128 42 162 42 Z" fill="var(--ill-dark,#23272d)"/>
+      <path d="M112 170 C114 196 134 216 162 216 H780 V172 Q440 178 112 170 Z" fill="#0f131c"/>
+      <rect x="126" y="54" width="640" height="30" rx="15" fill="#2e3138"/>
+      <path d="M110 48 H760" fill="none" stroke="rgba(41,151,255,.45)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M160 40 C300 38 560 42 772 40" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M160 40 C126 41 100 66 100 100 V160 C100 194 126 220 160 220" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M160 220 C300 222 560 218 690 220" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M704 220 H772" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.5" stroke-linecap="round"/>
+    </g>
+    <!-- label -->
+    <g class="marker__label" transform="rotate(-.8 465 130)">
+      <rect x="332" y="94" width="270" height="76" rx="8" fill="var(--ill-cream,#f3eedb)"/>
+      <path d="M332 152 H602 V162 a8 8 0 0 1 -8 8 H340 a8 8 0 0 1 -8 -8 Z" fill="#c7bfaf"/>
+      <path d="M342 100 H588" fill="none" stroke="#fbfaf1" stroke-width="5" stroke-linecap="round"/>
+      <path d="M338 92 C420 91 520 93 594 92 a8 8 0 0 1 8 8 V160 a8 8 0 0 1 -8 8 C520 169 420 167 338 168 a8 8 0 0 1 -8 -8 V100 a8 8 0 0 1 8 -8 Z" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linejoin="round"/>
+      <text x="466" y="141" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="30" font-weight="600" letter-spacing="1.5" fill="var(--ill-ink,#151a24)">MTC · 14 mm</text>
+    </g>
+    <!-- cap -->
+    <g class="marker__cap">
+      <path d="M772 42 H958 C982 42 1002 62 1002 86 V176 C1002 200 982 220 958 220 H772 Z" fill="var(--action,#2997ff)"/>
+      <path d="M776 182 H930 C956 182 976 170 984 150 C990 190 972 218 940 218 H776 Z" fill="#1f7fe0"/>
+      <rect x="772" y="40" width="26" height="180" fill="#1f7fe0"/>
+      <path d="M806 62 H944" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="8" stroke-linecap="round"/>
+      <path d="M826 44 C826 30 840 26 852 26 H966 C976 26 980 32 980 40 V44 Z" fill="var(--ill-dark,#23272d)"/>
+      <path d="M828 44 C828 32 840 28 852 28 H966 C976 28 980 34 980 40" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M770 40 C830 38 900 42 958 40 C982 40 1000 58 1000 84 V176 C1000 202 982 220 958 220 C900 222 830 218 770 220" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M770 34 V222" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M798 44 V216" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-opacity=".7" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
+<!-- /partial:marker -->
+      <span class="keycap marker__hint" id="marker-hint" hidden data-i18n="play.marker.hint">Arrástrame</span>
+    </div>
+  </div>
+  <div class="dog-peek" id="dog-peek" aria-hidden="true" data-side="left" hidden>
+    <!-- partial:dog-peek -->
+<svg class="peek__art" viewBox="0 0 400 360" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" overflow="visible">
+  <defs>
+    <filter id="rim-peek" x="-6%" y="-10%" width="112%" height="120%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="fat"/>
+      <feFlood flood-color="#2997ff" flood-opacity=".6" result="blue"/>
+      <feComposite in="blue" in2="fat" operator="in" result="rim"/>
+      <feGaussianBlur in="rim" stdDeviation=".8" result="rim-soft"/>
+      <feMerge><feMergeNode in="rim-soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g class="dog__flip" style="transform-origin:200px 180px">
+    <g class="dog__rim" filter="url(#rim-peek)">
+      <!-- ears (behind the skull) -->
+      <g class="dog__ear dog__ear--l" style="transform-origin:100px 110px">
+        <path d="M122 100 C90 96 60 128 54 170 C50 200 68 226 90 216 C112 206 120 156 132 122 Z" fill="#9c6840" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M78 150 C68 170 68 196 80 208" fill="none" stroke="#0f131c" stroke-opacity=".28" stroke-width="9" stroke-linecap="round"/>
+      </g>
+      <g class="dog__ear dog__ear--r" style="transform-origin:300px 110px">
+        <path d="M278 105 C310 101 340 133 346 175 C350 205 332 231 310 221 C288 211 280 161 268 127 Z" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M322 155 C332 175 332 201 320 213" fill="none" stroke="#c7bfaf" stroke-width="9" stroke-linecap="round"/>
+      </g>
+      <!-- skull (tilted 12 deg) -->
+      <g class="dog__skull" transform="rotate(12 200 180)">
+        <path d="M200 75 C268 73 322 122 320 180 C322 240 266 287 200 285 C134 287 78 238 80 180 C78 120 134 77 200 75 Z" fill="var(--ill-cream,#f3eedb)" transform="translate(3 3)"/>
+        <path d="M100 214 C130 268 270 268 302 210 C290 262 214 296 150 276 C120 266 104 240 100 214 Z" fill="#c7bfaf"/>
+        <path d="M150 100 C170 88 230 86 252 98" fill="none" stroke="#fbfaf1" stroke-width="10" stroke-linecap="round"/>
+        <path d="M222 118 C240 104 282 108 292 136 C300 160 284 190 256 192 C230 194 212 170 214 146 C214 134 216 124 222 118 Z" fill="#9c6840"/>
+        <path d="M196 76 C266 72 324 120 320 180 C322 240 266 287 200 285 C134 287 78 238 80 180 C80 168 82 156 86 146" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linecap="round"/>
+        <path d="M90 134 C104 104 140 80 184 77" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linecap="round"/>
+      </g>
+      <!-- muzzle, nose, mouth -->
+      <path d="M152 228 C162 200 252 198 264 230 C272 254 246 280 206 280 C166 280 144 254 152 228 Z" fill="#fbfaf1"/>
+      <path d="M150 226 C160 198 250 196 262 228 C270 252 244 278 204 278 C164 278 142 252 150 226 Z" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linejoin="round"/>
+      <path class="dog__nose" d="M186 212 C196 204 216 204 226 212 C230 222 216 236 206 236 C196 236 182 222 186 212 Z" fill="var(--ill-ink,#151a24)"/>
+      <ellipse cx="198" cy="212" rx="5" ry="3.5" fill="#fff" opacity=".85"/>
+      <path class="dog__tongue" d="M192 254 C190 276 222 276 220 254 Z" fill="#d37e5e" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M206 258 V269" fill="none" stroke="var(--ill-ink,#151a24)" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M206 236 V250" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M170 246 C182 262 198 262 206 250 C214 262 230 262 242 244" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- eyes + lids -->
+      <circle class="dog__eye" cx="150" cy="170" r="13" fill="var(--ill-ink,#151a24)"/>
+      <circle cx="155" cy="165" r="4.5" fill="#fff"/>
+      <circle class="dog__eye" cx="250" cy="165" r="13" fill="var(--ill-ink,#151a24)"/>
+      <circle cx="254" cy="160" r="3.5" fill="#fff"/>
+      <circle cx="245" cy="170" r="1.6" fill="#fff" opacity=".8"/>
+      <ellipse class="dog__lid" cx="150" cy="170" rx="16" ry="16" fill="var(--ill-cream,#f3eedb)" style="transform-origin:150px 170px;transform:scaleY(0)"/>
+      <ellipse class="dog__lid" cx="250" cy="165" rx="16" ry="16" fill="#9c6840" style="transform-origin:250px 165px;transform:scaleY(0)"/>
+      <!-- rim light on the crown -->
+      <path d="M118 100 C150 66 240 62 292 98" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+      <!-- paw resting on the edge -->
+      <g class="dog__paw">
+        <path d="M56 272 C54 302 60 334 86 334 C112 334 118 302 116 272 C116 256 102 244 86 244 C70 244 56 256 56 272 Z" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M58 300 C60 322 70 334 86 334 C102 334 112 322 114 300 C104 310 68 310 58 300 Z" fill="#c7bfaf"/>
+        <path d="M54 270 C52 300 56 322 74 326 C80 334 92 334 98 326 C112 322 116 300 114 270 C114 254 100 242 84 242 C68 242 54 254 54 270" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M74 326 V306 M98 326 V306" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+      </g>
+    </g>
+  </g>
+</svg>
+<!-- /partial:dog-peek -->
+  </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 

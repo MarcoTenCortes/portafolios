@@ -44,7 +44,7 @@ export const i18n = {
 
     // texto de elementos hoja
     for (const el of document.querySelectorAll('[data-i18n]')) {
-      if (el.id === 'rig-status') continue; // lo gestiona rig.js
+      if (el.id === 'rig-status' || el.hasAttribute('data-i18n-live')) continue; // lo gestionan rig.js / dog.js
       if (DEV && el.children.length > 0) console.warn('[i18n] data-i18n en un elemento con hijos:', el);
       el.textContent = this.t(el.dataset.i18n);
     }

@@ -1,0 +1,78 @@
+<svg class="dog__art" viewBox="0 0 200 160" width="144" height="115" aria-hidden="true" focusable="false" overflow="visible">
+  <ellipse class="dog__shadow" cx="100" cy="152" rx="60" ry="6" fill="#000" opacity=".3"/>
+  <g class="dog__flip" style="transform-origin:100px 80px">
+    <g class="dog__bob">
+      <!-- tail: ink under cream (stroke pair), brown tip -->
+      <g class="dog__tail" style="transform-origin:36px 80px" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M48 76 C36 72 24 60 26 46" stroke="var(--ill-ink,#151a24)" stroke-width="16"/>
+        <path d="M26 46 C28 34 40 32 42 42" stroke="var(--ill-ink,#151a24)" stroke-width="12"/>
+        <path d="M48 76 C36 72 24 60 26 46" stroke="var(--ill-cream,#f3eedb)" stroke-width="9"/>
+        <path d="M26 46 C28 34 40 32 42 42" stroke="var(--ill-cream,#f3eedb)" stroke-width="5.5"/>
+        <path d="M27 43 C31 36 38 36 40 40" stroke="#9c6840" stroke-width="4.5"/>
+        <path d="M44 74 C36 70 30 64 28 58" stroke="#c7bfaf" stroke-width="3"/>
+      </g>
+      <!-- far legs -->
+      <g class="dog__leg dog__leg--back-far" style="transform-origin:61px 108px">
+        <rect x="52" y="104" width="18" height="46" rx="9" fill="#d8d2c2"/>
+        <path d="M52 112 V141 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <g class="dog__leg dog__leg--front-far" style="transform-origin:121px 108px">
+        <rect x="112" y="104" width="18" height="46" rx="9" fill="#d8d2c2"/>
+        <path d="M112 112 V141 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <!-- body -->
+      <g class="dog__body">
+        <rect x="42" y="62" width="110" height="60" rx="30" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M46 100 C70 108 110 110 146 100 C144 114 130 122 100 122 C70 122 50 114 46 100 Z" fill="#c7bfaf"/>
+        <path d="M62 68 C84 60 112 60 132 66" fill="none" stroke="#fbfaf1" stroke-width="5" stroke-linecap="round"/>
+        <path d="M68 64 C84 58 106 60 114 68 C118 80 104 90 88 88 C72 86 62 74 68 64 Z" fill="#9c6840"/>
+        <path d="M72 60 C96 57 118 61 124 60" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M124 60 C160 60 160 122 122 120" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+        <path d="M122 120 C116 122 110 121 106 121" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M98 121 C88 122 78 119 70 120 C30 121 30 61 74 59" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M58 64 C82 55 112 56 134 61" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <!-- near legs -->
+      <g class="dog__leg dog__leg--back-near" style="transform-origin:75px 110px">
+        <rect x="66" y="106" width="18" height="46" rx="9" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M66 112 V143 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M72 150 V146 M78 150 V146" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <g class="dog__leg dog__leg--front-near" style="transform-origin:135px 110px">
+        <rect x="126" y="106" width="18" height="46" rx="9" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M126 112 V143 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M132 150 V146 M138 150 V146" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <!-- collar -->
+      <g class="dog__collar">
+        <rect x="112" y="84" width="34" height="12" rx="5" transform="rotate(32 129 90)" fill="var(--action,#2997ff)" stroke="var(--ill-ink,#151a24)" stroke-width="2.5"/>
+        <circle cx="141" cy="101" r="4.5" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="2"/>
+      </g>
+      <!-- head -->
+      <g class="dog__head" style="transform-origin:132px 86px">
+        <g class="dog__ear dog__ear--back" style="transform-origin:128px 34px">
+          <path d="M128 32 C116 36 104 54 108 72 C110 82 120 84 126 76 C132 66 132 48 134 36 Z" fill="#9c6840" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linejoin="round"/>
+        </g>
+        <path d="M156 25 C177 24 193 41 191 61 C192 81 174 98 155 96 C135 98 119 80 120 60 C119 40 135 24 156 25 Z" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M126 76 C136 92 160 98 182 90 C172 97 150 99 136 92 C130 88 127 82 126 76 Z" fill="#c7bfaf"/>
+        <path d="M138 42 C144 32 164 30 170 42 C174 52 166 66 154 66 C142 66 134 54 138 42 Z" fill="#9c6840"/>
+        <path d="M162 68 C174 64 188 68 191 80 C193 90 183 97 169 95 C160 93 158 82 162 68 Z" fill="#fbfaf1" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M140 27 C154 19 178 22 188 40 C197 54 195 76 182 90" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M182 90 C170 100 144 100 130 88 C125 84 122 80 121 76" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M120 66 C118 52 124 36 138 28" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+        <ellipse class="dog__nose" cx="184" cy="80" rx="6.5" ry="5" fill="var(--ill-ink,#151a24)"/>
+        <circle cx="182" cy="78" r="1.6" fill="#fff" opacity=".8"/>
+        <circle class="dog__eye" cx="156" cy="58" r="5" fill="var(--ill-ink,#151a24)"/>
+        <circle cx="158" cy="56" r="1.8" fill="#fff"/>
+        <ellipse class="dog__lid" cx="156" cy="58" rx="7.5" ry="7" fill="#9c6840" style="transform-origin:156px 52px;transform:scaleY(0)"/>
+        <path class="dog__smile" d="M173 90 Q180 97 188 91" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2.5" stroke-linecap="round"/>
+        <g class="dog__ear dog__ear--front" style="transform-origin:150px 30px">
+          <path d="M150 26 C138 20 126 28 124 42 C122 56 126 68 134 72 C142 74 148 62 146 48 C145 40 152 32 150 26 Z" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M135 42 C131 52 133 62 138 67" fill="none" stroke="#c7bfaf" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <path d="M132 30 C148 18 174 20 188 38" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
+        <g class="dog__mouth" transform="translate(178 92)"/>
+      </g>
+    </g>
+  </g>
+</svg>

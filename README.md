@@ -10,6 +10,7 @@ Portafolio de **Marco Tenorio Cortés** (Software Engineer · Technical Analyst)
 - Tipografía Inter Variable auto-alojada (subset latino, ~64 KB) con fallback métrico.
 - Iconos de tecnologías desde [simple-icons](https://simpleicons.org) en un sprite SVG generado.
 - Sin analítica, sin cookies, sin dependencias externas en runtime.
+- Una **zona de juego** (rotulador para dibujar, perro con hueso y caseta) cargada tras `load`, con alternativa de teclado y `prefers-reduced-motion`.
 
 ## Desarrollo
 
@@ -18,9 +19,12 @@ npm install
 npm run dev        # http://localhost:5173
 npm run build      # genera dist/
 npm run preview    # sirve dist/ en http://localhost:4173
+npm test           # node:test sobre los módulos puros y la integridad de i18n, partials y sprite
 ```
 
-Durante el desarrollo, `?shot=<id-de-seccion>` fuerza todos los reveals y hace scroll a esa sección; `&rig=<estado>` fija la pose del café (`warned`, `angry`, `spilled`). Solo existe en `npm run dev`.
+Durante el desarrollo, `?shot=<id-de-seccion>` fuerza todos los reveals y hace scroll a esa sección; `&rig=<estado>` fija la pose del café (`warned`, `angry`, `spilled`); `&dog=fetching|carrying|peek-left|peek-right|hidden`, `&bone=near|dropped`, `&marker=grabbed` e `&ink=demo` (con `&inkn=<n>` trazos) fuerzan los estados de la zona de juego. Solo existe en `npm run dev`.
+
+Las capturas de verificación se generan con `node tools/cdp-shot.mjs tools/shots/play.json` (con `npm run dev` levantado) y quedan en `tools/out/shots/`.
 
 ## Estructura
 
@@ -31,10 +35,16 @@ src/js/main.js             entrada: CSS + i18n + site + rig
 src/js/i18n.js             diccionarios planos (src/i18n/es.json, en.json), data-i18n / data-i18n-attr
 src/js/site.js             nav, menú móvil, scroll-spy, reveals, copiar email, footer
 src/js/rig.js              máquina de estados del café (idle → warned → angry → spilled → refilling)
+src/js/drag.js             arrastre con Pointer Events y captura, compartido por rotulador y hueso
+src/js/marker.js           el rotulador: dibuja al arrastrarlo y se suelta donde se deja (tinta solo en memoria)
+src/js/dog.js              el patio (perro, hueso, caseta) y el perro que se asoma por los bordes
+src/js/play/               lógica pura (geom, ink, dog-machine), probada en test/
 src/styles/site.css        capas tokens · base · components · sections · rig · motion · print
 src/styles/stars.css       generado (tools/stars.py)
 src/assets/img/            WebP generados (rig, banco, hero, proyectos); src/assets/fonts/ Inter
-src/partials/*.svg         SVG inline (grafo SIMPL, autoencoder, terminal, farola) inyectados en index.html
+src/partials/*.svg         SVG inline (grafo SIMPL, autoencoder, terminal, farola, mock de Faro, rotulador, hueso, caseta, perro) inyectados en index.html
+test/                      node:test (npm test)
+design/STYLE.md            guía de estilo de las ilustraciones
 design/source/             originales de las ilustraciones (no se despliegan)
 tools/                     scripts de generación y despliegue
 ```
@@ -61,11 +71,19 @@ La fuente se regenera con `tools/subset-font.ps1 -Source InterVariable.woff2` (d
 
 Un único `<svg viewBox="0 0 1000 1100">` con las capas PNG originales colocadas según `tools/rig-geometry.json` (medido por registro de imagen contra el dibujo completo). Las poses son función de `data-state` (custom properties en CSS); los efectos puntuales (caída, rebote, charco, recarga) usan Web Animations API y encadenan por `animation.finished`. El botón real `#rig-hit` cubre el vaso (teclado y táctil), el texto de estado se anuncia por `aria-live`, y con `prefers-reduced-motion` las poses cambian sin animar. Si alguna capa falla al cargar se muestra `fallback.webp`.
 
+## Zona de juego
+
+- **Rotulador** (`#marker`, `src/js/marker.js`): tirado al final de Proyectos. Al arrastrarlo dibuja en una capa SVG a nivel de documento (`#ink`, `pointer-events: none`) y se queda donde se suelta. La tinta es relativa a la sección donde empezó cada trazo y se re-ancla con un `ResizeObserver`, así que aguanta cambios de idioma y de ancho. No se guarda: al recargar desaparece. Topes: 40 trazos y 20 000 puntos; el trazo más antiguo se desvanece. Es decorativo (`aria-hidden`), sin ruta de teclado.
+- **Perro, hueso y caseta** (`#yard`, `src/js/dog.js`): tercera fila de Contacto, un solo SVG de 800×260 unidades. El hueso se arrastra con un handle HTML; si se suelta cerca de la puerta (felpudo en 270,217; radio 140) el perro sale, lo coge, vuelve y entra (la puerta va a ras de la jamba derecha y el perro se recorta con un `clipPath`, por eso nunca se ve partido). El botón «Darle el hueso» es la alternativa de teclado; el estado se anuncia en `#dog-status` (`aria-live`). Contador de huesos en `localStorage` (`play.bones`). Con `prefers-reduced-motion` no hay paseos: el hueso se desvanece y la caseta se oscurece.
+- **Perro asomado** (`#dog-peek`): capa fija que se asoma por un lateral cada 18-40 s si la pestaña está visible, no hay arrastre ni menú abierto y el visitante lleva 2,5 s sin tocar nada. Nunca se coloca sobre elementos interactivos: comprueba la nav, el rig, el toast, el rotulador y una rejilla 3×5 con `elementsFromPoint`. Tocarlo muestra un aviso.
+- Todo se apaga quitando tokens de `<body data-play="marker dog">`.
+
 ## Contenido
 
 - Textos: `src/i18n/es.json` y `src/i18n/en.json` (mismas claves). Tras editar `es.json`, ejecuta `python tools/sync-html-i18n.py` para que el HTML sin JavaScript muestre el mismo texto.
 - CV: coloca `public/cv/marco-tenorio-cortes-es.pdf` y `-en.pdf` y cambia `hero.cv_href` en ambos diccionarios a `/cv/marco-tenorio-cortes-es.pdf` / `-en.pdf`. Si la ruta es local, el botón pasa a "Descargar CV" con `download`; si es externa (Drive), abre en pestaña nueva.
-- Caducidades: `education.master.note` / `education.master.period` (máster hasta dic. 2026) y `experience.minsait.period` / `experience.minsait.badge` (actualidad). También el JSON-LD de `index.html`.
+- Las claves que solo usa el JavaScript (estados del perro, contador, toast) van en las exclusiones de `tools/sync-html-i18n.py` para que no las liste como «no usadas».
+- Caducidades: `education.master.note` / `education.master.period` (máster hasta dic. 2026), `experience.minsait.period` / `experience.minsait.badge` (actualidad) y las cifras de Faro (`projects.faro.facts`). También el JSON-LD de `index.html`.
 
 ## Despliegue
 

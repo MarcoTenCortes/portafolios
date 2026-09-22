@@ -1,0 +1,59 @@
+<svg class="peek__art" viewBox="0 0 400 360" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" overflow="visible">
+  <defs>
+    <filter id="rim-peek" x="-6%" y="-10%" width="112%" height="120%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="fat"/>
+      <feFlood flood-color="#2997ff" flood-opacity=".6" result="blue"/>
+      <feComposite in="blue" in2="fat" operator="in" result="rim"/>
+      <feGaussianBlur in="rim" stdDeviation=".8" result="rim-soft"/>
+      <feMerge><feMergeNode in="rim-soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g class="dog__flip" style="transform-origin:200px 180px">
+    <g class="dog__rim" filter="url(#rim-peek)">
+      <!-- ears (behind the skull) -->
+      <g class="dog__ear dog__ear--l" style="transform-origin:100px 110px">
+        <path d="M122 100 C90 96 60 128 54 170 C50 200 68 226 90 216 C112 206 120 156 132 122 Z" fill="#9c6840" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M78 150 C68 170 68 196 80 208" fill="none" stroke="#0f131c" stroke-opacity=".28" stroke-width="9" stroke-linecap="round"/>
+      </g>
+      <g class="dog__ear dog__ear--r" style="transform-origin:300px 110px">
+        <path d="M278 105 C310 101 340 133 346 175 C350 205 332 231 310 221 C288 211 280 161 268 127 Z" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M322 155 C332 175 332 201 320 213" fill="none" stroke="#c7bfaf" stroke-width="9" stroke-linecap="round"/>
+      </g>
+      <!-- skull (tilted 12 deg) -->
+      <g class="dog__skull" transform="rotate(12 200 180)">
+        <path d="M200 75 C268 73 322 122 320 180 C322 240 266 287 200 285 C134 287 78 238 80 180 C78 120 134 77 200 75 Z" fill="var(--ill-cream,#f3eedb)" transform="translate(3 3)"/>
+        <path d="M100 214 C130 268 270 268 302 210 C290 262 214 296 150 276 C120 266 104 240 100 214 Z" fill="#c7bfaf"/>
+        <path d="M150 100 C170 88 230 86 252 98" fill="none" stroke="#fbfaf1" stroke-width="10" stroke-linecap="round"/>
+        <path d="M222 118 C240 104 282 108 292 136 C300 160 284 190 256 192 C230 194 212 170 214 146 C214 134 216 124 222 118 Z" fill="#9c6840"/>
+        <path d="M196 76 C266 72 324 120 320 180 C322 240 266 287 200 285 C134 287 78 238 80 180 C80 168 82 156 86 146" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linecap="round"/>
+        <path d="M90 134 C104 104 140 80 184 77" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linecap="round"/>
+      </g>
+      <!-- muzzle, nose, mouth -->
+      <path d="M152 228 C162 200 252 198 264 230 C272 254 246 280 206 280 C166 280 144 254 152 228 Z" fill="#fbfaf1"/>
+      <path d="M150 226 C160 198 250 196 262 228 C270 252 244 278 204 278 C164 278 142 252 150 226 Z" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linejoin="round"/>
+      <path class="dog__nose" d="M186 212 C196 204 216 204 226 212 C230 222 216 236 206 236 C196 236 182 222 186 212 Z" fill="var(--ill-ink,#151a24)"/>
+      <ellipse cx="198" cy="212" rx="5" ry="3.5" fill="#fff" opacity=".85"/>
+      <path class="dog__tongue" d="M192 254 C190 276 222 276 220 254 Z" fill="#d37e5e" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M206 258 V269" fill="none" stroke="var(--ill-ink,#151a24)" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M206 236 V250" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M170 246 C182 262 198 262 206 250 C214 262 230 262 242 244" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- eyes + lids -->
+      <circle class="dog__eye" cx="150" cy="170" r="13" fill="var(--ill-ink,#151a24)"/>
+      <circle cx="155" cy="165" r="4.5" fill="#fff"/>
+      <circle class="dog__eye" cx="250" cy="165" r="13" fill="var(--ill-ink,#151a24)"/>
+      <circle cx="254" cy="160" r="3.5" fill="#fff"/>
+      <circle cx="245" cy="170" r="1.6" fill="#fff" opacity=".8"/>
+      <ellipse class="dog__lid" cx="150" cy="170" rx="16" ry="16" fill="var(--ill-cream,#f3eedb)" style="transform-origin:150px 170px;transform:scaleY(0)"/>
+      <ellipse class="dog__lid" cx="250" cy="165" rx="16" ry="16" fill="#9c6840" style="transform-origin:250px 165px;transform:scaleY(0)"/>
+      <!-- rim light on the crown -->
+      <path d="M118 100 C150 66 240 62 292 98" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+      <!-- paw resting on the edge -->
+      <g class="dog__paw">
+        <path d="M56 272 C54 302 60 334 86 334 C112 334 118 302 116 272 C116 256 102 244 86 244 C70 244 56 256 56 272 Z" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M58 300 C60 322 70 334 86 334 C102 334 112 322 114 300 C104 310 68 310 58 300 Z" fill="#c7bfaf"/>
+        <path d="M54 270 C52 300 56 322 74 326 C80 334 92 334 98 326 C112 322 116 300 114 270 C114 254 100 242 84 242 C68 242 54 254 54 270" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M74 326 V306 M98 326 V306" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+      </g>
+    </g>
+  </g>
+</svg>

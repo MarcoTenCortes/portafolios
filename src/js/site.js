@@ -27,6 +27,7 @@ function initSheet() {
   if (!burger || !sheet) return;
   const html = document.documentElement;
   const focusables = () => [...sheet.querySelectorAll('a[href], button:not([disabled])')];
+  const extras = () => [document.getElementById('play'), document.getElementById('dog-peek')].filter(Boolean);
 
   const close = ({ restoreFocus = true } = {}) => {
     if (sheet.hidden) return;
@@ -36,6 +37,7 @@ function initSheet() {
     burger.setAttribute('aria-label', window.MTC.i18n.t('a11y.menu_open'));
     main?.removeAttribute('inert');
     footer?.removeAttribute('inert');
+    extras().forEach((el) => el.removeAttribute('inert'));
     if (restoreFocus) burger.focus();
   };
   const open = () => {
@@ -45,6 +47,7 @@ function initSheet() {
     burger.setAttribute('aria-label', window.MTC.i18n.t('a11y.menu_close'));
     main?.setAttribute('inert', '');
     footer?.setAttribute('inert', '');
+    extras().forEach((el) => el.setAttribute('inert', ''));
     focusables()[0]?.focus();
   };
 
@@ -113,7 +116,7 @@ function initReveals() {
 }
 
 function initLoopPausing() {
-  const targets = [...document.querySelectorAll('#scene, .card__media--svg')];
+  const targets = [...document.querySelectorAll('#scene, #yard, .card__media--svg')];
   if (!targets.length) return;
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {

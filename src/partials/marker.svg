@@ -1,0 +1,60 @@
+<svg class="marker__art" viewBox="0 0 1000 260" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" overflow="visible">
+  <defs>
+    <filter id="rim-marker" x="-6%" y="-10%" width="112%" height="120%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="fat"/>
+      <feFlood flood-color="#2997ff" flood-opacity=".6" result="blue"/>
+      <feComposite in="blue" in2="fat" operator="in" result="rim"/>
+      <feGaussianBlur in="rim" stdDeviation=".8" result="rim-soft"/>
+      <feMerge><feMergeNode in="rim-soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <ellipse class="marker__shadow" cx="520" cy="232" rx="476" ry="14" fill="#000" opacity=".35"/>
+  <g class="marker__rim" filter="url(#rim-marker)">
+    <!-- felt tip -->
+    <g class="marker__tip">
+      <polygon points="0,130 40,95 40,165" fill="var(--action,#2997ff)"/>
+      <polygon points="3,131 41,132 41,166" fill="#1f7fe0"/>
+      <path d="M4 130 L40 131" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-1 130 L41 94 M-1 130 L40 166" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- cream neck (extends under the body) -->
+    <g class="marker__neck">
+      <path d="M41 96 L134 57 L134 203 L41 165 Z" fill="var(--ill-cream,#f3eedb)"/>
+      <path d="M43 133 L134 133 L134 203 L43 165 Z" fill="#c7bfaf"/>
+      <path d="M50 102 L118 72" fill="none" stroke="#fbfaf1" stroke-width="7" stroke-linecap="round"/>
+      <path d="M41 94 L110 66 M41 166 L110 194" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M40 92 L40 168" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+    </g>
+    <!-- body -->
+    <g class="marker__body">
+      <path d="M162 42 H792 V218 H162 C128 218 102 192 102 158 V102 C102 68 128 42 162 42 Z" fill="var(--ill-dark,#23272d)"/>
+      <path d="M112 170 C114 196 134 216 162 216 H780 V172 Q440 178 112 170 Z" fill="#0f131c"/>
+      <rect x="126" y="54" width="640" height="30" rx="15" fill="#2e3138"/>
+      <path d="M110 48 H760" fill="none" stroke="rgba(41,151,255,.45)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M160 40 C300 38 560 42 772 40" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M160 40 C126 41 100 66 100 100 V160 C100 194 126 220 160 220" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M160 220 C300 222 560 218 690 220" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M704 220 H772" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.5" stroke-linecap="round"/>
+    </g>
+    <!-- label -->
+    <g class="marker__label" transform="rotate(-.8 465 130)">
+      <rect x="332" y="94" width="270" height="76" rx="8" fill="var(--ill-cream,#f3eedb)"/>
+      <path d="M332 152 H602 V162 a8 8 0 0 1 -8 8 H340 a8 8 0 0 1 -8 -8 Z" fill="#c7bfaf"/>
+      <path d="M342 100 H588" fill="none" stroke="#fbfaf1" stroke-width="5" stroke-linecap="round"/>
+      <path d="M338 92 C420 91 520 93 594 92 a8 8 0 0 1 8 8 V160 a8 8 0 0 1 -8 8 C520 169 420 167 338 168 a8 8 0 0 1 -8 -8 V100 a8 8 0 0 1 8 -8 Z" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linejoin="round"/>
+      <text x="466" y="141" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="30" font-weight="600" letter-spacing="1.5" fill="var(--ill-ink,#151a24)">MTC · 14 mm</text>
+    </g>
+    <!-- cap -->
+    <g class="marker__cap">
+      <path d="M772 42 H958 C982 42 1002 62 1002 86 V176 C1002 200 982 220 958 220 H772 Z" fill="var(--action,#2997ff)"/>
+      <path d="M776 182 H930 C956 182 976 170 984 150 C990 190 972 218 940 218 H776 Z" fill="#1f7fe0"/>
+      <rect x="772" y="40" width="26" height="180" fill="#1f7fe0"/>
+      <path d="M806 62 H944" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="8" stroke-linecap="round"/>
+      <path d="M826 44 C826 30 840 26 852 26 H966 C976 26 980 32 980 40 V44 Z" fill="var(--ill-dark,#23272d)"/>
+      <path d="M828 44 C828 32 840 28 852 28 H966 C976 28 980 34 980 40" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M770 40 C830 38 900 42 958 40 C982 40 1000 58 1000 84 V176 C1000 202 982 220 958 220 C900 222 830 218 770 220" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M770 34 V222" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M798 44 V216" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-opacity=".7" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>

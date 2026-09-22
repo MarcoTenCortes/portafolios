@@ -1,0 +1,30 @@
+<svg class="bone__art" viewBox="0 0 120 48" width="96" height="38" aria-hidden="true" focusable="false" overflow="visible">
+  <defs>
+    <filter id="rim-bone" x="-10%" y="-25%" width="120%" height="150%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="fat"/>
+      <feFlood flood-color="#2997ff" flood-opacity=".6" result="blue"/>
+      <feComposite in="blue" in2="fat" operator="in" result="rim"/>
+      <feGaussianBlur in="rim" stdDeviation=".8" result="rim-soft"/>
+      <feMerge><feMergeNode in="rim-soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g class="bone__rim" filter="url(#rim-bone)">
+    <!-- fill, off-register from the ink -->
+    <g class="bone__fill" transform="translate(1.5 1.5)">
+      <path d="M42 17 H78 A13 12.5 0 1 1 97.5 24 A12.5 13 0 1 1 78 31 H42 A12.5 13 0 1 1 22.5 24 A13 12.5 0 1 1 42 17 Z" fill="var(--ill-cream,#f3eedb)"/>
+      <path d="M40 26 C54 24.5 66 24.5 80 26.5 V31 H40 Z" fill="#c7bfaf"/>
+      <circle cx="30.5" cy="35.5" r="11" fill="#c7bfaf"/>
+      <circle cx="90.5" cy="35.5" r="11" fill="#c7bfaf"/>
+      <ellipse cx="30" cy="8" rx="5" ry="2.5" fill="#fbfaf1"/>
+      <ellipse cx="91" cy="8.5" rx="4.5" ry="2.2" fill="#fbfaf1"/>
+      <path d="M47 20 H73" fill="none" stroke="#fbfaf1" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <!-- blue brush accent -->
+    <path d="M24 6 Q29 2.5 35 3" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- ink outline: two strokes, a gap on the shaft, an overshoot at the join -->
+    <path d="M42 17 H78 A13 12.5 0 1 1 97.5 24 A12.5 13 0 1 1 78 31 H63" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M57 31 H42 A12.5 13 0 1 1 22.5 24 A13 12.5 0 1 1 42 17 L46 16.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18 36 A12.5 12.5 0 0 0 30 46.5" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M90 46.5 A12.5 12.5 0 0 0 101 39" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round"/>
+  </g>
+</svg>

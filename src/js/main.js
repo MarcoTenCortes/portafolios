@@ -1,15 +1,40 @@
 import '../styles/site.css';
 import { i18n } from './i18n.js';
-import { initSite } from './site.js';
+import { initSite, showToast } from './site.js';
 import { initRig } from './rig.js';
 
-window.MTC = { i18n };
+let readyResolve;
+window.MTC = { i18n, play: {}, ready: new Promise((r) => { readyResolve = r; }) };
 
 i18n.init();
 initSite({ i18n });
 window.MTC.rig = initRig(document.getElementById('rig'), { i18n });
 
-// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado> para capturas headless.
+// Zona de juego: se carga tras `load` y en tiempo ocioso para no competir con el LCP del busto.
+const playTokens = (document.body.dataset.play || '').split(/\s+/).filter(Boolean);
+function bootPlay() {
+  const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 0));
+  idle(() => {
+    const jobs = [];
+    const measure = (name, fn) => {
+      const t0 = performance.now();
+      const out = fn();
+      if (import.meta.env.DEV && performance.now() - t0 > 30) console.warn(`[play] ${name} tardó ${Math.round(performance.now() - t0)} ms`);
+      return out;
+    };
+    if (playTokens.includes('marker') && document.getElementById('marker')) {
+      jobs.push(import('./marker.js').then((m) => { window.MTC.marker = measure('initMarker', () => m.initMarker(document.getElementById('play'), { i18n, showToast })); }));
+    }
+    if (playTokens.includes('dog') && document.getElementById('yard')) {
+      jobs.push(import('./dog.js').then((m) => { window.MTC.dog = measure('initDog', () => m.initDog(document.getElementById('yard'), { i18n, showToast })); }));
+    }
+    Promise.all(jobs).then(() => readyResolve(), () => readyResolve());
+  });
+}
+if (document.readyState === 'complete') bootPlay();
+else window.addEventListener('load', bootPlay, { once: true });
+
+// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=<estado>&bone=near|dropped&marker=grabbed&ink=demo
 if (import.meta.env.DEV) {
   const params = new URLSearchParams(window.location.search);
   const shot = params.get('shot');
@@ -21,6 +46,27 @@ if (import.meta.env.DEV) {
     if (params.get('nocss')) document.querySelectorAll('style, link[rel="stylesheet"]').forEach((el) => { el.disabled = true; });
     if (params.get('style')) { const st = document.createElement('style'); st.textContent = params.get('style'); document.head.appendChild(st); }
     const target = document.getElementById(shot);
-    setTimeout(() => target?.scrollIntoView({ behavior: 'instant', block: 'start' }), 50);
+    const scroll = () => target?.scrollIntoView({ behavior: 'instant', block: 'start' });
+    setTimeout(scroll, 50);
+    window.MTC.ready.then(() => {
+      const dog = window.MTC.dog;
+      const marker = window.MTC.marker;
+      const dogState = params.get('dog');
+      if (dog && dogState) dog.force(dogState);
+      const boneState = params.get('bone');
+      if (dog && boneState === 'near') dog.placeBoneNear();
+      if (dog && boneState === 'dropped') { dog.placeBoneNear(); dog.feed(); }
+      if (marker && params.get('ink') === 'demo') {
+        const demo = [];
+        for (let s = 0; s < Number(params.get('inkn') || 2); s++) {
+          const pts = [];
+          for (let i = 0; i <= 60; i++) pts.push(120 + s * 40 + i * 9, 140 + s * 30 + Math.sin(i / 4) * 28);
+          demo.push({ sec: 'proyectos', w0: 1200, pts });
+        }
+        marker.loadInk(demo);
+      }
+      if (marker && params.get('marker') === 'grabbed') marker.demoHold(window.innerWidth * 0.6, window.innerHeight * 0.5);
+      setTimeout(scroll, 30);
+    });
   }
 }

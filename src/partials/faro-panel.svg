@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mock del panel lateral de Faro junto a una página de Confluence con un pasaje subrayado y una insignia numerada" data-i18n-attr="aria-label:projects.faro.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- window -->
+  <rect x="20" y="20" width="600" height="360" rx="14" fill="var(--faro-bg, #131218)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <g fill="var(--hairline-strong, rgba(255,255,255,.16))" stroke="none">
+    <circle cx="44" cy="44" r="5"/>
+    <circle cx="62" cy="44" r="5"/>
+    <circle cx="80" cy="44" r="5"/>
+  </g>
+  <text x="320" y="48" text-anchor="middle" fill="var(--faro-mute, #9793A6)" font-size="12">confluence · Faro</text>
+  <line x1="20" y1="64" x2="620" y2="64" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- page (Confluence) -->
+  <g fill="var(--faro-mute, #9793A6)" stroke="none">
+    <g opacity=".3">
+      <rect x="44" y="82" width="40" height="6" rx="3"/>
+      <rect x="92" y="82" width="6" height="6" rx="3"/>
+      <rect x="106" y="82" width="58" height="6" rx="3"/>
+    </g>
+    <rect x="44" y="102" width="172" height="12" rx="4" opacity=".6"/>
+    <g opacity=".28">
+      <rect x="44" y="136" width="304" height="8" rx="3"/>
+      <rect x="44" y="168" width="116" height="8" rx="3"/>
+      <rect x="44" y="200" width="238" height="8" rx="3"/>
+      <rect x="44" y="232" width="296" height="8" rx="3"/>
+      <rect x="44" y="264" width="66" height="8" rx="3"/>
+      <rect x="44" y="296" width="284" height="8" rx="3"/>
+      <rect x="44" y="328" width="176" height="8" rx="3"/>
+    </g>
+  </g>
+  <!-- highlighted passages -->
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none" opacity=".35">
+    <rect x="166" y="163" width="152" height="18" rx="4"/>
+    <rect x="116" y="259" width="142" height="18" rx="4"/>
+  </g>
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none" opacity=".55">
+    <rect x="172" y="168" width="140" height="8" rx="3"/>
+    <rect x="122" y="264" width="130" height="8" rx="3"/>
+  </g>
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none">
+    <circle cx="332" cy="172" r="7"/>
+    <circle cx="272" cy="268" r="7"/>
+  </g>
+  <g fill="var(--faro-on-mark, #1B1405)" font-size="9" font-weight="600" text-anchor="middle">
+    <text x="332" y="175.5">1</text>
+    <text x="272" y="271.5">2</text>
+  </g>
+
+  <!-- side panel -->
+  <path d="M380 64H620V366A14 14 0 0 1 606 380H380Z" fill="var(--faro-surface, #1B1A22)" stroke="none"/>
+  <line x1="380" y1="64" x2="380" y2="380" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- panel header -->
+  <g class="faro-beacon" fill="none" stroke="var(--faro-amber, #E9AC4A)" stroke-width="2">
+    <circle cx="401" cy="83" r="7"/>
+    <circle cx="401" cy="83" r="2" fill="var(--faro-amber, #E9AC4A)" stroke="none"/>
+  </g>
+  <text x="416" y="87" fill="var(--faro-ink, #EDECF2)" font-size="12" font-weight="600">Faro</text>
+  <g fill="none" stroke="var(--faro-mute, #9793A6)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity=".7">
+    <path d="M524 83h10M529 78v10"/>
+    <path d="M549 83a5 5 0 1 0 10 0a5 5 0 1 0 -10 0M554 80v3l2 2"/>
+    <path d="M567 78h10v10h-10zM570 82h4M570 85h3"/>
+    <path d="M585 78h10v10h-10zM588 78v10"/>
+    <path d="M604 80h10M604 83h10M604 86h10"/>
+  </g>
+  <rect x="392" y="98" width="108" height="16" rx="8" fill="var(--faro-surface-2, #22212B)" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+  <text x="446" y="109" text-anchor="middle" fill="var(--faro-mute, #9793A6)" font-size="9">ENG-7 · Requisitos</text>
+  <line x1="380" y1="124" x2="620" y2="124" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- chat -->
+  <path d="M478 136H596A12 12 0 0 1 608 148V168A4 4 0 0 1 604 172H478A12 12 0 0 1 466 160V148A12 12 0 0 1 478 136Z" fill="var(--faro-surface-2, #22212B)" stroke="none"/>
+  <g fill="var(--faro-ink, #EDECF2)" font-size="10">
+    <text x="476" y="151">¿Qué pide ENG-7</text>
+    <text x="476" y="165">para el login?</text>
+  </g>
+  <text x="392" y="196" fill="var(--faro-ink, #EDECF2)" font-size="10">Dos cosas en la página:</text>
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none">
+    <circle cx="398.5" cy="213" r="6.5"/>
+    <circle cx="398.5" cy="231" r="6.5"/>
+  </g>
+  <g fill="var(--faro-on-mark, #1B1405)" font-size="9" font-weight="600" text-anchor="middle">
+    <text x="398.5" y="216.5">1</text>
+    <text x="398.5" y="234.5">2</text>
+  </g>
+  <g fill="var(--faro-mute, #9793A6)" font-size="10">
+    <text x="411" y="216.5"><tspan fill="var(--faro-ink, #EDECF2)">Dato:</tspan> exige MFA</text>
+    <text x="411" y="234.5"><tspan fill="var(--faro-ink, #EDECF2)">Hueco:</tspan> sin TTL de sesión</text>
+  </g>
+  <rect x="392" y="248" width="132" height="34" rx="8" fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <text x="404" y="262" fill="var(--faro-ink, #EDECF2)" font-size="10">Llévame →</text>
+  <text x="404" y="275" fill="var(--faro-mute, #9793A6)" font-size="9">Requisitos › 2.1</text>
+
+  <!-- composer -->
+  <g fill="var(--faro-surface-2, #22212B)" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1">
+    <rect x="392" y="298" width="64" height="18" rx="9"/>
+    <rect x="462" y="298" width="72" height="18" rx="9"/>
+  </g>
+  <g fill="var(--faro-mute, #9793A6)" font-size="9">
+    <text x="402" y="310">Modelo ▾</text>
+    <text x="472" y="310">Análisis ▾</text>
+  </g>
+  <rect x="392" y="324" width="216" height="42" rx="10" fill="var(--faro-bg, #131218)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <text x="404" y="342" fill="var(--faro-mute, #9793A6)" font-size="10" opacity=".7">Pregunta a Faro…</text>
+  <circle cx="592" cy="350" r="11" fill="var(--faro-amber, #E9AC4A)" stroke="none"/>
+  <path d="M592 355V345M587.5 349.5L592 345L596.5 349.5" fill="none" stroke="var(--faro-on-mark, #1B1405)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
