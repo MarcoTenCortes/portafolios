@@ -1,87 +1,84 @@
-// dog-machine.js: reglas puras del patio (perro, hueso, caseta), sin DOM. Coordenadas en unidades
-// del viewBox 800 x 260 del patio; el hueso se posiciona por su esquina superior izquierda.
+// dog-machine.js: logica pura del perro (sin DOM). Coordenadas en px de cliente salvo que se indique.
 import { clamp, distance, isNear } from './geom.js';
 
-export const DOG_STATES = ['inHouse', 'fetching', 'grabbing', 'carrying', 'entering'];
-export const BONE_STATES = ['resting', 'dragging', 'droppedNear', 'droppedFar', 'fetched', 'respawn'];
+export const DOG_STATES = ['inHouse', 'running', 'entering'];
+export const BONE_STATES = ['resting', 'dragging', 'dropped', 'delivering', 'away', 'respawn'];
+export const PEEK_STATES = ['hidden', 'peekingIn', 'peeking', 'peekingOut'];
 
-export const HOUSE = { x: 40, w: 242, doorRect: [172, 120, 88, 116], jambL: 172, jambR: 260, mat: { x: 270, y: 217 }, insideX: 20, exitX: 270 };
-export const DOG = { w: 144, h: 115, mouthDx: 128, speed: 220 };
-export const BONE = { w: 96, h: 38, y: 198, minY: 40, restMinX: 262, maxX: 704, spawnMinX: 460 };
-export const NEAR = 140;
-export const WARN = 200;
+// La caseta se dibuja en un viewBox de 220x200 y se pinta ESPEJADA (la puerta queda a la izquierda).
+export const HOUSE_VB = { w: 220, h: 200, door: { x: 20, y: 95, w: 80, h: 105 }, wall: { x: 20, w: 180 } };
+export const DOG_RATIO = 160 / 200; // alto/ancho del dibujo del perro que camina
+export const NEAR = 150;     // px: el hueso "huele" cerca de la puerta
+export const APPROACH = 140; // px: el puntero se acerca al hueso
+export const LEAVE = 260;    // px: el puntero se aleja del hueso
 
-// Tabla de transiciones del perro: estado -> evento -> estado. Un evento no listado no cambia nada.
-const TRANSITIONS = {
-  inHouse: { fetch: 'fetching' },
-  fetching: { reached: 'grabbing', interrupt: 'inHouse' },
-  grabbing: { grabbed: 'carrying' },
-  carrying: { reached: 'entering' },
+// Transiciones explicitas; todo lo demas deja el estado como esta.
+const TABLE = {
+  inHouse: { deliver: 'running' },
+  running: { reached: 'entering', interrupt: 'inHouse' },
   entering: { inside: 'inHouse' },
 };
-
 export function next(state, event) {
-  return TRANSITIONS[state]?.[event] ?? state;
+  return TABLE[state]?.[event] ?? state;
 }
 
-// x de reposo del hueso al soltarlo: fuera de la caseta y dentro del patio. `house` se acepta por
-// simetría con dropOutcome; el tope izquierdo ya está medido en `bone.restMinX` (jamba derecha + 2).
-export function settleX(x, house = HOUSE, bone = BONE) {
-  return x < bone.restMinX ? bone.restMinX : Math.min(x, bone.maxX);
+// Rectangulo de la puerta en px de cliente a partir del rect de la caseta (ya espejada).
+export function doorRect(house) {
+  const s = house.width / HOUSE_VB.w;
+  const d = HOUSE_VB.door;
+  return { left: house.left + d.x * s, top: house.top + d.y * s, width: d.w * s, height: d.h * s };
 }
-
-// Centro del hueso a partir de su esquina superior izquierda.
-export function boneCenter(x, y = BONE.y, bone = BONE) {
-  return { x: x + bone.w / 2, y: y + bone.h / 2 };
+export function doorCenter(house) {
+  const r = doorRect(house);
+  return { x: r.left + r.width / 2, y: r.top + r.height * 0.7 };
 }
-
-// Distancia del centro del hueso al felpudo (para el aviso `is-near` durante el arrastre).
-export function matDistance(x, y = BONE.y, house = HOUSE, bone = BONE) {
-  return distance(boneCenter(x, y, bone), house.mat);
+// El hueso esta "en la caseta" si su centro cae en la puerta (con un margen) o muy cerca de ella.
+export function isInDoor(center, house, margin = 18) {
+  const r = doorRect(house);
+  const inside = center.x >= r.left - margin && center.x <= r.left + r.width + margin
+    && center.y >= r.top - margin && center.y <= r.top + r.height + margin;
+  return inside || isNear(center, doorCenter(house), 48);
 }
-
-// Resultado de soltar el hueso en `x`: dónde se queda y si el perro sale a por él.
-export function dropOutcome(x, house = HOUSE, bone = BONE, near = NEAR) {
-  const settled = settleX(x, house, bone);
-  return { x: settled, near: isNear(boneCenter(settled, bone.y, bone), house.mat, near) };
+export function isNearDoor(center, house, radius = NEAR) {
+  return isNear(center, doorCenter(house), radius);
 }
-
-// Posición del hueso durante el arrastre: resbala por el patio sin salirse de la ventana.
-export function dragClamp(x, y, bone = BONE) {
-  return { x: clamp(x, 0, bone.maxX), y: clamp(y, bone.minY, bone.y) };
+// Donde se para el perro para quedar del todo detras de la pared: justo pasada la puerta.
+export function dogStopX(house, dogW) {
+  const s = house.width / HOUSE_VB.w;
+  const stop = (HOUSE_VB.door.x + HOUSE_VB.door.w) * s - 6;
+  const maxLeft = (HOUSE_VB.wall.x + HOUSE_VB.wall.w) * s - dogW;
+  return Math.min(stop, Math.max(0, maxLeft));
 }
-
-// x entera de aparición de un hueso nuevo, en [spawnMinX, maxX].
-export function spawnX(rng = Math.random, bone = BONE) {
-  const span = bone.maxX - bone.spawnMinX + 1;
-  return bone.spawnMinX + Math.min(span - 1, Math.floor(rng() * span));
+// Reposo del hueso dentro de la franja del patio: nunca sobre la caseta ni fuera de la seccion.
+export function settleBone(pos, bone, section, house, gutter = 20) {
+  let x = clamp(pos.x, gutter, section.width - bone.w - gutter);
+  let y = clamp(pos.y, 0, section.height - bone.h);
+  const overHouse = x + bone.w > house.left - 8 && x < house.left + house.width + 8 && y + bone.h > house.top;
+  if (overHouse) x = Math.max(gutter, house.left - bone.w - 16);
+  return { x, y };
 }
-
-// Duración de un paseo a velocidad constante, acotada para que ni parpadee ni se eternice.
-export function walkDuration(dist, speed = DOG.speed, min = 700, max = 2600) {
-  return clamp((dist / speed) * 1000, min, max);
+export function spawnX(rng, section, bone, house, gutter = 20) {
+  const max = Math.max(gutter, Math.min(section.width * 0.55, house.left - bone.w - 40));
+  return Math.round(gutter + rng() * (max - gutter));
 }
-
-export function nextPeekDelay(rng = Math.random, min = 18000, max = 40000) {
+export function pointerZone(pointer, boneCenter, wasNear) {
+  const d = distance(pointer, boneCenter);
+  if (d <= APPROACH) return 'near';
+  if (wasNear && d < LEAVE) return 'near';
+  return 'far';
+}
+export function runDuration(px, speed = 380, min = 500, max = 2800) {
+  return clamp((Math.abs(px) / speed) * 1000, min, max);
+}
+export function nextPeekDelay(rng = Math.random, min = 12000, max = 28000) {
   return Math.round(min + rng() * (max - min));
 }
-
-// Solo se asoma con la pestaña visible, sin reduced motion, sin arrastre ni sheet, con el perro en
-// casa, el usuario quieto un rato y una pantalla que no sea estrecha.
 export function shouldPeek({ hidden, reduced, dragging, sheetOpen, state, idleMs, width }) {
   return !hidden && !reduced && !dragging && !sheetOpen && state === 'inHouse' && idleMs >= 2500 && width >= 360;
 }
-
-// Contador acumulado de huesos (`play.bones`); no mira el día, a diferencia de `rig.spills`.
 export function bonesAfter(prev) {
   return { v: 1, n: (Number.isFinite(prev?.n) ? prev.n : 0) + 1, since: prev?.since ?? null };
 }
-
-// Clave de estado que se anuncia al entrar en `state` (null = solo cambia data-state).
-export function announceFor(state, n = 0) {
-  if (state === 'fetching') return 'fetching';
-  if (state !== 'inHouse') return null;
-  if (n >= 10) return 'delivered10';
-  if (n >= 3) return 'delivered3';
-  return 'delivered';
+export function announceFor(n) {
+  return n >= 10 ? 'delivered10' : n >= 3 ? 'delivered3' : 'delivered';
 }

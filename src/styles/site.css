@@ -388,7 +388,7 @@
   html:not(.js) .nav__links { display: block; }
   html:not(.js) .nav__links ul { flex-wrap: wrap; }
   html:not(.js) .nav__burger { display: none; }
-  html:not(.js) :is(.play, .dog-peek, .yard, .yard__handle, #dog-feed, #dog-hint, #dog-count) { display: none !important; }
+  html:not(.js) :is(.play, .dog-peek, .yard) { display: none !important; }
   html:not(.js) .card__media[data-lazy] { display: none; }
 
   /* ---------- hero ---------- */
@@ -654,30 +654,40 @@
   .marker__art { display: block; width: 100%; height: 100%; overflow: visible; }
   .marker__hint { position: absolute; left: 50%; top: -32px; translate: -50% 0; white-space: nowrap; pointer-events: none; color: var(--ink); background: var(--action-soft); border-color: rgba(41, 151, 255, 0.4); }
   html.is-inking, html.is-inking * { cursor: none !important; }
-  html.is-inking { user-select: none; -webkit-user-select: none; }
+  html.is-inking { user-select: none; -webkit-user-select: none; touch-action: none; }
   html.sheet-open .play, html.sheet-open .dog-peek { pointer-events: none !important; }
   @media (hover: none) { .marker { width: 160px; height: 42px; transform-origin: 0px 21px; } }
 
-  /* patio: caseta, perro y hueso */
-  .yard { grid-column: 1 / -1; }
-  .yard__body { position: relative; background: radial-gradient(60% 80% at 25% 95%, #3a4763 0%, #2c3548 45%, #1a2030 100%); }
-  .yard__stage { display: block; width: 100%; height: auto; }
-  .yard__stage * { pointer-events: none; }
-  .yard__ground { stroke: var(--hairline-strong); stroke-width: 2; }
-  .yard__handle {
-    position: absolute; left: 0; top: 0; width: 44px; height: 44px; border-radius: 50%; z-index: 3;
+  /* patio: caseta y hueso sueltos al pie de Contacto (franja a sangre; el perro entra por el borde) */
+  .yard { position: relative; height: 216px; margin: 24px 0 calc(-1 * var(--section-y)); overflow: hidden; pointer-events: none; user-select: none; -webkit-user-select: none; }
+  .yard__house { position: absolute; right: var(--gutter); bottom: 0; width: 200px; height: 182px; transform: scaleX(-1); }
+  .yard__house--back { z-index: 1; }
+  .yard__house--front { z-index: 3; }
+  .yard__house .house__art { display: block; width: 100%; height: 100%; overflow: visible; }
+  .yard__dog { position: absolute; left: 0; bottom: 0; width: 120px; height: 96px; z-index: 2; transform: translateX(-110%); }
+  .yard[data-dog="hidden"] .yard__dog { visibility: hidden; }
+  .yard__dog .dog__art { display: block; width: 100%; height: 100%; overflow: visible; }
+  .yard__bone {
+    position: absolute; left: 0; top: 0; width: 96px; height: 46px; padding: 4px 0; margin: 0; border: 0; border-radius: 14px; background: none;
+    z-index: 4; pointer-events: auto; transform-origin: 50% 50%;
     touch-action: none; user-select: none; -webkit-user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; cursor: grab;
   }
-  .yard__handle:active { cursor: grabbing; }
-  .yard__hint { position: absolute; left: 12px; top: 12px; z-index: 4; color: var(--ink); background: var(--action-soft); border-color: rgba(41, 151, 255, 0.4); }
-  .yard__count { position: absolute; right: 12px; top: 12px; z-index: 4; }
-  .window__status-text { flex: 1; min-width: 0; font-size: 14px; color: var(--body); line-height: 1.3; }
-  #dog-feed[aria-disabled="true"] { opacity: .5; cursor: default; }
-  .dog, .bone, .house, .dog__flip, .dog__bob, .dog__tail, .dog__leg, .dog__head, .dog__ear, .dog__lid, .house__shake { transform-box: view-box; }
+  .yard__bone:active, .yard__bone.is-dragging { cursor: grabbing; }
+  .yard__bone:focus-visible { outline: 2px solid var(--action); outline-offset: 3px; }
+  .yard__bone .bone__art { display: block; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+  .yard__bone.is-dragging .bone__rim { filter: none; }
+  .yard[data-bone="delivering"] .yard__bone, .yard[data-bone="dropped"] .yard__bone, .yard[data-bone="respawn"] .yard__bone { pointer-events: none; }
+  .yard[data-bone="away"] .yard__bone { visibility: hidden; pointer-events: none; }
+  .yard__hint { position: absolute; left: 0; top: 0; z-index: 5; translate: -50% 0; white-space: nowrap; color: var(--ink); background: var(--action-soft); border-color: rgba(41, 151, 255, 0.4); }
+  .yard__count { position: absolute; left: 0; top: 0; z-index: 5; translate: -50% 0; }
+  .yard:not([data-bone="resting"]) .yard__hint { display: none; }
+  .dog, .house, .dog__flip, .dog__bob, .dog__tail, .dog__leg, .dog__head, .dog__ear, .dog__lid, .house__shake { transform-box: view-box; }
   .dog__flip { transform-origin: 100px 80px; transition: transform 120ms var(--ease-out); }
   .dog.is-facing-left .dog__flip { transform: scaleX(-1); }
-  .bone { transform-origin: 48px 19px; }
-  .bone.is-dragging .bone__rim { filter: none; }
+  .dog__head, .dog__ear { transition: transform 180ms var(--ease-out); }
+  .dog.is-alert .dog__head { transform: rotate(-7deg); }
+  .dog.is-alert .dog__ear--front { transform: rotate(-34deg); }
+  .dog.is-alert .dog__ear--back { transform: rotate(38deg); }
   .house__eyes { opacity: 0; transition: opacity 200ms; }
   .yard.is-near .house__eyes, .yard.is-peeking .house__eyes { opacity: 1; }
   .yard.is-near .house__shake { animation: house-wiggle 600ms ease-in-out infinite alternate; }
@@ -686,23 +696,28 @@
   .dog.is-walking .dog__leg--front-near, .dog.is-walking .dog__leg--back-far { animation: dog-walk-a 360ms ease-in-out infinite alternate; }
   .dog.is-walking .dog__leg--front-far, .dog.is-walking .dog__leg--back-near { animation: dog-walk-b 360ms ease-in-out infinite alternate; }
   .dog.is-walking .dog__bob { animation: dog-bob 180ms ease-in-out infinite alternate; }
-  .dog.is-walking .dog__tail, .dog.is-happy .dog__tail { animation: dog-tail 240ms ease-in-out infinite alternate; }
-  .dog.is-happy .dog__tail { animation-duration: 160ms; }
+  .dog.is-running .dog__leg { animation-duration: 220ms; }
+  .dog.is-running .dog__bob { animation-duration: 110ms; }
+  .dog.is-walking .dog__tail, .dog.is-alert .dog__tail, .yard[data-dog="in"] .dog__tail { animation: dog-tail 240ms ease-in-out infinite alternate; }
+  .yard[data-dog="in"] .dog__tail { animation-duration: 520ms; }
+  .dog.is-alert .dog__tail, .dog.is-walking .dog__tail { animation-duration: 160ms; }
+  .yard[data-dog="in"] .dog__lid { animation: dog-blink 4.2s linear infinite; }
   .yard.is-offscreen *, .yard.is-hidden * { animation-play-state: paused !important; }
-  @media (max-width: 479px) {
-    .yard__key { display: none; }
-    .window__status-text { font-size: 13px; }
-    #dog-feed { padding: 8px 10px; }
+  @media (max-width: 767px) {
+    .yard { height: 168px; }
+    .yard__house { width: 150px; height: 136px; }
+    .yard__dog { width: 90px; height: 72px; }
+    .yard__bone { width: 80px; height: 40px; }
   }
 
   /* perro asomado (capa fija en los bordes) */
   .dog-peek {
-    position: fixed; left: 0; top: 40vh; width: 96px; height: 86px; z-index: 40; pointer-events: none;
+    position: fixed; left: 0; top: 40vh; width: 104px; height: 93px; z-index: 40; pointer-events: none;
     transform: translateX(-100%); transition: transform 420ms var(--ease-out);
   }
   .dog-peek[data-side="right"] { left: auto; right: 0; transform: translateX(100%); }
-  .dog-peek.is-visible { transform: translateX(-50%); }
-  .dog-peek[data-side="right"].is-visible { transform: translateX(50%); }
+  .dog-peek.is-visible { transform: translateX(-30%); }
+  .dog-peek[data-side="right"].is-visible { transform: translateX(30%); }
   .peek__art { display: block; width: 100%; height: 100%; overflow: visible; }
   .dog-peek .dog__flip { transform-origin: 200px 180px; transition: none; }
   .dog-peek[data-side="left"] .dog__flip { transform: scaleX(-1); } /* la pata queda en la mitad visible */
@@ -773,7 +788,7 @@
     .rig #steam path, .rig #drops circle, .rig #tear, .rig__hint { animation: none !important; }
     .rig[data-state="angry"] #drops circle { opacity: 0.8; }
     .scene__leg, .scene__hand, .scene__stars, .scene__lamp-head, .scene__phone, .simpl-pulse, .term-cursor { animation: none !important; }
-    .faro-beacon, .marker__art, .dog *, .house *, .bone, .dog-peek, .dog-peek * { animation: none !important; transition: none !important; }
+    .faro-beacon, .marker__art, .dog *, .house *, .yard__bone, .dog-peek, .dog-peek * { animation: none !important; transition: none !important; }
     .yard.is-near .house__shake { animation: none; }
     .scene__leg { transform: rotate(2deg); }
     .scene__stars { opacity: 0.4; }

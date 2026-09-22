@@ -2,13 +2,13 @@
 
 const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function showToast(text) {
+function showToast(text, ms = 1600) {
   const toast = document.getElementById('toast');
   if (!toast) return;
   toast.textContent = text;
   toast.hidden = false;
   clearTimeout(showToast.timer);
-  showToast.timer = setTimeout(() => { toast.hidden = true; }, 1600);
+  showToast.timer = setTimeout(() => { toast.hidden = true; }, ms);
 }
 
 function initNav() {

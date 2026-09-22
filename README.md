@@ -22,7 +22,7 @@ npm run preview    # sirve dist/ en http://localhost:4173
 npm test           # node:test sobre los módulos puros y la integridad de i18n, partials y sprite
 ```
 
-Durante el desarrollo, `?shot=<id-de-seccion>` fuerza todos los reveals y hace scroll a esa sección; `&rig=<estado>` fija la pose del café (`warned`, `angry`, `spilled`); `&dog=fetching|carrying|peek-left|peek-right|hidden`, `&bone=near|dropped`, `&marker=grabbed` e `&ink=demo` (con `&inkn=<n>` trazos) fuerzan los estados de la zona de juego. Solo existe en `npm run dev`.
+Durante el desarrollo, `?shot=<id-de-seccion>` fuerza todos los reveals y hace scroll a esa sección; `&rig=<estado>` fija la pose del café (`warned`, `angry`, `spilled`); `&dog=shown|alert|running|entering|peek-left|peek-right|hidden`, `&bone=near|dropped`, `&marker=grabbed` e `&ink=demo` (con `&inkn=<n>` trazos) fuerzan los estados de la zona de juego. Solo existe en `npm run dev`.
 
 Las capturas de verificación se generan con `node tools/cdp-shot.mjs tools/shots/play.json` (con `npm run dev` levantado) y quedan en `tools/out/shots/`.
 
@@ -36,8 +36,8 @@ src/js/i18n.js             diccionarios planos (src/i18n/es.json, en.json), data
 src/js/site.js             nav, menú móvil, scroll-spy, reveals, copiar email, footer
 src/js/rig.js              máquina de estados del café (idle → warned → angry → spilled → refilling)
 src/js/drag.js             arrastre con Pointer Events y captura, compartido por rotulador y hueso
-src/js/marker.js           el rotulador: dibuja al arrastrarlo y se suelta donde se deja (tinta solo en memoria)
-src/js/dog.js              el patio (perro, hueso, caseta) y el perro que se asoma por los bordes
+src/js/marker.js           el rotulador: un clic lo coge, se pinta manteniendo pulsado y se suelta con clic derecho (tinta solo en memoria)
+src/js/dog.js              la caseta y el hueso al pie de Contacto, el perro que se asoma al acercarte al hueso, y el perro de los bordes
 src/js/play/               lógica pura (geom, ink, dog-machine), probada en test/
 src/styles/site.css        capas tokens · base · components · sections · rig · motion · print
 src/styles/stars.css       generado (tools/stars.py)
@@ -74,9 +74,9 @@ Un único `<svg viewBox="0 0 1000 1100">` con las capas PNG originales colocadas
 
 ## Zona de juego
 
-- **Rotulador** (`#marker`, `src/js/marker.js`): tirado al final de Proyectos. Al arrastrarlo dibuja en una capa SVG a nivel de documento (`#ink`, `pointer-events: none`) y se queda donde se suelta. La tinta es relativa a la sección donde empezó cada trazo y se re-ancla con un `ResizeObserver`, así que aguanta cambios de idioma y de ancho. No se guarda: al recargar desaparece. Topes: 40 trazos y 20 000 puntos; el trazo más antiguo se desvanece. Es decorativo (`aria-hidden`), sin ruta de teclado.
-- **Perro, hueso y caseta** (`#yard`, `src/js/dog.js`): tercera fila de Contacto, un solo SVG de 800×260 unidades. El hueso se arrastra con un handle HTML; si se suelta cerca de la puerta (felpudo en 270,217; radio 140) el perro sale, lo coge, vuelve y entra (la puerta va a ras de la jamba derecha y el perro se recorta con un `clipPath`, por eso nunca se ve partido). El botón «Darle el hueso» es la alternativa de teclado; el estado se anuncia en `#dog-status` (`aria-live`). Contador de huesos en `localStorage` (`play.bones`). Con `prefers-reduced-motion` no hay paseos: el hueso se desvanece y la caseta se oscurece.
-- **Perro asomado** (`#dog-peek`): capa fija que se asoma por un lateral cada 18-40 s si la pestaña está visible, no hay arrastre ni menú abierto y el visitante lleva 2,5 s sin tocar nada. Nunca se coloca sobre elementos interactivos: comprueba la nav, el rig, el toast, el rotulador y una rejilla 3×5 con `elementsFromPoint`. Tocarlo muestra un aviso.
+- **Rotulador** (`#marker`, `src/js/marker.js`): tirado al final de Proyectos. Un clic lo coge (sigue al puntero como si fuera el cursor y aparece un aviso breve con las instrucciones), se pinta manteniendo pulsado el botón principal y se suelta con clic derecho o Escape (en táctil: arrastrar pinta, un toque suelta). Dibuja en una capa SVG a nivel de documento (`#ink`, `pointer-events: none`) y se queda donde se suelta. La tinta es relativa a la sección donde empezó cada trazo y se re-ancla con un `ResizeObserver`, así que aguanta cambios de idioma y de ancho. No se guarda: al recargar desaparece. Topes: 40 trazos y 20 000 puntos; el trazo más antiguo se desvanece. Es decorativo (`aria-hidden`), sin ruta de teclado.
+- **Caseta, hueso y perro** (`#yard`, `src/js/dog.js`): una franja a sangre al pie de Contacto, sin marco: la caseta (espejada, con la puerta hacia el patio) a la derecha y el hueso suelto en el suelo. Cuando el ratón se acerca al hueso (140 px, con histéresis hasta 260) el perro se asoma por el borde izquierdo de la pantalla a la altura de la caseta; al pulsar el hueso alza las orejas; si el hueso se deja en la puerta (`isInDoor`), corre hasta la caseta, entra y se lo lleva. Cerca de la puerta pero fuera, la caseta «huele» el hueso (ojos y temblor). El hueso es un `<button>` arrastrable; Enter/Espacio sobre él es la alternativa de teclado (vuela a la puerta). Estado en `#dog-status` (`aria-live`, oculto visualmente), contador de huesos en `localStorage` (`play.bones`) encima del tejado. Con `prefers-reduced-motion` no hay carreras: el hueso se desvanece y la caseta se oscurece.
+- **Perro asomado** (`#dog-peek`): capa fija que se asoma por un lateral (un 70 % del cuerpo) cada 12-28 s si la pestaña está visible, no hay arrastre ni rotulador cogido ni menú abierto y el visitante lleva 2,5 s sin tocar nada. Nunca se coloca sobre elementos interactivos: comprueba la nav, el rig, el toast, el hueso, el rotulador y una rejilla 3×5 con `elementsFromPoint`. Tocarlo muestra un aviso.
 - Todo se apaga quitando tokens de `<body data-play="marker dog">`.
 
 ## Contenido

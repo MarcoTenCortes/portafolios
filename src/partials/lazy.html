@@ -498,12 +498,8 @@
 </svg>
 <!-- /partial:dog-peek -->
 </template>
-<template data-for="yard">
-<svg class="yard__stage" viewBox="0 0 800 260" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
-              <defs><clipPath id="yard-clip" clipPathUnits="userSpaceOnUse"><rect x="172" y="-40" width="700" height="340"/></clipPath></defs>
-              <line class="yard__ground" x1="0" y1="236" x2="800" y2="236"/>
-              <g class="house house--back" transform="translate(40 16)">
-                <!-- partial:house-back -->
+<template data-for="house-back">
+<!-- partial:house-back -->
 <svg class="house__art" viewBox="0 0 220 200" width="242" height="220" aria-hidden="true" focusable="false" overflow="visible">
   <rect class="house__back-wall" x="20" y="90" width="180" height="110" fill="var(--tile-2,#1a2030)"/>
   <!-- door interior: dark at the top, tile-1 at the floor (stepped bands, no gradient ids) -->
@@ -516,10 +512,54 @@
   <g class="house__eyes" opacity="0"><circle cx="150" cy="150" r="4" fill="var(--action,#2997ff)"/><circle cx="170" cy="150" r="4" fill="var(--action,#2997ff)"/></g>
 </svg>
 <!-- /partial:house-back -->
-              </g>
-              <g class="yard__dogclip" clip-path="url(#yard-clip)">
-                <g class="dog dog--yard" id="yard-dog" style="transform: translate(20px, 128px); opacity: 0">
-                  <!-- partial:dog-walk -->
+</template>
+<template data-for="house-front">
+<!-- partial:house-front -->
+<svg class="house__art" viewBox="0 0 220 200" width="242" height="220" aria-hidden="true" focusable="false" overflow="visible">
+  <g class="house__shake" style="transform-origin:110px 200px">
+    <ellipse class="house__shadow" cx="112" cy="201" rx="108" ry="5" fill="#000" opacity=".3"/>
+    <!-- front wall with the door cut out; the right jamb is the wall's right edge -->
+    <path class="house__wall" fill-rule="evenodd" d="M20.6 91.2 C60 89.6 140 90.8 200 90 V200 H20 C19.4 160 20.9 125 20.6 91.2 Z M120 200 V135 a40 40 0 0 1 80 0 V200 Z" fill="var(--tile-2,#1a2030)" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
+    <path class="house__eave-shadow" fill-rule="evenodd" d="M21 92 H199 V105 H21 Z M120 200 V135 a40 40 0 0 1 80 0 V200 Z" fill="#0b0e15" opacity=".35"/>
+    <g class="house__planks" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="2" stroke-linecap="round">
+      <path d="M25 112 C80 111.2 150 112.6 195 112"/>
+      <path d="M25 134 C60 133.4 90 134.4 116 134"/>
+      <path d="M25 156 C60 155.4 90 156.6 116 156"/>
+      <path d="M25 178 C60 177.4 90 178.4 116 178"/>
+      <path d="M64 92 V111 M136 92 V111 M100 135 V155 M46 157 V177"/>
+    </g>
+    <!-- round window -->
+    <g class="house__window">
+      <circle cx="44" cy="160" r="12.5" fill="var(--tile-1,#131822)" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2"/>
+      <path d="M44 148.5 V171.5 M32.5 160 H55.5" fill="none" stroke="var(--hairline,rgba(255,255,255,.08))" stroke-width="1.5"/>
+    </g>
+    <!-- roof -->
+    <g class="house__roof">
+      <path d="M-2 93 C40 62 76 34 110 9 C144 34 180 62 222 92 Z" fill="var(--action,#2997ff)" fill-opacity=".55" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
+      <g fill="none" stroke="#0f131c" stroke-opacity=".4" stroke-width="2.5" stroke-linecap="round">
+        <path d="M80 34 C96 33 124 35 140 34"/>
+        <path d="M53 54 C90 53 130 55 167 54"/>
+        <path d="M26 74 C80 73 140 75 194 74"/>
+      </g>
+      <path d="M96 19 C102 15 106 12 110 10" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-5 92.5 C60 91 160 93 225 92" fill="none" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- door frame -->
+    <path class="house__frame" d="M120 200 V135 a40 40 0 0 1 80 0 V200" fill="none" stroke="rgba(245,247,250,.28)" stroke-width="3"/>
+    <!-- sign with a tiny bone -->
+    <g class="house__sign" transform="rotate(-2 82 120)">
+      <rect x="60" y="112" width="44" height="16" rx="3" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="1.5"/>
+      <path d="M62 124 H102" fill="none" stroke="#c7bfaf" stroke-width="3"/>
+      <path d="M76.4 118.8 H87.6 A2.6 2.6 0 1 1 91.2 120 A2.6 2.6 0 1 1 87.6 121.2 H76.4 A2.6 2.6 0 1 1 72.8 120 A2.6 2.6 0 1 1 76.4 118.8 Z" fill="#fbfaf1" stroke="var(--ill-ink,#151a24)" stroke-width="1"/>
+      <circle cx="63.5" cy="115.5" r="1" fill="var(--ill-ink,#151a24)"/>
+      <circle cx="100.5" cy="115.5" r="1" fill="var(--ill-ink,#151a24)"/>
+    </g>
+  </g>
+</svg>
+<!-- /partial:house-front -->
+</template>
+<template data-for="dog-walk">
+<!-- partial:dog-walk -->
 <svg class="dog__art" viewBox="0 0 200 160" width="144" height="115" aria-hidden="true" focusable="false" overflow="visible">
   <ellipse class="dog__shadow" cx="100" cy="152" rx="60" ry="6" fill="#000" opacity=".3"/>
   <g class="dog__flip" style="transform-origin:100px 80px">
@@ -599,55 +639,9 @@
   </g>
 </svg>
 <!-- /partial:dog-walk -->
-                </g>
-              </g>
-              <g class="house house--front" transform="translate(40 16)">
-                <!-- partial:house-front -->
-<svg class="house__art" viewBox="0 0 220 200" width="242" height="220" aria-hidden="true" focusable="false" overflow="visible">
-  <g class="house__shake" style="transform-origin:110px 200px">
-    <ellipse class="house__shadow" cx="112" cy="201" rx="108" ry="5" fill="#000" opacity=".3"/>
-    <!-- front wall with the door cut out; the right jamb is the wall's right edge -->
-    <path class="house__wall" fill-rule="evenodd" d="M20.6 91.2 C60 89.6 140 90.8 200 90 V200 H20 C19.4 160 20.9 125 20.6 91.2 Z M120 200 V135 a40 40 0 0 1 80 0 V200 Z" fill="var(--tile-2,#1a2030)" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
-    <path class="house__eave-shadow" fill-rule="evenodd" d="M21 92 H199 V105 H21 Z M120 200 V135 a40 40 0 0 1 80 0 V200 Z" fill="#0b0e15" opacity=".35"/>
-    <g class="house__planks" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="2" stroke-linecap="round">
-      <path d="M25 112 C80 111.2 150 112.6 195 112"/>
-      <path d="M25 134 C60 133.4 90 134.4 116 134"/>
-      <path d="M25 156 C60 155.4 90 156.6 116 156"/>
-      <path d="M25 178 C60 177.4 90 178.4 116 178"/>
-      <path d="M64 92 V111 M136 92 V111 M100 135 V155 M46 157 V177"/>
-    </g>
-    <!-- round window -->
-    <g class="house__window">
-      <circle cx="44" cy="160" r="12.5" fill="var(--tile-1,#131822)" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2"/>
-      <path d="M44 148.5 V171.5 M32.5 160 H55.5" fill="none" stroke="var(--hairline,rgba(255,255,255,.08))" stroke-width="1.5"/>
-    </g>
-    <!-- roof -->
-    <g class="house__roof">
-      <path d="M-2 93 C40 62 76 34 110 9 C144 34 180 62 222 92 Z" fill="var(--action,#2997ff)" fill-opacity=".55" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
-      <g fill="none" stroke="#0f131c" stroke-opacity=".4" stroke-width="2.5" stroke-linecap="round">
-        <path d="M80 34 C96 33 124 35 140 34"/>
-        <path d="M53 54 C90 53 130 55 167 54"/>
-        <path d="M26 74 C80 73 140 75 194 74"/>
-      </g>
-      <path d="M96 19 C102 15 106 12 110 10" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/>
-      <path d="M-5 92.5 C60 91 160 93 225 92" fill="none" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="3" stroke-linecap="round"/>
-    </g>
-    <!-- door frame -->
-    <path class="house__frame" d="M120 200 V135 a40 40 0 0 1 80 0 V200" fill="none" stroke="rgba(245,247,250,.28)" stroke-width="3"/>
-    <!-- sign with a tiny bone -->
-    <g class="house__sign" transform="rotate(-2 82 120)">
-      <rect x="60" y="112" width="44" height="16" rx="3" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="1.5"/>
-      <path d="M62 124 H102" fill="none" stroke="#c7bfaf" stroke-width="3"/>
-      <path d="M76.4 118.8 H87.6 A2.6 2.6 0 1 1 91.2 120 A2.6 2.6 0 1 1 87.6 121.2 H76.4 A2.6 2.6 0 1 1 72.8 120 A2.6 2.6 0 1 1 76.4 118.8 Z" fill="#fbfaf1" stroke="var(--ill-ink,#151a24)" stroke-width="1"/>
-      <circle cx="63.5" cy="115.5" r="1" fill="var(--ill-ink,#151a24)"/>
-      <circle cx="100.5" cy="115.5" r="1" fill="var(--ill-ink,#151a24)"/>
-    </g>
-  </g>
-</svg>
-<!-- /partial:house-front -->
-              </g>
-              <g class="bone" id="yard-bone" style="transform: translate(560px, 198px)">
-                <!-- partial:bone -->
+</template>
+<template data-for="bone">
+<!-- partial:bone -->
 <svg class="bone__art" viewBox="0 0 120 48" width="96" height="38" aria-hidden="true" focusable="false" overflow="visible">
   <defs>
     <filter id="rim-bone" x="-10%" y="-25%" width="120%" height="150%" color-interpolation-filters="sRGB">
@@ -679,6 +673,4 @@
   </g>
 </svg>
 <!-- /partial:bone -->
-              </g>
-            </svg>
 </template>

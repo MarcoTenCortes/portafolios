@@ -700,22 +700,17 @@
           </ul>
         </div>
 
-        <div class="window yard" id="yard" role="group" aria-label="Patio con una caseta, un perro y un hueso" data-i18n-attr="aria-label:play.dog.aria" data-state="inHouse" data-bone="resting" data-bones="0" data-input="pointer" data-no-peek data-reveal>
-          <div class="window__bar" aria-hidden="true">
-            <span class="window__dots"><i></i><i></i><i></i></span>
-            <span class="window__title mono" data-i18n="play.dog.window_title">patio.svg — interactivo</span>
-          </div>
-          <div class="yard__body" data-lazy="yard">
-            <div class="yard__handle" id="yard-handle" aria-hidden="true" hidden></div>
-            <span class="yard__hint keycap" id="dog-hint" hidden data-i18n="play.dog.hint">Arrastra el hueso</span>
-            <span class="yard__count keycap mono" id="dog-count" hidden></span>
-          </div>
-          <div class="window__status">
-            <p class="window__status-text" id="dog-status" role="status" aria-live="polite" aria-atomic="true" data-i18n-live>El perro duerme en la caseta. Hay un hueso por ahí.</p>
-            <span class="keycap yard__key" id="dog-key" aria-hidden="true" data-i18n="play.dog.key_drag">Arrastra</span>
-            <button type="button" class="btn btn--secondary btn--sm" id="dog-feed" aria-disabled="true"><span data-i18n="play.dog.feed">Darle el hueso</span></button>
-          </div>
-        </div>
+      </div>
+
+      <!-- patio: caseta y hueso sueltos al pie de la seccion; el perro se asoma por el lateral (src/js/dog.js) -->
+      <div class="yard" id="yard" role="group" aria-label="Patio con una caseta, un perro y un hueso" data-i18n-attr="aria-label:play.dog.aria" data-state="inHouse" data-bone="resting" data-dog="hidden" data-bones="0" data-no-peek>
+        <div class="yard__house yard__house--back" data-lazy="house-back" aria-hidden="true"></div>
+        <div class="yard__dog dog" id="yard-dog" data-lazy="dog-walk" aria-hidden="true"></div>
+        <div class="yard__house yard__house--front" data-lazy="house-front" aria-hidden="true"></div>
+        <button type="button" class="yard__bone" id="yard-bone" data-lazy="bone" aria-label="Darle el hueso al perro" data-i18n-attr="aria-label:play.dog.feed" hidden></button>
+        <span class="yard__hint keycap" id="dog-hint" hidden data-i18n="play.dog.hint">Arrastra el hueso</span>
+        <span class="yard__count keycap mono" id="dog-count" hidden></span>
+        <p class="visually-hidden" id="dog-status" role="status" aria-live="polite" aria-atomic="true" data-i18n-live>El perro duerme en la caseta. Hay un hueso por ahí.</p>
       </div>
     </section>
   </main>
@@ -750,7 +745,7 @@
   <div class="play" id="play" aria-hidden="true" data-no-peek>
     <svg class="ink" id="ink" focusable="false"></svg>
     <div class="marker" id="marker" data-lazy="marker" data-state="lying" hidden>
-            <span class="keycap marker__hint" id="marker-hint" hidden data-i18n="play.marker.hint">Arrástrame</span>
+            <span class="keycap marker__hint" id="marker-hint" hidden data-i18n="play.marker.hint">Cógeme</span>
     </div>
   </div>
   <div class="dog-peek" id="dog-peek" data-lazy="dog-peek" aria-hidden="true" data-side="left" hidden>
