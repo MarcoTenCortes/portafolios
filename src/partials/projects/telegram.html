@@ -1,0 +1,237 @@
+<article class="pdoc" data-project="telegram">
+  <header class="pdoc__head">
+    <p class="eyebrow pdoc__kicker" data-i18n="projects.telegram.detail.kicker">Proyecto personal · bot de Telegram</p>
+    <h2 class="display-md" id="pdialog-title" data-i18n="projects.telegram.title">Bot de Telegram para las finanzas del piso</h2>
+    <p class="lead pdoc__lead" data-i18n="projects.telegram.detail.lead">Un bot para el grupo de Telegram de un piso de estudiantes con cuenta bancaria común. Consulta el saldo y los movimientos por Open Banking, dice quién no ha pagado y se encarga de los recordatorios que nadie cumple.</p>
+    <div class="pdoc__actions">
+      <a class="btn btn--primary btn--sm" href="https://github.com/MarcoTenCortes/botTelegramFinanzasPiso" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+    </div>
+    <ul class="chips chips--inline" aria-label="Tecnologías" data-i18n-attr="aria-label:projects.detail.tech">
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#python"/></svg><span>Python</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#telegram"/></svg><span>Telegram Bot API</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>python-telegram-bot</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Open Banking API</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>GoCardless</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>APScheduler</span></li>
+    </ul>
+  </header>
+
+  <dl class="pdoc__facts" aria-label="En cifras" data-i18n-attr="aria-label:projects.detail.facts">
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.telegram.detail.fact1_label">comandos de cuenta y recordatorios</dt><dd class="pdoc__fact-value" data-i18n="projects.telegram.detail.fact1_value">7</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.telegram.detail.fact2_label">endpoints bancarios: saldo, datos y movimientos</dt><dd class="pdoc__fact-value" data-i18n="projects.telegram.detail.fact2_value">3</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.telegram.detail.fact3_label">avisos automáticos: alquiler y morosos</dt><dd class="pdoc__fact-value" data-i18n="projects.telegram.detail.fact3_value">2</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.telegram.detail.fact4_label">de margen para saber quién no ha pagado</dt><dd class="pdoc__fact-value" data-i18n="projects.telegram.detail.fact4_value">20 días</dd></div>
+  </dl>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.context">Contexto</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.telegram.detail.context">En un piso con cuenta común, el dinero da más discusiones que los platos: pagos olvidados, saldos que nadie conoce y recordatorios perdidos en el chat. El grupo de Telegram ya era donde se hablaba de todo, así que el bot vive ahí y contesta con los datos reales de la cuenta.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.role">Qué hice</h3>
+    <div class="pdoc__content">
+      <ul class="bullets">
+        <li data-i18n="projects.telegram.detail.role1">Escribí el bot en Python con python-telegram-bot: cada comando es un manejador asíncrono y, en el grupo, solo responde si se le menciona.</li>
+        <li data-i18n="projects.telegram.detail.role2">Conecté la cuenta común a la API de Open Banking de GoCardless para /saldo, /iban y /transacciones, que enseña los seis últimos movimientos.</li>
+        <li data-i18n="projects.telegram.detail.role3">Monté /morosos: revisa las transferencias de los últimos 20 días y dice quién ha pagado su parte y quién no.</li>
+        <li data-i18n="projects.telegram.detail.role4">Añadí recordatorios que se guardan en reminders.json y se reprograman al arrancar, y preparé el bot para el límite de la API: si responde 429, dice cuánto falta y reintenta.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.architecture">Arquitectura</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.telegram.detail.arch_intro">Un único proceso de Python escucha a Telegram por long polling y ejecuta los avisos programados en la misma cola de tareas. Los tokens de Telegram y de GoCardless entran como argumentos al arrancar y nunca se guardan en el repositorio.</p>
+    </div>
+    <figure class="pdoc__figure pdoc__wide">
+      <div class="pdoc__canvas">
+        <!-- ancho: el chat a la izquierda, el bot en medio, GoCardless y el banco a la derecha -->
+        <svg class="dg pdoc__diagram pdoc__diagram--wide" viewBox="0 0 880 366" width="880" height="366" role="img" aria-label="Arquitectura del bot de finanzas" data-i18n-attr="aria-label:projects.telegram.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="telegram-w-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="telegram-w-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <!-- el grupo de Telegram -->
+          <rect class="dg-frame" x="16" y="14" width="236" height="338" rx="14"/>
+          <circle class="dg-box" cx="40" cy="40" r="12"/>
+          <path d="M34.5 40.5l10-4.5-2 9-3-2.4-1.8 1.7.3-3" fill="none" style="stroke: var(--mute)" stroke-width="1.2" stroke-linejoin="round"/>
+          <text class="dg-strong" x="62" y="37" font-weight="600" data-i18n="projects.telegram.detail.dg_group">grupo del piso</text>
+          <text class="dg-tiny" x="62" y="53">Telegram</text>
+          <path class="dg-rule" d="M16 66H252"/>
+          <rect class="dg-box dg-box--soft" x="128" y="80" width="110" height="30" rx="10"/>
+          <text x="140" y="100">/saldo @bot</text>
+          <rect class="dg-box" x="30" y="120" width="176" height="50" rx="10"/>
+          <rect class="dg-bar dg-bar--ink" x="42" y="132" width="96" height="6" rx="3"/>
+          <rect class="dg-bar" x="42" y="145" width="140" height="6" rx="3"/>
+          <rect class="dg-bar" x="42" y="158" width="72" height="6" rx="3"/>
+          <rect class="dg-box dg-box--soft" x="117" y="182" width="121" height="30" rx="10"/>
+          <text x="128" y="202">/morosos @bot</text>
+          <rect class="dg-box" x="30" y="222" width="176" height="52" rx="10"/>
+          <rect class="dg-bar dg-bar--ink" x="42" y="233" width="84" height="6" rx="3"/>
+          <circle class="dg-fill-accent" cx="46" cy="251" r="3"/><rect class="dg-bar" x="56" y="248" width="96" height="6" rx="3"/>
+          <circle cx="46" cy="264" r="3" fill="none" style="stroke: var(--mute)" stroke-width="1.2"/><rect class="dg-bar" x="56" y="261" width="70" height="6" rx="3"/>
+          <rect class="dg-box dg-box--accent" x="30" y="288" width="196" height="48" rx="10"/>
+          <text class="dg-tiny dg-accent" x="42" y="307" data-i18n="projects.telegram.detail.dg_auto">aviso automático</text>
+          <rect class="dg-bar" x="42" y="318" width="150" height="6" rx="3"/>
+
+          <!-- ① comando y respuesta por long polling -->
+          <path class="dg-line" marker-end="url(#telegram-w-arrow)" d="M254 108H314"/>
+          <path class="dg-line dg-line--dash" marker-end="url(#telegram-w-arrow)" d="M314 140H254"/>
+          <text class="dg-tiny dg-mid" x="284" y="160">polling</text>
+
+          <!-- el bot -->
+          <rect class="dg-frame" x="316" y="14" width="256" height="338" rx="14"/>
+          <text class="dg-title" x="334" y="43" data-i18n="projects.telegram.detail.dg_bot">Bot en Python</text>
+          <text class="dg-sub" x="334" y="62">python-telegram-bot</text>
+          <path class="dg-rule" d="M316 78H572"/>
+          <rect class="dg-box" x="332" y="94" width="224" height="64" rx="10"/>
+          <text class="dg-strong" x="348" y="121" data-i18n="projects.telegram.detail.dg_commands">comandos</text>
+          <text class="dg-sub" x="348" y="140" data-i18n="projects.telegram.detail.dg_handlers">manejadores async</text>
+          <rect class="dg-box dg-box--accent" x="332" y="176" width="224" height="64" rx="10"/>
+          <text class="dg-strong" x="348" y="203">JobQueue</text>
+          <text class="dg-sub" x="348" y="222" data-i18n="projects.telegram.detail.dg_jobs">avisos y recordatorios</text>
+          <path class="dg-line" marker-start="url(#telegram-w-arrow)" marker-end="url(#telegram-w-arrow)" d="M444 242V274"/>
+          <rect class="dg-box dg-box--soft" x="332" y="276" width="224" height="56" rx="10"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <path d="M350 290h11l6 6v22h-17z"/><path d="M361 290v6h6"/>
+          </g>
+          <text class="dg-strong" x="380" y="300">reminders.json</text>
+          <text class="dg-sub" x="380" y="318" data-i18n="projects.telegram.detail.dg_persist">sobrevive a reinicios</text>
+
+          <!-- ⑤ los avisos automáticos vuelven al grupo -->
+          <path class="dg-line dg-line--accent" marker-end="url(#telegram-w-arrow-accent)" d="M316 208H284V312H254"/>
+
+          <!-- ② consulta a la API bancaria -->
+          <path class="dg-line" marker-end="url(#telegram-w-arrow)" d="M574 112H634"/>
+          <path class="dg-line dg-line--dash" marker-end="url(#telegram-w-arrow)" d="M634 140H574"/>
+          <text class="dg-tiny dg-mid" x="604" y="160">JSON</text>
+
+          <!-- GoCardless y el banco -->
+          <rect class="dg-frame" x="636" y="30" width="228" height="166" rx="14"/>
+          <text class="dg-title dg-mid" x="750" y="60">GoCardless</text>
+          <text class="dg-sub dg-mid" x="750" y="80">Open Banking API</text>
+          <rect class="dg-box" x="660" y="96" width="180" height="24" rx="8"/>
+          <rect class="dg-box" x="660" y="126" width="180" height="24" rx="8"/>
+          <rect class="dg-box" x="660" y="156" width="180" height="24" rx="8"/>
+          <text class="dg-mid" x="750" y="112.5">/balances</text>
+          <text class="dg-mid" x="750" y="142.5">/details</text>
+          <text class="dg-mid" x="750" y="172.5">/transactions</text>
+          <path class="dg-line" marker-start="url(#telegram-w-arrow)" marker-end="url(#telegram-w-arrow)" d="M750 198V260"/>
+          <rect class="dg-box" x="636" y="262" width="228" height="70" rx="12"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <path d="M659 285H689L674 276Z"/><path d="M663 289V303M670 289V303M678 289V303M685 289V303M659 307H689"/>
+          </g>
+          <text class="dg-title" x="704" y="293" data-i18n="projects.telegram.detail.dg_bank">banco</text>
+          <text class="dg-sub" x="704" y="312" data-i18n="projects.telegram.detail.dg_joint">cuenta común</text>
+
+          <g class="dg-badge">
+            <circle cx="284" cy="108" r="10"/><text x="284" y="112">1</text>
+            <circle cx="604" cy="112" r="10"/><text x="604" y="116">2</text>
+            <circle cx="750" cy="229" r="10"/><text x="750" y="233">3</text>
+            <circle cx="332" cy="304" r="10"/><text x="332" y="308">4</text>
+            <circle cx="284" cy="262" r="10"/><text x="284" y="266">5</text>
+          </g>
+        </svg>
+
+        <!-- estrecho: el chat arriba, el bot en medio, GoCardless y el banco abajo; los avisos vuelven por la izquierda -->
+        <svg class="dg pdoc__diagram pdoc__diagram--tall" viewBox="0 0 360 766" width="360" height="766" role="img" aria-label="Arquitectura del bot de finanzas" data-i18n-attr="aria-label:projects.telegram.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="telegram-t-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="telegram-t-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <rect class="dg-frame" x="24" y="10" width="326" height="208" rx="14"/>
+          <circle class="dg-box" cx="48" cy="36" r="12"/>
+          <path d="M42.5 36.5l10-4.5-2 9-3-2.4-1.8 1.7.3-3" fill="none" style="stroke: var(--mute)" stroke-width="1.2" stroke-linejoin="round"/>
+          <text class="dg-strong" x="70" y="33" font-weight="600" data-i18n="projects.telegram.detail.dg_group">grupo del piso</text>
+          <text class="dg-tiny" x="70" y="49">Telegram</text>
+          <path class="dg-rule" d="M24 62H350"/>
+          <rect class="dg-box dg-box--soft" x="226" y="74" width="110" height="28" rx="10"/>
+          <text x="238" y="93">/saldo @bot</text>
+          <rect class="dg-box" x="36" y="112" width="176" height="44" rx="10"/>
+          <rect class="dg-bar dg-bar--ink" x="48" y="122" width="96" height="6" rx="3"/>
+          <rect class="dg-bar" x="48" y="134" width="140" height="6" rx="3"/>
+          <rect class="dg-bar" x="48" y="146" width="72" height="5" rx="2.5"/>
+          <rect class="dg-box dg-box--accent" x="36" y="166" width="196" height="40" rx="10"/>
+          <text class="dg-tiny dg-accent" x="48" y="183" data-i18n="projects.telegram.detail.dg_auto">aviso automático</text>
+          <rect class="dg-bar" x="48" y="191" width="150" height="5" rx="2.5"/>
+
+          <path class="dg-line" marker-end="url(#telegram-t-arrow)" d="M150 220V262"/>
+          <path class="dg-line dg-line--dash" marker-end="url(#telegram-t-arrow)" d="M190 262V220"/>
+          <text class="dg-tiny" x="204" y="245">polling</text>
+
+          <rect class="dg-frame" x="24" y="264" width="326" height="284" rx="14"/>
+          <text class="dg-title" x="40" y="292" data-i18n="projects.telegram.detail.dg_bot">Bot en Python</text>
+          <text class="dg-sub" x="40" y="311">python-telegram-bot</text>
+          <path class="dg-rule" d="M24 326H350"/>
+          <rect class="dg-box" x="40" y="340" width="294" height="52" rx="10"/>
+          <text class="dg-strong" x="56" y="362" data-i18n="projects.telegram.detail.dg_commands">comandos</text>
+          <text class="dg-sub" x="56" y="380" data-i18n="projects.telegram.detail.dg_handlers">manejadores async</text>
+          <rect class="dg-box dg-box--accent" x="40" y="404" width="294" height="52" rx="10"/>
+          <text class="dg-strong" x="56" y="426">JobQueue</text>
+          <text class="dg-sub" x="56" y="444" data-i18n="projects.telegram.detail.dg_jobs">avisos y recordatorios</text>
+          <path class="dg-line" marker-start="url(#telegram-t-arrow)" marker-end="url(#telegram-t-arrow)" d="M187 458V482"/>
+          <rect class="dg-box dg-box--soft" x="40" y="484" width="294" height="50" rx="10"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <path d="M56 496h10l5 5v20h-15z"/><path d="M66 496v5h5"/>
+          </g>
+          <text class="dg-strong" x="84" y="505">reminders.json</text>
+          <text class="dg-sub" x="84" y="522" data-i18n="projects.telegram.detail.dg_persist">sobrevive a reinicios</text>
+
+          <path class="dg-line dg-line--accent" marker-end="url(#telegram-t-arrow-accent)" d="M24 430H12V186H22"/>
+
+          <path class="dg-line" marker-end="url(#telegram-t-arrow)" d="M150 550V592"/>
+          <path class="dg-line dg-line--dash" marker-end="url(#telegram-t-arrow)" d="M190 592V550"/>
+          <text class="dg-tiny" x="204" y="575">JSON</text>
+
+          <rect class="dg-frame" x="24" y="594" width="184" height="158" rx="14"/>
+          <text class="dg-title dg-mid" x="116" y="622">GoCardless</text>
+          <text class="dg-sub dg-mid" x="116" y="640">Open Banking API</text>
+          <rect class="dg-box" x="38" y="654" width="156" height="24" rx="8"/>
+          <rect class="dg-box" x="38" y="684" width="156" height="24" rx="8"/>
+          <rect class="dg-box" x="38" y="714" width="156" height="24" rx="8"/>
+          <text class="dg-mid" x="116" y="670.5">/balances</text>
+          <text class="dg-mid" x="116" y="700.5">/details</text>
+          <text class="dg-mid" x="116" y="730.5">/transactions</text>
+          <path class="dg-line" marker-start="url(#telegram-t-arrow)" marker-end="url(#telegram-t-arrow)" d="M210 676H238"/>
+          <rect class="dg-box" x="240" y="630" width="110" height="92" rx="12"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <path d="M283 653H313L298 644Z"/><path d="M287 657V669M294 657V669M302 657V669M309 657V669M283 673H313"/>
+          </g>
+          <text class="dg-title dg-mid" x="295" y="694" data-i18n="projects.telegram.detail.dg_bank">banco</text>
+          <text class="dg-sub dg-mid" x="295" y="711" data-i18n="projects.telegram.detail.dg_joint">cuenta común</text>
+
+          <g class="dg-badge">
+            <circle cx="150" cy="241" r="10"/><text x="150" y="245">1</text>
+            <circle cx="150" cy="571" r="10"/><text x="150" y="575">2</text>
+            <circle cx="246" cy="630" r="10"/><text x="246" y="634">3</text>
+            <circle cx="40" cy="509" r="10"/><text x="40" y="513">4</text>
+            <circle cx="12" cy="308" r="10"/><text x="12" y="312">5</text>
+          </g>
+        </svg>
+      </div>
+    </figure>
+    <ol class="pdoc__steps pdoc__wide">
+      <li data-i18n="projects.telegram.detail.step1">Alguien escribe un comando en el grupo mencionando al bot, que lo recoge por long polling.</li>
+      <li data-i18n="projects.telegram.detail.step2">El manejador llama a la API de GoCardless con el token de acceso: saldo, datos de la cuenta o movimientos.</li>
+      <li data-i18n="projects.telegram.detail.step3">GoCardless lee la cuenta común del banco por Open Banking y el bot resume la respuesta en el chat.</li>
+      <li data-i18n="projects.telegram.detail.step4">Los recordatorios se programan en la cola de tareas y se guardan en reminders.json para sobrevivir a un reinicio.</li>
+      <li data-i18n="projects.telegram.detail.step5">Cada mañana la cola comprueba si toca aviso: el pago del alquiler a primeros de mes y los morosos a finales.</li>
+    </ol>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.learned">Qué aprendí</h3>
+    <div class="pdoc__content">
+      <p class="pdoc__quote" data-i18n="projects.telegram.detail.learned">Que una herramienta pequeña se usa si vive donde ya está la gente. Y que, cuando dependes de una API externa, hay que diseñar para el fallo: límites de peticiones, reintentos y mensajes que expliquen qué pasa en vez de quedarse callados.</p>
+    </div>
+  </section>
+
+  <footer class="pdoc__footer">
+    <button type="button" class="btn btn--secondary pdoc__back" data-pdialog-close><span class="pdoc__back-arrow" aria-hidden="true">←</span><span data-i18n="projects.detail.back">Volver</span></button>
+    <a class="btn btn--secondary btn--sm" href="https://github.com/MarcoTenCortes/botTelegramFinanzasPiso" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+  </footer>
+</article>

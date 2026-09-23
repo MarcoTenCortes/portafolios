@@ -36,6 +36,28 @@ export const i18n = {
     return value;
   },
 
+  // Aplica [data-i18n] y [data-i18n-attr] a los descendientes de `root` (el documento entero o un fragmento
+  // recién insertado, como la ficha de un proyecto). `root` en sí no se traduce: querySelectorAll no lo incluye.
+  translate(root = document) {
+    // texto de elementos hoja
+    for (const el of root.querySelectorAll('[data-i18n]')) {
+      if (el.id === 'rig-status' || el.hasAttribute('data-i18n-live')) continue; // lo gestionan rig.js / dog.js
+      if (DEV && el.children.length > 0) console.warn('[i18n] data-i18n en un elemento con hijos:', el);
+      el.textContent = this.t(el.dataset.i18n);
+    }
+
+    // atributos: data-i18n-attr="aria-label:clave;href:otra.clave"
+    for (const el of root.querySelectorAll('[data-i18n-attr]')) {
+      for (const pair of el.dataset.i18nAttr.split(';')) {
+        const idx = pair.indexOf(':');
+        if (idx < 1) continue;
+        const attr = pair.slice(0, idx).trim();
+        const key = pair.slice(idx + 1).trim();
+        el.setAttribute(attr, this.t(key));
+      }
+    }
+  },
+
   init() {
     const saved = storageGet('lang');
     const fromNav = (navigator.language || '').toLowerCase().startsWith('en') ? 'en' : 'es';
@@ -54,23 +76,7 @@ export const i18n = {
     const root = document.documentElement;
     root.lang = lang;
 
-    // texto de elementos hoja
-    for (const el of document.querySelectorAll('[data-i18n]')) {
-      if (el.id === 'rig-status' || el.hasAttribute('data-i18n-live')) continue; // lo gestionan rig.js / dog.js
-      if (DEV && el.children.length > 0) console.warn('[i18n] data-i18n en un elemento con hijos:', el);
-      el.textContent = this.t(el.dataset.i18n);
-    }
-
-    // atributos: data-i18n-attr="aria-label:clave;href:otra.clave"
-    for (const el of document.querySelectorAll('[data-i18n-attr]')) {
-      for (const pair of el.dataset.i18nAttr.split(';')) {
-        const idx = pair.indexOf(':');
-        if (idx < 1) continue;
-        const attr = pair.slice(0, idx).trim();
-        const key = pair.slice(idx + 1).trim();
-        el.setAttribute(attr, this.t(key));
-      }
-    }
+    this.translate(document);
 
     // enlaces al CV: PDF local (descarga) o enlace externo
     const href = this.t('hero.cv_href');

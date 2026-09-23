@@ -368,6 +368,8 @@
     .nav__links { display: block; }
     .nav__cv { display: inline-flex; }
     .nav__burger { display: none; }
+    /* entre 768 y 939 px no caben marca, enlaces y CV: el CV sigue en el hero y el nombre en el pie */
+    @media (max-width: 939px) { .nav__name, .nav__cv { display: none; } .nav__links a { padding-inline: 8px; } }
   }
 
   /* sheet móvil */
@@ -388,34 +390,36 @@
   html:not(.js) .nav__links { display: block; }
   html:not(.js) .nav__links ul { flex-wrap: wrap; }
   html:not(.js) .nav__burger { display: none; }
-  html:not(.js) :is(.play, .dog-peek, .yard) { display: none !important; }
+  html:not(.js) :is(.play, .dog-peek, .yard, .skills__lava, .hero__desk) { display: none !important; }
   html:not(.js) .card__media[data-lazy] { display: none; }
 
   /* ---------- hero ---------- */
-  .hero { min-height: calc(100vh - var(--nav-h)); min-height: calc(100svh - var(--nav-h)); display: grid; align-items: center; padding-block: 72px 56px; overflow: hidden; }
+  .hero { min-height: calc(100vh - var(--nav-h)); min-height: calc(100svh - var(--nav-h)); display: grid; align-items: center; padding-block: 56px; overflow: hidden; }
   .hero::before {
     content: ""; position: absolute; inset: 0; pointer-events: none;
     background: radial-gradient(720px circle at 72% 32%, var(--action-glow), transparent 65%);
   }
-  .hero__grid { display: grid; gap: 40px; align-items: center; position: relative; }
+  .hero__grid { display: grid; gap: 28px; align-items: center; position: relative; }
   .hero__copy { display: grid; gap: 22px; }
   .hero__copy .eyebrow { color: var(--action); }
   .hero__tagline { max-width: 34ch; }
   .hero__actions { display: flex; flex-wrap: wrap; gap: 10px; }
   .hero__meta { display: grid; gap: 12px; }
-  .hero__media { position: relative; display: grid; place-items: center; order: -1; padding: 5% 0; }
+  /* retrato (disco + busto en la misma celda) y debajo el escritorio de la lampara (.hero__desk, capa play).
+     --hero-w es el ancho del busto; en escritorio se ajusta al alto de la ventana para que retrato y
+     escritorio quepan en el primer pantallazo (disco 1,04·w + escritorio 0,46·w ≈ 1,5·w). */
+  .hero__media { --hero-w: 232px; position: relative; display: grid; grid-template-columns: 100%; place-items: center; row-gap: 4px; order: -1; }
   .hero__disc {
-    position: absolute; height: 100%; max-height: 560px; aspect-ratio: 1; border-radius: 50%;
+    position: relative; grid-area: 1 / 1; width: min(calc(var(--hero-w) * 1.04), 100%); aspect-ratio: 1; border-radius: 50%;
     background: var(--tile-1); border: 1px solid var(--hairline);
   }
-  .hero__bust { position: relative; width: 260px; height: auto; }
+  .hero__bust { position: relative; grid-area: 1 / 1; width: var(--hero-w); height: auto; }
   @media (min-width: 768px) {
     .hero__grid { grid-template-columns: 1.1fr 0.9fr; gap: 48px; }
-    .hero__media { order: 0; }
-    .hero__bust { width: 380px; }
+    .hero__media { order: 0; --hero-w: clamp(300px, calc((100vh - 166px) / 1.5), 380px); --hero-w: clamp(300px, calc((100svh - 166px) / 1.5), 380px); }
   }
   @media (min-width: 1080px) {
-    .hero__bust { width: 480px; }
+    .hero__media { --hero-w: clamp(340px, calc((100vh - 166px) / 1.5), 480px); --hero-w: clamp(340px, calc((100svh - 166px) / 1.5), 480px); }
     .hero__copy { gap: 26px; }
   }
 
@@ -746,11 +750,328 @@
   @keyframes marker-wobble { 0%, 100% { transform: rotate(0deg) translateY(0); } 30% { transform: rotate(-2.5deg) translateY(-2px); } 65% { transform: rotate(2deg) translateY(-1px); } }
   @keyframes faro-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
 
-  /* [css:lamp] lampara y escritorio del hero */
+  /* lampara y escritorio del hero (src/partials/desk.svg + src/js/lamp.js): Marco de espaldas bajo su retrato.
+     El hueco se reserva con aspect-ratio antes de estampar el SVG (sin CLS). Apagada, .desk__room queda en
+     penumbra (la opacidad del grupo hace de velo sin oscurecer el fondo) y la cadena se balancea; .is-lit
+     enciende cono, monitor y bucles. La cadena real es #lamp-pull, un boton de 44 px encima del dibujo. */
+  .hero__desk { position: relative; grid-area: 2 / 1; width: min(calc(var(--hero-w, 250px) * 1.04), 100%); aspect-ratio: 1000 / 440; }
+  .hero__desk-art {
+    position: absolute; inset: 0; pointer-events: none;
+    -webkit-mask-image: linear-gradient(#000 78%, transparent); mask-image: linear-gradient(#000 78%, transparent);
+  }
+  .hero__desk-art .desk__art { display: block; width: 100%; height: 100%; animation: desk-in 600ms var(--ease-out) both; }
+  .hero__pull {
+    position: absolute; left: calc(80.8% - 22px); top: calc(60.2% - 42px); z-index: 2; width: 44px; height: 58px;
+    border-radius: 14px; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  }
+  .hero__pull:focus-visible { outline: 2px solid var(--action); outline-offset: 2px; }
+  /* la pista cuelga bajo la bolita, con un pico que apunta a la cadena (x = 80,8 % del dibujo) */
+  .hero__desk-hint {
+    position: absolute; right: calc(19.2% - 34px); top: calc(60.2% + 17px); z-index: 3; white-space: nowrap; pointer-events: none;
+    color: var(--ink); background: var(--action-soft); border-color: rgba(41, 151, 255, 0.4);
+  }
+  .hero__desk-hint::before {
+    content: ""; position: absolute; right: 29px; top: -7px;
+    border: 5px solid transparent; border-top: 0; border-bottom: 6px solid rgba(41, 151, 255, 0.4);
+  }
+  .hero__desk-hint:not([hidden]) { animation: desk-hint 420ms var(--ease-out) both, hint-pulse 900ms var(--ease-out) 700ms 2; }
 
-  /* [css:lava] lampara de lava */
+  .desk__art :is(.desk__cord, .desk__cord-pull, .desk__head, .desk__head-rim, .desk__hand, .desk__line, .desk__steam path) { transform-box: view-box; }
+  .desk__room, .desk__rimlight, .desk__screen-on, .desk__halo, .desk__light, .desk__warm, .desk__inner-on, .desk__inner-off,
+  .desk__bulb-on, .desk__bulb-off, .desk__bulb-glow { transition: opacity 300ms var(--ease-out); }
+  .desk__room { opacity: 0.3; }
+  .desk__rimlight { opacity: 0.5; }
+  .desk__screen-on, .desk__halo, .desk__light, .desk__warm, .desk__inner-on, .desk__bulb-on, .desk__bulb-glow, .desk__steam path { opacity: 0; }
+  .desk__bead { transition: fill var(--dur-fast); }
+  .hero__desk:has(.hero__pull:is(:hover, :focus-visible)) .desk__bead { fill: #f5f7fa; }
+  .hero__desk.is-lit .desk__room { opacity: 1; }
+  .hero__desk.is-lit .desk__rimlight { opacity: 0.8; }
+  .hero__desk.is-lit :is(.desk__screen-on, .desk__halo, .desk__light, .desk__inner-on, .desk__bulb-on, .desk__bulb-glow) { opacity: 1; }
+  .hero__desk.is-lit .desk__warm { opacity: 0.7; }
+  .hero__desk.is-lit :is(.desk__inner-off, .desk__bulb-off) { opacity: 0; }
+  /* luz calida muy suave en la parte baja del retrato */
+  .hero__disc::after {
+    content: ""; position: absolute; inset: -1px; border-radius: inherit; pointer-events: none; opacity: 0;
+    background: radial-gradient(75% 55% at 70% 100%, rgba(255, 190, 115, 0.26), rgba(255, 190, 115, 0.08) 45%, transparent 75%);
+    transition: opacity 400ms var(--ease-out);
+  }
+  .hero__media:has(.hero__desk.is-lit) .hero__disc::after { opacity: 1; }
+
+  /* bucles: la cadena invita a tirar mientras esta apagada; encendida, Marco teclea */
+  .hero__desk:not(.is-lit) .desk__cord { animation: desk-swing 2.2s ease-in-out -1.1s infinite alternate; }
+  .hero__desk.is-lit :is(.desk__head, .desk__head-rim) { animation: desk-head 3.6s ease-in-out infinite alternate; }
+  .hero__desk.is-lit .desk__hand--l { animation: desk-type-l 1.3s linear infinite; }
+  .hero__desk.is-lit .desk__hand--r { animation: desk-type-r 1.1s linear infinite; }
+  .hero__desk.is-lit .desk__steam path { animation: desk-steam 3s ease-in-out infinite; }
+  .hero__desk.is-lit .desk__steam path:nth-child(2) { animation-delay: -1s; }
+  .hero__desk.is-lit .desk__steam path:nth-child(3) { animation-delay: -2s; }
+  .hero__desk.is-lit .desk__line--1 { animation: desk-code-1 8s linear infinite; }
+  .hero__desk.is-lit .desk__line--2 { animation: desk-code-2 8s linear infinite; }
+  .hero__desk.is-lit .desk__line--3 { animation: desk-code-3 8s linear infinite; }
+  .hero__desk.is-lit .desk__line--4 { animation: desk-code-4 8s linear infinite; }
+  .hero__desk.is-lit .desk__line--5 { animation: desk-code-5 8s linear infinite; }
+  .hero__desk.is-lit .desk__line--6 { animation: desk-code-6 8s linear infinite; }
+  .hero__desk.is-lit .desk__line--7 { animation: desk-code-7 8s linear infinite; }
+  .hero__desk.is-lit .desk__line--8 { animation: desk-code-8 8s linear infinite; }
+  .hero__desk.is-offscreen *, .hero__desk.is-hidden * { animation-play-state: paused !important; }
+
+  @keyframes desk-in { from { opacity: 0; } }
+  @keyframes desk-hint { from { opacity: 0; transform: translateY(4px); } }
+  @keyframes desk-swing { from { transform: rotate(-4deg); } to { transform: rotate(4deg); } }
+  @keyframes desk-head { from { transform: translate(0, 0) rotate(-1.2deg); } to { transform: translate(1px, 0) rotate(1.4deg); } }
+  @keyframes desk-type-l {
+    0%, 14%, 30%, 44%, 66%, 80%, 100% { transform: translate(0, 0) rotate(0deg); }
+    7%, 37%, 73% { transform: translate(0, 2.5px) rotate(-2.5deg); }
+  }
+  @keyframes desk-type-r {
+    0%, 9%, 23%, 41%, 55%, 79%, 93%, 100% { transform: translate(0, 0) rotate(0deg); }
+    16%, 48%, 86% { transform: translate(0, 2.5px) rotate(2.5deg); }
+  }
+  @keyframes desk-steam { 0% { transform: translateY(6px); opacity: 0; } 35% { opacity: 0.45; } 100% { transform: translateY(-22px); opacity: 0; } }
+  /* cada linea de codigo se escribe a trozos (steps) en su turno; todas se borran juntas al final del ciclo */
+  @keyframes desk-code-1 { 0%, 4% { transform: scaleX(0); opacity: 1; animation-timing-function: steps(5, end); } 9.5%, 88% { transform: scaleX(1); opacity: 1; } 93%, 100% { transform: scaleX(1); opacity: 0; } }
+  @keyframes desk-code-2 { 0%, 11.5% { transform: scaleX(0); opacity: 1; animation-timing-function: steps(6, end); } 17%, 88% { transform: scaleX(1); opacity: 1; } 93%, 100% { transform: scaleX(1); opacity: 0; } }
+  @keyframes desk-code-3 { 0%, 19% { transform: scaleX(0); opacity: 1; animation-timing-function: steps(5, end); } 24.5%, 88% { transform: scaleX(1); opacity: 1; } 93%, 100% { transform: scaleX(1); opacity: 0; } }
+  @keyframes desk-code-4 { 0%, 26.5% { transform: scaleX(0); opacity: 1; animation-timing-function: steps(7, end); } 32%, 88% { transform: scaleX(1); opacity: 1; } 93%, 100% { transform: scaleX(1); opacity: 0; } }
+  @keyframes desk-code-5 { 0%, 34% { transform: scaleX(0); opacity: 1; animation-timing-function: steps(6, end); } 39.5%, 88% { transform: scaleX(1); opacity: 1; } 93%, 100% { transform: scaleX(1); opacity: 0; } }
+  @keyframes desk-code-6 { 0%, 41.5% { transform: scaleX(0); opacity: 1; animation-timing-function: steps(6, end); } 47%, 88% { transform: scaleX(1); opacity: 1; } 93%, 100% { transform: scaleX(1); opacity: 0; } }
+  @keyframes desk-code-7 { 0%, 49% { transform: scaleX(0); opacity: 1; animation-timing-function: steps(8, end); } 54.5%, 88% { transform: scaleX(1); opacity: 1; } 93%, 100% { transform: scaleX(1); opacity: 0; } }
+  @keyframes desk-code-8 { 0%, 56.5% { transform: scaleX(0); opacity: 1; animation-timing-function: steps(6, end); } 62%, 88% { transform: scaleX(1); opacity: 1; } 93%, 100% { transform: scaleX(1); opacity: 0; } }
+
+  /* [css:lava] lampara de lava: ocupa las celdas que sobran en la ultima fila de Habilidades.
+     El SVG va en absoluto para no empujar la fila: la altura la marca la tarjeta vecina (o el min-height). */
+  .skills__lava { position: relative; min-height: 212px; pointer-events: none; }
+  @media (min-width: 768px) { .skills__lava { grid-column: span 1; min-height: 248px; } }
+  @media (min-width: 1080px) { .skills__lava { grid-column: span 2; } }
+  .skills__lava .lava__art {
+    position: absolute; inset: 0; z-index: 1; margin: auto; width: auto; height: 100%; aspect-ratio: 1 / 2;
+    overflow: visible; animation: lava-in 900ms var(--ease-out) both;
+  }
+  /* resplandor ambiental (dentro de la celda: closest-side se apaga en sus bordes) y charco de luz en el suelo;
+     solo existen cuando la plantilla ya se ha estampado, y entran a la vez que la lampara */
+  .skills__lava:not(:empty)::before, .skills__lava:not(:empty)::after {
+    content: ""; position: absolute; left: 50%; translate: -50% 0; pointer-events: none;
+    animation: lava-glow-in 900ms var(--ease-out) both;
+  }
+  .skills__lava:not(:empty)::before {
+    top: 0; bottom: 0; width: min(100%, 380px);
+    background: radial-gradient(closest-side at 50% 44%, rgba(255, 158, 100, .34), rgba(255, 150, 96, .19) 22%, rgba(255, 150, 96, .08) 48%, rgba(255, 150, 96, .02) 74%, transparent);
+  }
+  .skills__lava:not(:empty)::after {
+    bottom: -6px; height: 22px; width: min(100%, 220px);
+    background: radial-gradient(closest-side, rgba(255, 168, 110, .2), rgba(255, 168, 110, .06) 55%, transparent);
+  }
+
+  .lava__blob { transform-box: fill-box; transform-origin: center; animation: lava-rise var(--dur, 20s) ease-in-out var(--delay, 0s) infinite alternate, lava-breathe var(--breathe, 7s) ease-in-out var(--delay, 0s) infinite alternate; }
+  /* recorridos relativos a la pose de reposo del SVG (que es la de reduced-motion): de la piscina (y ~ 300) al tapon (y ~ 105) */
+  .lava__blob--1 { --x0: 0px; --y0: 0px; --x1: 6px; --y1: -140px; --dur: 23s; --delay: -4s; --breathe: 6s; }
+  .lava__blob--2 { --x0: 4px; --y0: 88px; --x1: -6px; --y1: -74px; --dur: 17s; --delay: -9s; --breathe: 8s; }
+  .lava__blob--3 { --x0: -18px; --y0: 188px; --x1: -6px; --y1: -2px; --dur: 27s; --delay: -15s; --breathe: 5s; }
+  .lava__blob--4 { --x0: 6px; --y0: 110px; --x1: 12px; --y1: -26px; --dur: 20s; --delay: -2s; --breathe: 9s; }
+  .lava__blob--5 { --x0: 0px; --y0: 38px; --x1: 8px; --y1: -146px; --dur: 14s; --delay: -6s; --breathe: 5.5s; }
+  .lava__blob--6 { --x0: 0px; --y0: 0px; --x1: -22px; --y1: -110px; --dur: 28s; --delay: -20s; --breathe: 7.5s; }
+  .lava__pool { transform-box: fill-box; transform-origin: 50% 100%; animation: lava-pool 11s ease-in-out -3s infinite alternate; }
+  .skills__lava.is-offscreen *, .skills__lava.is-hidden * { animation-play-state: paused !important; }
+  .skills__lava.is-offscreen::before, .skills__lava.is-offscreen::after, .skills__lava.is-hidden::before, .skills__lava.is-hidden::after { animation-play-state: paused !important; }
+
+  @keyframes lava-rise { from { translate: var(--x0) var(--y0); } to { translate: var(--x1) var(--y1); } }
+  @keyframes lava-breathe { from { scale: 1.06 .95; } to { scale: .95 1.07; } }
+  @keyframes lava-pool { from { scale: 1 .88; } to { scale: 1.02 1.1; } }
+  @keyframes lava-in { from { opacity: 0; translate: 0 10px; } }
+  @keyframes lava-glow-in { from { opacity: 0; } }
 
   /* [css:project] subpaginas de proyectos */
+  /* tarjetas: toda la tarjeta abre su ficha; «Más detalles» es la entrada accesible (src/js/projects.js) */
+  .projects__grid .card[data-project] { transition: border-color var(--dur-base), background var(--dur-base), box-shadow var(--dur-base); }
+  html.js .projects__grid .card[data-project] { cursor: pointer; }
+  html:not(.js) .card__more { display: none; }
+  .card__actions:has(.card__more) { align-items: center; }
+  .card__more { margin-left: auto; }
+  .card__more .arrow { transition: transform var(--dur-fast) var(--ease-out); }
+  .card__more:focus-visible .arrow { transform: translateX(3px); }
+  @media (hover: hover) {
+    .projects__grid .card[data-project]:hover { border-color: rgba(41, 151, 255, 0.3); box-shadow: 0 22px 48px -30px rgba(41, 151, 255, 0.5); }
+    .card[data-project]:hover .card__more { background: var(--surface-elevated); border-color: rgba(255, 255, 255, 0.24); }
+    .card[data-project]:hover .card__more .arrow { transform: translateX(3px); }
+  }
+
+  /* el <dialog> ocupa la pantalla (un clic en él, fuera del panel, cierra); el panel es la «ventana» */
+  .pdialog {
+    position: fixed; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none;
+    margin: 0; padding: 0; border: 0; background: transparent; color: var(--body);
+    overflow: hidden; overscroll-behavior: contain;
+  }
+  .pdialog[open] { display: flex; align-items: flex-start; justify-content: center; }
+  .pdialog::backdrop {
+    background: rgba(2, 4, 8, 0.65);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    transition: opacity var(--dur-base) var(--ease-out);
+  }
+  @starting-style { .pdialog[open]::backdrop { opacity: 0; } }
+  .pdialog[data-state="closing"]::backdrop { opacity: 0; transition: opacity 200ms cubic-bezier(0.4, 0, 1, 1); }
+  /* sin scroll de fondo y sin salto: el hueco de la barra se reserva mientras está abierto */
+  html.pdialog-open { overflow: hidden; scrollbar-gutter: stable; }
+  html:has(.pdialog[open]) { overflow: hidden; scrollbar-gutter: stable; } /* aparte: sin :has() no se cae la de arriba */
+
+  .pdialog__panel {
+    position: relative; display: flex; flex-direction: column;
+    width: min(100% - 2 * var(--gutter), 980px); max-height: 92vh; max-height: 92dvh; margin: 4vh auto;
+    border: 1px solid var(--hairline); border-radius: var(--radius-card); background: var(--tile-1);
+    overflow: hidden; isolation: isolate;
+    box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.8), 0 0 70px -24px var(--action-glow);
+  }
+  .pdialog__bar { flex: none; height: 52px; padding: 0 8px 0 18px; background: rgba(5, 7, 11, 0.45); }
+  .pdialog__file { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .pdialog__esc { height: 22px; padding: 0 7px; font-size: 11px; color: var(--mute); }
+  .pdialog__close {
+    display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 12px;
+    color: var(--body); transition: background var(--dur-fast), color var(--dur-fast);
+  }
+  .pdialog__close:hover { background: var(--surface-elevated); color: var(--ink); }
+  .pdialog__close:focus-visible { outline-offset: -3px; border-radius: 12px; }
+  .pdialog__body {
+    flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+    scrollbar-width: thin; scrollbar-color: var(--surface-elevated) transparent;
+    container: pdoc / inline-size;
+  }
+  .pdialog__body:focus { outline: none; }
+  @media (hover: none) { .pdialog__esc { display: none; } }
+  @media (max-width: 767px) {
+    .pdialog::backdrop { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(2, 4, 8, 0.8); }
+    .pdialog__panel {
+      width: 100%; height: calc(100vh - 10px); height: calc(100dvh - 10px); max-height: none; margin: 10px 0 0;
+      border-bottom: 0; border-radius: var(--radius-card) var(--radius-card) 0 0;
+    }
+    .pdialog__bar { padding-left: 16px; }
+  }
+
+  /* ficha (.pdoc): la plantilla de cada src/partials/projects/<id>.html */
+  .display-md { font-size: clamp(30px, 4.2vw, 46px); line-height: 1.08; letter-spacing: -0.022em; font-weight: 600; text-wrap: balance; }
+  .pdoc {
+    display: grid; gap: 52px; padding: 48px 56px 40px; counter-reset: pdoc;
+    background: radial-gradient(640px 340px at 88% -40px, var(--action-glow), transparent 70%) no-repeat;
+  }
+  .pdoc .display-md { font-size: clamp(30px, 5.4cqi, 48px); }
+  .pdoc__head { display: grid; gap: 18px; justify-items: start; }
+  .pdoc__kicker { color: var(--action); }
+  .pdoc__head .display-md { max-width: 20ch; }
+  .pdoc__lead { font-size: 19px; line-height: 1.5; max-width: 58ch; }
+  .pdoc__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .pdoc__head .chips { margin-top: 2px; }
+
+  .pdoc__facts {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    border: 1px solid var(--hairline); border-radius: 14px; background: rgba(5, 7, 11, 0.3); overflow: hidden;
+  }
+  .pdoc__fact { display: flex; flex-direction: column; gap: 8px; padding: 20px 22px 22px; }
+  .pdoc__fact + .pdoc__fact { border-left: 1px solid var(--hairline); }
+  .pdoc__fact-value { order: -1; font-size: 38px; line-height: 1; font-weight: 600; letter-spacing: -0.03em; color: var(--ink); font-feature-settings: "tnum"; white-space: nowrap; }
+  .pdoc__fact-label { font-size: 14px; line-height: 1.35; color: var(--mute); text-wrap: pretty; }
+
+  .pdoc__section { display: grid; grid-template-columns: 188px minmax(0, 1fr); gap: 20px 40px; padding-top: 34px; border-top: 1px solid var(--hairline); }
+  .pdoc__section > h3 { grid-column: 1; align-self: start; }
+  .pdoc__section > h3::before {
+    counter-increment: pdoc; content: counter(pdoc, decimal-leading-zero); display: block; margin-bottom: 10px;
+    font-family: var(--font-mono); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: var(--action);
+  }
+  .pdoc__section > :not(h3) { grid-column: 2; min-width: 0; }
+  .pdoc__section > .pdoc__wide { grid-column: 1 / -1; }
+  .pdoc__content { display: grid; gap: 18px; align-content: start; }
+  .pdoc__content > .bullets { gap: 10px; }
+
+  .pdoc__figure { margin: 0; display: grid; gap: 12px; }
+  .pdoc__canvas {
+    padding: 22px; border: 1px solid var(--hairline); border-radius: 14px;
+    background-color: var(--tile-3);
+    background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1.3px);
+    background-size: 22px 22px; background-position: 11px 11px;
+  }
+  .pdoc__canvas--compact { padding: 18px 12px; }
+  .pdoc__diagram { display: block; width: 100%; height: auto; margin-inline: auto; overflow: visible; }
+  .pdoc__diagram--tall { display: none; }
+  .pdoc__diagram--small { max-width: 420px; }
+  .pdoc__figure figcaption { font-size: 13px; line-height: 1.45; color: var(--mute); max-width: 70ch; }
+
+  .pdoc__steps { list-style: none; counter-reset: pdoc-step; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 36px; }
+  .pdoc__steps li { counter-increment: pdoc-step; position: relative; padding-left: 38px; font-size: 15px; line-height: 1.5; color: var(--body); text-wrap: pretty; }
+  .pdoc__steps li::before {
+    content: counter(pdoc-step); position: absolute; left: 0; top: -1px; display: grid; place-items: center;
+    width: 24px; height: 24px; border-radius: 50%; background: var(--action); color: var(--tile-black);
+    font: 600 12px/1 var(--font-mono);
+  }
+
+  .pdoc__dl { display: grid; border-top: 1px solid var(--hairline); }
+  .pdoc__dl > div { display: grid; grid-template-columns: 124px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--hairline); }
+  .pdoc__dl dt { padding-top: 2px; font-family: var(--font-mono); font-size: 13px; color: var(--mute); }
+  .pdoc__dl dd { font-size: 15px; line-height: 1.5; color: var(--body); }
+  .pdoc__quote { margin: 0; padding: 2px 0 2px 20px; border-left: 2px solid var(--action); font-size: 19px; line-height: 1.55; color: var(--ink); max-width: 60ch; text-wrap: pretty; }
+  .pdoc__links { list-style: none; display: grid; gap: 10px; }
+  .pdoc__links .action { grid-template-columns: auto minmax(0, 1fr) auto; background: var(--tile-3); }
+  .pdoc__footer { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 28px; border-top: 1px solid var(--hairline); }
+  .pdoc__back-arrow { color: var(--action); transition: transform var(--dur-fast) var(--ease-out); }
+  .pdoc__back:hover .pdoc__back-arrow, .pdoc__back:focus-visible .pdoc__back-arrow { transform: translateX(-3px); }
+
+  /* el diagrama ancho necesita ~880 px para que su texto no baje de 12 px: por debajo, la versión alta */
+  @container pdoc (max-width: 860px) {
+    .pdoc__diagram--wide { display: none; }
+    .pdoc__diagram--tall { display: block; max-width: 440px; }
+  }
+  @container pdoc (max-width: 760px) {
+    .pdoc { gap: 40px; padding: 36px 32px 32px; }
+    .pdoc__section { grid-template-columns: minmax(0, 1fr); gap: 16px; padding-top: 28px; }
+    .pdoc__section > :not(h3), .pdoc__section > .pdoc__wide { grid-column: 1; }
+    .pdoc__facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pdoc__fact:nth-child(3) { border-left: 0; }
+    .pdoc__fact:nth-child(n + 3) { border-top: 1px solid var(--hairline); }
+  }
+  @container pdoc (max-width: 620px) {
+    .pdoc { gap: 36px; padding: 28px 20px 28px; }
+    .pdoc__lead { font-size: 17px; }
+    .pdoc__fact { padding: 16px 16px 18px; }
+    .pdoc__fact-value { font-size: 30px; }
+    .pdoc__fact-label { font-size: 13px; }
+    .pdoc__canvas { padding: 14px 10px; }
+    .pdoc__steps { grid-template-columns: minmax(0, 1fr); }
+    .pdoc__dl > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+    .pdoc__quote { font-size: 17px; }
+  }
+
+  /* piezas de los diagramas (SVG inline de las fichas; los ids llevan el prefijo del proyecto) */
+  .dg { font-family: var(--font-mono); }
+  .dg text { font-size: 13px; fill: var(--body); }
+  .dg .dg-mid { text-anchor: middle; }
+  .dg .dg-end { text-anchor: end; }
+  .dg .dg-title { font-size: 15px; font-weight: 600; fill: var(--ink); }
+  .dg .dg-sub { font-size: 12px; fill: var(--mute); }
+  .dg .dg-tiny { font-size: 11px; fill: var(--mute); }
+  .dg .dg-on-accent { fill: var(--tile-black); font-weight: 600; }
+  .dg .dg-strong { fill: var(--ink); }
+  .dg .dg-accent { fill: var(--action); }
+  .dg-frame { fill: var(--tile-1); stroke: var(--hairline-strong); stroke-width: 1; }
+  .dg-pane { fill: var(--tile-2); }
+  .dg-box { fill: var(--surface-elevated); stroke: var(--hairline-strong); stroke-width: 1; }
+  .dg-box--soft { fill: var(--tile-2); }
+  .dg-box--accent { stroke: rgba(41, 151, 255, 0.7); }
+  .dg-fill-accent { fill: var(--action); stroke: none; }
+  .dg-pill { fill: var(--tile-1); stroke: var(--hairline-strong); stroke-width: 1; }
+  .dg-rule { fill: none; stroke: var(--hairline); stroke-width: 1; }
+  .dg-bar { fill: var(--mute); fill-opacity: 0.3; }
+  .dg-bar--faint { fill-opacity: 0.18; }
+  .dg-bar--strong { fill-opacity: 0.6; }
+  .dg-bar--ink { fill: var(--ink); fill-opacity: 0.45; }
+  .dg-dot { fill: var(--hairline-strong); }
+  .dg-mark { fill: #e9ac4a; }
+  .dg-line { fill: none; stroke: rgba(142, 152, 168, 0.6); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .dg-line--dash { stroke-dasharray: 3 5; }
+  .dg-line--faint { stroke: var(--hairline-strong); stroke-width: 1; }
+  .dg-line--accent { stroke: var(--action); }
+  .dg-head { fill: none; stroke: rgba(142, 152, 168, 0.85); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .dg-head--accent { stroke: var(--action); }
+  .dg-badge circle { fill: var(--action); stroke: var(--tile-3); stroke-width: 3; }
+  .dg .dg-badge text { font-size: 12px; font-weight: 700; fill: var(--tile-black); text-anchor: middle; }
+  @media (prefers-reduced-motion: reduce) {
+    .pdialog::backdrop, .pdialog[data-state]::backdrop, .projects__grid .card[data-project], .card__more .arrow, .pdoc__back-arrow { transition: none; }
+  }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -803,7 +1124,14 @@
     .rig[data-state="angry"] #drops circle { opacity: 0.8; }
     .scene__leg, .scene__hand, .scene__stars, .scene__lamp-head, .scene__phone, .simpl-pulse, .term-cursor { animation: none !important; }
     .faro-beacon, .marker__art, .dog *, .house *, .yard__bone, .dog-peek, .dog-peek * { animation: none !important; transition: none !important; }
+    .hero__desk, .hero__desk *, .hero__disc::after { animation: none !important; transition: none !important; }
+    .hero__desk.is-lit .desk__steam path { opacity: 0.35; }
     .yard.is-near .house__shake { animation: none; }
+    .skills__lava *, .skills__lava::before, .skills__lava::after { animation: none !important; transition: none !important; }
+    /* pose fija: la cera deformada como a media subida */
+    .lava__blob--3 { scale: 1.16 .86; }
+    .lava__blob--4 { scale: .92 1.14; }
+    .lava__blob--2 { scale: 1.04 .96; }
     .scene__leg { transform: rotate(2deg); }
     .scene__stars { opacity: 0.4; }
     .card:hover .card__media img { transform: none; }
@@ -818,7 +1146,7 @@
     body { background: #fff; color: #111; }
     .tile, .tile--black, .tile--canvas, .tile--1, .tile--2, .tile--3 { background: #fff !important; padding-block: 24px; }
     h1, h2, h3, .body, .lead, .caption, .eyebrow, .chip, .action, .facts dd { color: #111 !important; }
-    .nav, .sheet, .skip, .hero__disc, .hero::before, .rig, .scene-window, .toast, #to-top, .rig__hit, .projects__more, .play, .dog-peek, .yard { display: none !important; }
+    .nav, .sheet, .skip, .hero__disc, .hero::before, .rig, .scene-window, .toast, #to-top, .rig__hit, .projects__more, .play, .dog-peek, .yard, .skills__lava, .hero__desk { display: none !important; }
     .about__media::after { content: ""; display: block; width: 160px; height: 160px; background: url("../assets/img/rig/fallback.webp") center / contain no-repeat; }
     html.js [data-reveal] { opacity: 1 !important; transform: none !important; }
     a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 12px; color: #555; }

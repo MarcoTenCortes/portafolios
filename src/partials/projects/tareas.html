@@ -1,0 +1,294 @@
+<article class="pdoc" data-project="tareas">
+  <header class="pdoc__head">
+    <p class="eyebrow pdoc__kicker" data-i18n="projects.tareas.detail.kicker">Proyecto personal · app móvil</p>
+    <h2 class="display-md" id="pdialog-title" data-i18n="projects.tareas.title">Repartir Tareas</h2>
+    <p class="lead pdoc__lead" data-i18n="projects.tareas.detail.lead">Una app para organizar un piso compartido: tareas repartidas por habitación, lista de la compra común, recordatorios que avisan en el móvil y gastos compartidos, todo sincronizado en tiempo real entre los que viven en él.</p>
+    <div class="pdoc__actions">
+      <a class="btn btn--primary btn--sm" href="https://github.com/MarcoTenCortes/repartir-tareas" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+    </div>
+    <ul class="chips chips--inline" aria-label="Tecnologías" data-i18n-attr="aria-label:projects.detail.tech">
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#react"/></svg><span>React Native</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#expo"/></svg><span>Expo</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#firebase"/></svg><span>Firebase</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Firestore</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>React Navigation</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#javascript"/></svg><span>JavaScript</span></li>
+    </ul>
+  </header>
+
+  <dl class="pdoc__facts" aria-label="En cifras" data-i18n-attr="aria-label:projects.detail.facts">
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.tareas.detail.fact1_label">pantallas</dt><dd class="pdoc__fact-value" data-i18n="projects.tareas.detail.fact1_value">11</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.tareas.detail.fact2_label">pestañas: inicio, tareas, compra y recordatorios</dt><dd class="pdoc__fact-value" data-i18n="projects.tareas.detail.fact2_value">4</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.tareas.detail.fact3_label">colecciones por piso, sincronizadas en tiempo real</dt><dd class="pdoc__fact-value" data-i18n="projects.tareas.detail.fact3_value">6</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.tareas.detail.fact4_label">contextos de estado: usuario, grupo y tema</dt><dd class="pdoc__fact-value" data-i18n="projects.tareas.detail.fact4_value">3</dd></div>
+  </dl>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.context">Contexto</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.tareas.detail.context">En un piso compartido, las tareas y los gastos se reparten por el chat y se olvidan igual de rápido. Repartir Tareas lo junta todo: cada piso es un grupo con sus miembros, habitaciones, tareas, compra y cuentas, y lo que cambia uno lo ven los demás al momento.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.role">Qué hice</h3>
+    <div class="pdoc__content">
+      <ul class="bullets">
+        <li data-i18n="projects.tareas.detail.role1">Diseñé y programé la app completa con React Native y Expo: acceso, cuatro pestañas principales, perfil y ajustes del grupo.</li>
+        <li data-i18n="projects.tareas.detail.role2">Modelé los datos en Firestore: cada grupo guarda sus tareas, habitaciones, compra, recordatorios, pagos y solicitudes de unión, y la app escucha cada colección en tiempo real.</li>
+        <li data-i18n="projects.tareas.detail.role3">Hice el editor de habitaciones con gestos: arrastrar para mover, pellizcar para cambiar el tamaño, girar con dos dedos y doble toque para cambiar la forma.</li>
+        <li data-i18n="projects.tareas.detail.role4">Di al propietario el control del grupo: aceptar solicitudes, expulsar miembros, renombrarlo, transferir la propiedad o eliminarlo.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.architecture">Arquitectura</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.tareas.detail.arch_intro">Tres capas y ningún servidor propio. Las pantallas leen y escriben a través de tres contextos de React; Firebase Authentication resuelve la sesión y Firestore hace a la vez de base de datos y de canal en tiempo real.</p>
+    </div>
+    <figure class="pdoc__figure pdoc__wide">
+      <div class="pdoc__canvas">
+        <!-- ancho: el móvil a la izquierda, los contextos en medio y Firebase a la derecha -->
+        <svg class="dg pdoc__diagram pdoc__diagram--wide" viewBox="0 0 880 380" width="880" height="380" role="img" aria-label="Arquitectura de Repartir Tareas" data-i18n-attr="aria-label:projects.tareas.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="tareas-w-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="tareas-w-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <!-- el móvil: aviso, lista de tareas, plano de habitaciones y pestañas -->
+          <rect class="dg-frame" x="16" y="14" width="160" height="340" rx="26"/>
+          <rect class="dg-dot" x="72" y="22" width="48" height="7" rx="3.5"/>
+          <rect class="dg-pane" x="24" y="36" width="144" height="310" rx="18"/>
+          <rect class="dg-box dg-box--accent" x="32" y="46" width="128" height="38" rx="10"/>
+          <path class="dg-line dg-line--accent" style="stroke-width: 1.3" d="M41.5 69.5h11M43.5 69.5v-5a3.5 3.5 0 0 1 7 0v5M45.8 72.5h2.4"/>
+          <text class="dg-tiny dg-accent" x="58" y="62" data-i18n="projects.tareas.detail.dg_notif">recordatorio</text>
+          <rect class="dg-bar" x="58" y="69" width="84" height="5" rx="2.5"/>
+          <rect class="dg-bar dg-bar--strong" x="34" y="100" width="64" height="9" rx="4"/>
+          <circle class="dg-dot" cx="152" cy="104.5" r="7"/>
+          <rect class="dg-box" x="32" y="120" width="128" height="26" rx="7"/>
+          <rect class="dg-box" x="32" y="152" width="128" height="26" rx="7"/>
+          <rect class="dg-box" x="32" y="184" width="128" height="26" rx="7"/>
+          <rect class="dg-fill-accent" x="40" y="127" width="12" height="12" rx="3"/>
+          <path d="M43 133.2l2.3 2.3 4-4.4" fill="none" style="stroke: var(--tile-black)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <rect x="40" y="159" width="12" height="12" rx="3"/>
+            <rect x="40" y="191" width="12" height="12" rx="3"/>
+          </g>
+          <rect class="dg-bar dg-bar--faint" x="60" y="130" width="58" height="6" rx="3"/>
+          <rect class="dg-bar" x="60" y="162" width="46" height="6" rx="3"/>
+          <rect class="dg-bar" x="60" y="194" width="64" height="6" rx="3"/>
+          <g class="dg-bar"><circle cx="148" cy="133" r="5.5"/><circle cx="148" cy="165" r="5.5"/><circle cx="148" cy="197" r="5.5"/></g>
+          <rect class="dg-box dg-box--soft" x="32" y="220" width="128" height="76" rx="8"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <rect x="40" y="228" width="50" height="30" rx="3"/>
+            <rect x="100" y="228" width="26" height="26" rx="3"/>
+            <circle cx="60" cy="277" r="11"/>
+          </g>
+          <rect class="dg-line dg-line--accent" style="stroke-width: 1.3" x="107" y="265" width="34" height="22" rx="3" transform="rotate(-14 124 276)"/>
+          <path class="dg-rule" d="M24 306H168"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <path d="M42 327l6-5.5 6 5.5M44 325.5V332h8v-6.5"/>
+            <path d="M105 320h2.5l2 9h8.5l1.8-6.5H109"/><circle cx="111" cy="332.6" r="1.3"/><circle cx="117.6" cy="332.6" r="1.3"/>
+            <circle cx="144" cy="327" r="6"/><path d="M144 324v3.5l2.2 1.5"/>
+          </g>
+          <path class="dg-line dg-line--accent" d="M74.5 326.5l4 4 8-8"/>
+          <rect class="dg-pill" x="36" y="343" width="120" height="22" rx="11"/>
+          <text class="dg-mid" x="96" y="358">React Native</text>
+
+          <!-- ④ el recordatorio se programa en el móvil -->
+          <path class="dg-line dg-line--accent" marker-end="url(#tareas-w-arrow-accent)" d="M258 160H218V65H178"/>
+          <!-- las pantallas usan los contextos -->
+          <path class="dg-line" marker-start="url(#tareas-w-arrow)" marker-end="url(#tareas-w-arrow)" d="M178 236H258"/>
+          <text class="dg-tiny dg-mid" x="218" y="226">useContext</text>
+
+          <!-- contextos de React -->
+          <rect class="dg-frame" x="260" y="14" width="190" height="340" rx="14"/>
+          <text class="dg-title" x="276" y="43">Context API</text>
+          <path class="dg-rule" d="M260 58H450"/>
+          <rect class="dg-box" x="274" y="72" width="162" height="56" rx="10"/>
+          <text class="dg-strong" x="290" y="96">UserContext</text>
+          <text class="dg-sub" x="290" y="115" data-i18n="projects.tareas.detail.dg_user">sesión y grupos</text>
+          <rect class="dg-box dg-box--accent" x="274" y="144" width="162" height="128" rx="10"/>
+          <text class="dg-strong" x="290" y="169">GroupContext</text>
+          <text class="dg-sub" x="290" y="188" data-i18n="projects.tareas.detail.dg_group">datos del piso</text>
+          <path class="dg-rule" d="M286 202H424"/>
+          <text class="dg-sub dg-accent" x="290" y="222">onSnapshot × 6</text>
+          <text class="dg-sub" x="290" y="242">runTransaction</text>
+          <text class="dg-sub" x="290" y="262">writeBatch</text>
+          <rect class="dg-box dg-box--soft" x="274" y="288" width="162" height="52" rx="10"/>
+          <text class="dg-strong" x="290" y="310">ThemeContext</text>
+          <text class="dg-sub" x="290" y="328" data-i18n="projects.tareas.detail.dg_theme">tema</text>
+
+          <!-- ① sesión, ② lecturas en tiempo real, ③ escrituras -->
+          <path class="dg-line" marker-start="url(#tareas-w-arrow)" marker-end="url(#tareas-w-arrow)" d="M452 100H558"/>
+          <text class="dg-tiny dg-mid" x="524" y="90" data-i18n="projects.tareas.detail.dg_session">sesión</text>
+          <path class="dg-line dg-line--accent" marker-end="url(#tareas-w-arrow-accent)" d="M558 186H452"/>
+          <text class="dg-tiny dg-mid" x="524" y="174">onSnapshot</text>
+          <path class="dg-line" marker-end="url(#tareas-w-arrow)" d="M452 228H558"/>
+          <text class="dg-tiny dg-mid" x="524" y="246" data-i18n="projects.tareas.detail.dg_writes">escrituras</text>
+
+          <!-- Firebase -->
+          <rect class="dg-frame" x="560" y="14" width="304" height="340" rx="14"/>
+          <text class="dg-title" x="576" y="43">Firebase</text>
+          <path class="dg-rule" d="M560 58H864"/>
+          <rect class="dg-box" x="576" y="72" width="272" height="56" rx="10"/>
+          <text class="dg-strong" x="592" y="96">Authentication</text>
+          <text class="dg-sub" x="592" y="115" data-i18n="projects.tareas.detail.dg_auth">email y contraseña</text>
+          <rect class="dg-box" x="576" y="144" width="272" height="196" rx="10"/>
+          <text class="dg-strong" x="592" y="169">Firestore</text>
+          <text class="dg-sub dg-end" x="832" y="169" data-i18n="projects.tareas.detail.dg_realtime">tiempo real</text>
+          <text x="592" y="204">users</text>
+          <text x="592" y="226">groupNames</text>
+          <text class="dg-accent" x="592" y="248">groups/{id}</text>
+          <g class="dg-line dg-line--faint">
+            <path d="M598 254V311.5M598 267.5H608M598 289.5H608M598 311.5H608"/>
+            <path d="M598 258H710V311.5M710 267.5H720M710 289.5H720M710 311.5H720"/>
+          </g>
+          <text x="614" y="272">tasks</text>
+          <text x="614" y="294">rooms</text>
+          <text x="614" y="316">shopping</text>
+          <text x="726" y="272">reminders</text>
+          <text x="726" y="294">payments</text>
+          <text x="726" y="316">joinRequests</text>
+
+          <g class="dg-badge">
+            <circle cx="478" cy="100" r="10"/><text x="478" y="104">1</text>
+            <circle cx="478" cy="186" r="10"/><text x="478" y="190">2</text>
+            <circle cx="478" cy="228" r="10"/><text x="478" y="232">3</text>
+            <circle cx="218" cy="112" r="10"/><text x="218" y="116">4</text>
+          </g>
+        </svg>
+
+        <!-- estrecho: el móvil arriba, los contextos en medio y Firebase abajo -->
+        <svg class="dg pdoc__diagram pdoc__diagram--tall" viewBox="0 0 360 890" width="360" height="890" role="img" aria-label="Arquitectura de Repartir Tareas" data-i18n-attr="aria-label:projects.tareas.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="tareas-t-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="tareas-t-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <rect class="dg-frame" x="118" y="10" width="124" height="250" rx="22"/>
+          <rect class="dg-dot" x="160" y="17" width="40" height="6" rx="3"/>
+          <rect class="dg-pane" x="125" y="30" width="110" height="222" rx="15"/>
+          <rect class="dg-box dg-box--accent" x="131" y="38" width="98" height="32" rx="8"/>
+          <path class="dg-line dg-line--accent" style="stroke-width: 1.2" d="M137.5 59h9M139 59v-4.2a3 3 0 0 1 6 0V59M141 61.6h2"/>
+          <rect class="dg-bar dg-bar--ink" x="152" y="47" width="62" height="5" rx="2.5"/>
+          <rect class="dg-bar" x="152" y="57" width="48" height="5" rx="2.5"/>
+          <rect class="dg-bar dg-bar--strong" x="133" y="80" width="50" height="8" rx="4"/>
+          <circle class="dg-dot" cx="224" cy="84" r="6"/>
+          <rect class="dg-box" x="131" y="96" width="98" height="20" rx="6"/>
+          <rect class="dg-box" x="131" y="122" width="98" height="20" rx="6"/>
+          <rect class="dg-box" x="131" y="148" width="98" height="20" rx="6"/>
+          <rect class="dg-fill-accent" x="137" y="101" width="10" height="10" rx="2.5"/>
+          <path d="M139.4 106.2l1.9 1.9 3.3-3.6" fill="none" style="stroke: var(--tile-black)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <rect x="137" y="127" width="10" height="10" rx="2.5"/>
+            <rect x="137" y="153" width="10" height="10" rx="2.5"/>
+          </g>
+          <rect class="dg-bar dg-bar--faint" x="153" y="103.5" width="44" height="5" rx="2.5"/>
+          <rect class="dg-bar" x="153" y="129.5" width="36" height="5" rx="2.5"/>
+          <rect class="dg-bar" x="153" y="155.5" width="50" height="5" rx="2.5"/>
+          <g class="dg-bar"><circle cx="219" cy="106" r="4.5"/><circle cx="219" cy="132" r="4.5"/><circle cx="219" cy="158" r="4.5"/></g>
+          <rect class="dg-box dg-box--soft" x="131" y="176" width="98" height="46" rx="7"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <rect x="137" y="182" width="34" height="18" rx="2.5"/>
+            <rect x="178" y="182" width="18" height="18" rx="2.5"/>
+            <circle cx="152" cy="211" r="6.5"/>
+          </g>
+          <rect class="dg-line dg-line--accent" style="stroke-width: 1.2" x="195" y="202" width="24" height="14" rx="2.5" transform="rotate(-14 207 209)"/>
+          <path class="dg-rule" d="M125 228H235"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <path d="M136.5 241l4.5-4 4.5 4M138 239.8V245h6v-5.2"/>
+            <path d="M181 235.5h2l1.5 7h6.5l1.4-5H184"/><circle cx="185.5" cy="245" r="1"/><circle cx="190.5" cy="245" r="1"/>
+            <circle cx="218" cy="240" r="4.8"/><path d="M218 237.6v2.6l1.7 1.1"/>
+          </g>
+          <path class="dg-line dg-line--accent" style="stroke-width: 1.4" d="M156 240l3.2 3.2 6.4-6.4"/>
+          <rect class="dg-pill" x="120" y="249" width="120" height="22" rx="11"/>
+          <text class="dg-mid" x="180" y="264">React Native</text>
+
+          <path class="dg-line" marker-start="url(#tareas-t-arrow)" marker-end="url(#tareas-t-arrow)" d="M180 273V310"/>
+          <text class="dg-tiny" x="194" y="296">useContext</text>
+          <path class="dg-line dg-line--accent" marker-end="url(#tareas-t-arrow-accent)" d="M318 312V54H244"/>
+
+          <rect class="dg-frame" x="10" y="312" width="340" height="194" rx="14"/>
+          <text class="dg-title" x="26" y="340">Context API</text>
+          <path class="dg-rule" d="M10 354H350"/>
+          <rect class="dg-box dg-box--soft" x="26" y="368" width="140" height="50" rx="10"/>
+          <text class="dg-strong" x="40" y="389">ThemeContext</text>
+          <text class="dg-sub" x="40" y="407" data-i18n="projects.tareas.detail.dg_theme">tema</text>
+          <rect class="dg-box" x="26" y="432" width="140" height="58" rx="10"/>
+          <text class="dg-strong" x="40" y="456">UserContext</text>
+          <text class="dg-sub" x="40" y="475" data-i18n="projects.tareas.detail.dg_user">sesión y grupos</text>
+          <rect class="dg-box dg-box--accent" x="178" y="368" width="156" height="122" rx="10"/>
+          <text class="dg-strong" x="192" y="392">GroupContext</text>
+          <text class="dg-sub" x="192" y="410" data-i18n="projects.tareas.detail.dg_group">datos del piso</text>
+          <path class="dg-rule" d="M188 422H324"/>
+          <text class="dg-sub dg-accent" x="192" y="442">onSnapshot × 6</text>
+          <text class="dg-sub" x="192" y="461">runTransaction</text>
+          <text class="dg-sub" x="192" y="480">writeBatch</text>
+
+          <path class="dg-line" marker-start="url(#tareas-t-arrow)" marker-end="url(#tareas-t-arrow)" d="M96 508V556"/>
+          <path class="dg-line dg-line--accent" marker-end="url(#tareas-t-arrow-accent)" d="M230 556V508"/>
+          <path class="dg-line" marker-end="url(#tareas-t-arrow)" d="M290 508V556"/>
+
+          <rect class="dg-frame" x="10" y="558" width="340" height="320" rx="14"/>
+          <text class="dg-title" x="26" y="586">Firebase</text>
+          <path class="dg-rule" d="M10 600H350"/>
+          <rect class="dg-box" x="26" y="614" width="308" height="46" rx="10"/>
+          <text class="dg-strong" x="42" y="641.5">Authentication</text>
+          <text class="dg-sub dg-end" x="318" y="641.5" data-i18n="projects.tareas.detail.dg_auth">email y contraseña</text>
+          <rect class="dg-box" x="26" y="674" width="308" height="188" rx="10"/>
+          <text class="dg-strong" x="42" y="698">Firestore</text>
+          <text class="dg-sub dg-end" x="318" y="698" data-i18n="projects.tareas.detail.dg_realtime">tiempo real</text>
+          <text x="42" y="728">users</text>
+          <text x="42" y="750">groupNames</text>
+          <text class="dg-accent" x="42" y="772">groups/{id}</text>
+          <g class="dg-line dg-line--faint">
+            <path d="M48 778V835.5M48 791.5H58M48 813.5H58M48 835.5H58"/>
+            <path d="M48 782H160V835.5M160 791.5H170M160 813.5H170M160 835.5H170"/>
+          </g>
+          <text x="64" y="796">tasks</text>
+          <text x="64" y="818">rooms</text>
+          <text x="64" y="840">shopping</text>
+          <text x="176" y="796">reminders</text>
+          <text x="176" y="818">payments</text>
+          <text x="176" y="840">joinRequests</text>
+
+          <g class="dg-badge">
+            <circle cx="96" cy="532" r="10"/><text x="96" y="536">1</text>
+            <circle cx="230" cy="532" r="10"/><text x="230" y="536">2</text>
+            <circle cx="290" cy="532" r="10"/><text x="290" y="536">3</text>
+            <circle cx="318" cy="180" r="10"/><text x="318" y="184">4</text>
+          </g>
+        </svg>
+      </div>
+    </figure>
+    <ol class="pdoc__steps pdoc__wide">
+      <li data-i18n="projects.tareas.detail.step1">Firebase Authentication gestiona el registro, el acceso y la recuperación de contraseña; UserContext guarda el usuario y sus grupos.</li>
+      <li data-i18n="projects.tareas.detail.step2">Al entrar en un piso, GroupContext abre un listener por cada colección del grupo y las pantallas se actualizan solas.</li>
+      <li data-i18n="projects.tareas.detail.step3">Lo que no puede quedar a medias va en transacción o en lote: el nombre único del grupo, el cambio de propietario y el orden de la compra.</li>
+      <li data-i18n="projects.tareas.detail.step4">Cuando llega un recordatorio con fecha futura, expo-notifications lo programa en el móvil y queda marcado como avisado.</li>
+    </ol>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.stack">Stack</h3>
+    <div class="pdoc__content">
+      <dl class="pdoc__dl">
+        <div><dt data-i18n="projects.tareas.detail.stack1_label">App</dt><dd data-i18n="projects.tareas.detail.stack1">React Native 0.79 y Expo SDK 53, con cliente de desarrollo</dd></div>
+        <div><dt data-i18n="projects.tareas.detail.stack2_label">Navegación</dt><dd data-i18n="projects.tareas.detail.stack2">React Navigation 7: una pila para la sesión y pestañas inferiores</dd></div>
+        <div><dt data-i18n="projects.tareas.detail.stack3_label">Interacción</dt><dd data-i18n="projects.tareas.detail.stack3">gesture-handler y Reanimated para el plano; draggable-flatlist para reordenar la compra</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.learned">Qué aprendí</h3>
+    <div class="pdoc__content">
+      <p class="pdoc__quote" data-i18n="projects.tareas.detail.learned">Que en una app colaborativa lo difícil no son las pantallas, sino el estado compartido: quién puede cambiar qué y qué pasa si dos lo hacen a la vez. Escuchar a la base de datos en vez de preguntarle simplificó toda la interfaz.</p>
+    </div>
+  </section>
+
+  <footer class="pdoc__footer">
+    <button type="button" class="btn btn--secondary pdoc__back" data-pdialog-close><span class="pdoc__back-arrow" aria-hidden="true">←</span><span data-i18n="projects.detail.back">Volver</span></button>
+    <a class="btn btn--secondary btn--sm" href="https://github.com/MarcoTenCortes/repartir-tareas" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+  </footer>
+</article>

@@ -10,7 +10,8 @@ Portafolio de **Marco Tenorio Cortés** (Software Engineer · Technical Analyst)
 - Tipografía Inter Variable auto-alojada (subset latino, ~64 KB) con fallback métrico.
 - Iconos de tecnologías desde [simple-icons](https://simpleicons.org) en un sprite SVG generado.
 - Sin analítica, sin cookies, sin dependencias externas en runtime.
-- Una **zona de juego** (rotulador para dibujar, perro con hueso y caseta) cargada tras `load`, con alternativa de teclado y `prefers-reduced-motion`.
+- Una **zona de juego** (rotulador para dibujar, perro con hueso y caseta, lámpara de cuerda en el hero, lámpara de lava) cargada tras `load`, con alternativa de teclado y `prefers-reduced-motion`.
+- **Fichas de proyecto**: cada tarjeta abre una subpágina (`<dialog>`) con scroll propio, cifras y diagramas, cargada bajo demanda y enlazable (`#proyecto/<id>`).
 
 ## Desarrollo
 
@@ -22,9 +23,9 @@ npm run preview    # sirve dist/ en http://localhost:4173
 npm test           # node:test sobre los módulos puros y la integridad de i18n, partials y sprite
 ```
 
-Durante el desarrollo, `?shot=<id-de-seccion>` fuerza todos los reveals y hace scroll a esa sección; `&rig=<estado>` fija la pose del café (`warned`, `angry`, `spilled`); `&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden`, `&bone=near|dropped`, `&marker=grabbed` e `&ink=demo` (con `&inkn=<n>` trazos) fuerzan los estados de la zona de juego. Solo existe en `npm run dev`.
+Durante el desarrollo, `?shot=<id-de-seccion>` fuerza todos los reveals y hace scroll a esa sección; `&rig=<estado>` fija la pose del café (`warned`, `angry`, `spilled`); `&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden`, `&bone=near|dropped`, `&marker=grabbed` e `&ink=demo` (con `&inkn=<n>` trazos) fuerzan los estados de la zona de juego; `&lamp=on` enciende la lámpara del hero y `&project=<id>` abre una ficha de proyecto. Solo existe en `npm run dev`.
 
-Las capturas de verificación se generan con `node tools/cdp-shot.mjs tools/shots/play.json` (con `npm run dev` levantado) y quedan en `tools/out/shots/`.
+Las capturas de verificación se generan con `node tools/cdp-shot.mjs tools/shots/<suite>.json` (con `npm run dev` levantado) y quedan en `tools/out/shots/`. Suites: `play.json` (rotulador y perro), `lamp.json` (lámpara del hero), `lava.json`, `projects.json` (sistema de fichas), `fichas-a.json` y `fichas-b.json` (contenido de las fichas), `nav.json`, `layout.json` y `hero-mobile.json` (medidas de maquetación).
 
 ## Estructura
 
@@ -38,11 +39,14 @@ src/js/rig.js              máquina de estados del café (idle → warned → an
 src/js/drag.js             arrastre con Pointer Events y captura, compartido por rotulador y hueso
 src/js/marker.js           el rotulador: un clic lo coge, se pinta manteniendo pulsado y se suelta con clic derecho (tinta solo en memoria)
 src/js/dog.js              la caseta y el hueso al pie de Contacto, el perro que se asoma al acercarte al hueso, y el perro de los bordes
+src/js/lamp.js             la lámpara de escritorio del hero: tirar de la cadena enciende la escena
+src/js/projects.js         fichas de proyecto en un <dialog>: apertura desde las tarjetas, hash, cierre por cruz/fondo/Escape/atrás
 src/js/play/               lógica pura (geom, ink, dog-machine), probada en test/
 src/styles/site.css        capas tokens · base · components · sections · rig · motion · print
 src/styles/stars.css       generado (tools/stars.py)
 src/assets/img/            WebP generados (rig, banco, hero, proyectos); src/assets/fonts/ Inter
-src/partials/*.svg         SVG (grafo SIMPL, autoencoder, terminal, farola, mock de Faro, rotulador, hueso, caseta, perro)
+src/partials/*.svg         SVG (grafo SIMPL, autoencoder, terminal, farola, mock de Faro, rotulador, hueso, caseta, perro, escritorio, lámpara de lava)
+src/partials/projects/     una ficha HTML por proyecto (faro, simpl, qa, tfg, cinema, nakoa, telegram, tareas) con sus diagramas; README con la plantilla
 src/partials/lazy.html     plantillas con esos SVG: main.js las estampa tras load en los [data-lazy] (el HTML inicial queda ligero)
 test/                      node:test (npm test)
 design/STYLE.md            guía de estilo de las ilustraciones
@@ -79,12 +83,18 @@ Un único `<svg viewBox="0 0 1000 1100">` con las capas PNG originales colocadas
 - **Perro asomado** (`#dog-peek`): capa fija que se asoma por un lateral (un 70 % del cuerpo) cada 6-14 s (contando desde que se esconde) y se queda 8-12 s, si la pestaña está visible, no hay arrastre ni rotulador cogido ni menú abierto, el visitante lleva 2,5 s sin tocar nada y el perro del patio no está a la vista (ni asomado junto al hueso ni jugando en la puerta: solo hay un perro). Si el ratón se le acerca a menos de 90 px se esconde; con el dedo, tocarlo es un «boop». Nunca se coloca sobre elementos interactivos: comprueba la nav, el rig, el toast, el hueso, el rotulador y una rejilla 3×5 con `elementsFromPoint`.
 - Todo se apaga quitando tokens de `<body data-play="marker dog">`.
 
+## Lámpara, lámpara de lava y fichas de proyecto
+
+- **Lámpara del hero** (`#hero-desk`, `src/js/lamp.js`, `src/partials/desk.svg`): bajo el medallón hay un escritorio en penumbra con Marco de espaldas, el monitor apagado y una lámpara con su cadena, que se balancea para invitar a tirar. El botón real `#lamp-pull` cubre la cadena; al tirar (clic, toque o Enter) la cadena baja, se enciende el cono de luz, el monitor muestra código que se escribe, las manos teclean y sale vapor de la taza; otro tirón apaga. Pista «Tira de la cuerda» una vez por sesión. Con `prefers-reduced-motion` todo es instantáneo y estático. El espacio está reservado con `aspect-ratio` (cero CLS) y el SVG se estampa tras `load`.
+- **Lámpara de lava** (`.skills__lava`, `src/partials/lava.svg`): ocupa las celdas vacías de la última fila de Habilidades. Burbujas de cera coral en un cristal marino con filtro «goo» (`feGaussianBlur` + `feColorMatrix`) aplicado solo al grupo de la cera; animaciones CSS de 14-28 s desincronizadas, pausadas fuera de pantalla y con la pestaña oculta; estática con `prefers-reduced-motion`. Decorativa (`aria-hidden`).
+- **Fichas de proyecto** (`#project-dialog`, `src/js/projects.js`, `src/partials/projects/*.html`): cada tarjeta (`data-project`) abre con «Más detalles» o con un clic en la propia tarjeta (los enlaces internos no abren) una subpágina en un `<dialog>` modal con cabecera tipo ventana, cuerpo con scroll propio, cifras, secciones numeradas y diagramas SVG (con versión vertical para paneles estrechos). Se cierra con la cruz, «Volver», Escape, clic fuera del panel o el botón atrás; el foco vuelve a la tarjeta. La URL lleva `#proyecto/<id>` mientras está abierta y abre la ficha al cargar. Los fragmentos se importan bajo demanda (`import.meta.glob`) y se traducen al insertarlos (`i18n.translate(root)`). `test/projects.test.mjs` comprueba claves, iconos, ids y accesibilidad de cada ficha.
+
 ## Contenido
 
 - Textos: `src/i18n/es.json` y `src/i18n/en.json` (mismas claves). Tras editar `es.json`, ejecuta `python tools/sync-html-i18n.py` para que el HTML sin JavaScript muestre el mismo texto.
 - CV: coloca `public/cv/marco-tenorio-cortes-es.pdf` y `-en.pdf` y cambia `hero.cv_href` en ambos diccionarios a `/cv/marco-tenorio-cortes-es.pdf` / `-en.pdf`. Si la ruta es local, el botón pasa a "Descargar CV" con `download`; si es externa (Drive), abre en pestaña nueva.
-- Las claves que solo usa el JavaScript (estados del perro, contador, toast) van en las exclusiones de `tools/sync-html-i18n.py` para que no las liste como «no usadas».
-- Caducidades: `education.master.note` / `education.master.period` (máster hasta dic. 2026), `experience.minsait.period` / `experience.minsait.badge` (actualidad) y las cifras de Faro (`projects.faro.facts`). También el JSON-LD de `index.html`.
+- Las claves que solo usa el JavaScript (estados del perro, contador, toast, `hero.lamp.off`) y las de las fichas (`projects.detail.*`, `projects.<id>.detail.*`, que viven en `src/partials/projects/`) van en las exclusiones de `tools/sync-html-i18n.py` para que no las liste como «no usadas».
+- Caducidades: `education.master.note` / `education.master.period` (máster hasta dic. 2026), `experience.minsait.period` / `experience.minsait.badge` (actualidad) y las cifras de Faro (`projects.faro.facts` y `projects.faro.detail.*`: hoy reflejan el último hito commiteado, H13, con 1 283 pruebas; al commitear H14 pasan a 14 hitos y 1 315 pruebas). También el JSON-LD de `index.html`.
 
 ## Despliegue
 

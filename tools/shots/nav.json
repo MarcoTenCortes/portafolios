@@ -1,0 +1,72 @@
+[
+ {
+  "name": "nav-768",
+  "url": "http://localhost:5173/?shot=inicio",
+  "width": 768,
+  "height": 900,
+  "settle": 1000,
+  "steps": [
+   {
+    "eval": "window.MTC.ready.then(() => JSON.stringify({ scrollW: document.documentElement.scrollWidth, innerW: innerWidth, toolsR: Math.round(document.querySelector('.nav__tools').getBoundingClientRect().right) }))",
+    "print": true
+   }
+  ],
+  "out": "tools/out/shots/nav-768.png"
+ },
+ {
+  "name": "nav-820",
+  "url": "http://localhost:5173/?shot=inicio",
+  "width": 820,
+  "height": 900,
+  "settle": 1000,
+  "steps": [
+   {
+    "eval": "window.MTC.ready.then(() => JSON.stringify({ scrollW: document.documentElement.scrollWidth, innerW: innerWidth, toolsR: Math.round(document.querySelector('.nav__tools').getBoundingClientRect().right) }))",
+    "print": true
+   }
+  ],
+  "out": "tools/out/shots/nav-820.png"
+ },
+ {
+  "name": "nav-939",
+  "url": "http://localhost:5173/?shot=inicio",
+  "width": 939,
+  "height": 900,
+  "settle": 1000,
+  "steps": [
+   {
+    "eval": "window.MTC.ready.then(() => JSON.stringify({ scrollW: document.documentElement.scrollWidth, innerW: innerWidth, toolsR: Math.round(document.querySelector('.nav__tools').getBoundingClientRect().right) }))",
+    "print": true
+   }
+  ],
+  "out": "tools/out/shots/nav-939.png"
+ },
+ {
+  "name": "nav-940",
+  "url": "http://localhost:5173/?shot=inicio",
+  "width": 940,
+  "height": 900,
+  "settle": 1000,
+  "steps": [
+   {
+    "eval": "window.MTC.ready.then(() => JSON.stringify({ scrollW: document.documentElement.scrollWidth, innerW: innerWidth, toolsR: Math.round(document.querySelector('.nav__tools').getBoundingClientRect().right) }))",
+    "print": true
+   }
+  ],
+  "out": "tools/out/shots/nav-940.png"
+ },
+ {
+  "name": "nav-1024",
+  "url": "http://localhost:5173/?shot=inicio",
+  "width": 1024,
+  "height": 900,
+  "settle": 1000,
+  "steps": [
+   {
+    "eval": "window.MTC.ready.then(() => JSON.stringify({ scrollW: document.documentElement.scrollWidth, innerW: innerWidth, toolsR: Math.round(document.querySelector('.nav__tools').getBoundingClientRect().right) }))",
+    "print": true
+   }
+  ],
+  "out": "tools/out/shots/nav-1024.png"
+ }
+]

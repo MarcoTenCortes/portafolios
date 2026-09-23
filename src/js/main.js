@@ -37,9 +37,11 @@ function bootPlay() {
     if (playTokens.includes('dog') && document.getElementById('yard')) {
       jobs.push(Promise.all([stamped, import('./dog.js')]).then(([, m]) => { window.MTC.dog = measure('initDog', () => m.initDog(document.getElementById('yard'), { i18n, showToast })); }));
     }
-    // [boot:lamp]
+    // lampara del hero: el escritorio se estampa desde lazy.html y la cadena enciende o apaga la escena
+    if (document.getElementById('hero-desk')) jobs.push(Promise.all([stamped, import('./lamp.js')]).then(([, m]) => { window.MTC.lamp = measure('initLamp', () => m.initLamp(document.getElementById('hero-desk'), { i18n, showToast })); }));
     // [boot:lava]
-    // [boot:project]
+    // subpaginas de proyectos: el <dialog> ya esta en index.html; el modulo y cada ficha se cargan bajo demanda
+    jobs.push(import('./projects.js').then((m) => { window.MTC.projects = measure('initProjects', () => m.initProjects({ i18n, showToast })); }));
     Promise.all(jobs).then(() => readyResolve(), () => readyResolve());
   });
 }
@@ -81,9 +83,12 @@ if (import.meta.env.DEV) {
         marker.loadInk(demo);
       }
       if (marker && params.get('marker') === 'grabbed') marker.demoHold(window.innerWidth * 0.6, window.innerHeight * 0.5);
-      // [hook:lamp]
+      // ?lamp=on: la escena del escritorio arranca encendida
+      if (params.get('lamp') === 'on') window.MTC.lamp?.toggle(true);
       // [hook:lava]
-      // [hook:project]
+      // ?project=<id>: abre esa ficha de proyecto (sin tocar el historial)
+      const projectId = params.get('project');
+      if (projectId && window.MTC.projects) window.MTC.projects.open(projectId, { push: false });
       setTimeout(scroll, 30);
     });
   }

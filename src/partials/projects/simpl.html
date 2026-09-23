@@ -1,0 +1,292 @@
+<article class="pdoc" data-project="simpl">
+  <header class="pdoc__head">
+    <p class="eyebrow pdoc__kicker" data-i18n="projects.simpl.detail.kicker">Comisión Europea · middleware de código abierto</p>
+    <h2 class="display-md" id="pdialog-title" data-i18n="projects.simpl.title">SIMPL-Open</h2>
+    <p class="lead pdoc__lead" data-i18n="projects.simpl.detail.lead">El middleware de código abierto con el que la Comisión Europea quiere que organizaciones públicas y privadas compartan datos, aplicaciones e infraestructura en espacios de datos, con confianza y sin atarse a un proveedor. Trabajo en él como arquitecto de soluciones.</p>
+    <div class="pdoc__actions">
+      <a class="btn btn--primary btn--sm" href="https://code.europa.eu/simpl/simpl-open" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_repo_public">Repositorio público</span><span class="arrow" aria-hidden="true">↗</span></a>
+    </div>
+    <ul class="chips chips--inline" aria-label="Tecnologías" data-i18n-attr="aria-label:projects.detail.tech">
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Data Spaces</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#openapiinitiative"/></svg><span>OpenAPI</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#springboot"/></svg><span>Java / Spring</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Dataspace Protocol</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>X.509 · mTLS</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>DCAT-AP</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.solution_architecture">Arquitectura de soluciones</span></li>
+    </ul>
+  </header>
+
+  <dl class="pdoc__facts" aria-label="En cifras" data-i18n-attr="aria-label:projects.detail.facts">
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.simpl.detail.fact1_label">dimensiones de arquitectura</dt><dd class="pdoc__fact-value" data-i18n="projects.simpl.detail.fact1_value">6</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.simpl.detail.fact2_label">roles de participante</dt><dd class="pdoc__fact-value" data-i18n="projects.simpl.detail.fact2_value">5</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.simpl.detail.fact3_label">niveles de control de acceso</dt><dd class="pdoc__fact-value" data-i18n="projects.simpl.detail.fact3_value">2</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.simpl.detail.fact4_label">licencia de código abierto</dt><dd class="pdoc__fact-value" data-i18n="projects.simpl.detail.fact4_value">EUPL 1.2</dd></div>
+  </dl>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.context">Contexto</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.simpl.detail.context">Un espacio de datos reúne a participantes que no se conocen ni se fían por defecto: hay que resolver quién es quién, qué se ofrece, en qué condiciones y cómo se comprueba. SIMPL-Open aporta esa capa común para que cada sector construya encima lo suyo, y cada organización participa desplegando su propio agente.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.role">Qué hice</h3>
+    <div class="pdoc__content">
+      <ul class="bullets">
+        <li data-i18n="projects.simpl.detail.role1">Diseño la arquitectura de integración entre agentes y servicios, con sus requisitos de interoperabilidad, seguridad y gobernanza.</li>
+        <li data-i18n="projects.simpl.detail.role2">Defino y reviso los contratos OpenAPI de los servicios frente a la guía de API del programa y al modelo conceptual de datos que los sostiene.</li>
+        <li data-i18n="projects.simpl.detail.role3">Reviso la arquitectura que entrega cada equipo en cada sprint y compruebo que lo documentado coincide con lo construido.</li>
+        <li data-i18n="projects.simpl.detail.role4">Mantengo estándares de desarrollo comunes para que los repositorios de todos los equipos sigan siendo coherentes y mantenibles.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.architecture">Arquitectura</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.simpl.detail.arch_intro">Cada participante despliega un agente con dos puertas. Por el Tier 1, privado, entran sus usuarios con control por roles (RBAC); por el Tier 2, el único expuesto, los agentes se hablan con TLS mutuo y control por atributos (ABAC). La autoridad de gobernanza, una por espacio, da de alta a los participantes y aloja el catálogo.</p>
+    </div>
+    <figure class="pdoc__figure pdoc__wide">
+      <div class="pdoc__canvas">
+        <!-- ancho: la autoridad arriba, consumidor y proveedor abajo, el canal entre sus Tier 2 -->
+        <svg class="dg pdoc__diagram pdoc__diagram--wide" viewBox="0 0 880 470" width="880" height="470" role="img" aria-label="Espacio de datos con SIMPL-Open" data-i18n-attr="aria-label:projects.simpl.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="simpl-w-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="simpl-w-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <!-- autoridad de gobernanza -->
+          <rect class="dg-frame" x="276" y="14" width="328" height="132" rx="14"/>
+          <text class="dg-title dg-mid" x="440" y="43" data-i18n="projects.simpl.detail.dg_ga">Autoridad de gobernanza</text>
+          <rect class="dg-box" x="290" y="62" width="92" height="66" rx="10"/>
+          <rect class="dg-box dg-box--accent" x="394" y="62" width="92" height="66" rx="10"/>
+          <rect class="dg-box" x="498" y="62" width="92" height="66" rx="10"/>
+          <text class="dg-strong dg-mid" x="336" y="100" data-i18n="projects.simpl.detail.dg_onboarding">alta</text>
+          <text class="dg-strong dg-mid" x="440" y="91" data-i18n="projects.simpl.detail.dg_catalogue">catálogo</text>
+          <text class="dg-sub dg-mid" x="440" y="110">DCAT-AP</text>
+          <text class="dg-strong dg-mid" x="544" y="91" data-i18n="projects.simpl.detail.dg_identity">identidad</text>
+          <text class="dg-sub dg-mid" x="544" y="110">X.509</text>
+
+          <!-- ① credenciales hacia cada participante -->
+          <g class="dg-line dg-line--dash" marker-end="url(#simpl-w-arrow)">
+            <path d="M276 104H62V229"/>
+            <path d="M604 104H818V229"/>
+          </g>
+          <text class="dg-tiny dg-mid" x="170" y="96" data-i18n="projects.simpl.detail.dg_credentials">credenciales</text>
+          <text class="dg-tiny dg-mid" x="710" y="96" data-i18n="projects.simpl.detail.dg_credentials">credenciales</text>
+          <!-- ③ busca y ② publica en el catálogo -->
+          <g class="dg-line dg-line--accent" marker-end="url(#simpl-w-arrow-accent)">
+            <path d="M150 231V196H424V149"/>
+            <path d="M730 231V196H456V149"/>
+          </g>
+          <text class="dg-tiny dg-mid" x="300" y="188" data-i18n="projects.simpl.detail.dg_search">busca</text>
+          <text class="dg-tiny dg-mid" x="580" y="188" data-i18n="projects.simpl.detail.dg_publish">publica</text>
+
+          <!-- consumidor -->
+          <rect class="dg-frame" x="16" y="232" width="318" height="170" rx="14"/>
+          <text class="dg-title" x="34" y="261" data-i18n="projects.simpl.detail.dg_consumer">Consumidor</text>
+          <text class="dg-sub" x="34" y="280" data-i18n="projects.simpl.detail.dg_agent">agente SIMPL-Open</text>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <circle cx="46" cy="326" r="6"/>
+            <path d="M35 348a11 10 0 0 1 22 0"/>
+          </g>
+          <text class="dg-tiny dg-mid" x="46" y="374" data-i18n="projects.simpl.detail.dg_users">usuarios</text>
+          <path class="dg-line" marker-end="url(#simpl-w-arrow)" d="M62 338H80"/>
+          <rect class="dg-box" x="82" y="312" width="84" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="124" y="334">Tier 1</text>
+          <text class="dg-sub dg-mid" x="124" y="352">RBAC</text>
+          <path class="dg-line" marker-end="url(#simpl-w-arrow)" d="M166 338H182"/>
+          <rect class="dg-box dg-box--soft" x="184" y="312" width="84" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="226" y="343" data-i18n="projects.simpl.detail.dg_services">servicios</text>
+          <path class="dg-line" marker-start="url(#simpl-w-arrow)" marker-end="url(#simpl-w-arrow)" d="M270 338H292"/>
+
+          <!-- proveedor -->
+          <rect class="dg-frame" x="546" y="232" width="318" height="170" rx="14"/>
+          <text class="dg-title dg-end" x="846" y="261" data-i18n="projects.simpl.detail.dg_provider">Proveedor</text>
+          <text class="dg-sub dg-end" x="846" y="280" data-i18n="projects.simpl.detail.dg_agent">agente SIMPL-Open</text>
+          <path class="dg-line" marker-start="url(#simpl-w-arrow)" marker-end="url(#simpl-w-arrow)" d="M588 338H610"/>
+          <rect class="dg-box dg-box--soft" x="612" y="312" width="84" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="654" y="343" data-i18n="projects.simpl.detail.dg_services">servicios</text>
+          <path class="dg-line" marker-end="url(#simpl-w-arrow)" d="M714 338H698"/>
+          <rect class="dg-box" x="714" y="312" width="84" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="756" y="334">Tier 1</text>
+          <text class="dg-sub dg-mid" x="756" y="352">RBAC</text>
+          <path class="dg-line" marker-end="url(#simpl-w-arrow)" d="M818 338H800"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <circle cx="834" cy="326" r="6"/>
+            <path d="M823 348a11 10 0 0 1 22 0"/>
+          </g>
+          <text class="dg-tiny dg-mid" x="834" y="374" data-i18n="projects.simpl.detail.dg_users">usuarios</text>
+          <!-- el recurso vive fuera del agente -->
+          <path class="dg-line" marker-start="url(#simpl-w-arrow)" marker-end="url(#simpl-w-arrow)" d="M654 366V414"/>
+          <path class="dg-box" d="M624 422a30 7 0 0 1 60 0v30a30 7 0 0 1-60 0Z"/>
+          <path class="dg-rule" d="M624 422a30 7 0 0 0 60 0" style="stroke: var(--hairline-strong)"/>
+          <text class="dg-sub" x="696" y="446" data-i18n="projects.simpl.detail.dg_resource">recurso</text>
+
+          <!-- Tier 2: la única puerta expuesta de cada agente -->
+          <rect class="dg-box dg-box--accent" x="294" y="306" width="80" height="64" rx="10"/>
+          <text class="dg-strong dg-mid" x="334" y="333">Tier 2</text>
+          <text class="dg-sub dg-mid" x="334" y="351">ABAC</text>
+          <rect class="dg-box dg-box--accent" x="506" y="306" width="80" height="64" rx="10"/>
+          <text class="dg-strong dg-mid" x="546" y="333">Tier 2</text>
+          <text class="dg-sub dg-mid" x="546" y="351">ABAC</text>
+          <!-- ④ contrato y ⑤ transferencia sobre TLS mutuo -->
+          <text class="dg-tiny dg-mid" x="440" y="292" data-i18n="projects.simpl.detail.dg_channel">TLS mutuo · X.509</text>
+          <path class="dg-line dg-line--accent" marker-start="url(#simpl-w-arrow-accent)" marker-end="url(#simpl-w-arrow-accent)" d="M376 326H504"/>
+          <path class="dg-line dg-line--accent" marker-end="url(#simpl-w-arrow-accent)" d="M504 352H376"/>
+          <text class="dg-sub dg-mid" x="440" y="315" data-i18n="projects.simpl.detail.dg_contract">contrato</text>
+          <text class="dg-sub dg-mid" x="440" y="375" data-i18n="projects.simpl.detail.dg_transfer">transferencia</text>
+
+          <g class="dg-badge">
+            <circle cx="62" cy="168" r="10"/><text x="62" y="172">1</text>
+            <circle cx="818" cy="168" r="10"/><text x="818" y="172">1</text>
+            <circle cx="730" cy="214" r="10"/><text x="730" y="218">2</text>
+            <circle cx="150" cy="214" r="10"/><text x="150" y="218">3</text>
+            <circle cx="408" cy="326" r="10"/><text x="408" y="330">4</text>
+            <circle cx="472" cy="352" r="10"/><text x="472" y="356">5</text>
+          </g>
+        </svg>
+
+        <!-- estrecho: la autoridad arriba y los dos agentes en vertical, con el canal entre sus Tier 2 -->
+        <svg class="dg pdoc__diagram pdoc__diagram--tall" viewBox="0 0 380 782" width="380" height="782" role="img" aria-label="Espacio de datos con SIMPL-Open" data-i18n-attr="aria-label:projects.simpl.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="simpl-t-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="simpl-t-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <rect class="dg-frame" x="36" y="14" width="312" height="128" rx="14"/>
+          <text class="dg-title dg-mid" x="192" y="42" data-i18n="projects.simpl.detail.dg_ga">Autoridad de gobernanza</text>
+          <rect class="dg-box" x="46" y="58" width="90" height="66" rx="10"/>
+          <rect class="dg-box dg-box--accent" x="146" y="58" width="90" height="66" rx="10"/>
+          <rect class="dg-box" x="246" y="58" width="90" height="66" rx="10"/>
+          <text class="dg-strong dg-mid" x="91" y="96" data-i18n="projects.simpl.detail.dg_onboarding">alta</text>
+          <text class="dg-strong dg-mid" x="191" y="87" data-i18n="projects.simpl.detail.dg_catalogue">catálogo</text>
+          <text class="dg-sub dg-mid" x="191" y="106">DCAT-AP</text>
+          <text class="dg-strong dg-mid" x="291" y="87" data-i18n="projects.simpl.detail.dg_identity">identidad</text>
+          <text class="dg-sub dg-mid" x="291" y="106">X.509</text>
+
+          <g class="dg-line dg-line--dash" marker-end="url(#simpl-t-arrow)">
+            <path d="M36 100H14V300H26"/>
+            <path d="M14 300V618H26"/>
+          </g>
+          <path class="dg-line dg-line--accent" marker-end="url(#simpl-t-arrow-accent)" d="M182 224V145"/>
+          <text class="dg-tiny" x="198" y="190" data-i18n="projects.simpl.detail.dg_search">busca</text>
+          <path class="dg-line dg-line--accent" marker-end="url(#simpl-t-arrow-accent)" d="M348 624H366V100H351"/>
+
+          <rect class="dg-frame" x="28" y="226" width="320" height="166" rx="14"/>
+          <text class="dg-title" x="44" y="254" data-i18n="projects.simpl.detail.dg_consumer">Consumidor</text>
+          <text class="dg-sub" x="44" y="272" data-i18n="projects.simpl.detail.dg_agent">agente SIMPL-Open</text>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <circle cx="56" cy="308" r="6"/>
+            <path d="M45 330a11 10 0 0 1 22 0"/>
+          </g>
+          <text class="dg-tiny dg-mid" x="56" y="354" data-i18n="projects.simpl.detail.dg_users">usuarios</text>
+          <path class="dg-line" marker-end="url(#simpl-t-arrow)" d="M72 320H92"/>
+          <rect class="dg-box" x="94" y="296" width="84" height="48" rx="10"/>
+          <text class="dg-strong dg-mid" x="136" y="316">Tier 1</text>
+          <text class="dg-sub dg-mid" x="136" y="333">RBAC</text>
+          <path class="dg-line" marker-end="url(#simpl-t-arrow)" d="M178 320H194"/>
+          <rect class="dg-box dg-box--soft" x="196" y="296" width="84" height="48" rx="10"/>
+          <text class="dg-strong dg-mid" x="238" y="325" data-i18n="projects.simpl.detail.dg_services">servicios</text>
+          <path class="dg-line" marker-start="url(#simpl-t-arrow)" marker-end="url(#simpl-t-arrow)" d="M238 346V366"/>
+          <rect class="dg-box dg-box--accent" x="194" y="368" width="88" height="48" rx="10"/>
+          <text class="dg-strong dg-mid" x="238" y="388">Tier 2</text>
+          <text class="dg-sub dg-mid" x="238" y="405">ABAC</text>
+
+          <path class="dg-line dg-line--accent" marker-start="url(#simpl-t-arrow-accent)" marker-end="url(#simpl-t-arrow-accent)" d="M222 418V506"/>
+          <path class="dg-line dg-line--accent" marker-end="url(#simpl-t-arrow-accent)" d="M254 506V418"/>
+          <text class="dg-sub dg-end" x="206" y="448" data-i18n="projects.simpl.detail.dg_contract">contrato</text>
+          <text class="dg-tiny dg-end" x="206" y="482" data-i18n="projects.simpl.detail.dg_channel">TLS mutuo · X.509</text>
+          <text class="dg-sub" x="268" y="448" data-i18n="projects.simpl.detail.dg_transfer">transferencia</text>
+
+          <rect class="dg-frame" x="28" y="532" width="320" height="170" rx="14"/>
+          <rect class="dg-box dg-box--accent" x="194" y="508" width="88" height="48" rx="10"/>
+          <text class="dg-strong dg-mid" x="238" y="528">Tier 2</text>
+          <text class="dg-sub dg-mid" x="238" y="545">ABAC</text>
+          <text class="dg-title" x="44" y="564" data-i18n="projects.simpl.detail.dg_provider">Proveedor</text>
+          <text class="dg-sub" x="44" y="582" data-i18n="projects.simpl.detail.dg_agent">agente SIMPL-Open</text>
+          <path class="dg-line" marker-start="url(#simpl-t-arrow)" marker-end="url(#simpl-t-arrow)" d="M238 558V598"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <circle cx="56" cy="612" r="6"/>
+            <path d="M45 634a11 10 0 0 1 22 0"/>
+          </g>
+          <text class="dg-tiny dg-mid" x="56" y="658" data-i18n="projects.simpl.detail.dg_users">usuarios</text>
+          <path class="dg-line" marker-end="url(#simpl-t-arrow)" d="M72 624H92"/>
+          <rect class="dg-box" x="94" y="600" width="84" height="48" rx="10"/>
+          <text class="dg-strong dg-mid" x="136" y="620">Tier 1</text>
+          <text class="dg-sub dg-mid" x="136" y="637">RBAC</text>
+          <path class="dg-line" marker-end="url(#simpl-t-arrow)" d="M178 624H194"/>
+          <rect class="dg-box dg-box--soft" x="196" y="600" width="84" height="48" rx="10"/>
+          <text class="dg-strong dg-mid" x="238" y="629" data-i18n="projects.simpl.detail.dg_services">servicios</text>
+          <path class="dg-line" marker-start="url(#simpl-t-arrow)" marker-end="url(#simpl-t-arrow)" d="M238 650V718"/>
+          <path class="dg-box" d="M210 726a28 7 0 0 1 56 0v30a28 7 0 0 1-56 0Z"/>
+          <path class="dg-rule" d="M210 726a28 7 0 0 0 56 0" style="stroke: var(--hairline-strong)"/>
+          <text class="dg-sub" x="278" y="750" data-i18n="projects.simpl.detail.dg_resource">recurso</text>
+
+          <g class="dg-badge">
+            <circle cx="14" cy="200" r="10"/><text x="14" y="204">1</text>
+            <circle cx="366" cy="462" r="10"/><text x="366" y="466">2</text>
+            <circle cx="182" cy="186" r="10"/><text x="182" y="190">3</text>
+            <circle cx="222" cy="462" r="10"/><text x="222" y="466">4</text>
+            <circle cx="254" cy="484" r="10"/><text x="254" y="488">5</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption data-i18n="projects.simpl.detail.caption">En azul, las interfaces con su contrato OpenAPI: la parte del sistema que diseño y reviso.</figcaption>
+    </figure>
+    <ol class="pdoc__steps pdoc__wide">
+      <li data-i18n="projects.simpl.detail.step1">Alta: la autoridad de gobernanza verifica al participante y le emite su identidad, un certificado X.509 con sus atributos.</li>
+      <li data-i18n="projects.simpl.detail.step2">Publicación: el proveedor describe su recurso con metadatos DCAT-AP y lo publica en el catálogo.</li>
+      <li data-i18n="projects.simpl.detail.step3">Descubrimiento: el consumidor busca en el catálogo desde su propio agente.</li>
+      <li data-i18n="projects.simpl.detail.step4">Negociación: los agentes se autentican con TLS mutuo, el proveedor aplica sus políticas a los atributos del consumidor y se acuerda el contrato.</li>
+      <li data-i18n="projects.simpl.detail.step5">Transferencia: el plano de datos entrega el recurso en las condiciones pactadas.</li>
+    </ol>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.stack">Stack</h3>
+    <div class="pdoc__content">
+      <dl class="pdoc__dl">
+        <div><dt data-i18n="projects.simpl.detail.stack1_label">Contratos</dt><dd data-i18n="projects.simpl.detail.stack1">OpenAPI, revisados frente a la guía de API del programa</dd></div>
+        <div><dt data-i18n="projects.simpl.detail.stack2_label">Servicios</dt><dd data-i18n="projects.simpl.detail.stack2">Java y Spring Boot</dd></div>
+        <div><dt data-i18n="projects.simpl.detail.stack3_label">Protocolo</dt><dd data-i18n="projects.simpl.detail.stack3">Dataspace Protocol: catálogo, negociación de contratos y transferencia</dd></div>
+        <div><dt data-i18n="projects.simpl.detail.stack4_label">Confianza</dt><dd data-i18n="projects.simpl.detail.stack4">Certificados X.509 con atributos y TLS mutuo entre agentes</dd></div>
+        <div><dt data-i18n="projects.simpl.detail.stack5_label">Metadatos</dt><dd data-i18n="projects.simpl.detail.stack5">DCAT-AP para describir datos, aplicaciones e infraestructura</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.learned">Qué aprendí</h3>
+    <div class="pdoc__content">
+      <p class="pdoc__quote" data-i18n="projects.simpl.detail.learned">Que en un sistema federado la arquitectura vive en los contratos. Un campo ambiguo en un OpenAPI acaba siendo tres interpretaciones en tres equipos, así que revisar una API es sobre todo revisar un acuerdo: nombres, errores, versiones y qué pasa cuando algo falla.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.links">Enlaces</h3>
+    <div class="pdoc__content">
+      <ul class="pdoc__links">
+        <li>
+          <a class="action" href="https://code.europa.eu/simpl/simpl-open" target="_blank" rel="noopener noreferrer">
+            <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><circle cx="6.5" cy="5.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="6.5" cy="18.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="8.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6.5 7.7v8.6M17.5 10.7c0 3.6-5.5 3-9.6 6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span class="action__text"><span class="action__label" data-i18n="projects.simpl.detail.link1">Grupo de repositorios en code.europa.eu</span><span class="action__value">code.europa.eu/simpl/simpl-open</span></span>
+            <span class="action__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a class="action" href="https://code.europa.eu/simpl/simpl-open/foundations/architecture/-/blob/main/capability-map.md" target="_blank" rel="noopener noreferrer">
+            <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            <span class="action__text"><span class="action__label" data-i18n="projects.simpl.detail.link2">Mapa de capacidades de la arquitectura</span><span class="action__value">foundations/architecture · capability-map.md</span></span>
+            <span class="action__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="pdoc__footer">
+    <button type="button" class="btn btn--secondary pdoc__back" data-pdialog-close><span class="pdoc__back-arrow" aria-hidden="true">←</span><span data-i18n="projects.detail.back">Volver</span></button>
+    <a class="btn btn--secondary btn--sm" href="https://code.europa.eu/simpl/simpl-open" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_repo_public">Repositorio público</span><span class="arrow" aria-hidden="true">↗</span></a>
+  </footer>
+</article>
