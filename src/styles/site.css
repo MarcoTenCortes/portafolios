@@ -156,6 +156,16 @@
   .body { font-size: 17px; line-height: 1.55; color: var(--body); max-width: 62ch; text-wrap: pretty; }
   .body-sm { font-size: 15px; line-height: 1.5; color: var(--body); }
   .caption { font-size: 14px; line-height: 1.43; color: var(--mute); }
+  /* movil: escala un punto por debajo (los cuerpos a 16 px y los titulos de tarjeta y experiencia a 21-24 px) */
+  @media (max-width: 767px) {
+    body { font-size: 16px; }
+    .heading-xl { font-size: 24px; }
+    .heading-lg { font-size: 21px; }
+    .heading-md { font-size: 18px; }
+    .lead { font-size: 18px; }
+    .body { font-size: 16px; }
+    .body-sm { font-size: 14px; }
+  }
   .eyebrow {
     font-size: 12px; line-height: 1.3; letter-spacing: 0.06em; text-transform: uppercase;
     font-weight: 500; color: var(--mute);
@@ -223,7 +233,7 @@
   .chip__dot { width: 6px; height: 6px; border-radius: 50%; background: var(--action); flex: none; }
   .chip:hover { border-color: var(--hairline-strong); color: var(--ink); }
   .chip:hover .chip__icon { color: var(--action); }
-  .chips--inline .chip { height: 28px; font-size: 13px; padding: 0 8px; }
+  .chips--inline .chip { height: 26px; font-size: 12.5px; padding: 0 8px; }
   .chips--inline .chip__icon { width: 15px; height: 15px; }
 
   /* ventana estilo Raycast */
@@ -257,7 +267,7 @@
   }
   .card:hover { border-color: var(--hairline-strong); }
   .card__media {
-    position: relative; aspect-ratio: 16 / 10; background: var(--surface-elevated); overflow: hidden;
+    position: relative; aspect-ratio: 16 / 9; background: var(--surface-elevated); overflow: hidden;
     border-bottom: 1px solid var(--hairline);
   }
   .card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 400ms var(--ease-out); }
@@ -265,8 +275,11 @@
   .card__media--svg { display: grid; place-items: center; background: var(--tile-2); }
   .card__media--svg svg { width: 100%; height: 100%; }
   .card__media-overlay { position: absolute; inset: 0; background: rgba(5, 7, 11, 0.2); pointer-events: none; }
-  .card__body { display: flex; flex-direction: column; gap: 12px; padding: 24px; flex: 1; }
-  .card__body .body { font-size: 16px; }
+  .card__body { display: flex; flex-direction: column; gap: 10px; padding: 20px; flex: 1; }
+  .card__body .body { font-size: 15px; line-height: 1.5; }
+  .card__body .heading-lg { font-size: 21px; }
+  .card__body .heading-xl { font-size: 26px; }
+  .card__body .caption { font-size: 13px; }
   .card__actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; padding-top: 8px; }
 
   /* filas de acción (contacto) */
@@ -312,6 +325,7 @@
   .social svg { fill: currentColor; }
 
   .bullets { list-style: none; display: grid; gap: 8px; color: var(--body); font-size: 16px; max-width: 70ch; }
+  @media (max-width: 767px) { .bullets { font-size: 15px; } }
   .bullets li { position: relative; padding-left: 18px; }
   .bullets li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: var(--action); }
 }
@@ -462,15 +476,15 @@
 
   /* ---------- proyectos ---------- */
   .projects__subtitle { margin-top: 12px; max-width: 40ch; }
-  .projects__grid { display: grid; gap: 24px; margin-top: 40px; }
+  .projects__grid { display: grid; gap: 20px; margin-top: 36px; }
   /* la alternancia se cuenta solo entre las tarjetas normales, para que no dependa de cuántas destacadas haya delante */
   .projects__grid .card:nth-child(even of :not(.card--featured)) { background: var(--tile-3); }
   .projects__grid .card.card--featured { background: var(--tile-black); }
   .projects__more { margin-top: 32px; }
   .card__kicker { color: var(--action); }
-  .card__facts { font-size: 13px; color: var(--mute); letter-spacing: .02em; }
+  .card__facts { font-size: 12.5px; color: var(--mute); letter-spacing: .02em; }
   /* títulos muy largos (el del artículo): algo más pequeños en móvil y con líneas equilibradas */
-  .card__title--long { font-size: clamp(24px, 6.4vw, 30px); text-wrap: balance; }
+  .card__title--long { font-size: clamp(22px, 5.8vw, 26px); text-wrap: balance; }
   /* si una pastilla de estado no cabe en una pantalla muy estrecha, crece en alto en vez de desbordarse */
   .card__actions .badge { height: auto; min-height: 24px; padding-block: 4px; line-height: 1.3; }
   .method { margin-top: 56px; }
@@ -487,11 +501,11 @@
     /* la tercera destacada (el artículo) vuelve a llevar la media a la izquierda: izquierda, derecha, izquierda */
     .projects__grid .card--featured + .card--featured + .card--featured { grid-template-columns: 1.1fr 0.9fr; }
     .projects__grid .card--featured + .card--featured + .card--featured .card__media { order: 0; border-left: 0; border-right: 1px solid var(--hairline); }
-    .card--featured .card__media { aspect-ratio: auto; min-height: 320px; border-bottom: 0; border-right: 1px solid var(--hairline); }
-    .card--featured .card__body { padding: 40px; justify-content: center; }
+    .card--featured .card__media { aspect-ratio: auto; min-height: 280px; border-bottom: 0; border-right: 1px solid var(--hairline); }
+    .card--featured .card__body { padding: 32px; justify-content: center; }
   }
   @media (min-width: 1080px) {
-    .card--featured .card__media { min-height: 420px; }
+    .card--featured .card__media { min-height: 360px; }
   }
 
   /* ---------- habilidades ---------- */
