@@ -1,0 +1,289 @@
+<article class="pdoc" data-project="tfg">
+  <header class="pdoc__head">
+    <p class="eyebrow pdoc__kicker" data-i18n="projects.tfg.detail.kicker">Trabajo de Fin de Grado · Universidad de Sevilla</p>
+    <h2 class="display-md" id="pdialog-title" data-i18n="projects.tfg.title">Detección de cáncer con autoencoders (TFG)</h2>
+    <p class="lead pdoc__lead" data-i18n="projects.tfg.detail.lead">Un autoencoder que solo ha visto tumores benignos y marca como sospechoso lo que no sabe reconstruir. Es mi Trabajo de Fin de Grado en Ingeniería Informática, sobre el dataset Breast Cancer Wisconsin, con demo web en Flask.</p>
+    <div class="pdoc__actions">
+      <a class="btn btn--primary btn--sm" href="https://sanidad.mtcor.es" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_demo">Ver demo</span><span class="arrow" aria-hidden="true">↗</span></a>
+      <a class="btn btn--secondary btn--sm" href="https://github.com/MarcoTenCortes/TFG-Autoencoder" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+    </div>
+    <ul class="chips chips--inline" aria-label="Tecnologías" data-i18n-attr="aria-label:projects.detail.tech">
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#keras"/></svg><span>Keras</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#tensorflow"/></svg><span>TensorFlow</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>scikit-learn</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>pandas · NumPy</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#flask"/></svg><span>Flask</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#python"/></svg><span>Python</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Jupyter</span></li>
+    </ul>
+  </header>
+
+  <dl class="pdoc__facts" aria-label="En cifras" data-i18n-attr="aria-label:projects.detail.facts">
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.tfg.detail.fact1_label">muestras en el dataset</dt><dd class="pdoc__fact-value" data-i18n="projects.tfg.detail.fact1_value">569</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.tfg.detail.fact2_label">medidas de entrada por muestra</dt><dd class="pdoc__fact-value" data-i18n="projects.tfg.detail.fact2_value">29</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.tfg.detail.fact3_label">neuronas en el cuello de botella</dt><dd class="pdoc__fact-value" data-i18n="projects.tfg.detail.fact3_value">8</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.tfg.detail.fact4_label">de malignas, para simular anomalías</dt><dd class="pdoc__fact-value" data-i18n="projects.tfg.detail.fact4_value">10 %</dd></div>
+  </dl>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.context">Contexto</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.tfg.detail.context">Cuando casi todas las muestras son benignas, un tumor maligno se comporta como una anomalía, y un clasificador que apenas ha visto malignos aprende a decir que todo va bien. El TFG le da la vuelta: enseñar al modelo solo lo normal y medir cuánto le cuesta reconstruir cada muestra.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.role">Qué hice</h3>
+    <div class="pdoc__content">
+      <ul class="bullets">
+        <li data-i18n="projects.tfg.detail.role1">Preparé los datos: quité una característica redundante tras estudiar las correlaciones y reduje las malignas al 10 % de las benignas para recrear un escenario de anomalías.</li>
+        <li data-i18n="projects.tfg.detail.role2">Diseñé el autoencoder en Keras, de 29 a 8 neuronas y vuelta, con regularización L1, Adam, pérdida MSE y parada temprana, y ajusté sus hiperparámetros.</li>
+        <li data-i18n="projects.tfg.detail.role3">Elegí el umbral con las curvas de precisión y exhaustividad y la ROC, y comparé con KNN, árbol de decisión y random forest.</li>
+        <li data-i18n="projects.tfg.detail.role4">Monté una demo en Flask que recibe un formulario o un Excel y devuelve benigno o maligno por muestra.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.architecture">Arquitectura</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.tfg.detail.arch_intro">El modelo comprime cada muestra hasta 8 valores y la vuelve a expandir. Como solo ha aprendido cómo es un tumor benigno, lo que no se le parece sale peor reconstruido, y ese error decide.</p>
+    </div>
+    <figure class="pdoc__figure pdoc__wide">
+      <div class="pdoc__canvas">
+        <!-- ancho: la red a la izquierda (una columna por capa, un punto por neurona), la decisión a la derecha, la demo debajo -->
+        <svg class="dg pdoc__diagram pdoc__diagram--wide" viewBox="0 0 880 460" width="880" height="460" role="img" aria-label="Autoencoder para detectar anomalías" data-i18n-attr="aria-label:projects.tfg.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="tfg-w-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="tfg-w-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <rect class="dg-frame" x="16" y="14" width="544" height="328" rx="14"/>
+          <text class="dg-title" x="34" y="43">Autoencoder</text>
+          <text class="dg-sub" x="34" y="62">Keras · TensorFlow</text>
+          <!-- conexiones densas entre capas -->
+          <g fill="var(--action-soft)">
+            <path d="M86 105 146 144V248L86 287Z"/>
+            <path d="M176 144 236 168V224L176 248Z"/>
+            <path d="M356 168 416 144V248L356 224Z"/>
+            <path d="M446 144 506 105V287L446 248Z"/>
+          </g>
+          <rect class="dg-fill-accent" x="266" y="168" width="60" height="56" opacity=".24"/>
+          <!-- capas: 29 · 16 · 8 | 8 · 16 · 29 -->
+          <rect class="dg-box" x="56" y="105" width="30" height="182" rx="10"/>
+          <rect class="dg-box" x="146" y="144" width="30" height="104" rx="10"/>
+          <rect class="dg-box dg-box--accent" x="236" y="168" width="30" height="56" rx="10"/>
+          <rect class="dg-box dg-box--accent" x="326" y="168" width="30" height="56" rx="10"/>
+          <rect class="dg-box" x="416" y="144" width="30" height="104" rx="10"/>
+          <rect class="dg-box" x="506" y="105" width="30" height="182" rx="10"/>
+          <g id="tfg-w-n29" class="dg-bar dg-bar--strong">
+            <circle cx="71" cy="112" r="2"/><circle cx="71" cy="118" r="2"/><circle cx="71" cy="124" r="2"/><circle cx="71" cy="130" r="2"/><circle cx="71" cy="136" r="2"/><circle cx="71" cy="142" r="2"/><circle cx="71" cy="148" r="2"/><circle cx="71" cy="154" r="2"/><circle cx="71" cy="160" r="2"/><circle cx="71" cy="166" r="2"/><circle cx="71" cy="172" r="2"/><circle cx="71" cy="178" r="2"/><circle cx="71" cy="184" r="2"/><circle cx="71" cy="190" r="2"/><circle cx="71" cy="196" r="2"/><circle cx="71" cy="202" r="2"/><circle cx="71" cy="208" r="2"/><circle cx="71" cy="214" r="2"/><circle cx="71" cy="220" r="2"/><circle cx="71" cy="226" r="2"/><circle cx="71" cy="232" r="2"/><circle cx="71" cy="238" r="2"/><circle cx="71" cy="244" r="2"/><circle cx="71" cy="250" r="2"/><circle cx="71" cy="256" r="2"/><circle cx="71" cy="262" r="2"/><circle cx="71" cy="268" r="2"/><circle cx="71" cy="274" r="2"/><circle cx="71" cy="280" r="2"/>
+          </g>
+          <use href="#tfg-w-n29" x="450"/>
+          <g id="tfg-w-n16" class="dg-bar dg-bar--strong">
+            <circle cx="161" cy="151" r="2"/><circle cx="161" cy="157" r="2"/><circle cx="161" cy="163" r="2"/><circle cx="161" cy="169" r="2"/><circle cx="161" cy="175" r="2"/><circle cx="161" cy="181" r="2"/><circle cx="161" cy="187" r="2"/><circle cx="161" cy="193" r="2"/><circle cx="161" cy="199" r="2"/><circle cx="161" cy="205" r="2"/><circle cx="161" cy="211" r="2"/><circle cx="161" cy="217" r="2"/><circle cx="161" cy="223" r="2"/><circle cx="161" cy="229" r="2"/><circle cx="161" cy="235" r="2"/><circle cx="161" cy="241" r="2"/>
+          </g>
+          <use href="#tfg-w-n16" x="270"/>
+          <g id="tfg-w-n8" class="dg-fill-accent">
+            <circle cx="251" cy="175" r="2"/><circle cx="251" cy="181" r="2"/><circle cx="251" cy="187" r="2"/><circle cx="251" cy="193" r="2"/><circle cx="251" cy="199" r="2"/><circle cx="251" cy="205" r="2"/><circle cx="251" cy="211" r="2"/><circle cx="251" cy="217" r="2"/>
+          </g>
+          <use href="#tfg-w-n8" x="90"/>
+          <text class="dg-sub dg-mid" x="71" y="305">29</text><text class="dg-sub dg-mid" x="161" y="266">16</text><text class="dg-sub dg-mid" x="251" y="242">8</text>
+          <text class="dg-sub dg-mid" x="341" y="242">8</text><text class="dg-sub dg-mid" x="431" y="266">16</text><text class="dg-sub dg-mid" x="521" y="305">29</text>
+          <text class="dg-tiny dg-mid" x="161" y="132">encoder</text>
+          <text class="dg-tiny dg-mid" x="431" y="132">decoder</text>
+          <text class="dg-tiny dg-mid dg-accent" x="296" y="156" data-i18n="projects.tfg.detail.dg_bottleneck">cuello de botella</text>
+
+          <!-- decisión (el marco va antes que las líneas que entran en él) -->
+          <rect class="dg-frame" x="584" y="14" width="280" height="328" rx="14"/>
+          <!-- la entrada original viaja por arriba hasta el error -->
+          <path class="dg-line dg-line--dash" marker-end="url(#tfg-w-arrow)" d="M71 103V84H724V108"/>
+          <text class="dg-tiny dg-mid" x="296" y="77" data-i18n="projects.tfg.detail.dg_original">entrada original</text>
+          <!-- la reconstrucción sale por la derecha -->
+          <path class="dg-line" marker-end="url(#tfg-w-arrow)" d="M538 196H570V139H598"/>
+          <text class="dg-title" x="602" y="43" data-i18n="projects.tfg.detail.dg_detection">Detección</text>
+          <rect class="dg-box dg-box--accent" x="600" y="110" width="248" height="58" rx="10"/>
+          <text class="dg-title dg-mid" x="724" y="136">MSE(x, x̂)</text>
+          <text class="dg-sub dg-mid" x="724" y="156" data-i18n="projects.tfg.detail.dg_error">error de reconstrucción</text>
+          <path class="dg-line" marker-end="url(#tfg-w-arrow)" d="M724 169V190"/>
+          <rect class="dg-pill" x="600" y="192" width="248" height="36" rx="10"/>
+          <text class="dg-strong dg-mid" x="724" y="214" data-i18n="projects.tfg.detail.dg_question">¿error &gt; umbral?</text>
+          <path class="dg-line" marker-end="url(#tfg-w-arrow)" d="M650 229V262"/>
+          <path class="dg-line dg-line--accent" marker-end="url(#tfg-w-arrow-accent)" d="M780 229V262"/>
+          <text class="dg-tiny" x="660" y="250" data-i18n="projects.tfg.detail.dg_no">no</text>
+          <text class="dg-tiny dg-accent" x="790" y="250" data-i18n="projects.tfg.detail.dg_yes">sí</text>
+          <rect class="dg-box" x="600" y="264" width="100" height="56" rx="10"/>
+          <text class="dg-strong dg-mid" x="650" y="296" data-i18n="projects.tfg.detail.dg_benign">benigno</text>
+          <rect class="dg-box dg-box--accent" x="712" y="264" width="136" height="56" rx="10"/>
+          <text class="dg-strong dg-mid" x="780" y="287" data-i18n="projects.tfg.detail.dg_anomaly">anomalía</text>
+          <text class="dg-sub dg-mid" x="780" y="305" data-i18n="projects.tfg.detail.dg_malignant">posible maligno</text>
+
+          <!-- demo web -->
+          <rect class="dg-frame" x="16" y="362" width="848" height="84" rx="14"/>
+          <text class="dg-title" x="34" y="399">Demo · Flask</text>
+          <text class="dg-sub" x="34" y="418">sanidad.mtcor.es</text>
+          <rect class="dg-box" x="196" y="378" width="120" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="256" y="400" data-i18n="projects.tfg.detail.dg_form">formulario</text>
+          <text class="dg-sub dg-mid" x="256" y="418" data-i18n="projects.tfg.detail.dg_excel">o Excel</text>
+          <path class="dg-line" marker-end="url(#tfg-w-arrow)" d="M317 404H338"/>
+          <rect class="dg-box" x="340" y="378" width="144" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="412" y="400">StandardScaler</text>
+          <text class="dg-sub dg-mid" x="412" y="418" data-i18n="projects.tfg.detail.dg_scaler">normalizador</text>
+          <path class="dg-line" marker-end="url(#tfg-w-arrow)" d="M485 404H506"/>
+          <rect class="dg-box" x="508" y="378" width="160" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="588" y="400">autoencoder55.h5</text>
+          <text class="dg-sub dg-mid" x="588" y="418" data-i18n="projects.tfg.detail.dg_mse_threshold">MSE vs umbral</text>
+          <path class="dg-line" marker-end="url(#tfg-w-arrow)" d="M669 404H690"/>
+          <rect class="dg-box dg-box--accent" x="692" y="378" width="156" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="770" y="400" data-i18n="projects.tfg.detail.dg_verdict">veredicto</text>
+          <text class="dg-sub dg-mid" x="770" y="418" data-i18n="projects.tfg.detail.dg_verdict_values">benigno · maligno</text>
+
+          <g class="dg-badge">
+            <circle cx="38" cy="196" r="10"/><text x="38" y="200">1</text>
+            <circle cx="296" cy="196" r="10"/><text x="296" y="200">2</text>
+            <circle cx="600" cy="110" r="10"/><text x="600" y="114">3</text>
+            <circle cx="600" cy="192" r="10"/><text x="600" y="196">4</text>
+            <circle cx="196" cy="378" r="10"/><text x="196" y="382">5</text>
+          </g>
+        </svg>
+
+        <!-- estrecho: la red en vertical, como un reloj de arena, y la decisión y la demo debajo -->
+        <svg class="dg pdoc__diagram pdoc__diagram--tall" viewBox="0 0 360 930" width="360" height="930" role="img" aria-label="Autoencoder para detectar anomalías" data-i18n-attr="aria-label:projects.tfg.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="tfg-t-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="tfg-t-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <rect class="dg-frame" x="12" y="12" width="336" height="608" rx="14"/>
+          <text class="dg-title" x="28" y="40">Autoencoder</text>
+          <text class="dg-sub" x="28" y="58">Keras · TensorFlow</text>
+          <g fill="var(--action-soft)">
+            <path d="M90 106H302L256 136H136Z"/>
+            <path d="M136 158H256L228 188H164Z"/>
+            <path d="M164 262H228L256 292H136Z"/>
+            <path d="M136 314H256L302 344H90Z"/>
+          </g>
+          <rect class="dg-fill-accent" x="164" y="210" width="64" height="30" opacity=".24"/>
+          <rect class="dg-box" x="90" y="84" width="212" height="22" rx="10"/>
+          <rect class="dg-box" x="136" y="136" width="120" height="22" rx="10"/>
+          <rect class="dg-box dg-box--accent" x="164" y="188" width="64" height="22" rx="10"/>
+          <rect class="dg-box dg-box--accent" x="164" y="240" width="64" height="22" rx="10"/>
+          <rect class="dg-box" x="136" y="292" width="120" height="22" rx="10"/>
+          <rect class="dg-box" x="90" y="344" width="212" height="22" rx="10"/>
+          <g id="tfg-t-n29" class="dg-bar dg-bar--strong">
+            <circle cx="98" cy="95" r="2"/><circle cx="105" cy="95" r="2"/><circle cx="112" cy="95" r="2"/><circle cx="119" cy="95" r="2"/><circle cx="126" cy="95" r="2"/><circle cx="133" cy="95" r="2"/><circle cx="140" cy="95" r="2"/><circle cx="147" cy="95" r="2"/><circle cx="154" cy="95" r="2"/><circle cx="161" cy="95" r="2"/><circle cx="168" cy="95" r="2"/><circle cx="175" cy="95" r="2"/><circle cx="182" cy="95" r="2"/><circle cx="189" cy="95" r="2"/><circle cx="196" cy="95" r="2"/><circle cx="203" cy="95" r="2"/><circle cx="210" cy="95" r="2"/><circle cx="217" cy="95" r="2"/><circle cx="224" cy="95" r="2"/><circle cx="231" cy="95" r="2"/><circle cx="238" cy="95" r="2"/><circle cx="245" cy="95" r="2"/><circle cx="252" cy="95" r="2"/><circle cx="259" cy="95" r="2"/><circle cx="266" cy="95" r="2"/><circle cx="273" cy="95" r="2"/><circle cx="280" cy="95" r="2"/><circle cx="287" cy="95" r="2"/><circle cx="294" cy="95" r="2"/>
+          </g>
+          <use href="#tfg-t-n29" y="260"/>
+          <g id="tfg-t-n16" class="dg-bar dg-bar--strong">
+            <circle cx="143.5" cy="147" r="2"/><circle cx="150.5" cy="147" r="2"/><circle cx="157.5" cy="147" r="2"/><circle cx="164.5" cy="147" r="2"/><circle cx="171.5" cy="147" r="2"/><circle cx="178.5" cy="147" r="2"/><circle cx="185.5" cy="147" r="2"/><circle cx="192.5" cy="147" r="2"/><circle cx="199.5" cy="147" r="2"/><circle cx="206.5" cy="147" r="2"/><circle cx="213.5" cy="147" r="2"/><circle cx="220.5" cy="147" r="2"/><circle cx="227.5" cy="147" r="2"/><circle cx="234.5" cy="147" r="2"/><circle cx="241.5" cy="147" r="2"/><circle cx="248.5" cy="147" r="2"/>
+          </g>
+          <use href="#tfg-t-n16" y="156"/>
+          <g id="tfg-t-n8" class="dg-fill-accent">
+            <circle cx="171.5" cy="199" r="2"/><circle cx="178.5" cy="199" r="2"/><circle cx="185.5" cy="199" r="2"/><circle cx="192.5" cy="199" r="2"/><circle cx="199.5" cy="199" r="2"/><circle cx="206.5" cy="199" r="2"/><circle cx="213.5" cy="199" r="2"/><circle cx="220.5" cy="199" r="2"/>
+          </g>
+          <use href="#tfg-t-n8" y="52"/>
+          <text class="dg-sub" x="312" y="99">29</text><text class="dg-sub" x="266" y="151">16</text><text class="dg-sub" x="238" y="203">8</text>
+          <text class="dg-sub" x="238" y="255">8</text><text class="dg-sub" x="266" y="307">16</text><text class="dg-sub" x="312" y="359">29</text>
+          <text class="dg-sub" x="34" y="151">encoder</text>
+          <text class="dg-sub dg-accent" x="34" y="229" data-i18n="projects.tfg.detail.dg_bottleneck">cuello de botella</text>
+          <text class="dg-sub" x="34" y="307">decoder</text>
+
+          <path class="dg-line dg-line--dash" marker-end="url(#tfg-t-arrow)" d="M88 95H22V420H74"/>
+          <path class="dg-line" marker-end="url(#tfg-t-arrow)" d="M196 367V390"/>
+          <rect class="dg-box dg-box--accent" x="76" y="392" width="240" height="56" rx="10"/>
+          <text class="dg-title dg-mid" x="196" y="416">MSE(x, x̂)</text>
+          <text class="dg-sub dg-mid" x="196" y="436" data-i18n="projects.tfg.detail.dg_error">error de reconstrucción</text>
+          <path class="dg-line" marker-end="url(#tfg-t-arrow)" d="M196 449V470"/>
+          <rect class="dg-pill" x="76" y="472" width="240" height="36" rx="10"/>
+          <text class="dg-strong dg-mid" x="196" y="494" data-i18n="projects.tfg.detail.dg_question">¿error &gt; umbral?</text>
+          <path class="dg-line" marker-end="url(#tfg-t-arrow)" d="M102 509V540"/>
+          <path class="dg-line dg-line--accent" marker-end="url(#tfg-t-arrow-accent)" d="M260 509V540"/>
+          <text class="dg-sub" x="112" y="529" data-i18n="projects.tfg.detail.dg_no">no</text>
+          <text class="dg-sub dg-accent" x="270" y="529" data-i18n="projects.tfg.detail.dg_yes">sí</text>
+          <rect class="dg-box" x="28" y="542" width="148" height="56" rx="10"/>
+          <text class="dg-strong dg-mid" x="102" y="575" data-i18n="projects.tfg.detail.dg_benign">benigno</text>
+          <rect class="dg-box dg-box--accent" x="188" y="542" width="144" height="56" rx="10"/>
+          <text class="dg-strong dg-mid" x="260" y="565" data-i18n="projects.tfg.detail.dg_anomaly">anomalía</text>
+          <text class="dg-sub dg-mid" x="260" y="584" data-i18n="projects.tfg.detail.dg_malignant">posible maligno</text>
+
+          <rect class="dg-frame" x="12" y="640" width="336" height="278" rx="14"/>
+          <text class="dg-title" x="28" y="668">Demo · Flask</text>
+          <text class="dg-sub" x="28" y="686">sanidad.mtcor.es</text>
+          <rect class="dg-box" x="28" y="702" width="304" height="38" rx="10"/>
+          <text class="dg-strong" x="44" y="725" data-i18n="projects.tfg.detail.dg_form">formulario</text>
+          <text class="dg-sub dg-end" x="316" y="725" data-i18n="projects.tfg.detail.dg_excel">o Excel</text>
+          <path class="dg-line" marker-end="url(#tfg-t-arrow)" d="M90 741V754"/>
+          <rect class="dg-box" x="28" y="756" width="304" height="38" rx="10"/>
+          <text class="dg-strong" x="44" y="779">StandardScaler</text>
+          <text class="dg-sub dg-end" x="316" y="779" data-i18n="projects.tfg.detail.dg_scaler">normalizador</text>
+          <path class="dg-line" marker-end="url(#tfg-t-arrow)" d="M90 795V808"/>
+          <rect class="dg-box" x="28" y="810" width="304" height="38" rx="10"/>
+          <text class="dg-strong" x="44" y="833">autoencoder55.h5</text>
+          <text class="dg-sub dg-end" x="316" y="833" data-i18n="projects.tfg.detail.dg_mse_threshold">MSE vs umbral</text>
+          <path class="dg-line" marker-end="url(#tfg-t-arrow)" d="M90 849V862"/>
+          <rect class="dg-box dg-box--accent" x="28" y="864" width="304" height="38" rx="10"/>
+          <text class="dg-strong" x="44" y="887" data-i18n="projects.tfg.detail.dg_verdict">veredicto</text>
+          <text class="dg-sub dg-end" x="316" y="887" data-i18n="projects.tfg.detail.dg_verdict_values">benigno · maligno</text>
+
+          <g class="dg-badge">
+            <circle cx="56" cy="95" r="10"/><text x="56" y="99">1</text>
+            <circle cx="196" cy="225" r="10"/><text x="196" y="229">2</text>
+            <circle cx="76" cy="392" r="10"/><text x="76" y="396">3</text>
+            <circle cx="76" cy="472" r="10"/><text x="76" y="476">4</text>
+            <circle cx="28" cy="702" r="10"/><text x="28" y="706">5</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption data-i18n="projects.tfg.detail.caption">Un punto por neurona. En azul, el cuello de botella y el error que decide.</figcaption>
+    </figure>
+    <ol class="pdoc__steps pdoc__wide">
+      <li data-i18n="projects.tfg.detail.step1">Entrada: 29 medidas por muestra (radio, textura, perímetro…), normalizadas con un StandardScaler ajustado con benignas.</li>
+      <li data-i18n="projects.tfg.detail.step2">El encoder las comprime de 29 a 8 y el decoder intenta reconstruirlas.</li>
+      <li data-i18n="projects.tfg.detail.step3">El error de reconstrucción es el error cuadrático medio entre la entrada y su reconstrucción.</li>
+      <li data-i18n="projects.tfg.detail.step4">Si supera el umbral, la muestra es una anomalía, un posible tumor maligno; si no, benigna.</li>
+      <li data-i18n="projects.tfg.detail.step5">La demo repite ese camino con el modelo y el normalizador guardados.</li>
+    </ol>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.results">Resultados</h3>
+    <div class="pdoc__content">
+      <ul class="bullets">
+        <li data-i18n="projects.tfg.detail.result1">En la partición de prueba del notebook, el autoencoder detecta 9 de las 11 muestras malignas con una sola falsa alarma entre 68 benignas.</li>
+        <li data-i18n="projects.tfg.detail.result2">KNN, árbol de decisión y random forest, entrenados igual, solo con benignas, lo clasifican todo como benigno.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.learned">Qué aprendí</h3>
+    <div class="pdoc__content">
+      <p class="pdoc__quote" data-i18n="projects.tfg.detail.learned">Que en un problema desequilibrado la pregunta importa tanto como el algoritmo. Cambiar «¿es maligno?» por «¿se parece a lo benigno?» fue lo que hizo útil el modelo, y el umbral resultó ser una decisión tan delicada como la arquitectura.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.links">Enlaces</h3>
+    <div class="pdoc__content">
+      <ul class="pdoc__links">
+        <li>
+          <a class="action" href="https://github.com/MarcoTenCortes/TFG-Autoencoder/blob/main/docs/TFG%20Entrega%20-%20Marco%20Tenorio%20Cortes.pdf" target="_blank" rel="noopener noreferrer">
+            <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M6.5 3.5h7.5l4.5 4.5v12.5h-12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M13.5 3.5V8.5h5M9.5 12.5h5M9.5 16h5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="action__text"><span class="action__label" data-i18n="projects.tfg.detail.link1">Memoria del TFG</span><span class="action__value">docs/TFG Entrega - Marco Tenorio Cortes.pdf</span></span>
+            <span class="action__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a class="action" href="https://github.com/MarcoTenCortes/TFG-Autoencoder/blob/main/notebooks/Autoencoder%20para%20clasificaci%C3%B3n%20con%20anomal%C3%ADas.ipynb" target="_blank" rel="noopener noreferrer">
+            <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><rect x="3.5" y="4.5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7.5 10l2.5 2-2.5 2M12.5 15h4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="action__text"><span class="action__label" data-i18n="projects.tfg.detail.link2">Notebook con el entrenamiento y la evaluación</span><span class="action__value">notebooks/Autoencoder para clasificación con anomalías.ipynb</span></span>
+            <span class="action__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="pdoc__footer">
+    <button type="button" class="btn btn--secondary pdoc__back" data-pdialog-close><span class="pdoc__back-arrow" aria-hidden="true">←</span><span data-i18n="projects.detail.back">Volver</span></button>
+    <a class="btn btn--secondary btn--sm" href="https://sanidad.mtcor.es" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_demo">Ver demo</span><span class="arrow" aria-hidden="true">↗</span></a>
+  </footer>
+</article>

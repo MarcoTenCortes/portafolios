@@ -1,0 +1,365 @@
+<article class="pdoc" data-project="cinema">
+  <header class="pdoc__head">
+    <p class="eyebrow pdoc__kicker" data-i18n="projects.cinema.detail.kicker">Harvard CS50 Web · proyecto final</p>
+    <h2 class="display-md" id="pdialog-title" data-i18n="projects.cinema.title">Cinema</h2>
+    <p class="lead pdoc__lead" data-i18n="projects.cinema.detail.lead">Una web para reservar entradas de cine: cartelera, próximos estrenos, sesiones por día y un plano de la sala para elegir butaca. Es el proyecto final de CS50's Web Programming with Python and JavaScript, de Harvard, con Django, SQLite y JavaScript.</p>
+    <div class="pdoc__actions">
+      <a class="btn btn--primary btn--sm" href="https://cinema.mtcor.es/" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_demo">Ver demo</span><span class="arrow" aria-hidden="true">↗</span></a>
+      <a class="btn btn--secondary btn--sm" href="https://github.com/MarcoTenCortes/Harvard-CS50" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+    </div>
+    <ul class="chips chips--inline" aria-label="Tecnologías" data-i18n-attr="aria-label:projects.detail.tech">
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#django"/></svg><span>Django</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#python"/></svg><span>Python</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#sqlite"/></svg><span>SQLite</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#javascript"/></svg><span>JavaScript</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#bootstrap"/></svg><span>Bootstrap</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>OMDb API</span></li>
+    </ul>
+  </header>
+
+  <dl class="pdoc__facts" aria-label="En cifras" data-i18n-attr="aria-label:projects.detail.facts">
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.cinema.detail.fact1_label">modelos de datos en Django</dt><dd class="pdoc__fact-value" data-i18n="projects.cinema.detail.fact1_value">5</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.cinema.detail.fact2_label">butacas por sesión, de A1 a E10</dt><dd class="pdoc__fact-value" data-i18n="projects.cinema.detail.fact2_value">50</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.cinema.detail.fact3_label">películas en el script de carga</dt><dd class="pdoc__fact-value" data-i18n="projects.cinema.detail.fact3_value">13</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.cinema.detail.fact4_label">proyectos del curso en el mismo repositorio</dt><dd class="pdoc__fact-value" data-i18n="projects.cinema.detail.fact4_value">6</dd></div>
+  </dl>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.context">Contexto</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.cinema.detail.context">CS50 Web enseña Django, SQL y JavaScript con un proyecto por tema: buscador, wiki, subastas, correo y red social, todos en el mismo repositorio. El final es libre, y un cine es un buen ejercicio de modelado: cada película tiene sus sesiones, cada sesión sus butacas, y ninguna butaca se vende dos veces.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.role">Qué hice</h3>
+    <div class="pdoc__content">
+      <ul class="bullets">
+        <li data-i18n="projects.cinema.detail.role1">Modelé los datos con el ORM de Django: usuarios, géneros, películas, sesiones y entradas, y cada entrada une a un usuario con una sesión y un asiento.</li>
+        <li data-i18n="projects.cinema.detail.role2">Hice que cada película decida sola si está en cartelera: al guardarse compara su fecha de estreno con la de hoy, y las demás pasan a «Próximamente».</li>
+        <li data-i18n="projects.cinema.detail.role3">Programé en JavaScript el plano de la sala: butacas ocupadas bloqueadas, dos plazas para silla de ruedas y selección múltiple.</li>
+        <li data-i18n="projects.cinema.detail.role4">Añadí «Mis entradas», con devolución sin recargar la página, y un script que carga la cartelera con cinco sesiones por película.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.architecture">Arquitectura</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.cinema.detail.arch_intro">Una aplicación Django clásica: vistas que pintan plantillas sobre SQLite y JavaScript solo donde hace falta, en el plano de butacas y en las devoluciones.</p>
+    </div>
+    <figure class="pdoc__figure pdoc__wide">
+      <div class="pdoc__canvas">
+        <!-- ancho: el recorrido de una reserva arriba, el modelo de datos debajo -->
+        <svg class="dg pdoc__diagram pdoc__diagram--wide" viewBox="0 0 880 496" width="880" height="496" role="img" aria-label="Reserva y modelo de datos de Cinema" data-i18n-attr="aria-label:projects.cinema.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="cinema-w-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="cinema-w-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <rect class="dg-frame" x="16" y="14" width="848" height="228" rx="14"/>
+          <text class="dg-title" x="34" y="43" data-i18n="projects.cinema.detail.dg_booking">Reserva</text>
+          <text class="dg-sub" x="34" y="62">Django · JavaScript</text>
+
+          <!-- ① cartelera -->
+          <rect class="dg-box dg-box--soft" x="32" y="76" width="180" height="150" rx="12"/>
+          <g class="dg-bar">
+            <rect x="46" y="90" width="44" height="60" rx="5"/>
+            <rect x="100" y="90" width="44" height="60" rx="5"/>
+            <rect x="154" y="90" width="44" height="60" rx="5"/>
+          </g>
+          <rect class="dg-line dg-line--accent" x="100" y="90" width="44" height="60" rx="5"/>
+          <g class="dg-bar dg-bar--faint">
+            <rect x="46" y="158" width="36" height="5" rx="2.5"/>
+            <rect x="100" y="158" width="30" height="5" rx="2.5"/>
+            <rect x="154" y="158" width="38" height="5" rx="2.5"/>
+          </g>
+          <path class="dg-rule" d="M32 180H212"/>
+          <text class="dg-strong" x="46" y="202" data-i18n="projects.cinema.detail.dg_films">Cartelera</text>
+          <text class="dg-tiny" x="46" y="217">/ · /movies · /upcoming</text>
+          <path class="dg-line" marker-end="url(#cinema-w-arrow)" d="M213 128H242"/>
+
+          <!-- ② sesiones del día -->
+          <rect class="dg-box dg-box--soft" x="244" y="76" width="180" height="150" rx="12"/>
+          <rect class="dg-pill" x="258" y="90" width="32" height="16" rx="8"/>
+          <rect class="dg-fill-accent" x="298" y="90" width="32" height="16" rx="8"/>
+          <rect class="dg-pill" x="338" y="90" width="32" height="16" rx="8"/>
+          <rect class="dg-pill" x="378" y="90" width="32" height="16" rx="8"/>
+          <g class="dg-bar">
+            <rect x="258" y="123" width="84" height="6" rx="3"/>
+            <rect x="258" y="143" width="70" height="6" rx="3"/>
+            <rect x="258" y="163" width="78" height="6" rx="3"/>
+          </g>
+          <rect class="dg-pill" x="372" y="120" width="38" height="12" rx="6" style="stroke: rgba(41, 151, 255, 0.7)"/>
+          <rect class="dg-pill" x="372" y="140" width="38" height="12" rx="6"/>
+          <rect class="dg-pill" x="372" y="160" width="38" height="12" rx="6"/>
+          <path class="dg-rule" d="M244 180H424"/>
+          <text class="dg-strong" x="258" y="202" data-i18n="projects.cinema.detail.dg_screenings">Sesiones</text>
+          <text class="dg-tiny" x="258" y="217">/screenings?date=</text>
+          <path class="dg-line" marker-end="url(#cinema-w-arrow)" d="M425 128H454"/>
+
+          <!-- ③ plano de la sala: 5 filas × 10 butacas -->
+          <rect class="dg-box dg-box--soft" x="456" y="76" width="180" height="150" rx="12"/>
+          <text class="dg-tiny dg-mid" x="545.5" y="91" data-i18n="projects.cinema.detail.dg_screen">pantalla</text>
+          <path class="dg-line" d="M487 104Q545.5 94 604 104"/>
+          <g class="dg-box"><rect x="499" y="112" width="9" height="9" rx="2.5"/><rect x="511" y="112" width="9" height="9" rx="2.5"/><rect x="523" y="112" width="9" height="9" rx="2.5"/><rect x="535" y="112" width="9" height="9" rx="2.5"/><rect x="547" y="112" width="9" height="9" rx="2.5"/><rect x="571" y="112" width="9" height="9" rx="2.5"/><rect x="583" y="112" width="9" height="9" rx="2.5"/><rect x="595" y="112" width="9" height="9" rx="2.5"/><rect x="487" y="124" width="9" height="9" rx="2.5"/><rect x="499" y="124" width="9" height="9" rx="2.5"/><rect x="547" y="124" width="9" height="9" rx="2.5"/><rect x="559" y="124" width="9" height="9" rx="2.5"/><rect x="571" y="124" width="9" height="9" rx="2.5"/><rect x="583" y="124" width="9" height="9" rx="2.5"/><rect x="595" y="124" width="9" height="9" rx="2.5"/><rect x="487" y="136" width="9" height="9" rx="2.5"/><rect x="499" y="136" width="9" height="9" rx="2.5"/><rect x="511" y="136" width="9" height="9" rx="2.5"/><rect x="523" y="136" width="9" height="9" rx="2.5"/><rect x="559" y="136" width="9" height="9" rx="2.5"/><rect x="571" y="136" width="9" height="9" rx="2.5"/><rect x="595" y="136" width="9" height="9" rx="2.5"/><rect x="487" y="148" width="9" height="9" rx="2.5"/><rect x="523" y="148" width="9" height="9" rx="2.5"/><rect x="535" y="148" width="9" height="9" rx="2.5"/><rect x="547" y="148" width="9" height="9" rx="2.5"/><rect x="559" y="148" width="9" height="9" rx="2.5"/><rect x="571" y="148" width="9" height="9" rx="2.5"/><rect x="583" y="148" width="9" height="9" rx="2.5"/><rect x="595" y="148" width="9" height="9" rx="2.5"/><rect x="487" y="160" width="9" height="9" rx="2.5"/><rect x="499" y="160" width="9" height="9" rx="2.5"/><rect x="511" y="160" width="9" height="9" rx="2.5"/><rect x="523" y="160" width="9" height="9" rx="2.5"/><rect x="535" y="160" width="9" height="9" rx="2.5"/><rect x="583" y="160" width="9" height="9" rx="2.5"/><rect x="595" y="160" width="9" height="9" rx="2.5"/></g>
+          <g class="dg-bar dg-bar--strong"><rect x="511" y="124" width="9" height="9" rx="2.5"/><rect x="523" y="124" width="9" height="9" rx="2.5"/><rect x="535" y="124" width="9" height="9" rx="2.5"/><rect x="583" y="136" width="9" height="9" rx="2.5"/><rect x="499" y="148" width="9" height="9" rx="2.5"/><rect x="511" y="148" width="9" height="9" rx="2.5"/><rect x="547" y="160" width="9" height="9" rx="2.5"/><rect x="559" y="160" width="9" height="9" rx="2.5"/><rect x="571" y="160" width="9" height="9" rx="2.5"/></g>
+          <g class="dg-fill-accent"><rect x="535" y="136" width="9" height="9" rx="2.5"/><rect x="547" y="136" width="9" height="9" rx="2.5"/></g>
+          <g class="dg-box" style="stroke: var(--mute)"><rect x="487" y="112" width="9" height="9" rx="2.5"/><rect x="559" y="112" width="9" height="9" rx="2.5"/></g>
+          <g class="dg-bar dg-bar--strong"><circle cx="491.5" cy="116.5" r="1.6"/><circle cx="563.5" cy="116.5" r="1.6"/></g>
+          <path class="dg-rule" d="M456 180H636"/>
+          <text class="dg-strong" x="470" y="202" data-i18n="projects.cinema.detail.dg_seats">Butacas</text>
+          <text class="dg-tiny" x="470" y="217">/book/&lt;id&gt;/</text>
+          <path class="dg-line dg-line--accent" marker-end="url(#cinema-w-arrow-accent)" d="M637 128H666"/>
+
+          <!-- ④ la entrada, con su devolución -->
+          <rect class="dg-box dg-box--soft" x="668" y="76" width="180" height="150" rx="12"/>
+          <path class="dg-box dg-box--accent" d="M684 92H832V116A8 8 0 0 0 832 132V154H684V132A8 8 0 0 0 684 116Z"/>
+          <path class="dg-line dg-line--dash dg-line--faint" d="M800 98V148"/>
+          <rect class="dg-bar dg-bar--strong" x="698" y="106" width="74" height="7" rx="3.5"/>
+          <rect class="dg-bar" x="698" y="121" width="58" height="6" rx="3"/>
+          <rect class="dg-bar" x="698" y="135" width="84" height="6" rx="3"/>
+          <rect class="dg-fill-accent" x="808" y="112" width="16" height="16" rx="3"/>
+          <rect class="dg-pill" x="762" y="158" width="70" height="18" rx="9"/>
+          <text class="dg-tiny dg-mid" x="797" y="171" data-i18n="projects.cinema.detail.dg_refund">devolver</text>
+          <path class="dg-rule" d="M668 180H848"/>
+          <text class="dg-strong" x="682" y="202" data-i18n="projects.cinema.detail.dg_tickets">Mis entradas</text>
+          <text class="dg-tiny" x="682" y="217">/my-tickets</text>
+
+          <!-- modelo de datos -->
+          <rect class="dg-frame" x="16" y="262" width="848" height="220" rx="14"/>
+          <text class="dg-title" x="34" y="291" data-i18n="projects.cinema.detail.dg_model">Modelo de datos</text>
+          <text class="dg-sub" x="34" y="310">Django ORM · SQLite</text>
+
+          <rect class="dg-box" x="32" y="328" width="100" height="65" rx="10"/>
+          <text class="dg-strong" x="46" y="350">Genre</text>
+          <path class="dg-rule" d="M32 361H132"/>
+          <text class="dg-sub" x="46" y="381">name</text>
+
+          <rect class="dg-box" x="172" y="328" width="150" height="137" rx="10"/>
+          <text class="dg-strong" x="186" y="350">Movie</text>
+          <path class="dg-rule" d="M172 361H322"/>
+          <text class="dg-sub" x="186" y="381">title</text>
+          <text class="dg-sub" x="186" y="399">release_date</text>
+          <text class="dg-sub" x="186" y="417">duration</text>
+          <text class="dg-sub" x="186" y="435">price</text>
+          <text class="dg-sub" x="186" y="453">is_released</text>
+
+          <rect class="dg-box" x="362" y="328" width="146" height="101" rx="10"/>
+          <text class="dg-strong" x="376" y="350">Screening</text>
+          <path class="dg-rule" d="M362 361H508"/>
+          <text class="dg-sub" x="376" y="381">movie</text>
+          <text class="dg-sub" x="376" y="399">date_time</text>
+          <text class="dg-sub" x="376" y="417">auditorium</text>
+
+          <rect class="dg-box dg-box--accent" x="548" y="328" width="150" height="119" rx="10"/>
+          <text class="dg-strong" x="562" y="350">Ticket</text>
+          <path class="dg-rule" d="M548 361H698"/>
+          <text class="dg-sub dg-accent" x="562" y="381">user</text>
+          <text class="dg-sub dg-accent" x="562" y="399">screening</text>
+          <text class="dg-sub" x="562" y="417">seat_number</text>
+          <text class="dg-sub" x="562" y="435">purchase_date</text>
+
+          <rect class="dg-box" x="738" y="328" width="110" height="65" rx="10"/>
+          <text class="dg-strong" x="752" y="350">User</text>
+          <path class="dg-rule" d="M738 361H848"/>
+          <text class="dg-sub" x="752" y="381">AbstractUser</text>
+
+          <!-- relaciones: la flecha apunta a la tabla referenciada -->
+          <path class="dg-line" marker-start="url(#cinema-w-arrow)" marker-end="url(#cinema-w-arrow)" d="M134 345H170"/>
+          <path class="dg-line" marker-end="url(#cinema-w-arrow)" d="M360 345H324"/>
+          <path class="dg-line dg-line--accent" marker-end="url(#cinema-w-arrow-accent)" d="M546 345H510"/>
+          <path class="dg-line dg-line--accent" marker-end="url(#cinema-w-arrow-accent)" d="M700 345H736"/>
+          <text class="dg-tiny dg-mid" x="152" y="336">N:M</text>
+          <text class="dg-tiny dg-mid" x="342" y="336">1:N</text>
+          <text class="dg-tiny dg-mid" x="528" y="336">1:N</text>
+          <text class="dg-tiny dg-mid" x="718" y="336">N:1</text>
+
+          <g class="dg-badge">
+            <circle cx="32" cy="76" r="10"/><text x="32" y="80">1</text>
+            <circle cx="244" cy="76" r="10"/><text x="244" y="80">2</text>
+            <circle cx="456" cy="76" r="10"/><text x="456" y="80">3</text>
+            <circle cx="668" cy="76" r="10"/><text x="668" y="80">4</text>
+          </g>
+        </svg>
+
+        <!-- estrecho: las cuatro pantallas en U y el modelo de datos en dos columnas -->
+        <svg class="dg pdoc__diagram pdoc__diagram--tall" viewBox="0 0 360 966" width="360" height="966" role="img" aria-label="Reserva y modelo de datos de Cinema" data-i18n-attr="aria-label:projects.cinema.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="cinema-t-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="cinema-t-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <rect class="dg-frame" x="12" y="12" width="336" height="402" rx="14"/>
+          <text class="dg-title" x="28" y="40" data-i18n="projects.cinema.detail.dg_booking">Reserva</text>
+          <text class="dg-sub" x="28" y="58">Django · JavaScript</text>
+
+          <rect class="dg-box dg-box--soft" x="28" y="74" width="140" height="150" rx="12"/>
+          <g class="dg-bar">
+            <rect x="40" y="86" width="32" height="48" rx="4"/>
+            <rect x="82" y="86" width="32" height="48" rx="4"/>
+            <rect x="124" y="86" width="32" height="48" rx="4"/>
+          </g>
+          <rect class="dg-line dg-line--accent" x="82" y="86" width="32" height="48" rx="4"/>
+          <g class="dg-bar dg-bar--faint">
+            <rect x="40" y="142" width="26" height="5" rx="2.5"/>
+            <rect x="82" y="142" width="22" height="5" rx="2.5"/>
+            <rect x="124" y="142" width="28" height="5" rx="2.5"/>
+          </g>
+          <path class="dg-rule" d="M28 178H168"/>
+          <text class="dg-strong" x="40" y="200" data-i18n="projects.cinema.detail.dg_films">Cartelera</text>
+          <text class="dg-sub" x="40" y="217">/ · /upcoming</text>
+          <path class="dg-line" marker-end="url(#cinema-t-arrow)" d="M169 149H190"/>
+
+          <rect class="dg-box dg-box--soft" x="192" y="74" width="140" height="150" rx="12"/>
+          <rect class="dg-pill" x="204" y="86" width="24" height="14" rx="7"/>
+          <rect class="dg-fill-accent" x="234" y="86" width="24" height="14" rx="7"/>
+          <rect class="dg-pill" x="264" y="86" width="24" height="14" rx="7"/>
+          <rect class="dg-pill" x="294" y="86" width="24" height="14" rx="7"/>
+          <g class="dg-bar">
+            <rect x="204" y="115" width="62" height="6" rx="3"/>
+            <rect x="204" y="135" width="52" height="6" rx="3"/>
+            <rect x="204" y="155" width="58" height="6" rx="3"/>
+          </g>
+          <rect class="dg-pill" x="282" y="112" width="36" height="12" rx="6" style="stroke: rgba(41, 151, 255, 0.7)"/>
+          <rect class="dg-pill" x="282" y="132" width="36" height="12" rx="6"/>
+          <rect class="dg-pill" x="282" y="152" width="36" height="12" rx="6"/>
+          <path class="dg-rule" d="M192 178H332"/>
+          <text class="dg-strong" x="204" y="200" data-i18n="projects.cinema.detail.dg_screenings">Sesiones</text>
+          <text class="dg-sub" x="204" y="217">/screenings</text>
+          <path class="dg-line" marker-end="url(#cinema-t-arrow)" d="M262 225V246"/>
+
+          <rect class="dg-box dg-box--soft" x="192" y="248" width="140" height="150" rx="12"/>
+          <text class="dg-sub dg-mid" x="262" y="266" data-i18n="projects.cinema.detail.dg_screen">pantalla</text>
+          <path class="dg-line" d="M213 280Q262 272 311 280"/>
+          <g class="dg-box"><rect x="223" y="288" width="8" height="8" rx="2"/><rect x="233" y="288" width="8" height="8" rx="2"/><rect x="243" y="288" width="8" height="8" rx="2"/><rect x="253" y="288" width="8" height="8" rx="2"/><rect x="263" y="288" width="8" height="8" rx="2"/><rect x="283" y="288" width="8" height="8" rx="2"/><rect x="293" y="288" width="8" height="8" rx="2"/><rect x="303" y="288" width="8" height="8" rx="2"/><rect x="213" y="298" width="8" height="8" rx="2"/><rect x="223" y="298" width="8" height="8" rx="2"/><rect x="263" y="298" width="8" height="8" rx="2"/><rect x="273" y="298" width="8" height="8" rx="2"/><rect x="283" y="298" width="8" height="8" rx="2"/><rect x="293" y="298" width="8" height="8" rx="2"/><rect x="303" y="298" width="8" height="8" rx="2"/><rect x="213" y="308" width="8" height="8" rx="2"/><rect x="223" y="308" width="8" height="8" rx="2"/><rect x="233" y="308" width="8" height="8" rx="2"/><rect x="243" y="308" width="8" height="8" rx="2"/><rect x="273" y="308" width="8" height="8" rx="2"/><rect x="283" y="308" width="8" height="8" rx="2"/><rect x="303" y="308" width="8" height="8" rx="2"/><rect x="213" y="318" width="8" height="8" rx="2"/><rect x="243" y="318" width="8" height="8" rx="2"/><rect x="253" y="318" width="8" height="8" rx="2"/><rect x="263" y="318" width="8" height="8" rx="2"/><rect x="273" y="318" width="8" height="8" rx="2"/><rect x="283" y="318" width="8" height="8" rx="2"/><rect x="293" y="318" width="8" height="8" rx="2"/><rect x="303" y="318" width="8" height="8" rx="2"/><rect x="213" y="328" width="8" height="8" rx="2"/><rect x="223" y="328" width="8" height="8" rx="2"/><rect x="233" y="328" width="8" height="8" rx="2"/><rect x="243" y="328" width="8" height="8" rx="2"/><rect x="253" y="328" width="8" height="8" rx="2"/><rect x="293" y="328" width="8" height="8" rx="2"/><rect x="303" y="328" width="8" height="8" rx="2"/></g>
+          <g class="dg-bar dg-bar--strong"><rect x="233" y="298" width="8" height="8" rx="2"/><rect x="243" y="298" width="8" height="8" rx="2"/><rect x="253" y="298" width="8" height="8" rx="2"/><rect x="293" y="308" width="8" height="8" rx="2"/><rect x="223" y="318" width="8" height="8" rx="2"/><rect x="233" y="318" width="8" height="8" rx="2"/><rect x="263" y="328" width="8" height="8" rx="2"/><rect x="273" y="328" width="8" height="8" rx="2"/><rect x="283" y="328" width="8" height="8" rx="2"/></g>
+          <g class="dg-fill-accent"><rect x="253" y="308" width="8" height="8" rx="2"/><rect x="263" y="308" width="8" height="8" rx="2"/></g>
+          <g class="dg-box" style="stroke: var(--mute)"><rect x="213" y="288" width="8" height="8" rx="2"/><rect x="273" y="288" width="8" height="8" rx="2"/></g>
+          <g class="dg-bar dg-bar--strong"><circle cx="217" cy="292" r="1.6"/><circle cx="277" cy="292" r="1.6"/></g>
+          <path class="dg-rule" d="M192 352H332"/>
+          <text class="dg-strong" x="204" y="374" data-i18n="projects.cinema.detail.dg_seats">Butacas</text>
+          <text class="dg-sub" x="204" y="391">/book/&lt;id&gt;/</text>
+          <path class="dg-line dg-line--accent" marker-end="url(#cinema-t-arrow-accent)" d="M191 323H170"/>
+
+          <rect class="dg-box dg-box--soft" x="28" y="248" width="140" height="150" rx="12"/>
+          <path class="dg-box dg-box--accent" d="M40 262H156V280A7 7 0 0 0 156 294V310H40V294A7 7 0 0 0 40 280Z"/>
+          <path class="dg-line dg-line--dash dg-line--faint" d="M130 267V305"/>
+          <rect class="dg-bar dg-bar--strong" x="50" y="272" width="58" height="6" rx="3"/>
+          <rect class="dg-bar" x="50" y="285" width="44" height="5" rx="2.5"/>
+          <rect class="dg-bar" x="50" y="297" width="66" height="5" rx="2.5"/>
+          <rect class="dg-fill-accent" x="137" y="279" width="12" height="12" rx="2.5"/>
+          <rect class="dg-pill" x="82" y="318" width="74" height="20" rx="10"/>
+          <text class="dg-sub dg-mid" x="119" y="332" data-i18n="projects.cinema.detail.dg_refund">devolver</text>
+          <path class="dg-rule" d="M28 352H168"/>
+          <text class="dg-strong" x="40" y="374" data-i18n="projects.cinema.detail.dg_tickets">Mis entradas</text>
+          <text class="dg-sub" x="40" y="391">/my-tickets</text>
+
+          <rect class="dg-frame" x="12" y="434" width="336" height="518" rx="14"/>
+          <text class="dg-title" x="28" y="462" data-i18n="projects.cinema.detail.dg_model">Modelo de datos</text>
+          <text class="dg-sub" x="28" y="480">Django ORM · SQLite</text>
+
+          <rect class="dg-box" x="28" y="498" width="116" height="65" rx="10"/>
+          <text class="dg-strong" x="42" y="520">Genre</text>
+          <path class="dg-rule" d="M28 531H144"/>
+          <text class="dg-sub" x="42" y="551">name</text>
+
+          <rect class="dg-box" x="176" y="498" width="156" height="137" rx="10"/>
+          <text class="dg-strong" x="190" y="520">Movie</text>
+          <path class="dg-rule" d="M176 531H332"/>
+          <text class="dg-sub" x="190" y="551">title</text>
+          <text class="dg-sub" x="190" y="569">release_date</text>
+          <text class="dg-sub" x="190" y="587">duration</text>
+          <text class="dg-sub" x="190" y="605">price</text>
+          <text class="dg-sub" x="190" y="623">is_released</text>
+
+          <rect class="dg-box" x="176" y="675" width="156" height="101" rx="10"/>
+          <text class="dg-strong" x="190" y="697">Screening</text>
+          <path class="dg-rule" d="M176 708H332"/>
+          <text class="dg-sub" x="190" y="728">movie</text>
+          <text class="dg-sub" x="190" y="746">date_time</text>
+          <text class="dg-sub" x="190" y="764">auditorium</text>
+
+          <rect class="dg-box dg-box--accent" x="176" y="816" width="156" height="119" rx="10"/>
+          <text class="dg-strong" x="190" y="838">Ticket</text>
+          <path class="dg-rule" d="M176 849H332"/>
+          <text class="dg-sub dg-accent" x="190" y="869">user</text>
+          <text class="dg-sub dg-accent" x="190" y="887">screening</text>
+          <text class="dg-sub" x="190" y="905">seat_number</text>
+          <text class="dg-sub" x="190" y="923">purchase_date</text>
+
+          <rect class="dg-box" x="28" y="816" width="116" height="65" rx="10"/>
+          <text class="dg-strong" x="42" y="838">User</text>
+          <path class="dg-rule" d="M28 849H144"/>
+          <text class="dg-sub" x="42" y="869">AbstractUser</text>
+
+          <path class="dg-line" marker-start="url(#cinema-t-arrow)" marker-end="url(#cinema-t-arrow)" d="M146 516H174"/>
+          <path class="dg-line" marker-end="url(#cinema-t-arrow)" d="M254 673V638"/>
+          <path class="dg-line dg-line--accent" marker-end="url(#cinema-t-arrow-accent)" d="M254 814V779"/>
+          <path class="dg-line dg-line--accent" marker-end="url(#cinema-t-arrow-accent)" d="M174 834H146"/>
+          <text class="dg-sub dg-mid" x="160" y="508">N:M</text>
+          <text class="dg-sub" x="264" y="660">1:N</text>
+          <text class="dg-sub" x="264" y="801">1:N</text>
+          <text class="dg-sub dg-mid" x="160" y="826">N:1</text>
+
+          <g class="dg-badge">
+            <circle cx="28" cy="74" r="10"/><text x="28" y="78">1</text>
+            <circle cx="192" cy="74" r="10"/><text x="192" y="78">2</text>
+            <circle cx="192" cy="248" r="10"/><text x="192" y="252">3</text>
+            <circle cx="28" cy="248" r="10"/><text x="28" y="252">4</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption data-i18n="projects.cinema.detail.caption">En azul, la entrada: une a un usuario con una sesión y una butaca.</figcaption>
+    </figure>
+    <ol class="pdoc__steps pdoc__wide">
+      <li data-i18n="projects.cinema.detail.step1">Cartelera: la portada muestra las películas ya estrenadas con sus géneros, y los próximos estrenos tienen su propia página.</li>
+      <li data-i18n="projects.cinema.detail.step2">Sesiones: eliges un día y ves cada pase con su hora y su sala.</li>
+      <li data-i18n="projects.cinema.detail.step3">Butacas: el plano marca las ocupadas y las plazas para silla de ruedas; para comprar hay que iniciar sesión.</li>
+      <li data-i18n="projects.cinema.detail.step4">Entrada: tras un pago simulado, el servidor vuelve a comprobar cada asiento y crea una entrada por butaca, que se puede devolver.</li>
+    </ol>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.stack">Stack</h3>
+    <div class="pdoc__content">
+      <dl class="pdoc__dl">
+        <div><dt>Backend</dt><dd data-i18n="projects.cinema.detail.stack1">Django: vistas, plantillas, autenticación y ORM</dd></div>
+        <div><dt data-i18n="projects.cinema.detail.stack2_label">Datos</dt><dd data-i18n="projects.cinema.detail.stack2">SQLite; datos de películas de la OMDb API</dd></div>
+        <div><dt>Frontend</dt><dd data-i18n="projects.cinema.detail.stack3">JavaScript sin frameworks y Bootstrap</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.learned">Qué aprendí</h3>
+    <div class="pdoc__content">
+      <p class="pdoc__quote" data-i18n="projects.cinema.detail.learned">Que un buen modelo de datos hace la mitad del trabajo. Con la sesión y el asiento en cada entrada, saber qué butacas quedan libres es una consulta, y la regla que importa, no vender dos veces el mismo sitio, se comprueba en el servidor aunque la interfaz ya lo impida.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.links">Enlaces</h3>
+    <div class="pdoc__content">
+      <ul class="pdoc__links">
+        <li>
+          <a class="action" href="https://github.com/MarcoTenCortes/Harvard-CS50/tree/main/CS50%20-%20Proyecto%20final%20(Cinema)" target="_blank" rel="noopener noreferrer">
+            <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><circle cx="6.5" cy="5.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="6.5" cy="18.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="8.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6.5 7.7v8.6M17.5 10.7c0 3.6-5.5 3-9.6 6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span class="action__text"><span class="action__label" data-i18n="projects.cinema.detail.link1">Código del proyecto final</span><span class="action__value">Harvard-CS50 · CS50 - Proyecto final (Cinema)</span></span>
+            <span class="action__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a class="action" href="https://github.com/MarcoTenCortes/Harvard-CS50" target="_blank" rel="noopener noreferrer">
+            <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><rect x="3.5" y="3.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></span>
+            <span class="action__text"><span class="action__label" data-i18n="projects.cinema.detail.link2">Los seis proyectos del curso</span><span class="action__value">github.com/MarcoTenCortes/Harvard-CS50</span></span>
+            <span class="action__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="pdoc__footer">
+    <button type="button" class="btn btn--secondary pdoc__back" data-pdialog-close><span class="pdoc__back-arrow" aria-hidden="true">←</span><span data-i18n="projects.detail.back">Volver</span></button>
+    <a class="btn btn--secondary btn--sm" href="https://cinema.mtcor.es/" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_demo">Ver demo</span><span class="arrow" aria-hidden="true">↗</span></a>
+  </footer>
+</article>

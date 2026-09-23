@@ -1,0 +1,47 @@
+[
+ {
+  "name": "hero-cta-390x844",
+  "url": "http://localhost:5173/?shot=inicio",
+  "width": 390,
+  "height": 844,
+  "mobile": true,
+  "settle": 1200,
+  "steps": [
+   {
+    "eval": "window.MTC.ready.then(() => { window.scrollTo(0,0); const r = (s) => { const b = document.querySelector(s)?.getBoundingClientRect(); return b && { t: Math.round(b.top), b: Math.round(b.bottom), h: Math.round(b.height) }; }; return JSON.stringify({ innerH: innerHeight, hero: r('#inicio'), media: r('.hero__media'), disc: r('.hero__disc'), desk: r('.hero__desk'), copy: r('.hero__copy'), actions: r('.hero__actions'), meta: r('.hero__meta') }); })",
+    "print": true
+   }
+  ],
+  "out": "tools/out/shots/hero-cta-390.png"
+ },
+ {
+  "name": "hero-cta-375x812",
+  "url": "http://localhost:5173/?shot=inicio",
+  "width": 375,
+  "height": 812,
+  "mobile": true,
+  "settle": 1200,
+  "steps": [
+   {
+    "eval": "window.MTC.ready.then(() => { window.scrollTo(0,0); const r = (s) => { const b = document.querySelector(s)?.getBoundingClientRect(); return b && { t: Math.round(b.top), b: Math.round(b.bottom), h: Math.round(b.height) }; }; return JSON.stringify({ innerH: innerHeight, hero: r('#inicio'), media: r('.hero__media'), disc: r('.hero__disc'), desk: r('.hero__desk'), copy: r('.hero__copy'), actions: r('.hero__actions'), meta: r('.hero__meta') }); })",
+    "print": true
+   }
+  ],
+  "out": "tools/out/shots/hero-cta-375.png"
+ },
+ {
+  "name": "hero-cta-412x915",
+  "url": "http://localhost:5173/?shot=inicio",
+  "width": 412,
+  "height": 915,
+  "mobile": true,
+  "settle": 1200,
+  "steps": [
+   {
+    "eval": "window.MTC.ready.then(() => { window.scrollTo(0,0); const r = (s) => { const b = document.querySelector(s)?.getBoundingClientRect(); return b && { t: Math.round(b.top), b: Math.round(b.bottom), h: Math.round(b.height) }; }; return JSON.stringify({ innerH: innerHeight, hero: r('#inicio'), media: r('.hero__media'), disc: r('.hero__disc'), desk: r('.hero__desk'), copy: r('.hero__copy'), actions: r('.hero__actions'), meta: r('.hero__meta') }); })",
+    "print": true
+   }
+  ],
+  "out": "tools/out/shots/hero-cta-412.png"
+ }
+]

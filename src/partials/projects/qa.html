@@ -1,0 +1,303 @@
+<article class="pdoc" data-project="qa">
+  <header class="pdoc__head">
+    <p class="eyebrow pdoc__kicker" data-i18n="projects.qa.detail.kicker">NTT DATA · automatización de pruebas</p>
+    <h2 class="display-md" id="pdialog-title" data-i18n="projects.qa.title">Automatización QA y framework de testing de APIs</h2>
+    <p class="lead pdoc__lead" data-i18n="projects.qa.detail.lead">Pruebas automatizadas para banca en NTT DATA y un framework público que simula la API de un banco, con una API REST en Spring Boot y escenarios en Gherkin.</p>
+    <div class="pdoc__actions">
+      <a class="btn btn--primary btn--sm" href="https://github.com/marcotenorioNTT/automation-api-framework" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_repo_public">Repositorio público</span><span class="arrow" aria-hidden="true">↗</span></a>
+    </div>
+    <ul class="chips chips--inline" aria-label="Tecnologías" data-i18n-attr="aria-label:projects.detail.tech">
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#cucumber"/></svg><span>Cucumber</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#junit5"/></svg><span>JUnit 5</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#selenium"/></svg><span>Selenium</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Rest Assured</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#openjdk"/></svg><span>Java</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#springboot"/></svg><span>Spring Boot</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>JWT</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>H2</span></li>
+    </ul>
+  </header>
+
+  <dl class="pdoc__facts" aria-label="En cifras" data-i18n-attr="aria-label:projects.detail.facts">
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.qa.detail.fact1_label">commits en equipo</dt><dd class="pdoc__fact-value" data-i18n="projects.qa.detail.fact1_value">332</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.qa.detail.fact2_label">features en Gherkin</dt><dd class="pdoc__fact-value" data-i18n="projects.qa.detail.fact2_value">6</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.qa.detail.fact3_label">entidades bancarias con CRUD</dt><dd class="pdoc__fact-value" data-i18n="projects.qa.detail.fact3_value">4</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.qa.detail.fact4_label">en cookie, tras un filtro</dt><dd class="pdoc__fact-value" data-i18n="projects.qa.detail.fact4_value">JWT</dd></div>
+  </dl>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.context">Contexto</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.qa.detail.context">En banca, un fallo en una transferencia nunca es un detalle. En NTT DATA automaticé pruebas para el sector bancario, primero en prácticas y luego como QA Tester junior. El framework es un proyecto de equipo con fin didáctico: un banco simulado para aprender a probar APIs.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.role">Qué hice</h3>
+    <div class="pdoc__content">
+      <ul class="bullets">
+        <li data-i18n="projects.qa.detail.role1">Diseñé y ejecuté pruebas automatizadas para banca con Selenium, JUnit y Cucumber, con los estándares de calidad del sector financiero.</li>
+        <li data-i18n="projects.qa.detail.role2">Con el equipo del framework construimos la API REST en Java y Spring Boot: clientes, cuentas, tarjetas y transferencias sobre H2 en memoria.</li>
+        <li data-i18n="projects.qa.detail.role3">La protegimos con JWT: el login deja el token en una cookie y un filtro responde 401 a toda petición sin sesión, salvo las rutas /public.</li>
+        <li data-i18n="projects.qa.detail.role4">Escribimos las pruebas en Gherkin con Cucumber y JUnit 5, con los pasos agrupados por controlador y un contexto compartido.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.architecture">Arquitectura</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.qa.detail.arch_intro">Un proyecto Maven con dos mitades: el banco y el framework que lo recorre como un cliente. La suite arranca Spring Boot y habla con la API por HTTP a través de BankAPI, una interfaz Java con todos los endpoints.</p>
+    </div>
+    <figure class="pdoc__figure pdoc__wide">
+      <div class="pdoc__canvas">
+        <!-- ancho: el framework a la izquierda, la API a la derecha, la integración continua debajo -->
+        <svg class="dg pdoc__diagram pdoc__diagram--wide" viewBox="0 0 880 456" width="880" height="456" role="img" aria-label="Arquitectura del framework de pruebas" data-i18n-attr="aria-label:projects.qa.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="qa-w-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="qa-w-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <!-- framework de pruebas -->
+          <rect class="dg-frame" x="16" y="14" width="544" height="316" rx="14"/>
+          <text class="dg-title" x="34" y="43" data-i18n="projects.qa.detail.dg_framework">Framework de pruebas</text>
+          <text class="dg-sub" x="34" y="62">Cucumber · JUnit 5</text>
+          <!-- un fichero .feature: Gherkin con su tabla de ejemplos -->
+          <rect class="dg-box" x="34" y="84" width="164" height="226" rx="10"/>
+          <text class="dg-tiny" x="48" y="103">createCards.feature</text>
+          <path class="dg-rule" d="M34 114H198"/>
+          <text class="dg-sub dg-accent" x="48" y="136">Feature</text>
+          <text class="dg-sub dg-accent" x="56" y="158">Scenario</text>
+          <text class="dg-sub dg-accent" x="64" y="180">Given</text>
+          <text class="dg-sub dg-accent" x="64" y="200">When</text>
+          <text class="dg-sub dg-accent" x="64" y="220">And</text>
+          <text class="dg-sub dg-accent" x="64" y="240">Then</text>
+          <text class="dg-sub dg-accent" x="56" y="264">Examples</text>
+          <g class="dg-bar">
+            <rect x="108" y="129" width="74" height="6" rx="3"/>
+            <rect x="124" y="151" width="58" height="6" rx="3"/>
+            <rect x="110" y="173" width="70" height="6" rx="3"/>
+            <rect x="104" y="193" width="60" height="6" rx="3"/>
+            <rect x="96" y="213" width="76" height="6" rx="3"/>
+            <rect x="104" y="233" width="72" height="6" rx="3"/>
+          </g>
+          <rect class="dg-bar dg-bar--faint" x="64" y="273" width="118" height="14" rx="3"/>
+          <rect class="dg-rule" x="64" y="273" width="118" height="28" rx="3" style="stroke: var(--hairline-strong)"/>
+          <path class="dg-rule" d="M64 287H182M103 273V301M143 273V301" style="stroke: var(--hairline-strong)"/>
+
+          <!-- pasos, contexto compartido y limpieza -->
+          <path class="dg-line" marker-end="url(#qa-w-arrow)" d="M199 107H228"/>
+          <rect class="dg-box" x="230" y="84" width="140" height="46" rx="10"/>
+          <text class="dg-strong dg-mid" x="300" y="103">*Steps</text>
+          <text class="dg-sub dg-mid" x="300" y="121" data-i18n="projects.qa.detail.dg_per_controller">por controlador</text>
+          <path class="dg-line" marker-start="url(#qa-w-arrow)" marker-end="url(#qa-w-arrow)" d="M300 132V152"/>
+          <rect class="dg-box" x="230" y="154" width="140" height="46" rx="10"/>
+          <text class="dg-strong dg-mid" x="300" y="173">TestContext</text>
+          <text class="dg-sub dg-mid" x="300" y="191" data-i18n="projects.qa.detail.dg_shared">compartido</text>
+          <path class="dg-line dg-line--dash" marker-end="url(#qa-w-arrow)" d="M300 234V203"/>
+          <rect class="dg-box dg-box--soft" x="230" y="236" width="312" height="64" rx="10"/>
+          <text class="dg-strong dg-mid" x="386" y="258">@After</text>
+          <text class="dg-sub dg-mid" x="386" y="276" data-i18n="projects.qa.detail.dg_cleanup_a">borra sus datos</text>
+          <text class="dg-sub dg-mid" x="386" y="292" data-i18n="projects.qa.detail.dg_cleanup_b">vacía el contexto</text>
+
+          <!-- cliente con todos los endpoints -->
+          <path class="dg-line" marker-end="url(#qa-w-arrow)" d="M371 107H400"/>
+          <rect class="dg-box dg-box--accent" x="402" y="84" width="140" height="46" rx="10"/>
+          <text class="dg-title dg-mid" x="472" y="103">BankAPI</text>
+          <text class="dg-sub dg-mid" x="472" y="121">RESTEasy + cookie</text>
+
+          <!-- la API del banco (el marco va antes que las flechas que entran en él) -->
+          <rect class="dg-frame" x="600" y="14" width="264" height="316" rx="14"/>
+          <!-- petición por HTTP con la cookie del login -->
+          <path class="dg-line dg-line--accent" marker-end="url(#qa-w-arrow-accent)" d="M543 100H614"/>
+          <path class="dg-line dg-line--dash" marker-end="url(#qa-w-arrow)" d="M614 116H545"/>
+          <text class="dg-tiny dg-mid" x="580" y="136">HTTP</text>
+          <text class="dg-title" x="618" y="43" data-i18n="projects.qa.detail.dg_api">API del banco</text>
+          <text class="dg-sub" x="618" y="62">Spring Boot · :8080</text>
+          <rect class="dg-box dg-box--accent" x="616" y="87" width="232" height="40" rx="10"/>
+          <text class="dg-strong" x="632" y="111" data-i18n="projects.qa.detail.dg_filter">filtro JWT</text>
+          <text class="dg-sub dg-end" x="832" y="111" data-i18n="projects.qa.detail.dg_no_token">sin token: 401</text>
+          <path class="dg-line" marker-end="url(#qa-w-arrow)" d="M684 128V143"/>
+          <rect class="dg-box" x="616" y="145" width="232" height="38" rx="10"/>
+          <text class="dg-strong" x="632" y="168" data-i18n="projects.qa.detail.dg_controllers">controladores</text>
+          <text class="dg-sub dg-end" x="832" y="168">CRUD</text>
+          <path class="dg-line" marker-end="url(#qa-w-arrow)" d="M684 184V199"/>
+          <rect class="dg-box" x="616" y="201" width="232" height="38" rx="10"/>
+          <text class="dg-strong" x="632" y="224" data-i18n="projects.qa.detail.dg_services">servicios</text>
+          <path class="dg-line" marker-end="url(#qa-w-arrow)" d="M684 240V255"/>
+          <rect class="dg-box" x="616" y="257" width="136" height="38" rx="10"/>
+          <text class="dg-strong dg-mid" x="684" y="280" data-i18n="projects.qa.detail.dg_repos">repositorios</text>
+          <path class="dg-line" marker-end="url(#qa-w-arrow)" d="M753 276H782"/>
+          <path class="dg-box" d="M784 263a28 7 0 0 1 56 0v26a28 7 0 0 1-56 0Z"/>
+          <path class="dg-rule" d="M784 263a28 7 0 0 0 56 0" style="stroke: var(--hairline-strong)"/>
+          <text class="dg-strong dg-mid" x="812" y="285">H2</text>
+          <text class="dg-tiny dg-mid" x="812" y="316" data-i18n="projects.qa.detail.dg_memory">en memoria</text>
+
+          <!-- integración continua: ejecuta la suite del framework -->
+          <rect class="dg-frame" x="16" y="354" width="848" height="88" rx="14"/>
+          <path class="dg-line dg-line--dash" marker-end="url(#qa-w-arrow)" d="M305 371V333"/>
+          <text class="dg-title" x="34" y="394">GitHub Actions</text>
+          <text class="dg-sub" x="34" y="413" data-i18n="projects.qa.detail.dg_ci_when">en cada push a main</text>
+          <rect class="dg-box" x="210" y="372" width="190" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="305" y="394">mvn clean test</text>
+          <text class="dg-sub dg-mid" x="305" y="412">JDK 17</text>
+          <path class="dg-line" marker-end="url(#qa-w-arrow)" d="M401 398H426"/>
+          <rect class="dg-box" x="428" y="372" width="190" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="523" y="394" data-i18n="projects.qa.detail.dg_report">informe Cucumber</text>
+          <text class="dg-sub dg-mid" x="523" y="412">HTML → PDF</text>
+          <path class="dg-line" marker-end="url(#qa-w-arrow)" d="M619 398H644"/>
+          <rect class="dg-box dg-box--soft" x="646" y="372" width="190" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="741" y="394">reports/</text>
+          <text class="dg-sub dg-mid" x="741" y="412" data-i18n="projects.qa.detail.dg_autocommit">commit automático</text>
+
+          <g class="dg-badge">
+            <circle cx="34" cy="84" r="10"/><text x="34" y="88">1</text>
+            <circle cx="230" cy="154" r="10"/><text x="230" y="158">2</text>
+            <circle cx="580" cy="100" r="10"/><text x="580" y="104">3</text>
+            <circle cx="616" cy="87" r="10"/><text x="616" y="91">4</text>
+            <circle cx="230" cy="236" r="10"/><text x="230" y="240">5</text>
+            <circle cx="210" cy="372" r="10"/><text x="210" y="376">6</text>
+          </g>
+        </svg>
+
+        <!-- estrecho: framework, API e integración continua en vertical -->
+        <svg class="dg pdoc__diagram pdoc__diagram--tall" viewBox="0 0 360 962" width="360" height="962" role="img" aria-label="Arquitectura del framework de pruebas" data-i18n-attr="aria-label:projects.qa.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="qa-t-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="qa-t-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <rect class="dg-frame" x="12" y="12" width="336" height="360" rx="14"/>
+          <text class="dg-title" x="28" y="40" data-i18n="projects.qa.detail.dg_framework">Framework de pruebas</text>
+          <text class="dg-sub" x="28" y="58">Cucumber · JUnit 5</text>
+          <rect class="dg-box" x="28" y="74" width="304" height="124" rx="10"/>
+          <text class="dg-sub" x="40" y="93">createCards.feature</text>
+          <path class="dg-rule" d="M28 104H332"/>
+          <text class="dg-sub dg-accent" x="40" y="124">Scenario</text>
+          <text class="dg-sub dg-accent" x="48" y="144">Given</text>
+          <text class="dg-sub dg-accent" x="48" y="164">When</text>
+          <text class="dg-sub dg-accent" x="48" y="184">Then</text>
+          <g class="dg-bar">
+            <rect x="108" y="117" width="62" height="6" rx="3"/>
+            <rect x="92" y="137" width="72" height="6" rx="3"/>
+            <rect x="88" y="157" width="64" height="6" rx="3"/>
+            <rect x="88" y="177" width="76" height="6" rx="3"/>
+          </g>
+          <text class="dg-sub dg-accent" x="190" y="124">Examples</text>
+          <rect class="dg-bar dg-bar--faint" x="190" y="134" width="126" height="16" rx="3"/>
+          <rect class="dg-rule" x="190" y="134" width="126" height="48" rx="3" style="stroke: var(--hairline-strong)"/>
+          <path class="dg-rule" d="M190 150H316M190 166H316M232 134V182M274 134V182" style="stroke: var(--hairline-strong)"/>
+
+          <path class="dg-line" marker-end="url(#qa-t-arrow)" d="M262 199V220"/>
+          <rect class="dg-box" x="28" y="222" width="140" height="46" rx="10"/>
+          <text class="dg-strong dg-mid" x="98" y="241">TestContext</text>
+          <text class="dg-sub dg-mid" x="98" y="259" data-i18n="projects.qa.detail.dg_shared">compartido</text>
+          <path class="dg-line" marker-start="url(#qa-t-arrow)" marker-end="url(#qa-t-arrow)" d="M170 245H190"/>
+          <rect class="dg-box" x="192" y="222" width="140" height="46" rx="10"/>
+          <text class="dg-strong dg-mid" x="262" y="241">*Steps</text>
+          <text class="dg-sub dg-mid" x="262" y="259" data-i18n="projects.qa.detail.dg_per_controller">por controlador</text>
+
+          <path class="dg-line dg-line--dash" marker-end="url(#qa-t-arrow)" d="M98 290V271"/>
+          <rect class="dg-box dg-box--soft" x="28" y="292" width="140" height="64" rx="10"/>
+          <text class="dg-strong dg-mid" x="98" y="313">@After</text>
+          <text class="dg-sub dg-mid" x="98" y="331" data-i18n="projects.qa.detail.dg_cleanup_a">borra sus datos</text>
+          <text class="dg-sub dg-mid" x="98" y="347" data-i18n="projects.qa.detail.dg_cleanup_b">vacía el contexto</text>
+          <path class="dg-line" marker-end="url(#qa-t-arrow)" d="M262 269V290"/>
+          <rect class="dg-box dg-box--accent" x="192" y="292" width="140" height="46" rx="10"/>
+          <text class="dg-title dg-mid" x="262" y="311">BankAPI</text>
+          <text class="dg-sub dg-mid" x="262" y="329">RESTEasy + cookie</text>
+
+          <rect class="dg-frame" x="12" y="404" width="336" height="306" rx="14"/>
+          <path class="dg-line dg-line--accent" marker-end="url(#qa-t-arrow-accent)" d="M244 339V464"/>
+          <path class="dg-line dg-line--dash" marker-end="url(#qa-t-arrow)" d="M284 464V341"/>
+          <text class="dg-sub" x="296" y="393">HTTP</text>
+          <text class="dg-title" x="28" y="432" data-i18n="projects.qa.detail.dg_api">API del banco</text>
+          <text class="dg-sub" x="28" y="450">Spring Boot · :8080</text>
+          <rect class="dg-box dg-box--accent" x="28" y="466" width="304" height="40" rx="10"/>
+          <text class="dg-strong" x="44" y="490" data-i18n="projects.qa.detail.dg_filter">filtro JWT</text>
+          <text class="dg-sub dg-end" x="316" y="490" data-i18n="projects.qa.detail.dg_no_token">sin token: 401</text>
+          <path class="dg-line" marker-end="url(#qa-t-arrow)" d="M90 507V522"/>
+          <rect class="dg-box" x="28" y="524" width="304" height="38" rx="10"/>
+          <text class="dg-strong" x="44" y="547" data-i18n="projects.qa.detail.dg_controllers">controladores</text>
+          <text class="dg-sub dg-end" x="316" y="547">CRUD</text>
+          <path class="dg-line" marker-end="url(#qa-t-arrow)" d="M90 563V578"/>
+          <rect class="dg-box" x="28" y="580" width="304" height="38" rx="10"/>
+          <text class="dg-strong" x="44" y="603" data-i18n="projects.qa.detail.dg_services">servicios</text>
+          <path class="dg-line" marker-end="url(#qa-t-arrow)" d="M90 619V634"/>
+          <rect class="dg-box" x="28" y="636" width="168" height="38" rx="10"/>
+          <text class="dg-strong dg-mid" x="112" y="659" data-i18n="projects.qa.detail.dg_repos">repositorios</text>
+          <path class="dg-line" marker-end="url(#qa-t-arrow)" d="M197 655H226"/>
+          <path class="dg-box" d="M228 642a28 7 0 0 1 56 0v26a28 7 0 0 1-56 0Z"/>
+          <path class="dg-rule" d="M228 642a28 7 0 0 0 56 0" style="stroke: var(--hairline-strong)"/>
+          <text class="dg-strong dg-mid" x="256" y="664">H2</text>
+          <text class="dg-sub dg-mid" x="256" y="696" data-i18n="projects.qa.detail.dg_memory">en memoria</text>
+
+          <rect class="dg-frame" x="12" y="726" width="336" height="224" rx="14"/>
+          <text class="dg-title" x="28" y="754">GitHub Actions</text>
+          <text class="dg-sub" x="28" y="772" data-i18n="projects.qa.detail.dg_ci_when">en cada push a main</text>
+          <rect class="dg-box" x="28" y="788" width="304" height="38" rx="10"/>
+          <text class="dg-strong" x="44" y="811">mvn clean test</text>
+          <text class="dg-sub dg-end" x="316" y="811">JDK 17</text>
+          <path class="dg-line" marker-end="url(#qa-t-arrow)" d="M90 827V840"/>
+          <rect class="dg-box" x="28" y="842" width="304" height="38" rx="10"/>
+          <text class="dg-strong" x="44" y="865" data-i18n="projects.qa.detail.dg_report">informe Cucumber</text>
+          <text class="dg-sub dg-end" x="316" y="865">HTML → PDF</text>
+          <path class="dg-line" marker-end="url(#qa-t-arrow)" d="M90 881V894"/>
+          <rect class="dg-box dg-box--soft" x="28" y="896" width="304" height="38" rx="10"/>
+          <text class="dg-strong" x="44" y="919">reports/</text>
+          <text class="dg-sub dg-end" x="316" y="919" data-i18n="projects.qa.detail.dg_autocommit">commit automático</text>
+
+          <g class="dg-badge">
+            <circle cx="28" cy="74" r="10"/><text x="28" y="78">1</text>
+            <circle cx="28" cy="222" r="10"/><text x="28" y="226">2</text>
+            <circle cx="244" cy="388" r="10"/><text x="244" y="392">3</text>
+            <circle cx="28" cy="466" r="10"/><text x="28" y="470">4</text>
+            <circle cx="28" cy="292" r="10"/><text x="28" y="296">5</text>
+            <circle cx="28" cy="788" r="10"/><text x="28" y="792">6</text>
+          </g>
+        </svg>
+      </div>
+      <figcaption data-i18n="projects.qa.detail.caption">En azul, lo que atraviesa cada petición: el cliente BankAPI y el filtro JWT.</figcaption>
+    </figure>
+    <ol class="pdoc__steps pdoc__wide">
+      <li data-i18n="projects.qa.detail.step1">Un escenario en Gherkin describe el caso con ejemplos: registrarse con N cuentas y M tarjetas, entrar y consultar las tarjetas.</li>
+      <li data-i18n="projects.qa.detail.step2">Cada paso vive en el fichero de su controlador y deja sus datos en el TestContext para el siguiente.</li>
+      <li data-i18n="projects.qa.detail.step3">BankAPI lanza la petición por HTTP con la cookie del login.</li>
+      <li data-i18n="projects.qa.detail.step4">La API valida el JWT y baja por controlador, servicio y repositorio hasta H2; el paso comprueba la respuesta.</li>
+      <li data-i18n="projects.qa.detail.step5">Al acabar cada escenario, un @After borra lo que creó y vacía el contexto.</li>
+      <li data-i18n="projects.qa.detail.step6">En cada push a main, GitHub Actions ejecuta la suite y sube al repositorio el informe de Cucumber en HTML y PDF.</li>
+    </ol>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.learned">Qué aprendí</h3>
+    <div class="pdoc__content">
+      <p class="pdoc__quote" data-i18n="projects.qa.detail.learned">Que una prueba vale lo que se entiende al leerla. Gherkin obliga a nombrar cada paso como lo diría negocio, y repartir los pasos en ficheros me enseñó que el estado compartido de una suite se diseña desde el principio, no se descubre cuando falla.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.links">Enlaces</h3>
+    <div class="pdoc__content">
+      <ul class="pdoc__links">
+        <li>
+          <a class="action" href="https://github.com/marcotenorioNTT/automation-api-framework" target="_blank" rel="noopener noreferrer">
+            <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><circle cx="6.5" cy="5.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="6.5" cy="18.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="8.5" r="2.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M6.5 7.7v8.6M17.5 10.7c0 3.6-5.5 3-9.6 6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+            <span class="action__text"><span class="action__label" data-i18n="projects.qa.detail.link1">Repositorio en GitHub</span><span class="action__value">marcotenorioNTT/automation-api-framework</span></span>
+            <span class="action__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a class="action" href="https://github.com/marcotenorioNTT/automation-api-framework/blob/main/reports/cucumber-reports.pdf" target="_blank" rel="noopener noreferrer">
+            <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path d="M6.5 3.5h7.5l4.5 4.5v12.5h-12Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M13.5 3.5V8.5h5M9 13l2 2 4-4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="action__text"><span class="action__label" data-i18n="projects.qa.detail.link2">Informe de Cucumber generado en CI</span><span class="action__value">reports/cucumber-reports.pdf</span></span>
+            <span class="action__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="pdoc__footer">
+    <button type="button" class="btn btn--secondary pdoc__back" data-pdialog-close><span class="pdoc__back-arrow" aria-hidden="true">←</span><span data-i18n="projects.detail.back">Volver</span></button>
+    <a class="btn btn--secondary btn--sm" href="https://github.com/marcotenorioNTT/automation-api-framework" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_repo_public">Repositorio público</span><span class="arrow" aria-hidden="true">↗</span></a>
+  </footer>
+</article>

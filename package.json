@@ -1,0 +1,22 @@
+{
+  "name": "portafolios-mtc",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Portafolio de Marco Tenorio Cortés — portafolios.mtcor.es",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "sprite": "node tools/sprite.mjs",
+    "brand": "node tools/brand.mjs",
+    "assets": "python tools/images.py && python tools/stars.py",
+    "deploy": "powershell -ExecutionPolicy Bypass -File tools/deploy.ps1",
+    "test": "node --test \"test/**/*.test.mjs\""
+  },
+  "devDependencies": {
+    "sharp": "^0.35.4",
+    "simple-icons": "^16.29.0",
+    "vite": "^8.2.2"
+  }
+}

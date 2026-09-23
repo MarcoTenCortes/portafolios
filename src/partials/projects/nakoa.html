@@ -1,0 +1,248 @@
+<article class="pdoc" data-project="nakoa">
+  <header class="pdoc__head">
+    <p class="eyebrow pdoc__kicker" data-i18n="projects.nakoa.detail.kicker">Proyecto personal · videojuego multiplataforma</p>
+    <h2 class="display-md" id="pdialog-title" data-i18n="projects.nakoa.title">Nakoa</h2>
+    <p class="lead pdoc__lead" data-i18n="projects.nakoa.detail.lead">Un videojuego multijugador hecho en Unity con un objetivo claro: que el mismo juego funcione en el móvil, en el ordenador y en el navegador. Un único proyecto en C# que se compila para Android, iOS, PC y WebGL.</p>
+    <div class="pdoc__actions">
+      <a class="btn btn--primary btn--sm" href="https://marcotencortes.github.io/Videojuego-Multiplataforma-Nakoa/" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_demo">Ver demo</span><span class="arrow" aria-hidden="true">↗</span></a>
+      <a class="btn btn--secondary btn--sm" href="https://github.com/MarcoTenCortes/Videojuego-Multiplataforma-Nakoa" target="_blank" rel="noopener noreferrer"><svg width="16" height="16" aria-hidden="true" focusable="false"><use href="/icons/sprite.svg#github"/></svg><span data-i18n="projects.cta_repo">Código</span></a>
+    </div>
+    <ul class="chips chips--inline" aria-label="Tecnologías" data-i18n-attr="aria-label:projects.detail.tech">
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#unity"/></svg><span>Unity</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>C#</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>WebGL</span></li>
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>WebAssembly</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#github"/></svg><span>GitHub Pages</span></li>
+    </ul>
+  </header>
+
+  <dl class="pdoc__facts" aria-label="En cifras" data-i18n-attr="aria-label:projects.detail.facts">
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.nakoa.detail.fact1_label">plataformas de destino</dt><dd class="pdoc__fact-value" data-i18n="projects.nakoa.detail.fact1_value">4</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.nakoa.detail.fact2_label">sistemas de escritorio: Windows, macOS y Linux</dt><dd class="pdoc__fact-value" data-i18n="projects.nakoa.detail.fact2_value">3</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.nakoa.detail.fact3_label">proyecto de Unity para todas</dt><dd class="pdoc__fact-value" data-i18n="projects.nakoa.detail.fact3_value">1</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.nakoa.detail.fact4_label">en la demo, con WebGL 1 de respaldo</dt><dd class="pdoc__fact-value" data-i18n="projects.nakoa.detail.fact4_value">WebGL 2</dd></div>
+  </dl>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.context">Contexto</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.nakoa.detail.context">La idea era que cada jugador eligiera dónde jugar: en el móvil, en el ordenador o en el navegador, sin instalar nada. Nakoa partió de esa premisa: no hacer cuatro juegos, sino uno solo que se compile para cada dispositivo y se juegue igual de bien en todos.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.role">Qué hice</h3>
+    <div class="pdoc__content">
+      <ul class="bullets">
+        <li data-i18n="projects.nakoa.detail.role1">Desarrollé el juego en Unity con C#, como un único proyecto preparado para compilarse en Android, iOS, PC y WebGL.</li>
+        <li data-i18n="projects.nakoa.detail.role2">Separé lo común de lo que depende del dispositivo: escenas, lógica y recursos se comparten, y la entrada y la interfaz se adaptan a cada plataforma.</li>
+        <li data-i18n="projects.nakoa.detail.role3">Publiqué una build WebGL en GitHub Pages como demo jugable: corre en el navegador con WebAssembly, sobre WebGL 2 y con WebGL 1 de respaldo.</li>
+        <li data-i18n="projects.nakoa.detail.role4">Desactivé el multijugador en la demo web y dejé el proyecto completo fuera de GitHub por su tamaño; lo facilito por correo a quien lo pida.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.architecture">Arquitectura</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.nakoa.detail.arch_intro">Un proyecto y cuatro salidas. El pipeline de build de Unity genera una versión por destino a partir del mismo código; la de WebGL se publica como web estática y es la única que prescinde del multijugador.</p>
+    </div>
+    <figure class="pdoc__figure pdoc__wide">
+      <div class="pdoc__canvas">
+        <!-- ancho: el proyecto a la izquierda, el build en medio y los cuatro destinos a la derecha -->
+        <svg class="dg pdoc__diagram pdoc__diagram--wide" viewBox="0 0 880 268" width="880" height="268" role="img" aria-label="Arquitectura de Nakoa" data-i18n-attr="aria-label:projects.nakoa.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="nakoa-w-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="nakoa-w-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <!-- el proyecto de Unity -->
+          <rect class="dg-frame" x="16" y="14" width="336" height="240" rx="14"/>
+          <text class="dg-title" x="34" y="43" data-i18n="projects.nakoa.detail.dg_project">Proyecto Unity</text>
+          <text class="dg-sub dg-end" x="334" y="43">Unity 2019.3 · C#</text>
+          <path class="dg-rule" d="M16 58H352"/>
+          <text class="dg-tiny" x="34" y="80" data-i18n="projects.nakoa.detail.dg_shared">común a todas</text>
+          <rect class="dg-box" x="34" y="92" width="94" height="56" rx="10"/>
+          <rect class="dg-box" x="138" y="92" width="94" height="56" rx="10"/>
+          <rect class="dg-box" x="242" y="92" width="94" height="56" rx="10"/>
+          <text class="dg-strong dg-mid" x="81" y="125" data-i18n="projects.nakoa.detail.dg_scenes">escenas</text>
+          <text class="dg-strong dg-mid" x="185" y="125" data-i18n="projects.nakoa.detail.dg_logic">lógica C#</text>
+          <text class="dg-strong dg-mid" x="289" y="125" data-i18n="projects.nakoa.detail.dg_assets">recursos</text>
+          <rect class="dg-box dg-box--soft" x="34" y="160" width="146" height="66" rx="10"/>
+          <text class="dg-strong dg-mid" x="107" y="188" data-i18n="projects.nakoa.detail.dg_multi">multijugador</text>
+          <text class="dg-sub dg-mid" x="107" y="207" data-i18n="projects.nakoa.detail.dg_net">cliente de red</text>
+          <rect class="dg-box dg-box--accent" x="190" y="160" width="146" height="66" rx="10"/>
+          <text class="dg-strong dg-mid" x="263" y="188" data-i18n="projects.nakoa.detail.dg_input">entrada · UI</text>
+          <text class="dg-sub dg-mid" x="263" y="207" data-i18n="projects.nakoa.detail.dg_perdevice">según dispositivo</text>
+
+          <!-- ③ el build: un proyecto, una versión por destino -->
+          <path class="dg-line" marker-end="url(#nakoa-w-arrow)" d="M354 134H394"/>
+          <rect class="dg-fill-accent" x="396" y="100" width="108" height="68" rx="12"/>
+          <text class="dg-mid dg-title dg-on-accent" x="450" y="132">build</text>
+          <text class="dg-mid dg-tiny dg-on-accent" x="450" y="151" data-i18n="projects.nakoa.detail.dg_pertarget">por destino</text>
+          <path class="dg-line" d="M506 134H548M548 42V228"/>
+          <g class="dg-line" marker-end="url(#nakoa-w-arrow)">
+            <path d="M548 42H590"/>
+            <path d="M548 104H590"/>
+            <path d="M548 166H590"/>
+          </g>
+          <path class="dg-line dg-line--accent" marker-end="url(#nakoa-w-arrow-accent)" d="M548 228H590"/>
+
+          <!-- destinos -->
+          <rect class="dg-box" x="592" y="17" width="272" height="50" rx="10"/>
+          <rect class="dg-box" x="592" y="79" width="272" height="50" rx="10"/>
+          <rect class="dg-box" x="592" y="141" width="272" height="50" rx="10"/>
+          <rect class="dg-box dg-box--accent" x="592" y="203" width="272" height="50" rx="10"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <rect x="611" y="30" width="14" height="24" rx="3"/><path d="M615.5 50H620.5"/>
+            <rect x="611" y="92" width="14" height="24" rx="3"/><path d="M615.5 112H620.5"/>
+            <rect x="606" y="155" width="24" height="16" rx="2"/><path d="M618 171V175M612 176H624"/>
+          </g>
+          <g class="dg-line dg-line--accent" style="stroke-width: 1">
+            <rect x="606" y="218" width="24" height="19" rx="3"/><path d="M606 224H630"/>
+          </g>
+          <text class="dg-title" x="644" y="38">Android</text>
+          <text class="dg-sub" x="644" y="55" data-i18n="projects.nakoa.detail.dg_mobile">móvil</text>
+          <text class="dg-title" x="644" y="100">iOS</text>
+          <text class="dg-sub" x="644" y="117" data-i18n="projects.nakoa.detail.dg_mobile">móvil</text>
+          <text class="dg-title" x="644" y="162">PC</text>
+          <text class="dg-sub" x="644" y="179">Windows · macOS · Linux</text>
+          <text class="dg-title" x="644" y="224">WebGL</text>
+          <text class="dg-sub" x="644" y="241" data-i18n="projects.nakoa.detail.dg_browser">navegador</text>
+          <!-- el multijugador: en los destinos nativos sí, en la demo web no -->
+          <g style="fill: var(--mute)">
+            <circle cx="744" cy="34.5" r="3"/>
+            <circle cx="744" cy="96.5" r="3"/>
+            <circle cx="744" cy="158.5" r="3"/>
+          </g>
+          <circle cx="744" cy="220.5" r="3" fill="none" style="stroke: var(--mute)" stroke-width="1.2"/>
+          <text class="dg-tiny" x="752" y="38" data-i18n="projects.nakoa.detail.dg_multi">multijugador</text>
+          <text class="dg-tiny" x="752" y="100" data-i18n="projects.nakoa.detail.dg_multi">multijugador</text>
+          <text class="dg-tiny" x="752" y="162" data-i18n="projects.nakoa.detail.dg_multi">multijugador</text>
+          <text class="dg-tiny" x="752" y="224" data-i18n="projects.nakoa.detail.dg_nomulti">sin multijugador</text>
+
+          <g class="dg-badge">
+            <circle cx="16" cy="120" r="10"/><text x="16" y="124">1</text>
+            <circle cx="336" cy="160" r="10"/><text x="336" y="164">2</text>
+            <circle cx="374" cy="134" r="10"/><text x="374" y="138">3</text>
+            <circle cx="569" cy="228" r="10"/><text x="569" y="232">4</text>
+          </g>
+        </svg>
+
+        <!-- estrecho: el proyecto arriba, el build y los destinos en columna -->
+        <svg class="dg pdoc__diagram pdoc__diagram--tall" viewBox="0 0 360 604" width="360" height="604" role="img" aria-label="Arquitectura de Nakoa" data-i18n-attr="aria-label:projects.nakoa.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="nakoa-t-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="nakoa-t-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <rect class="dg-frame" x="10" y="10" width="340" height="226" rx="14"/>
+          <text class="dg-title" x="26" y="38" data-i18n="projects.nakoa.detail.dg_project">Proyecto Unity</text>
+          <text class="dg-sub dg-end" x="334" y="38">Unity 2019.3 · C#</text>
+          <path class="dg-rule" d="M10 52H350"/>
+          <text class="dg-tiny" x="26" y="74" data-i18n="projects.nakoa.detail.dg_shared">común a todas</text>
+          <rect class="dg-box" x="26" y="84" width="96" height="52" rx="10"/>
+          <rect class="dg-box" x="132" y="84" width="96" height="52" rx="10"/>
+          <rect class="dg-box" x="238" y="84" width="96" height="52" rx="10"/>
+          <text class="dg-strong dg-mid" x="74" y="114.5" data-i18n="projects.nakoa.detail.dg_scenes">escenas</text>
+          <text class="dg-strong dg-mid" x="180" y="114.5" data-i18n="projects.nakoa.detail.dg_logic">lógica C#</text>
+          <text class="dg-strong dg-mid" x="286" y="114.5" data-i18n="projects.nakoa.detail.dg_assets">recursos</text>
+          <rect class="dg-box dg-box--soft" x="26" y="148" width="149" height="64" rx="10"/>
+          <text class="dg-strong dg-mid" x="100.5" y="175" data-i18n="projects.nakoa.detail.dg_multi">multijugador</text>
+          <text class="dg-sub dg-mid" x="100.5" y="194" data-i18n="projects.nakoa.detail.dg_net">cliente de red</text>
+          <rect class="dg-box dg-box--accent" x="185" y="148" width="149" height="64" rx="10"/>
+          <text class="dg-strong dg-mid" x="259.5" y="175" data-i18n="projects.nakoa.detail.dg_input">entrada · UI</text>
+          <text class="dg-sub dg-mid" x="259.5" y="194" data-i18n="projects.nakoa.detail.dg_perdevice">según dispositivo</text>
+
+          <path class="dg-line" marker-end="url(#nakoa-t-arrow)" d="M180 238V268"/>
+          <rect class="dg-fill-accent" x="124" y="270" width="112" height="60" rx="12"/>
+          <text class="dg-mid dg-title dg-on-accent" x="180" y="297">build</text>
+          <text class="dg-mid dg-tiny dg-on-accent" x="180" y="315" data-i18n="projects.nakoa.detail.dg_pertarget">por destino</text>
+          <path class="dg-line" d="M180 332V348H26V569"/>
+          <g class="dg-line" marker-end="url(#nakoa-t-arrow)">
+            <path d="M26 389H42"/>
+            <path d="M26 449H42"/>
+            <path d="M26 509H42"/>
+          </g>
+          <path class="dg-line dg-line--accent" marker-end="url(#nakoa-t-arrow-accent)" d="M26 569H42"/>
+
+          <rect class="dg-box" x="44" y="364" width="306" height="50" rx="10"/>
+          <rect class="dg-box" x="44" y="424" width="306" height="50" rx="10"/>
+          <rect class="dg-box" x="44" y="484" width="306" height="50" rx="10"/>
+          <rect class="dg-box dg-box--accent" x="44" y="544" width="306" height="50" rx="10"/>
+          <g class="dg-line dg-line--faint" style="stroke: var(--mute)">
+            <rect x="61" y="377" width="14" height="24" rx="3"/><path d="M65.5 397H70.5"/>
+            <rect x="61" y="437" width="14" height="24" rx="3"/><path d="M65.5 457H70.5"/>
+            <rect x="56" y="498" width="24" height="16" rx="2"/><path d="M68 514V518M62 519H74"/>
+          </g>
+          <g class="dg-line dg-line--accent" style="stroke-width: 1">
+            <rect x="56" y="559" width="24" height="19" rx="3"/><path d="M56 565H80"/>
+          </g>
+          <text class="dg-title" x="92" y="385">Android</text>
+          <text class="dg-sub" x="92" y="402" data-i18n="projects.nakoa.detail.dg_mobile">móvil</text>
+          <text class="dg-title" x="92" y="445">iOS</text>
+          <text class="dg-sub" x="92" y="462" data-i18n="projects.nakoa.detail.dg_mobile">móvil</text>
+          <text class="dg-title" x="92" y="505">PC</text>
+          <text class="dg-sub" x="92" y="522">Windows · macOS · Linux</text>
+          <text class="dg-title" x="92" y="565">WebGL</text>
+          <text class="dg-sub" x="92" y="582" data-i18n="projects.nakoa.detail.dg_browser">navegador</text>
+          <g style="fill: var(--mute)">
+            <circle cx="222" cy="381.5" r="3"/>
+            <circle cx="222" cy="441.5" r="3"/>
+            <circle cx="222" cy="501.5" r="3"/>
+          </g>
+          <circle cx="222" cy="561.5" r="3" fill="none" style="stroke: var(--mute)" stroke-width="1.2"/>
+          <text class="dg-tiny" x="230" y="385" data-i18n="projects.nakoa.detail.dg_multi">multijugador</text>
+          <text class="dg-tiny" x="230" y="445" data-i18n="projects.nakoa.detail.dg_multi">multijugador</text>
+          <text class="dg-tiny" x="230" y="505" data-i18n="projects.nakoa.detail.dg_multi">multijugador</text>
+          <text class="dg-tiny" x="230" y="565" data-i18n="projects.nakoa.detail.dg_nomulti">sin multijugador</text>
+
+          <g class="dg-badge">
+            <circle cx="10" cy="110" r="10"/><text x="10" y="114">1</text>
+            <circle cx="334" cy="148" r="10"/><text x="334" y="152">2</text>
+            <circle cx="180" cy="253" r="10"/><text x="180" y="257">3</text>
+            <circle cx="26" cy="539" r="10"/><text x="26" y="543">4</text>
+          </g>
+        </svg>
+      </div>
+    </figure>
+    <ol class="pdoc__steps pdoc__wide">
+      <li data-i18n="projects.nakoa.detail.step1">Un único proyecto de Unity: escenas, lógica en C# y recursos, comunes a todas las plataformas.</li>
+      <li data-i18n="projects.nakoa.detail.step2">La entrada y la interfaz se adaptan al dispositivo, para que el juego se sienta propio en cada uno.</li>
+      <li data-i18n="projects.nakoa.detail.step3">El pipeline de build de Unity genera una versión para cada destino: Android, iOS, PC con Windows, macOS y Linux, y WebGL.</li>
+      <li data-i18n="projects.nakoa.detail.step4">La build WebGL corre en el navegador con WebAssembly y se publica en GitHub Pages, sin el multijugador.</li>
+    </ol>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.learned">Qué aprendí</h3>
+    <div class="pdoc__content">
+      <p class="pdoc__quote" data-i18n="projects.nakoa.detail.learned">Que multiplataforma no es pulsar «Build» cuatro veces. Cada destino pone sus límites, y el navegador es el más estricto: hay que decidir pronto qué es común y qué depende del dispositivo, y aceptar que la demo web no puede hacerlo todo.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.links">Enlaces</h3>
+    <div class="pdoc__content">
+      <ul class="pdoc__links">
+        <li>
+          <a class="action" href="https://marcotencortes.github.io/Videojuego-Multiplataforma-Nakoa/" target="_blank" rel="noopener noreferrer">
+            <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><circle cx="12" cy="12" r="8.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M10.2 8.4v7.2l5.6-3.6z"/></svg></span>
+            <span class="action__text"><span class="action__label" data-i18n="projects.nakoa.detail.link1">Demo jugable en el navegador</span><span class="action__value">marcotencortes.github.io/Videojuego-Multiplataforma-Nakoa</span></span>
+            <span class="action__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+        <li>
+          <a class="action" href="https://github.com/MarcoTenCortes/Videojuego-Multiplataforma-Nakoa" target="_blank" rel="noopener noreferrer">
+            <span class="action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><use href="/icons/sprite.svg#github"/></svg></span>
+            <span class="action__text"><span class="action__label" data-i18n="projects.nakoa.detail.link2">Repositorio con la build WebGL</span><span class="action__value">github.com/MarcoTenCortes/Videojuego-Multiplataforma-Nakoa</span></span>
+            <span class="action__arrow" aria-hidden="true">↗</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="pdoc__footer">
+    <button type="button" class="btn btn--secondary pdoc__back" data-pdialog-close><span class="pdoc__back-arrow" aria-hidden="true">←</span><span data-i18n="projects.detail.back">Volver</span></button>
+    <a class="btn btn--secondary btn--sm" href="https://marcotencortes.github.io/Videojuego-Multiplataforma-Nakoa/" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_demo">Ver demo</span><span class="arrow" aria-hidden="true">↗</span></a>
+  </footer>
+</article>

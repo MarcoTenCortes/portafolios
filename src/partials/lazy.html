@@ -1,0 +1,1408 @@
+<!-- Fragmento cargado por src/js/main.js tras `load` (import ?raw): cada <template data-for="X"> se estampa
+     en el elemento [data-lazy="X"] de index.html. Aqui viven los SVG decorativos (medias de las tarjetas,
+     farola, zona de juego) para que el documento inicial siga cabiendo en la primera ventana de TCP.
+     Los SVG se inyectan con tools/inject-partials.py igual que en index.html. -->
+<template data-for="faro-panel">
+<!-- partial:faro-panel -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Mock del panel lateral de Faro junto a una página de Confluence con un pasaje subrayado y una insignia numerada" data-i18n-attr="aria-label:projects.faro.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- window -->
+  <rect x="20" y="20" width="600" height="360" rx="14" fill="var(--faro-bg, #131218)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <g fill="var(--hairline-strong, rgba(255,255,255,.16))" stroke="none">
+    <circle cx="44" cy="44" r="5"/>
+    <circle cx="62" cy="44" r="5"/>
+    <circle cx="80" cy="44" r="5"/>
+  </g>
+  <text x="320" y="48" text-anchor="middle" fill="var(--faro-mute, #9793A6)" font-size="12">confluence · Faro</text>
+  <line x1="20" y1="64" x2="620" y2="64" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- page (Confluence) -->
+  <g fill="var(--faro-mute, #9793A6)" stroke="none">
+    <g opacity=".3">
+      <rect x="44" y="82" width="40" height="6" rx="3"/>
+      <rect x="92" y="82" width="6" height="6" rx="3"/>
+      <rect x="106" y="82" width="58" height="6" rx="3"/>
+    </g>
+    <rect x="44" y="102" width="172" height="12" rx="4" opacity=".6"/>
+    <g opacity=".28">
+      <rect x="44" y="136" width="304" height="8" rx="3"/>
+      <rect x="44" y="168" width="116" height="8" rx="3"/>
+      <rect x="44" y="200" width="238" height="8" rx="3"/>
+      <rect x="44" y="232" width="296" height="8" rx="3"/>
+      <rect x="44" y="264" width="66" height="8" rx="3"/>
+      <rect x="44" y="296" width="284" height="8" rx="3"/>
+      <rect x="44" y="328" width="176" height="8" rx="3"/>
+    </g>
+  </g>
+  <!-- highlighted passages -->
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none" opacity=".35">
+    <rect x="166" y="163" width="152" height="18" rx="4"/>
+    <rect x="116" y="259" width="142" height="18" rx="4"/>
+  </g>
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none" opacity=".55">
+    <rect x="172" y="168" width="140" height="8" rx="3"/>
+    <rect x="122" y="264" width="130" height="8" rx="3"/>
+  </g>
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none">
+    <circle cx="332" cy="172" r="7"/>
+    <circle cx="272" cy="268" r="7"/>
+  </g>
+  <g fill="var(--faro-on-mark, #1B1405)" font-size="9" font-weight="600" text-anchor="middle">
+    <text x="332" y="175.5">1</text>
+    <text x="272" y="271.5">2</text>
+  </g>
+
+  <!-- side panel -->
+  <path d="M380 64H620V366A14 14 0 0 1 606 380H380Z" fill="var(--faro-surface, #1B1A22)" stroke="none"/>
+  <line x1="380" y1="64" x2="380" y2="380" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- panel header -->
+  <g class="faro-beacon" fill="none" stroke="var(--faro-amber, #E9AC4A)" stroke-width="2">
+    <circle cx="401" cy="83" r="7"/>
+    <circle cx="401" cy="83" r="2" fill="var(--faro-amber, #E9AC4A)" stroke="none"/>
+  </g>
+  <text x="416" y="87" fill="var(--faro-ink, #EDECF2)" font-size="12" font-weight="600">Faro</text>
+  <g fill="none" stroke="var(--faro-mute, #9793A6)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" opacity=".7">
+    <path d="M524 83h10M529 78v10"/>
+    <path d="M549 83a5 5 0 1 0 10 0a5 5 0 1 0 -10 0M554 80v3l2 2"/>
+    <path d="M567 78h10v10h-10zM570 82h4M570 85h3"/>
+    <path d="M585 78h10v10h-10zM588 78v10"/>
+    <path d="M604 80h10M604 83h10M604 86h10"/>
+  </g>
+  <rect x="392" y="98" width="108" height="16" rx="8" fill="var(--faro-surface-2, #22212B)" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+  <text x="446" y="109" text-anchor="middle" fill="var(--faro-mute, #9793A6)" font-size="9">ENG-7 · Requisitos</text>
+  <line x1="380" y1="124" x2="620" y2="124" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- chat -->
+  <path d="M478 136H596A12 12 0 0 1 608 148V168A4 4 0 0 1 604 172H478A12 12 0 0 1 466 160V148A12 12 0 0 1 478 136Z" fill="var(--faro-surface-2, #22212B)" stroke="none"/>
+  <g fill="var(--faro-ink, #EDECF2)" font-size="10">
+    <text x="476" y="151">¿Qué pide ENG-7</text>
+    <text x="476" y="165">para el login?</text>
+  </g>
+  <text x="392" y="196" fill="var(--faro-ink, #EDECF2)" font-size="10">Dos cosas en la página:</text>
+  <g fill="var(--faro-amber, #E9AC4A)" stroke="none">
+    <circle cx="398.5" cy="213" r="6.5"/>
+    <circle cx="398.5" cy="231" r="6.5"/>
+  </g>
+  <g fill="var(--faro-on-mark, #1B1405)" font-size="9" font-weight="600" text-anchor="middle">
+    <text x="398.5" y="216.5">1</text>
+    <text x="398.5" y="234.5">2</text>
+  </g>
+  <g fill="var(--faro-mute, #9793A6)" font-size="10">
+    <text x="411" y="216.5"><tspan fill="var(--faro-ink, #EDECF2)">Dato:</tspan> exige MFA</text>
+    <text x="411" y="234.5"><tspan fill="var(--faro-ink, #EDECF2)">Hueco:</tspan> sin TTL de sesión</text>
+  </g>
+  <rect x="392" y="248" width="132" height="34" rx="8" fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <text x="404" y="262" fill="var(--faro-ink, #EDECF2)" font-size="10">Llévame →</text>
+  <text x="404" y="275" fill="var(--faro-mute, #9793A6)" font-size="9">Requisitos › 2.1</text>
+
+  <!-- composer -->
+  <g fill="var(--faro-surface-2, #22212B)" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1">
+    <rect x="392" y="298" width="64" height="18" rx="9"/>
+    <rect x="462" y="298" width="72" height="18" rx="9"/>
+  </g>
+  <g fill="var(--faro-mute, #9793A6)" font-size="9">
+    <text x="402" y="310">Modelo ▾</text>
+    <text x="472" y="310">Análisis ▾</text>
+  </g>
+  <rect x="392" y="324" width="216" height="42" rx="10" fill="var(--faro-bg, #131218)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <text x="404" y="342" fill="var(--faro-mute, #9793A6)" font-size="10" opacity=".7">Pregunta a Faro…</text>
+  <circle cx="592" cy="350" r="11" fill="var(--faro-amber, #E9AC4A)" stroke="none"/>
+  <path d="M592 355V345M587.5 349.5L592 345L596.5 349.5" fill="none" stroke="var(--faro-on-mark, #1B1405)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+<!-- /partial:faro-panel -->
+</template>
+<template data-for="simpl-graph">
+<!-- partial:simpl-graph -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Grafo de un espacio de datos: participante, catálogo, autoridad, conector, identidad, gobernanza y datos dentro del marco de la UE" data-i18n-attr="aria-label:projects.simpl.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- EU ring -->
+  <circle cx="320" cy="200" r="185" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1.5"/>
+  <text x="320" y="378" text-anchor="middle" fill="var(--mute, #8e98a8)" font-size="12" letter-spacing=".2em">EU</text>
+
+  <!-- edges -->
+  <g fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1.5" stroke-linecap="round">
+    <line x1="320" y1="178" x2="320" y2="90"/>
+    <line x1="320" y1="222" x2="320" y2="310"/>
+    <line x1="255" y1="200" x2="165" y2="130"/>
+    <line x1="255" y1="200" x2="165" y2="270"/>
+    <line x1="385" y1="200" x2="475" y2="130"/>
+    <line x1="385" y1="200" x2="470" y2="270"/>
+    <line x1="110" y1="150" x2="110" y2="250"/>
+    <line x1="530" y1="150" x2="530" y2="250"/>
+    <line x1="265" y1="70" x2="165" y2="130"/>
+    <line x1="375" y1="70" x2="475" y2="130"/>
+    <line x1="275" y1="330" x2="165" y2="270"/>
+    <line x1="365" y1="330" x2="470" y2="270"/>
+  </g>
+
+  <!-- outer nodes -->
+  <g fill="var(--surface-elevated, #222a3a)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1">
+    <rect x="265" y="50" width="110" height="40" rx="12"/>
+    <rect x="55" y="110" width="110" height="40" rx="12"/>
+    <rect x="55" y="250" width="110" height="40" rx="12"/>
+    <rect x="475" y="110" width="110" height="40" rx="12"/>
+    <rect x="470" y="250" width="120" height="40" rx="12"/>
+    <rect x="275" y="310" width="90" height="40" rx="12"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" font-size="13" text-anchor="middle">
+    <text x="320" y="75">Catálogo</text>
+    <text x="110" y="135">Autoridad</text>
+    <text x="110" y="275">Conector</text>
+    <text x="530" y="135">Identidad</text>
+    <text x="530" y="275">Gobernanza</text>
+    <text x="320" y="335">Datos</text>
+  </g>
+
+  <!-- central node -->
+  <g class="simpl-pulse">
+    <rect x="255" y="178" width="130" height="44" rx="12" fill="var(--action, #2997ff)" stroke="var(--action, #2997ff)" stroke-width="1"/>
+    <text x="320" y="205" text-anchor="middle" fill="var(--tile-black, #05070b)" font-size="13" font-weight="600">Participante</text>
+  </g>
+</svg>
+<!-- /partial:simpl-graph -->
+</template>
+<template data-for="paper-sheet">
+<!-- partial:paper-sheet -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <path id="paper-seal-ring" d="M0 -28.5A28.5 28.5 0 1 1 0 28.5A28.5 28.5 0 1 1 0 -28.5"/>
+    <clipPath id="paper-film"><rect x="355" y="56" width="204" height="104" rx="4"/></clipPath>
+    <radialGradient id="paper-glow" cx="457" cy="110" r="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="var(--action, #2997ff)" stop-opacity=".16"/>
+      <stop offset="1" stop-color="var(--action, #2997ff)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- sombras de las dos páginas -->
+  <g fill="var(--tile-black, #05070b)" opacity=".4">
+    <rect x="62" y="30" width="250" height="352" rx="5"/>
+    <rect x="336" y="30" width="250" height="352" rx="5"/>
+  </g>
+
+  <!-- página 1: título, autores, resumen y comienzo a dos columnas -->
+  <rect x="58" y="24" width="250" height="352" rx="5" fill="var(--surface-elevated, #222a3a)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <g fill="var(--ink, #f5f7fa)" font-size="12.5" font-weight="600" text-anchor="middle">
+    <text x="183" y="61">Evaluating the Incremental</text>
+    <text x="183" y="76.5">Contribution of Chest X-ray to</text>
+    <text x="183" y="92">24-Hour ICU Deterioration</text>
+    <text x="183" y="107.5">Prediction</text>
+  </g>
+  <g fill="var(--body, #c6cfdb)" font-size="8" text-anchor="middle">
+    <text x="183" y="127">Marco Tenorio Cortés, Andreea Madalina Oprescu,</text>
+    <text x="183" y="138">and María del Carmen Romero Ternero</text>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".32">
+    <rect x="124" y="147" width="118" height="3.5" rx="1.75"/>
+    <rect x="141" y="154" width="84" height="3.5" rx="1.75"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" font-size="7">
+    <text x="95" y="175" font-weight="700">Abstract.</text>
+    <text x="95" y="227" font-style="italic">Keywords:</text>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="130" y="171.5" width="141" height="3.5" rx="1.75"/>
+    <rect x="95" y="180" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="188.5" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="197" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="205.5" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="214" width="104" height="3.5" rx="1.75"/>
+    <rect x="134" y="223.5" width="112" height="3.5" rx="1.75"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".62">
+    <rect x="81" y="243" width="56" height="4.5" rx="2.25"/>
+    <rect x="189" y="311" width="64" height="4.5" rx="2.25"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="81" y="256" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="264.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="273" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="281.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="290" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="298.5" width="60" height="3.5" rx="1.75"/>
+    <rect x="87" y="307" width="90" height="3.5" rx="1.75"/>
+    <rect x="81" y="315.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="324" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="332.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="341" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="349.5" width="72" height="3.5" rx="1.75"/>
+    <rect x="189" y="243.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="252" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="260.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="269" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="277.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="286" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="294.5" width="42" height="3.5" rx="1.75"/>
+    <rect x="189" y="324" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="332.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="341" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="349.5" width="96" height="3.5" rx="1.75"/>
+  </g>
+
+  <!-- página 2: la figura con la radiografía y el texto a dos columnas -->
+  <rect x="332" y="24" width="250" height="352" rx="5" fill="var(--surface-elevated, #222a3a)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <g fill="var(--mute, #8e98a8)" font-size="7">
+    <text x="355" y="45">2</text>
+    <text x="367" y="45" font-style="italic">M. Tenorio Cortés et al.</text>
+  </g>
+  <rect x="355" y="56" width="204" height="104" rx="4" fill="var(--tile-black, #05070b)" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+  <rect x="355" y="56" width="204" height="104" rx="4" fill="url(#paper-glow)"/>
+  <text x="364" y="70" fill="var(--action, #2997ff)" opacity=".75" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="600">R</text>
+  <!-- radiografía de tórax: silueta, costillas, pulmones, corazón, tráquea y clavículas -->
+  <g fill="none" stroke="var(--action, #2997ff)" stroke-linecap="round" stroke-linejoin="round" clip-path="url(#paper-film)">
+    <path d="M448 56C448 64 446 68 438 70C422 73 407 77 401 89C396 99 398 128 402 162M466 56C466 64 468 68 476 70C492 73 507 77 513 89C518 99 516 128 512 162" stroke-width="1" opacity=".3"/>
+    <path d="M457 68V156" stroke-width="1" stroke-dasharray="2.6 2.2" opacity=".4"/>
+    <g stroke-width="1" opacity=".36">
+      <path d="M454 86C440 83 424 89 416 101"/>
+      <path d="M454 96C439 93 421 101 413 114"/>
+      <path d="M454 106C439 104 420 113 413 126"/>
+      <path d="M454 116C440 115 421 125 415 138"/>
+      <path d="M460 86C474 83 490 89 498 101"/>
+      <path d="M460 96C475 93 493 101 501 114"/>
+      <path d="M460 106C475 104 494 113 501 126"/>
+      <path d="M460 116C474 115 493 125 499 138"/>
+    </g>
+    <path d="M445 80C433 81 419 103 415 130C414 141 419 148 427 146C435 144 443 144 450 148C451 130 450 102 445 80Z" fill="var(--action, #2997ff)" fill-opacity=".1" stroke-width="1.4"/>
+    <path d="M469 80C481 81 495 103 499 130C500 141 495 148 487 146C482 145 478 146 474 148C470 139 471 127 466 119C465 105 466 91 469 80Z" fill="var(--action, #2997ff)" fill-opacity=".1" stroke-width="1.4"/>
+    <path d="M452 114C463 110 480 118 482 133C483 142 475 148 463 148C455 148 451 141 452 114Z" fill="var(--action, #2997ff)" fill-opacity=".22" stroke="none"/>
+    <path d="M457 64V89M457 89C454 92 451 94 447 96M457 89C460 92 463 94 467 96" stroke-width="1.5"/>
+    <path d="M454 78C446 79 436 74 424 74C419 74 415 75 411 77M460 78C468 79 478 74 490 74C495 74 499 75 503 77" stroke-width="1.4" opacity=".75"/>
+  </g>
+  <text x="355" y="175" fill="var(--body, #c6cfdb)" font-size="7" font-weight="700">Fig. 1.</text>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="382" y="171.5" width="177" height="3.5" rx="1.75"/>
+    <rect x="355" y="180" width="118" height="3.5" rx="1.75"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".62">
+    <rect x="463" y="276" width="60" height="4.5" rx="2.25"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="355" y="200" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="208.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="217" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="225.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="234" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="242.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="251" width="54" height="3.5" rx="1.75"/>
+    <rect x="361" y="259.5" width="90" height="3.5" rx="1.75"/>
+    <rect x="355" y="268" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="276.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="285" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="293.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="302" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="310.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="319" width="66" height="3.5" rx="1.75"/>
+    <rect x="361" y="327.5" width="90" height="3.5" rx="1.75"/>
+    <rect x="355" y="336" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="344.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="353" width="80" height="3.5" rx="1.75"/>
+    <rect x="463" y="200" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="208.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="217" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="225.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="234" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="242.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="251" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="259.5" width="38" height="3.5" rx="1.75"/>
+    <rect x="463" y="289" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="297.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="306" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="314.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="323" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="331.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="340" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="348.5" width="70" height="3.5" rx="1.75"/>
+  </g>
+
+  <!-- sello del congreso -->
+  <g transform="translate(572 326) rotate(-12)">
+    <circle r="38" fill="var(--tile-2, #1a2030)" fill-opacity=".92" stroke="var(--action, #2997ff)" stroke-width="1.5"/>
+    <circle r="23.5" fill="none" stroke="var(--action, #2997ff)" stroke-width=".9" opacity=".6"/>
+    <text fill="var(--action, #2997ff)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="7" font-weight="600" letter-spacing="1.2"><textPath href="#paper-seal-ring" textLength="178" lengthAdjust="spacing">CAEPIA 2026 · JAÉN · CAEPIA 2026 · JAÉN ·</textPath></text>
+    <text y="4.5" fill="var(--ink, #f5f7fa)" font-size="13" font-weight="600" text-anchor="middle">XXI</text>
+  </g>
+</svg>
+<!-- /partial:paper-sheet -->
+</template>
+<template data-for="qa-terminal">
+<!-- partial:qa-terminal -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Terminal con una suite de pruebas Cucumber para banca: 12 escenarios y 48 pasos superados" data-i18n-attr="aria-label:projects.qa.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- window -->
+  <rect x="20" y="20" width="600" height="360" rx="14" fill="var(--tile-black, #05070b)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+
+  <!-- title bar -->
+  <g fill="var(--hairline-strong, rgba(255,255,255,.16))" stroke="none">
+    <circle cx="44" cy="44" r="5"/>
+    <circle cx="62" cy="44" r="5"/>
+    <circle cx="80" cy="44" r="5"/>
+  </g>
+  <text x="320" y="48" text-anchor="middle" fill="var(--mute, #8e98a8)" font-size="12">cucumber · banking-suite</text>
+  <line x1="20" y1="64" x2="620" y2="64" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- output -->
+  <g font-size="14">
+    <text x="44" y="96" xml:space="preserve" fill="var(--ink, #f5f7fa)">Característica: Transferencias entre cuentas</text>
+    <text x="44" y="122" xml:space="preserve" fill="var(--body, #c6cfdb)">  Escenario: Transferencia con saldo suficiente</text>
+    <text x="44" y="148" xml:space="preserve" fill="var(--mute, #8e98a8)">    Dado un cliente autenticado</text>
+    <text x="44" y="174" xml:space="preserve" fill="var(--mute, #8e98a8)">    Cuando transfiere 250 € a la cuenta destino</text>
+    <text x="44" y="200" xml:space="preserve" fill="var(--mute, #8e98a8)">    Entonces el saldo se actualiza y se registra el movimiento</text>
+    <text x="44" y="236" xml:space="preserve" fill="var(--success, #59d499)">✓ 12 escenarios superados</text>
+    <text x="44" y="262" xml:space="preserve" fill="var(--mute, #8e98a8)">✓ 48 pasos (2,31 s)</text>
+    <text x="44" y="298" xml:space="preserve" fill="var(--ink, #f5f7fa)">$ mvn test</text>
+    <rect class="term-cursor" x="134" y="284" width="8" height="16" fill="var(--action, #2997ff)" stroke="none"/>
+  </g>
+</svg>
+<!-- /partial:qa-terminal -->
+</template>
+<template data-for="autoencoder">
+<!-- partial:autoencoder -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de un autoencoder: capas de 30, 16, 4, 16 y 30 neuronas con un cuello de botella central y un indicador de error de reconstrucción" data-i18n-attr="aria-label:projects.tfg.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- connections -->
+  <g fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1">
+    <line x1="80" y1="44" x2="200" y2="100"/>
+    <line x1="80" y1="44" x2="200" y2="184"/>
+    <line x1="80" y1="72" x2="200" y2="128"/>
+    <line x1="80" y1="72" x2="200" y2="212"/>
+    <line x1="80" y1="100" x2="200" y2="156"/>
+    <line x1="80" y1="100" x2="200" y2="240"/>
+    <line x1="80" y1="128" x2="200" y2="100"/>
+    <line x1="80" y1="128" x2="200" y2="184"/>
+    <line x1="80" y1="156" x2="200" y2="128"/>
+    <line x1="80" y1="156" x2="200" y2="212"/>
+    <line x1="80" y1="184" x2="200" y2="156"/>
+    <line x1="80" y1="184" x2="200" y2="240"/>
+    <line x1="80" y1="212" x2="200" y2="100"/>
+    <line x1="80" y1="212" x2="200" y2="184"/>
+    <line x1="80" y1="240" x2="200" y2="128"/>
+    <line x1="80" y1="240" x2="200" y2="212"/>
+    <line x1="80" y1="268" x2="200" y2="156"/>
+    <line x1="80" y1="268" x2="200" y2="240"/>
+    <line x1="80" y1="296" x2="200" y2="100"/>
+    <line x1="80" y1="296" x2="200" y2="184"/>
+    <line x1="200" y1="100" x2="320" y2="128"/>
+    <line x1="200" y1="100" x2="320" y2="156"/>
+    <line x1="200" y1="100" x2="320" y2="184"/>
+    <line x1="200" y1="100" x2="320" y2="212"/>
+    <line x1="200" y1="128" x2="320" y2="128"/>
+    <line x1="200" y1="128" x2="320" y2="156"/>
+    <line x1="200" y1="128" x2="320" y2="184"/>
+    <line x1="200" y1="128" x2="320" y2="212"/>
+    <line x1="200" y1="156" x2="320" y2="128"/>
+    <line x1="200" y1="156" x2="320" y2="156"/>
+    <line x1="200" y1="156" x2="320" y2="184"/>
+    <line x1="200" y1="156" x2="320" y2="212"/>
+    <line x1="200" y1="184" x2="320" y2="128"/>
+    <line x1="200" y1="184" x2="320" y2="156"/>
+    <line x1="200" y1="184" x2="320" y2="184"/>
+    <line x1="200" y1="184" x2="320" y2="212"/>
+    <line x1="200" y1="212" x2="320" y2="128"/>
+    <line x1="200" y1="212" x2="320" y2="156"/>
+    <line x1="200" y1="212" x2="320" y2="184"/>
+    <line x1="200" y1="212" x2="320" y2="212"/>
+    <line x1="200" y1="240" x2="320" y2="128"/>
+    <line x1="200" y1="240" x2="320" y2="156"/>
+    <line x1="200" y1="240" x2="320" y2="184"/>
+    <line x1="200" y1="240" x2="320" y2="212"/>
+    <line x1="320" y1="128" x2="440" y2="100"/>
+    <line x1="320" y1="128" x2="440" y2="128"/>
+    <line x1="320" y1="128" x2="440" y2="156"/>
+    <line x1="320" y1="128" x2="440" y2="184"/>
+    <line x1="320" y1="128" x2="440" y2="212"/>
+    <line x1="320" y1="128" x2="440" y2="240"/>
+    <line x1="320" y1="156" x2="440" y2="100"/>
+    <line x1="320" y1="156" x2="440" y2="128"/>
+    <line x1="320" y1="156" x2="440" y2="156"/>
+    <line x1="320" y1="156" x2="440" y2="184"/>
+    <line x1="320" y1="156" x2="440" y2="212"/>
+    <line x1="320" y1="156" x2="440" y2="240"/>
+    <line x1="320" y1="184" x2="440" y2="100"/>
+    <line x1="320" y1="184" x2="440" y2="128"/>
+    <line x1="320" y1="184" x2="440" y2="156"/>
+    <line x1="320" y1="184" x2="440" y2="184"/>
+    <line x1="320" y1="184" x2="440" y2="212"/>
+    <line x1="320" y1="184" x2="440" y2="240"/>
+    <line x1="320" y1="212" x2="440" y2="100"/>
+    <line x1="320" y1="212" x2="440" y2="128"/>
+    <line x1="320" y1="212" x2="440" y2="156"/>
+    <line x1="320" y1="212" x2="440" y2="184"/>
+    <line x1="320" y1="212" x2="440" y2="212"/>
+    <line x1="320" y1="212" x2="440" y2="240"/>
+    <line x1="440" y1="100" x2="560" y2="44"/>
+    <line x1="440" y1="100" x2="560" y2="128"/>
+    <line x1="440" y1="100" x2="560" y2="212"/>
+    <line x1="440" y1="100" x2="560" y2="296"/>
+    <line x1="440" y1="128" x2="560" y2="72"/>
+    <line x1="440" y1="128" x2="560" y2="156"/>
+    <line x1="440" y1="128" x2="560" y2="240"/>
+    <line x1="440" y1="156" x2="560" y2="100"/>
+    <line x1="440" y1="156" x2="560" y2="184"/>
+    <line x1="440" y1="156" x2="560" y2="268"/>
+    <line x1="440" y1="184" x2="560" y2="44"/>
+    <line x1="440" y1="184" x2="560" y2="128"/>
+    <line x1="440" y1="184" x2="560" y2="212"/>
+    <line x1="440" y1="184" x2="560" y2="296"/>
+    <line x1="440" y1="212" x2="560" y2="72"/>
+    <line x1="440" y1="212" x2="560" y2="156"/>
+    <line x1="440" y1="212" x2="560" y2="240"/>
+    <line x1="440" y1="240" x2="560" y2="100"/>
+    <line x1="440" y1="240" x2="560" y2="184"/>
+    <line x1="440" y1="240" x2="560" y2="268"/>
+  </g>
+  <!-- neurons -->
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="80" cy="44" r="5"/>
+    <circle cx="80" cy="72" r="5"/>
+    <circle cx="80" cy="100" r="5"/>
+    <circle cx="80" cy="128" r="5"/>
+    <circle cx="80" cy="156" r="5"/>
+    <circle cx="80" cy="184" r="5"/>
+    <circle cx="80" cy="212" r="5"/>
+    <circle cx="80" cy="240" r="5"/>
+    <circle cx="80" cy="268" r="5"/>
+    <circle cx="80" cy="296" r="5"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="200" cy="100" r="5"/>
+    <circle cx="200" cy="128" r="5"/>
+    <circle cx="200" cy="156" r="5"/>
+    <circle cx="200" cy="184" r="5"/>
+    <circle cx="200" cy="212" r="5"/>
+    <circle cx="200" cy="240" r="5"/>
+  </g>
+  <g fill="var(--action, #2997ff)" stroke="none" class="ae-bottleneck">
+    <circle cx="320" cy="128" r="5"/>
+    <circle cx="320" cy="156" r="5"/>
+    <circle cx="320" cy="184" r="5"/>
+    <circle cx="320" cy="212" r="5"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="440" cy="100" r="5"/>
+    <circle cx="440" cy="128" r="5"/>
+    <circle cx="440" cy="156" r="5"/>
+    <circle cx="440" cy="184" r="5"/>
+    <circle cx="440" cy="212" r="5"/>
+    <circle cx="440" cy="240" r="5"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="560" cy="44" r="5"/>
+    <circle cx="560" cy="72" r="5"/>
+    <circle cx="560" cy="100" r="5"/>
+    <circle cx="560" cy="128" r="5"/>
+    <circle cx="560" cy="156" r="5"/>
+    <circle cx="560" cy="184" r="5"/>
+    <circle cx="560" cy="212" r="5"/>
+    <circle cx="560" cy="240" r="5"/>
+    <circle cx="560" cy="268" r="5"/>
+    <circle cx="560" cy="296" r="5"/>
+  </g>
+  <!-- labels -->
+  <g fill="var(--mute, #8e98a8)" font-size="12" text-anchor="middle">
+    <text x="80" y="322">30</text>
+    <text x="80" y="342">entrada</text>
+    <text x="200" y="322">16</text>
+    <text x="200" y="342">codificador</text>
+    <text x="320" y="322">4</text>
+    <text x="320" y="342">código</text>
+    <text x="440" y="322">16</text>
+    <text x="440" y="342">decodificador</text>
+    <text x="560" y="322">30</text>
+    <text x="560" y="342">salida</text>
+  </g>
+  <!-- reconstruction error gauge -->
+  <text x="610" y="370" text-anchor="end" fill="var(--mute, #8e98a8)" font-size="12">error de reconstrucción</text>
+  <rect x="430" y="378" width="180" height="6" rx="3" fill="var(--surface-elevated, #222a3a)" stroke="none"/>
+  <rect class="ae-gauge" x="430" y="378" width="111.6" height="6" rx="3" fill="var(--action, #2997ff)" stroke="none"/>
+</svg>
+<!-- /partial:autoencoder -->
+</template>
+<template data-for="lamp">
+<!-- partial:lamp -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1250" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" class="scene__lamp">
+  <!-- base -->
+  <ellipse cx="288" cy="1085" rx="60" ry="14" fill="var(--tile-2, #1a2030)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="2"/>
+
+  <!-- post -->
+  <rect x="282" y="180" width="12" height="900" fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="2"/>
+  <line x1="288" y1="192" x2="288" y2="1068" fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+
+  <!-- lantern head -->
+  <g class="scene__lamp-head">
+    <polygon points="287,95 332,122 332,178 287,205 242,178 242,122" fill="var(--action, #2997ff)" fill-opacity=".6" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
+    <rect x="273" y="82" width="28" height="12" rx="3" fill="var(--tile-2, #1a2030)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="2"/>
+    <line x1="287" y1="82" x2="287" y2="68" fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="287" cy="150" r="6" fill="var(--action, #2997ff)" stroke="none"/>
+  </g>
+</svg>
+<!-- /partial:lamp -->
+</template>
+<template data-for="marker">
+<!-- partial:marker -->
+<svg class="marker__art" viewBox="0 0 1000 260" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" overflow="visible">
+  <defs>
+    <filter id="rim-marker" x="-6%" y="-10%" width="112%" height="120%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="fat"/>
+      <feFlood flood-color="#2997ff" flood-opacity=".6" result="blue"/>
+      <feComposite in="blue" in2="fat" operator="in" result="rim"/>
+      <feGaussianBlur in="rim" stdDeviation=".8" result="rim-soft"/>
+      <feMerge><feMergeNode in="rim-soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <ellipse class="marker__shadow" cx="520" cy="232" rx="476" ry="14" fill="#000" opacity=".35"/>
+  <g class="marker__rim" filter="url(#rim-marker)">
+    <!-- felt tip -->
+    <g class="marker__tip">
+      <polygon points="0,130 40,95 40,165" fill="var(--action,#2997ff)"/>
+      <polygon points="3,131 41,132 41,166" fill="#1f7fe0"/>
+      <path d="M4 130 L40 131" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-1 130 L41 94 M-1 130 L40 166" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <!-- cream neck (extends under the body) -->
+    <g class="marker__neck">
+      <path d="M41 96 L134 57 L134 203 L41 165 Z" fill="var(--ill-cream,#f3eedb)"/>
+      <path d="M43 133 L134 133 L134 203 L43 165 Z" fill="#c7bfaf"/>
+      <path d="M50 102 L118 72" fill="none" stroke="#fbfaf1" stroke-width="7" stroke-linecap="round"/>
+      <path d="M41 94 L110 66 M41 166 L110 194" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M40 92 L40 168" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+    </g>
+    <!-- body -->
+    <g class="marker__body">
+      <path d="M162 42 H792 V218 H162 C128 218 102 192 102 158 V102 C102 68 128 42 162 42 Z" fill="var(--ill-dark,#23272d)"/>
+      <path d="M112 170 C114 196 134 216 162 216 H780 V172 Q440 178 112 170 Z" fill="#0f131c"/>
+      <rect x="126" y="54" width="640" height="30" rx="15" fill="#2e3138"/>
+      <path d="M110 48 H760" fill="none" stroke="rgba(41,151,255,.45)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M160 40 C300 38 560 42 772 40" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M160 40 C126 41 100 66 100 100 V160 C100 194 126 220 160 220" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M160 220 C300 222 560 218 690 220" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linecap="round"/>
+      <path d="M704 220 H772" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.5" stroke-linecap="round"/>
+    </g>
+    <!-- label -->
+    <g class="marker__label" transform="rotate(-.8 465 130)">
+      <rect x="332" y="94" width="270" height="76" rx="8" fill="var(--ill-cream,#f3eedb)"/>
+      <path d="M332 152 H602 V162 a8 8 0 0 1 -8 8 H340 a8 8 0 0 1 -8 -8 Z" fill="#c7bfaf"/>
+      <path d="M342 100 H588" fill="none" stroke="#fbfaf1" stroke-width="5" stroke-linecap="round"/>
+      <path d="M338 92 C420 91 520 93 594 92 a8 8 0 0 1 8 8 V160 a8 8 0 0 1 -8 8 C520 169 420 167 338 168 a8 8 0 0 1 -8 -8 V100 a8 8 0 0 1 8 -8 Z" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linejoin="round"/>
+      <text x="466" y="141" text-anchor="middle" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="30" font-weight="600" letter-spacing="1.5" fill="var(--ill-ink,#151a24)">MTC · 14 mm</text>
+    </g>
+    <!-- cap -->
+    <g class="marker__cap">
+      <path d="M772 42 H958 C982 42 1002 62 1002 86 V176 C1002 200 982 220 958 220 H772 Z" fill="var(--action,#2997ff)"/>
+      <path d="M776 182 H930 C956 182 976 170 984 150 C990 190 972 218 940 218 H776 Z" fill="#1f7fe0"/>
+      <rect x="772" y="40" width="26" height="180" fill="#1f7fe0"/>
+      <path d="M806 62 H944" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="8" stroke-linecap="round"/>
+      <path d="M826 44 C826 30 840 26 852 26 H966 C976 26 980 32 980 40 V44 Z" fill="var(--ill-dark,#23272d)"/>
+      <path d="M828 44 C828 32 840 28 852 28 H966 C976 28 980 34 980 40" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M770 40 C830 38 900 42 958 40 C982 40 1000 58 1000 84 V176 C1000 202 982 220 958 220 C900 222 830 218 770 220" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M770 34 V222" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M798 44 V216" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-opacity=".7" stroke-linecap="round"/>
+    </g>
+  </g>
+</svg>
+<!-- /partial:marker -->
+</template>
+<template data-for="dog-peek">
+<!-- partial:dog-peek -->
+<svg class="peek__art" viewBox="0 0 400 360" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" overflow="visible">
+  <defs>
+    <filter id="rim-peek" x="-6%" y="-10%" width="112%" height="120%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="4" result="fat"/>
+      <feFlood flood-color="#2997ff" flood-opacity=".6" result="blue"/>
+      <feComposite in="blue" in2="fat" operator="in" result="rim"/>
+      <feGaussianBlur in="rim" stdDeviation=".8" result="rim-soft"/>
+      <feMerge><feMergeNode in="rim-soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g class="dog__flip" style="transform-origin:200px 180px">
+    <g class="dog__rim" filter="url(#rim-peek)">
+      <!-- ears (behind the skull) -->
+      <g class="dog__ear dog__ear--l" style="transform-origin:100px 110px">
+        <path d="M122 100 C90 96 60 128 54 170 C50 200 68 226 90 216 C112 206 120 156 132 122 Z" fill="#9c6840" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M78 150 C68 170 68 196 80 208" fill="none" stroke="#0f131c" stroke-opacity=".28" stroke-width="9" stroke-linecap="round"/>
+      </g>
+      <g class="dog__ear dog__ear--r" style="transform-origin:300px 110px">
+        <path d="M278 105 C310 101 340 133 346 175 C350 205 332 231 310 221 C288 211 280 161 268 127 Z" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linejoin="round"/>
+        <path d="M322 155 C332 175 332 201 320 213" fill="none" stroke="#c7bfaf" stroke-width="9" stroke-linecap="round"/>
+      </g>
+      <!-- skull (tilted 12 deg) -->
+      <g class="dog__skull" transform="rotate(12 200 180)">
+        <path d="M200 75 C268 73 322 122 320 180 C322 240 266 287 200 285 C134 287 78 238 80 180 C78 120 134 77 200 75 Z" fill="var(--ill-cream,#f3eedb)" transform="translate(3 3)"/>
+        <path d="M100 214 C130 268 270 268 302 210 C290 262 214 296 150 276 C120 266 104 240 100 214 Z" fill="#c7bfaf"/>
+        <path d="M150 100 C170 88 230 86 252 98" fill="none" stroke="#fbfaf1" stroke-width="10" stroke-linecap="round"/>
+        <path d="M222 118 C240 104 282 108 292 136 C300 160 284 190 256 192 C230 194 212 170 214 146 C214 134 216 124 222 118 Z" fill="#9c6840"/>
+        <path d="M196 76 C266 72 324 120 320 180 C322 240 266 287 200 285 C134 287 78 238 80 180 C80 168 82 156 86 146" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linecap="round"/>
+        <path d="M90 134 C104 104 140 80 184 77" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linecap="round"/>
+      </g>
+      <!-- muzzle, nose, mouth -->
+      <path d="M152 228 C162 200 252 198 264 230 C272 254 246 280 206 280 C166 280 144 254 152 228 Z" fill="#fbfaf1"/>
+      <path d="M150 226 C160 198 250 196 262 228 C270 252 244 278 204 278 C164 278 142 252 150 226 Z" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linejoin="round"/>
+      <path class="dog__nose" d="M186 212 C196 204 216 204 226 212 C230 222 216 236 206 236 C196 236 182 222 186 212 Z" fill="var(--ill-ink,#151a24)"/>
+      <ellipse cx="198" cy="212" rx="5" ry="3.5" fill="#fff" opacity=".85"/>
+      <path class="dog__tongue" d="M192 254 C190 276 222 276 220 254 Z" fill="#d37e5e" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M206 258 V269" fill="none" stroke="var(--ill-ink,#151a24)" stroke-opacity=".35" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M206 236 V250" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M170 246 C182 262 198 262 206 250 C214 262 230 262 242 244" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- eyes + lids -->
+      <circle class="dog__eye" cx="150" cy="170" r="13" fill="var(--ill-ink,#151a24)"/>
+      <circle cx="155" cy="165" r="4.5" fill="#fff"/>
+      <circle class="dog__eye" cx="250" cy="165" r="13" fill="var(--ill-ink,#151a24)"/>
+      <circle cx="254" cy="160" r="3.5" fill="#fff"/>
+      <circle cx="245" cy="170" r="1.6" fill="#fff" opacity=".8"/>
+      <ellipse class="dog__lid" cx="150" cy="170" rx="16" ry="16" fill="var(--ill-cream,#f3eedb)" style="transform-origin:150px 170px;transform:scaleY(0)"/>
+      <ellipse class="dog__lid" cx="250" cy="165" rx="16" ry="16" fill="#9c6840" style="transform-origin:250px 165px;transform:scaleY(0)"/>
+      <!-- rim light on the crown -->
+      <path d="M118 100 C150 66 240 62 292 98" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+      <!-- paw resting on the edge -->
+      <g class="dog__paw">
+        <path d="M56 272 C54 302 60 334 86 334 C112 334 118 302 116 272 C116 256 102 244 86 244 C70 244 56 256 56 272 Z" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M58 300 C60 322 70 334 86 334 C102 334 112 322 114 300 C104 310 68 310 58 300 Z" fill="#c7bfaf"/>
+        <path d="M54 270 C52 300 56 322 74 326 C80 334 92 334 98 326 C112 322 116 300 114 270 C114 254 100 242 84 242 C68 242 54 254 54 270" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M74 326 V306 M98 326 V306" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+      </g>
+    </g>
+  </g>
+</svg>
+<!-- /partial:dog-peek -->
+</template>
+<template data-for="house-back">
+<!-- partial:house-back -->
+<svg class="house__art" viewBox="0 0 220 200" width="242" height="220" aria-hidden="true" focusable="false" overflow="visible">
+  <rect class="house__back-wall" x="20" y="90" width="180" height="110" fill="var(--tile-2,#1a2030)"/>
+  <!-- door interior: dark at the top, tile-1 at the floor (stepped bands, no gradient ids) -->
+  <path class="house__door" d="M120,200 V135 a40,40 0 0 1 80,0 V200 Z" fill="var(--tile-1,#131822)"/>
+  <path d="M120,152 V135 a40,40 0 0 1 80,0 V152 Z" fill="#0b0e15"/>
+  <rect x="120" y="150" width="80" height="16" fill="#0b0e15" opacity=".8"/>
+  <rect x="120" y="165" width="80" height="14" fill="#0b0e15" opacity=".55"/>
+  <rect x="120" y="178" width="80" height="12" fill="#0b0e15" opacity=".3"/>
+  <ellipse class="house__glow" cx="160" cy="185" rx="34" ry="10" fill="var(--action,#2997ff)" opacity=".35"/>
+  <g class="house__eyes" opacity="0"><circle cx="150" cy="150" r="4" fill="var(--action,#2997ff)"/><circle cx="170" cy="150" r="4" fill="var(--action,#2997ff)"/></g>
+</svg>
+<!-- /partial:house-back -->
+</template>
+<template data-for="house-front">
+<!-- partial:house-front -->
+<svg class="house__art" viewBox="0 0 220 200" width="242" height="220" aria-hidden="true" focusable="false" overflow="visible">
+  <g class="house__shake" style="transform-origin:110px 200px">
+    <ellipse class="house__shadow" cx="112" cy="201" rx="108" ry="5" fill="#000" opacity=".3"/>
+    <!-- front wall with the door cut out; the right jamb is the wall's right edge -->
+    <path class="house__wall" fill-rule="evenodd" d="M20.6 91.2 C60 89.6 140 90.8 200 90 V200 H20 C19.4 160 20.9 125 20.6 91.2 Z M120 200 V135 a40 40 0 0 1 80 0 V200 Z" fill="var(--tile-2,#1a2030)" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
+    <path class="house__eave-shadow" d="M21 92 H199 V105 H120 V101 H21 Z" fill="#0b0e15" opacity=".35"/>
+    <g class="house__planks" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="2" stroke-linecap="round">
+      <path d="M25 112 C80 111.2 150 112.6 195 112"/>
+      <path d="M25 134 C60 133.4 90 134.4 116 134"/>
+      <path d="M25 156 C60 155.4 90 156.6 116 156"/>
+      <path d="M25 178 C60 177.4 90 178.4 116 178"/>
+      <path d="M64 92 V111 M136 92 V111 M100 135 V155 M46 157 V177"/>
+    </g>
+    <!-- round window -->
+    <g class="house__window">
+      <circle cx="44" cy="160" r="12.5" fill="var(--tile-1,#131822)" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2"/>
+      <path d="M44 148.5 V171.5 M32.5 160 H55.5" fill="none" stroke="var(--hairline,rgba(255,255,255,.08))" stroke-width="1.5"/>
+    </g>
+    <!-- roof -->
+    <g class="house__roof">
+      <path d="M-2 93 C40 62 76 34 110 9 C144 34 180 62 222 92 Z" fill="var(--action,#2997ff)" fill-opacity=".55" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="2" stroke-linejoin="round"/>
+      <g fill="none" stroke="#0f131c" stroke-opacity=".4" stroke-width="2.5" stroke-linecap="round">
+        <path d="M80 34 C96 33 124 35 140 34"/>
+        <path d="M53 54 C90 53 130 55 167 54"/>
+        <path d="M26 74 C80 73 140 75 194 74"/>
+      </g>
+      <path d="M96 19 C102 15 106 12 110 10" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M-5 92.5 C60 91 160 93 225 92" fill="none" stroke="var(--hairline-strong,rgba(255,255,255,.16))" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- door frame -->
+    <path class="house__frame" d="M120 200 V135 a40 40 0 0 1 80 0 V200" fill="none" stroke="rgba(245,247,250,.28)" stroke-width="3"/>
+    <!-- sign with a tiny bone -->
+    <g class="house__sign" transform="rotate(-2 82 120)">
+      <rect x="60" y="112" width="44" height="16" rx="3" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="1.5"/>
+      <path d="M62 124 H102" fill="none" stroke="#c7bfaf" stroke-width="3"/>
+      <path d="M76.4 118.8 H87.6 A2.6 2.6 0 1 1 91.2 120 A2.6 2.6 0 1 1 87.6 121.2 H76.4 A2.6 2.6 0 1 1 72.8 120 A2.6 2.6 0 1 1 76.4 118.8 Z" fill="#fbfaf1" stroke="var(--ill-ink,#151a24)" stroke-width="1"/>
+      <circle cx="63.5" cy="115.5" r="1" fill="var(--ill-ink,#151a24)"/>
+      <circle cx="100.5" cy="115.5" r="1" fill="var(--ill-ink,#151a24)"/>
+    </g>
+  </g>
+</svg>
+<!-- /partial:house-front -->
+</template>
+<template data-for="dog-walk">
+<!-- partial:dog-walk -->
+<svg class="dog__art" viewBox="0 0 200 160" width="144" height="115" aria-hidden="true" focusable="false" overflow="visible">
+  <ellipse class="dog__shadow" cx="100" cy="152" rx="60" ry="6" fill="#000" opacity=".3"/>
+  <g class="dog__flip" style="transform-origin:100px 80px">
+    <g class="dog__bob">
+      <!-- tail: ink under cream (stroke pair), brown tip -->
+      <g class="dog__tail" style="transform-origin:36px 80px" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M48 76 C36 72 24 60 26 46" stroke="var(--ill-ink,#151a24)" stroke-width="16"/>
+        <path d="M26 46 C28 34 40 32 42 42" stroke="var(--ill-ink,#151a24)" stroke-width="12"/>
+        <path d="M48 76 C36 72 24 60 26 46" stroke="var(--ill-cream,#f3eedb)" stroke-width="9"/>
+        <path d="M26 46 C28 34 40 32 42 42" stroke="var(--ill-cream,#f3eedb)" stroke-width="5.5"/>
+        <path d="M27 43 C31 36 38 36 40 40" stroke="#9c6840" stroke-width="4.5"/>
+        <path d="M44 74 C36 70 30 64 28 58" stroke="#c7bfaf" stroke-width="3"/>
+      </g>
+      <!-- far legs -->
+      <g class="dog__leg dog__leg--back-far" style="transform-origin:61px 108px">
+        <rect x="52" y="104" width="18" height="46" rx="9" fill="#d8d2c2"/>
+        <path d="M52 112 V141 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <g class="dog__leg dog__leg--front-far" style="transform-origin:121px 108px">
+        <rect x="112" y="104" width="18" height="46" rx="9" fill="#d8d2c2"/>
+        <path d="M112 112 V141 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <!-- body -->
+      <g class="dog__body">
+        <rect x="42" y="62" width="110" height="60" rx="30" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M46 100 C70 108 110 110 146 100 C144 114 130 122 100 122 C70 122 50 114 46 100 Z" fill="#c7bfaf"/>
+        <path d="M62 68 C84 60 112 60 132 66" fill="none" stroke="#fbfaf1" stroke-width="5" stroke-linecap="round"/>
+        <path d="M68 64 C84 58 106 60 114 68 C118 80 104 90 88 88 C72 86 62 74 68 64 Z" fill="#9c6840"/>
+        <path d="M72 60 C96 57 118 61 124 60" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M124 60 C160 60 160 122 122 120" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+        <path d="M122 120 C116 122 110 121 106 121" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M98 121 C88 122 78 119 70 120 C30 121 30 61 74 59" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M58 64 C82 55 112 56 134 61" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <!-- near legs -->
+      <g class="dog__leg dog__leg--back-near" style="transform-origin:75px 110px">
+        <rect x="66" y="106" width="18" height="46" rx="9" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M66 112 V143 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M72 150 V146 M78 150 V146" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <g class="dog__leg dog__leg--front-near" style="transform-origin:135px 110px">
+        <rect x="126" y="106" width="18" height="46" rx="9" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M126 112 V143 a9 9 0 0 0 9 9 a9 9 0 0 0 9 -9 V112" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M132 150 V146 M138 150 V146" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2" stroke-linecap="round"/>
+      </g>
+      <!-- collar -->
+      <g class="dog__collar">
+        <rect x="112" y="84" width="34" height="12" rx="5" transform="rotate(32 129 90)" fill="var(--action,#2997ff)" stroke="var(--ill-ink,#151a24)" stroke-width="2.5"/>
+        <circle cx="141" cy="101" r="4.5" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="2"/>
+      </g>
+      <!-- head -->
+      <g class="dog__head" style="transform-origin:132px 86px">
+        <g class="dog__ear dog__ear--back" style="transform-origin:128px 34px">
+          <path d="M128 32 C116 36 104 54 108 72 C110 82 120 84 126 76 C132 66 132 48 134 36 Z" fill="#9c6840" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linejoin="round"/>
+        </g>
+        <path d="M156 25 C177 24 193 41 191 61 C192 81 174 98 155 96 C135 98 119 80 120 60 C119 40 135 24 156 25 Z" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M126 76 C136 92 160 98 182 90 C172 97 150 99 136 92 C130 88 127 82 126 76 Z" fill="#c7bfaf"/>
+        <path d="M138 42 C144 32 164 30 170 42 C174 52 166 66 154 66 C142 66 134 54 138 42 Z" fill="#9c6840"/>
+        <path d="M162 68 C174 64 188 68 191 80 C193 90 183 97 169 95 C160 93 158 82 162 68 Z" fill="#fbfaf1" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M140 27 C154 19 178 22 188 40 C197 54 195 76 182 90" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M182 90 C170 100 144 100 130 88 C125 84 122 80 121 76" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+        <path d="M120 66 C118 52 124 36 138 28" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+        <ellipse class="dog__nose" cx="184" cy="80" rx="6.5" ry="5" fill="var(--ill-ink,#151a24)"/>
+        <circle cx="182" cy="78" r="1.6" fill="#fff" opacity=".8"/>
+        <circle class="dog__eye" cx="156" cy="58" r="5" fill="var(--ill-ink,#151a24)"/>
+        <circle cx="158" cy="56" r="1.8" fill="#fff"/>
+        <ellipse class="dog__lid" cx="156" cy="58" rx="7.5" ry="7" fill="#9c6840" style="transform-origin:156px 52px;transform:scaleY(0)"/>
+        <path class="dog__smile" d="M173 90 Q180 97 188 91" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2.5" stroke-linecap="round"/>
+        <g class="dog__ear dog__ear--front" style="transform-origin:150px 30px">
+          <path d="M150 26 C138 20 126 28 124 42 C122 56 126 68 134 72 C142 74 148 62 146 48 C145 40 152 32 150 26 Z" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M135 42 C131 52 133 62 138 67" fill="none" stroke="#c7bfaf" stroke-width="4" stroke-linecap="round"/>
+        </g>
+        <path d="M132 30 C148 18 174 20 188 38" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".55" stroke-width="2" stroke-linecap="round"/>
+        <g class="dog__mouth" transform="translate(178 92)">
+          <!-- bone held crosswise in the mouth (shown with .has-bone) -->
+          <g class="dog__bone" opacity="0" transform="translate(-2 4) rotate(-12) scale(.5) translate(-60 -24)">
+            <path d="M42 17 H78 A13 12.5 0 1 1 97.5 24 A12.5 13 0 1 1 78 31 H42 A12.5 13 0 1 1 22.5 24 A13 12.5 0 1 1 42 17 Z" fill="var(--ill-cream,#f3eedb)"/>
+            <path d="M40 26 C54 24.5 66 24.5 80 26.5 V31 H40 Z" fill="#c7bfaf"/>
+            <circle cx="30.5" cy="35.5" r="10" fill="#c7bfaf"/>
+            <circle cx="90.5" cy="35.5" r="10" fill="#c7bfaf"/>
+            <path d="M42 17 H78 A13 12.5 0 1 1 97.5 24 A12.5 13 0 1 1 78 31 H63 M57 31 H42 A12.5 13 0 1 1 22.5 24 A13 12.5 0 1 1 42 17 L46 16.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
+<!-- /partial:dog-walk -->
+</template>
+<template data-for="bone">
+<!-- partial:bone -->
+<svg class="bone__art" viewBox="0 0 120 48" width="96" height="38" aria-hidden="true" focusable="false" overflow="visible">
+  <defs>
+    <filter id="rim-bone" x="-10%" y="-25%" width="120%" height="150%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="fat"/>
+      <feFlood flood-color="#2997ff" flood-opacity=".6" result="blue"/>
+      <feComposite in="blue" in2="fat" operator="in" result="rim"/>
+      <feGaussianBlur in="rim" stdDeviation=".8" result="rim-soft"/>
+      <feMerge><feMergeNode in="rim-soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g class="bone__rim" filter="url(#rim-bone)">
+    <!-- fill, off-register from the ink -->
+    <g class="bone__fill" transform="translate(1.5 1.5)">
+      <path d="M42 17 H78 A13 12.5 0 1 1 97.5 24 A12.5 13 0 1 1 78 31 H42 A12.5 13 0 1 1 22.5 24 A13 12.5 0 1 1 42 17 Z" fill="var(--ill-cream,#f3eedb)"/>
+      <path d="M40 26 C54 24.5 66 24.5 80 26.5 V31 H40 Z" fill="#c7bfaf"/>
+      <circle cx="30.5" cy="35.5" r="11" fill="#c7bfaf"/>
+      <circle cx="90.5" cy="35.5" r="11" fill="#c7bfaf"/>
+      <ellipse cx="30" cy="8" rx="5" ry="2.5" fill="#fbfaf1"/>
+      <ellipse cx="91" cy="8.5" rx="4.5" ry="2.2" fill="#fbfaf1"/>
+      <path d="M47 20 H73" fill="none" stroke="#fbfaf1" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <!-- blue brush accent -->
+    <path d="M24 6 Q29 2.5 35 3" fill="none" stroke="var(--action,#2997ff)" stroke-opacity=".6" stroke-width="1.6" stroke-linecap="round"/>
+    <!-- ink outline: two strokes, a gap on the shaft, an overshoot at the join -->
+    <path d="M42 17 H78 A13 12.5 0 1 1 97.5 24 A12.5 13 0 1 1 78 31 H63" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M57 31 H42 A12.5 13 0 1 1 22.5 24 A13 12.5 0 1 1 42 17 L46 16.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M18 36 A12.5 12.5 0 0 0 30 46.5" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+    <path d="M90 46.5 A12.5 12.5 0 0 0 101 39" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round"/>
+  </g>
+</svg>
+<!-- /partial:bone -->
+</template>
+<template data-for="desk">
+<!-- partial:desk -->
+<svg class="desk__art" viewBox="0 0 1000 440" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="desk-rim" x="-8%" y="-6%" width="116%" height="112%" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="3.5" result="fat"/>
+      <feFlood flood-color="#2997ff" flood-opacity=".6" result="blue"/>
+      <feComposite in="blue" in2="fat" operator="in" result="rim"/>
+      <feGaussianBlur in="rim" stdDeviation=".8" result="rim-soft"/>
+      <feMerge><feMergeNode in="rim-soft"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <radialGradient id="desk-cone-g" gradientUnits="userSpaceOnUse" cx="802" cy="172" r="400">
+      <stop offset="0" stop-color="#ffe2a8" stop-opacity=".42"/>
+      <stop offset=".38" stop-color="#ffc986" stop-opacity=".2"/>
+      <stop offset=".75" stop-color="#ffb870" stop-opacity=".06"/>
+      <stop offset="1" stop-color="#ffb870" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="desk-pool-g">
+      <stop offset="0" stop-color="#ffd694" stop-opacity=".55"/>
+      <stop offset=".6" stop-color="#ffc47c" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#ffc47c" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="desk-screen-g" cx=".6" cy=".38" r=".8">
+      <stop offset="0" stop-color="#1c3a6c"/>
+      <stop offset="1" stop-color="#0f1f3a"/>
+    </radialGradient>
+    <radialGradient id="desk-halo-g">
+      <stop offset="0" stop-color="#2997ff" stop-opacity=".2"/>
+      <stop offset=".55" stop-color="#2997ff" stop-opacity=".07"/>
+      <stop offset="1" stop-color="#2997ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="desk-glow-g">
+      <stop offset="0" stop-color="#6bb8ff" stop-opacity=".42"/>
+      <stop offset=".5" stop-color="#2997ff" stop-opacity=".15"/>
+      <stop offset="1" stop-color="#2997ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="desk-rim-fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6bb8ff"/>
+      <stop offset="1" stop-color="#6bb8ff" stop-opacity="0"/>
+    </linearGradient>
+    <radialGradient id="desk-inner-g" cx=".45" cy=".4" r=".7">
+      <stop offset="0" stop-color="#fff4d6"/>
+      <stop offset=".55" stop-color="#ffd48e"/>
+      <stop offset="1" stop-color="#f2a452"/>
+    </radialGradient>
+    <radialGradient id="desk-bulb-g">
+      <stop offset="0" stop-color="#fff7e0" stop-opacity=".9"/>
+      <stop offset=".35" stop-color="#ffd89a" stop-opacity=".4"/>
+      <stop offset="1" stop-color="#ffc070" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- brillo azul del monitor en la pared: el monitor esta encendido en los dos estados -->
+  <ellipse class="desk__halo" cx="560" cy="150" rx="330" ry="190" fill="url(#desk-halo-g)"/>
+
+  <!-- lo que queda en penumbra con la lampara apagada (la opacidad del grupo hace de velo) -->
+  <g class="desk__room">
+
+    <!-- patas y mesa -->
+    <g class="desk__table">
+      <path d="M62 368 L91 368 L89 440 L65 440 Z" fill="#5e3b22"/>
+      <path d="M909 368 L938 368 L935 440 L911 440 Z" fill="#5e3b22"/>
+      <path d="M66 372 L66 440 M934 372 L933 440" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M60 299 C300 297.2 700 298.6 941 298.4 L975 351 C700 353 300 351.8 25 352.6 Z" fill="#a8744a"/>
+      <path d="M64 301 C300 299.6 700 300.8 937 300.6 L943 309 C700 309.6 300 308.6 58 309.8 Z" fill="#bd8959"/>
+      <g fill="none" stroke="#8b5b36" stroke-width="2" stroke-linecap="round" opacity=".7">
+        <path d="M84 318 C230 316.4 380 318.6 520 316.8"/>
+        <path d="M600 322 C720 320.6 820 322.8 930 321.4"/>
+        <path d="M52 336 C160 334.6 250 336.8 330 335.6"/>
+        <path d="M640 340 C760 338.8 860 340.6 956 339.4"/>
+      </g>
+      <path d="M25 352.6 C300 351.8 700 353 975 351 L973 370 C700 371.6 300 370.4 27 371.2 Z" fill="#7a4d2c"/>
+      <path d="M31 354.4 C300 353.4 700 354.6 969 352.8" fill="none" stroke="#c8935f" stroke-width="2.5" stroke-linecap="round"/>
+      <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M58 298.6 C300 296.6 700 298.4 943 297.9" stroke-width="3.5"/>
+        <path d="M58 298.6 L24 352 L26 371.5" stroke-width="4"/>
+        <path d="M943 297.9 L976.5 350.6 L974 370.4" stroke-width="4"/>
+        <path d="M24 352.4 C300 351.4 560 352.8 700 352.4 M720 352.3 C800 352 900 351.4 976 350.6" stroke-width="3"/>
+        <path d="M27 371.6 C300 370.6 700 372.2 973 370.4" stroke-width="5"/>
+      </g>
+    </g>
+
+    <!-- planta (las mismas hojas que el retrato) -->
+    <g class="desk__plant">
+      <ellipse cx="120" cy="312" rx="36" ry="5" fill="#000" opacity=".3"/>
+      <g stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M114 264 C100 252 84 240 70 224 C94 222 108 240 117 262 Z" fill="#8a5230"/>
+        <path d="M117 264 C104 238 91 208 96 176 C113 196 123 228 120 263 Z" fill="#7f9db2"/>
+        <path d="M121 264 C122 228 125 192 136 160 C147 191 138 232 123 264 Z" fill="#9ab5c6"/>
+        <path d="M122 264 C130 238 140 214 154 197 C158 224 142 248 124 264 Z" fill="#a86a42"/>
+        <path d="M123 264 C136 255 152 247 168 245 C158 257 142 264 125 265 Z" fill="#6f8ea4"/>
+      </g>
+      <g fill="none" stroke-width="2" stroke-linecap="round">
+        <path d="M116 258 C108 236 100 210 98 186" stroke="#5d7a8f"/>
+        <path d="M122 258 C126 228 130 196 135 172" stroke="#6f8ea4"/>
+        <path d="M124 258 C132 238 142 218 151 205" stroke="#7d4a2c"/>
+        <path d="M112 258 C100 248 88 238 78 228" stroke="#6b3d22"/>
+        <path d="M100 196 C104 190 108 188 110 190" stroke="#c9d8e2" stroke-width="2.5"/>
+      </g>
+      <path d="M90 263 C108 261.4 128 262 149 262.8 L143 309 C127 310.4 111 310.2 97 309.4 Z" fill="var(--ill-cream,#f3eedb)"/>
+      <path d="M94 290 C110 291 130 291 145 290 L143 309 C127 310.4 111 310.2 97 309.4 Z" fill="#c7bfaf"/>
+      <path d="M88 262 C108 260.6 130 261 151 262 L150 272.5 C130 273.4 108 273 89 272.6 Z" fill="#fbfaf1"/>
+      <path d="M91 268 C110 267.2 128 267.4 148 268" fill="none" stroke="#e4ddc8" stroke-width="2"/>
+      <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M88 261.8 C108 260.2 130 260.8 151.5 261.8 L150.5 272.8" stroke-width="3.5"/>
+        <path d="M89 263 L89.4 272.8 L97 309.6 C111 310.6 127 310.8 143.4 309.2 L149.4 274" stroke-width="4"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- monitor: encendido siempre. A oscuras es la unica luz de la escena y el codigo se va escribiendo;
+       con la lampara el codigo se queda quieto y solo parpadea el cursor -->
+  <g class="desk__monitor">
+    <path d="M498 312.6 C520 304.4 600 304.6 622 312.4 C624 319.4 496 319.6 498 312.6 Z" fill="#1a2030"/>
+    <path d="M512 309 C540 305.6 580 305.6 608 309" fill="none" stroke="#2e3850" stroke-width="3" stroke-linecap="round"/>
+    <path d="M546 260 L574 260 L578 309 L542 309 Z" fill="#131822"/>
+    <path d="M549 264 L546 306" fill="none" stroke="#2a3346" stroke-width="3" stroke-linecap="round"/>
+    <path d="M352 32 C480 30.6 640 31.6 768 32.4 C774 32.5 778.6 37 778.6 43 L779.4 250 C779.4 256 774.4 260.6 768.4 260.6 L352.6 261.4 C346.6 261.4 342 256.4 342 250.4 L341.2 43 C341.2 37 346 32 352 32 Z" fill="#131822"/>
+    <g class="desk__screen-on">
+      <path d="M357.6 46.2 L762.4 45.8 L762.6 244.6 L357.8 245.2 Z" fill="url(#desk-screen-g)"/>
+      <path d="M357.6 46.2 L762.4 45.8 L762.4 60 L357.6 60.2 Z" fill="#05070b" opacity=".4"/>
+      <g fill="#fff" opacity=".24"><circle cx="369" cy="53" r="3"/><circle cx="380" cy="53" r="3"/><circle cx="391" cy="53" r="3"/></g>
+      <rect x="406" y="48.6" width="64" height="9" rx="3" fill="#fff" opacity=".08"/>
+      <path d="M407 59.2 H469" fill="none" stroke="var(--action,#2997ff)" stroke-width="1.8"/>
+      <g fill="#3d4a66">
+        <rect x="366" y="71" width="12" height="6" rx="2"/><rect x="366" y="86" width="12" height="6" rx="2"/><rect x="366" y="101" width="12" height="6" rx="2"/>
+        <rect x="366" y="116" width="12" height="6" rx="2"/><rect x="366" y="131" width="12" height="6" rx="2"/><rect x="366" y="146" width="12" height="6" rx="2"/>
+        <rect x="366" y="161" width="12" height="6" rx="2"/><rect x="366" y="176" width="12" height="6" rx="2"/><rect x="366" y="191" width="12" height="6" rx="2"/>
+        <rect x="366" y="206" width="12" height="6" rx="2"/><rect x="366" y="221" width="12" height="6" rx="2"/>
+      </g>
+      <g class="desk__code">
+        <g class="desk__line" style="transform-origin:392px 74px"><rect x="392" y="71" width="34" height="6.5" rx="3" fill="#6bb8ff"/><rect x="432" y="71" width="72" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="510" y="71" width="40" height="6.5" rx="3" fill="#8fd6a8"/></g>
+        <g class="desk__line" style="transform-origin:392px 89px"><rect x="392" y="86" width="34" height="6.5" rx="3" fill="#6bb8ff"/><rect x="432" y="86" width="56" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="494" y="86" width="64" height="6.5" rx="3" fill="#8fd6a8"/></g>
+        <g class="desk__line desk__line--1" style="transform-origin:392px 119px"><rect x="392" y="116" width="44" height="6.5" rx="3" fill="#6bb8ff"/><rect x="442" y="116" width="80" height="6.5" rx="3" fill="#f5c27a"/><rect x="528" y="116" width="20" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/></g>
+        <g class="desk__line desk__line--2" style="transform-origin:414px 134px"><rect x="414" y="131" width="30" height="6.5" rx="3" fill="#6bb8ff"/><rect x="450" y="131" width="60" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="516" y="131" width="130" height="6.5" rx="3" fill="#8fd6a8"/></g>
+        <g class="desk__line desk__line--3" style="transform-origin:414px 149px"><rect x="414" y="146" width="26" height="6.5" rx="3" fill="#6bb8ff"/><rect x="446" y="146" width="92" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="544" y="146" width="58" height="6.5" rx="3" fill="#f5c27a"/></g>
+        <g class="desk__line desk__line--4" style="transform-origin:436px 164px"><rect x="436" y="161" width="70" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="512" y="161" width="150" height="6.5" rx="3" fill="#8fd6a8"/><rect x="668" y="161" width="24" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/></g>
+        <g class="desk__line desk__line--5" style="transform-origin:436px 179px"><rect x="436" y="176" width="30" height="6.5" rx="3" fill="#6bb8ff"/><rect x="472" y="176" width="96" height="6.5" rx="3" fill="#f5c27a"/><rect x="574" y="176" width="36" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="616" y="176" width="54" height="6.5" rx="3" fill="#6bb8ff"/></g>
+        <g class="desk__line desk__line--6" style="transform-origin:458px 194px"><rect x="458" y="191" width="84" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="548" y="191" width="140" height="6.5" rx="3" fill="#8fd6a8"/></g>
+        <g class="desk__line desk__line--7" style="transform-origin:414px 209px"><rect x="414" y="206" width="250" height="6.5" rx="3" fill="#66707f"/></g>
+        <g class="desk__line desk__line--8" style="transform-origin:414px 224px"><rect x="414" y="221" width="26" height="6.5" rx="3" fill="#6bb8ff"/><rect x="446" y="221" width="120" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="572" y="221" width="96" height="6.5" rx="3" fill="#f5c27a"/></g>
+        <!-- cursor: sigue a la linea que se esta escribiendo (misma duracion y mismos saltos que las lineas) -->
+        <g class="desk__cursor"><rect class="desk__cursor-bar" x="671" y="219" width="4.6" height="10.5" rx="1.4" fill="#dfeaff"/></g>
+      </g>
+      <path d="M612 46 L668 46 L574 244 L518 244 Z" fill="#fff" opacity=".03"/>
+    </g>
+    <path d="M352.6 34.4 C480 33 640 34 766 34.8" fill="none" stroke="#2a3346" stroke-width="3" stroke-linecap="round"/>
+    <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M352 31.6 C480 30.2 640 31.2 768 32 C774.4 32.1 779 36.8 779 43 L779.8 250.2 C779.8 256.6 774.6 261 768.4 261 L600 261.4 M586 261.5 L352.6 261.8 C346.4 261.8 341.6 256.6 341.6 250.4 L340.8 43 C340.8 36.6 345.8 31.6 352 31.6" stroke-width="4.5"/>
+      <path d="M357.4 46 L762.6 45.6 L762.8 244.8 L357.6 245.4 Z" stroke-width="2.5"/>
+      <path d="M546 261.5 L542 309 M574 261.5 L578 309" stroke-width="3.5"/>
+      <path d="M497.6 312.8 C520 304 600 304.2 622.4 312.4 C624 320.2 496 320.4 497.6 312.8" stroke-width="3.5"/>
+    </g>
+    <path class="desk__rim" d="M356 30.6 C480 29.2 640 30.2 764 31" fill="none" stroke="#6bb8ff" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- teclado y taza, tambien en penumbra (el teclado algo menos: le da la pantalla) -->
+  <g class="desk__room desk__room--front">
+    <g class="desk__keyboard">
+      <path d="M318 318 C400 317 540 317.6 622 318 L634 342 C540 343 400 342.4 306 342 Z" fill="#222a3a"/>
+      <g fill="none" stroke="#3a4764" stroke-width="3.4" stroke-dasharray="8 3.5">
+        <path d="M322 324.4 H618"/><path d="M318 330.4 H622"/><path d="M314 336.4 H626"/>
+      </g>
+      <path d="M319 319.6 C400 318.6 540 319.2 621 319.6" fill="none" stroke="#4a5878" stroke-width="2" stroke-linecap="round"/>
+      <path d="M318 317.6 C400 316.6 540 317.2 622 317.6 L634.4 342.2 C540 343.4 400 342.8 305.6 342.4 Z" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linejoin="round"/>
+    </g>
+
+    <!-- taza con franja azul, a la derecha del teclado y bajo la lampara: la mano derecha la coge por el asa
+         (el pivote de .desk__mug es el asa, asi la taza se inclina sin despegarse de la mano) -->
+    <ellipse class="desk__mug-shadow" cx="692" cy="345" rx="30" ry="4.5" fill="#000" opacity=".3" style="transform-origin:692px 345px"/>
+    <g class="desk__mug" style="transform-origin:661px 327px">
+      <g transform="translate(446 0)">
+        <path d="M226 305.4 C203.6 304.4 200.4 337.6 227 335.6" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="8.5" stroke-linecap="round"/>
+        <path d="M226 305.4 C203.6 304.4 200.4 337.6 227 335.6" fill="none" stroke="var(--ill-cream,#f3eedb)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M224.6 302 L266.4 302 L264.6 338 C264.6 345.4 226.4 345.4 226.4 338 Z" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M225.8 328 L265.2 328 L264.6 338 C264.6 345.4 226.4 345.4 226.4 338 Z" fill="#c7bfaf"/>
+        <path d="M225.1 312 L265.9 312 L265.5 319.5 L225.5 319.5 Z" fill="var(--action,#2997ff)"/>
+        <path d="M254 305 L256 336" fill="none" stroke="#fbfaf1" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="245.5" cy="302" rx="21" ry="4.8" fill="#fbfaf1"/>
+        <ellipse cx="245.5" cy="302.6" rx="16.5" ry="3" fill="#6a3f26"/>
+        <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M224.4 302.4 C226 296.6 265 296.4 266.8 302.2 C265 307.4 227 307.8 224.4 302.4" stroke-width="3"/>
+          <path d="M224.4 302.6 L226.2 338.4 C226.8 346.2 264.2 346.2 264.8 338.2 L266.6 303" stroke-width="4"/>
+        </g>
+        <!-- vapor: solo con la luz encendida -->
+        <g class="desk__steam" fill="none" stroke="#f5f7fa" stroke-width="4" stroke-linecap="round">
+          <path d="M238 290 C232 280 244 272 238 261 C234 253 240 247 238 241"/>
+          <path d="M252 291 C258 281 247 272 253 262 C257 254 251 248 253 243"/>
+          <path d="M245 286 C241 278 249 272 245 264"/>
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- luz fria del monitor sobre la mesa y el teclado (degradado estatico, sin filtros) -->
+  <ellipse class="desk__glow" cx="560" cy="328" rx="300" ry="38" fill="url(#desk-glow-g)"/>
+
+  <!-- Marco de espaldas. A oscuras le da la pantalla por detras: silueta en sombra (.desk__shade) con borde
+       azul (.desk__rim); con la lampara, sus colores y la luz calida. -->
+  <g class="desk__marco">
+    <!-- antebrazo y mano izquierdos (por detras del torso) -->
+    <g class="desk__hand desk__hand--l" style="transform-origin:362px 404px">
+      <path d="M342 348 C337 368 340 392 352 412 L374 402 C364 386 360 366 360 348 Z" fill="#2c3037"/>
+      <path d="M333.4 341 C340 338.6 356 338.6 362.6 341.4 L361.4 351 C354.6 348.4 340.6 348.4 334 350.4 Z" fill="#17191d"/>
+      <path d="M330 329.6 C329.4 321.6 336.4 317.4 346.6 317.6 C356.8 317.8 364 322 363.8 330 C363.6 338 357.6 343 347 343 C336.4 343 330.6 337.8 330 329.6 Z" fill="#eecdb4"/>
+      <path d="M331.6 334 C336 340 358 340.6 362.6 334.6 C361 340.6 355 343 347 343 C338.6 343 333 339.6 331.6 334 Z" fill="#d8a98a"/>
+      <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M330 329.6 C329.4 321.6 336.4 317.4 346.6 317.6 C356.8 317.8 364 322 363.8 330 C363.6 338 357.6 343 347 343" stroke-width="3"/>
+        <path d="M336 322.4 C338 319.6 341 319.4 343 321.6 M344.6 320.6 C346.6 317.8 350 318 351.6 320.6 M353 321.8 C355 319.4 358 319.8 359.2 322.6" stroke-width="2"/>
+        <path d="M342 350 C337 370 340 392 352 411" stroke-width="3.5"/>
+      </g>
+      <g class="desk__shade" fill="#050a14">
+        <path d="M342 348 C337 368 340 392 352 412 L374 402 C364 386 360 366 360 348 Z"/>
+        <path d="M333.4 341 C340 338.6 356 338.6 362.6 341.4 L361.4 351 C354.6 348.4 340.6 348.4 334 350.4 Z"/>
+        <path d="M330 329.6 C329.4 321.6 336.4 317.4 346.6 317.6 C356.8 317.8 364 322 363.8 330 C363.6 338 357.6 343 347 343 C336.4 343 330.6 337.8 330 329.6 Z"/>
+      </g>
+      <path class="desk__rim desk__rim--dark" d="M332.4 324.2 C336.4 318.8 356.4 318 362 323.8" fill="none" stroke="#6bb8ff" stroke-width="2.2" stroke-linecap="round"/>
+    </g>
+
+    <!-- brazo derecho articulado: .desk__arm gira en el hombro (548,344), .desk__fore en el codo (580,406) y la
+         mano teclea; al encenderse la lampara el brazo sale de detras del torso hasta el asa de la taza -->
+    <g class="desk__arm desk__arm--r" style="transform-origin:548px 344px">
+      <path d="M561 337 C572 358 583 378 593.4 398.6 C598 408.6 592 419.4 581.6 420.6 C574.4 421.4 568.4 418 566.6 412.4 C556 392 545 372 535 351 Z" fill="#2c3037"/>
+      <path d="M563.4 343 C573 361 581.6 378.4 589.6 395" fill="none" stroke="#3a3f48" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M561 337 C572 358 583 378 593.4 398.6 C598 408.6 592 419.4 581.6 420.6 C574.4 421.4 568.4 418 566.6 412.4 C556 392 545 372 535 351" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="desk__shade" d="M561 337 C572 358 583 378 593.4 398.6 C598 408.6 592 419.4 581.6 420.6 C574.4 421.4 568.4 418 566.6 412.4 C556 392 545 372 535 351 Z" fill="#050a14"/>
+      <g class="desk__fore desk__fore--r" style="transform-origin:580px 406px">
+        <g class="desk__hand desk__hand--r" style="transform-origin:578px 404px">
+          <path d="M598 348 C603 368 600 392 588 412 L566 402 C576 386 580 366 580 348 Z" fill="#2c3037"/>
+          <path d="M606.6 341 C600 338.6 584 338.6 577.4 341.4 L578.6 351 C585.4 348.4 599.4 348.4 606 350.4 Z" fill="#17191d"/>
+          <path d="M610 329.6 C610.6 321.6 603.6 317.4 593.4 317.6 C583.2 317.8 576 322 576.2 330 C576.4 338 582.4 343 593 343 C603.6 343 609.4 337.8 610 329.6 Z" fill="#eecdb4"/>
+          <path d="M608.4 334 C604 340 582 340.6 577.4 334.6 C579 340.6 585 343 593 343 C601.4 343 607 339.6 608.4 334 Z" fill="#d8a98a"/>
+          <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M610 329.6 C610.6 321.6 603.6 317.4 593.4 317.6 C583.2 317.8 576 322 576.2 330 C576.4 338 582.4 343 593 343" stroke-width="3"/>
+            <path d="M604 322.4 C602 319.6 599 319.4 597 321.6 M595.4 320.6 C593.4 317.8 590 318 588.4 320.6 M587 321.8 C585 319.4 582 319.8 580.8 322.6" stroke-width="2"/>
+            <path d="M598 350 C603 370 600 392 588 411" stroke-width="3.5"/>
+            <path d="M580 350 C580 366 576 386 566.4 401.6" stroke-width="3.5"/>
+          </g>
+          <g class="desk__shade" fill="#050a14">
+            <path d="M598 348 C603 368 600 392 588 412 L566 402 C576 386 580 366 580 348 Z"/>
+            <path d="M606.6 341 C600 338.6 584 338.6 577.4 341.4 L578.6 351 C585.4 348.4 599.4 348.4 606 350.4 Z"/>
+            <path d="M610 329.6 C610.6 321.6 603.6 317.4 593.4 317.6 C583.2 317.8 576 322 576.2 330 C576.4 338 582.4 343 593 343 C603.6 343 609.4 337.8 610 329.6 Z"/>
+          </g>
+          <path class="desk__rim desk__rim--dark" d="M607.6 324.2 C603.6 318.8 583.6 318 578 323.8" fill="none" stroke="#6bb8ff" stroke-width="2.2" stroke-linecap="round"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- cuello (la luz de la pantalla le perfila los lados de la nuca) -->
+    <path d="M448 290 C448.6 300 447.4 310 446 320 L494 320 C492.8 310 491.8 300 492.4 290 Z" fill="#d9ab8c"/>
+    <path d="M449 292 C448.4 302 447.6 311 446.4 319 M491.6 292 C492 302 493 311 494 319" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+    <path class="desk__shade" d="M448 290 C448.6 300 447.4 310 446 320 L494 320 C492.8 310 491.8 300 492.4 290 Z" fill="#050a14"/>
+    <path class="desk__rim" d="M446 298 C445.6 305 444.8 311.6 443.8 318 M494.4 298 C494.6 305 495.4 311.6 496.4 318" fill="none" stroke="#6bb8ff" stroke-width="2.4" stroke-linecap="round"/>
+
+    <!-- cabeza (por delante del cuello y por detras del jersey), con pivote en el cuello. De espaldas mientras
+         programa; al encenderse la lampara gira hacia ella en perfil perdido (oreja, patilla y montura de las
+         gafas, nariz): cross-fade entre las dos versiones y un pequeno giro del grupo -->
+    <g class="desk__head" style="transform-origin:470px 300px">
+      <g class="desk__head-back" style="transform-origin:470px 300px">
+        <g stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M404 242 C392 236 384 248 385 262 C386 274 393 284 405 284 Z" fill="#eecdb4" stroke-width="3"/>
+          <path d="M536 242 C548 236 556 248 555 262 C554 274 547 284 535 284 Z" fill="#eecdb4" stroke-width="3"/>
+        </g>
+        <path d="M398 250 C392 256 393 268 399 275 M542 250 C548 256 547 268 541 275" fill="none" stroke="#c98f70" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M470 176 C488 174 506 178 518 188 C534 200 542 220 541 242 C541 262 536 280 526 292 C520 298 512 301 505 302 L500 296.6 L494 303 L487 297 L480 304 L472 298.4 L464 304 L457 297.4 L450 303 L443 296.6 L436 302 C428 301 420 298 414 292 C404 280 399 262 399 242 C398 220 406 200 422 188 C434 179 452 176 470 176 Z" fill="#3b2a21"/>
+        <path d="M404 262 C410 284 424 298 440 302 L505 302 C520 298 534 284 538 262 C520 280 500 288 470 288 C440 288 418 280 404 262 Z" fill="#241913"/>
+        <path d="M428 192 C446 181 494 181 512 193 C498 188 480 187 462 189.6 C450 191.4 438 195 428 192 Z" fill="#5b4232"/>
+        <path d="M461 181 C467 166 489 161 504 169 C494 169.6 485 174 479 183 Z" fill="#3b2a21"/>
+        <path d="M466 176 C472 168 486 165 497 168" fill="none" stroke="#5b4232" stroke-width="2.5" stroke-linecap="round"/>
+        <g fill="none" stroke="#1a120e" stroke-width="2.5" stroke-linecap="round" opacity=".75">
+          <path d="M472 196 C452 200 432 214 420 236"/>
+          <path d="M474 196 C492 202 510 216 520 240"/>
+          <path d="M470 200 C465 224 461 250 459 276"/>
+          <path d="M478 200 C486 228 490 254 491 280"/>
+          <path d="M466 198 C446 212 436 238 432 262"/>
+          <path d="M482 198 C500 214 508 238 510 262"/>
+        </g>
+        <path d="M514 194 C530 206 538 222 539 240" fill="none" stroke="#ffc27a" stroke-width="3.5" stroke-linecap="round" class="desk__warm" opacity=".6"/>
+        <path d="M470 175.6 C488 173.6 506 177.6 518.4 187.6 C534.4 199.6 542.4 219.6 541.4 242 C541.4 262.4 536.4 280.4 526.4 292.4 C520 298.6 512 301.4 505 302.4 M436 302.4 C428 301.4 419.6 298.4 413.6 292.4 C403.6 280.4 398.6 262.4 398.6 242 C397.6 219.6 405.6 199.6 421.6 187.6 C430 181 442 177.6 456 176.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M461 181 C467 166 489 161 504 169 C494 169.6 485 174 479 183" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- patillas de las gafas sobre las orejas -->
+        <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round">
+          <path d="M386 251 C392 246.4 400 246 408 248.6" stroke-width="4.5"/>
+          <path d="M386.4 251.4 C383 257 383.4 265 387.6 271" stroke-width="3"/>
+          <path d="M554 251 C548 246.4 540 246 532 248.6" stroke-width="4.5"/>
+          <path d="M553.6 251.4 C557 257 556.6 265 552.4 271" stroke-width="3"/>
+        </g>
+        <path d="M390 248.4 L396 247.2 M550 248.4 L544 247.2" fill="none" stroke="#9aa6b8" stroke-width="1.6" stroke-linecap="round"/>
+        <g class="desk__shade" fill="#050a14">
+          <path d="M404 242 C392 236 384 248 385 262 C386 274 393 284 405 284 Z"/>
+          <path d="M536 242 C548 236 556 248 555 262 C554 274 547 284 535 284 Z"/>
+          <path d="M470 176 C488 174 506 178 518 188 C534 200 542 220 541 242 C541 262 536 280 526 292 C520 298 512 301 505 302 L500 296.6 L494 303 L487 297 L480 304 L472 298.4 L464 304 L457 297.4 L450 303 L443 296.6 L436 302 C428 301 420 298 414 292 C404 280 399 262 399 242 C398 220 406 200 422 188 C434 179 452 176 470 176 Z"/>
+          <path d="M461 181 C467 166 489 161 504 169 C494 169.6 485 174 479 183 Z"/>
+        </g>
+        <g class="desk__rim" fill="none" stroke="#6bb8ff" stroke-width="3" stroke-linecap="round">
+          <path d="M397 236 C398 214 406 198 421 186 C432 177.6 446 174.4 458 174 M503 167 C509 170 514 174 519 186 C534 198 543 216 543 236"/>
+          <path d="M383 256 C383 270 390 282 402 286 M557 256 C557 270 550 282 538 286"/>
+        </g>
+      </g>
+
+      <g class="desk__head-turned">
+        <!-- lado del cuello bajo la mandibula (el cuello del jersey lo tapa por abajo) -->
+        <path d="M486 272 C500 280 514 286 534 292 C528 303 523 314 521 327 L486 327 Z" fill="#d9ab8c"/>
+        <path d="M533 297 C528.6 305.6 524.4 314.4 521.8 324" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+        <!-- cara en perfil perdido: frente, ceja, pomulo, punta de la nariz y barbilla -->
+        <path d="M518 206 C532 203 545 208 550 216 C554 224 555 232 557.5 238.5 C558.6 243 556.6 247 557.4 251 C559 255.4 562.6 257.6 566.4 260 C571.4 263 576.6 265.2 577 268.4 C576.8 271.6 569.4 272.6 563.2 273 C561.6 279.4 561 286.4 557.4 293 C553.6 299.4 545.2 302.4 536 301 C526 299.6 517.4 294.4 511 287 L507 240 Z" fill="#eecdb4"/>
+        <path d="M511 287 C517.4 294.4 526 299.6 536 301 C545.2 302.4 553.6 299.4 557.4 293 C547 297 535 295.6 526.4 289.6 C520.6 285.4 517 278.6 516 270.6 Z" fill="#d8a98a"/>
+        <path class="desk__warm" d="M551.4 221 C554.4 228.4 556 234.4 557.2 239.6 M561.8 257.4 C567.2 260.8 572.6 263.4 575.6 266.6" fill="none" stroke="#fff1de" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M545.4 232.4 C549.8 229.8 554.4 230.2 557.8 233" fill="none" stroke="#3b2a21" stroke-width="3.4" stroke-linecap="round"/>
+        <!-- patilla de las gafas por detras de la oreja -->
+        <path d="M510.4 247 C505 251 503.8 258.6 505.8 266" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+        <!-- pelo: coronilla, nuca y flequillo; la patilla del pelo baja por delante de la oreja -->
+        <path d="M470 175 C492 173 514 178 530 190 C542 199 550 208 553.6 216.4 C548.4 213.6 543.4 215 540 219.6 C535.2 226 532.4 234 531.2 243 C530.4 250 529.4 256.6 527 262.6 L508 272 C506 282 504.6 290 502.4 297 L496 302.6 L489 297 L481 304 L473 298.4 L465 304 L457 297.4 L450 303 L443 296.6 L436 302 C428 301 419 297 413 291 C403 279 397.4 262 397.4 242 C396.6 220 404.4 200 420.4 187 C432 178 450 175 470 175 Z" fill="#3b2a21"/>
+        <path d="M403 262 C409 284 423 298 440 302 L498 302 C502 296 504 290 505.6 282 C488 290 470 291 452 289 C430 287 414 278 403 262 Z" fill="#241913"/>
+        <path d="M424 191 C442 180 492 179 516 191 C498 187 478 186 460 188.6 C446 190.4 434 194 424 191 Z" fill="#5b4232"/>
+        <path d="M453 181 C459 166 481 161 496 169 C486 169.6 477 174 471 183 Z" fill="#3b2a21"/>
+        <path d="M458 176 C464 168 478 165 489 168" fill="none" stroke="#5b4232" stroke-width="2.5" stroke-linecap="round"/>
+        <g fill="none" stroke="#1a120e" stroke-width="2.5" stroke-linecap="round" opacity=".75">
+          <path d="M462 196 C442 201 424 216 413 238"/>
+          <path d="M460 199 C444 214 434 240 431 264"/>
+          <path d="M464 200 C460 226 458 252 458 278"/>
+          <path d="M468 197 C486 198 506 204 524 216"/>
+          <path d="M468 200 C484 212 496 232 500 256"/>
+        </g>
+        <path class="desk__warm" d="M512 183 C528 191 541 201 550 211" fill="none" stroke="#ffc27a" stroke-width="3.5" stroke-linecap="round" opacity=".6"/>
+        <path d="M436 302.4 C428 301.4 419 297.4 413 291.4 C403 279.4 397 262.4 397 242 C396.2 220 404 200 420 186.6 C428 180.6 438 177 448 175.6 M470 174.6 C492 172.6 514 177.6 530.4 189.6 C542.4 198.6 550.4 207.6 554 216.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M453 181 C459 166 481 161 496 169 C486 169.6 477 174 471 183" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M554 216.4 C548.4 213.6 543.4 215 540 219.6 C535.2 226 532.4 234 531.2 243 C530.4 250 529.4 256.6 527 262.6 M507.6 276 C506 284 504.6 290 502.4 297" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- perfil de la cara -->
+        <path d="M550.4 216.4 C554.4 224 555.4 232 557.9 238.5 C559 243 557 247 557.8 251 C559.4 255.4 563 257.6 566.8 260 C571.8 263 577 265.2 577.4 268.4 C577.2 271.8 569.6 272.8 563.4 273.2 C561.8 279.6 561.2 286.6 557.6 293.2 C553.8 299.8 545.2 302.8 536 301.4 C526 300 518 295 511.4 288" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- oreja -->
+        <path d="M517 239 C507 236 501 248 502 261 C503 275 509 285 519 285 C525 285 528 280 527 274 C526 268 528 262 529 255 C530 246 526 240 517 239 Z" fill="#eecdb4" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M513.6 249 C508.6 255 508.6 266 513.6 274 M520 256.4 C518 259.4 518 263.4 520 266.4" fill="none" stroke="#c98f70" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- patilla y canto de la montura de las gafas -->
+        <path d="M509.4 247.4 C524 244.8 540 243.6 556.6 242.8" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M556 233.4 C559.4 239.4 560 247.6 557.4 255.2" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+        <path class="desk__warm" d="M559.2 237.6 L560 243.4" fill="none" stroke="#fff3de" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M514 246.6 L520 245.8" fill="none" stroke="#9aa6b8" stroke-width="1.6" stroke-linecap="round"/>
+        <g class="desk__shade" fill="#050a14">
+          <path d="M486 272 C500 280 514 286 534 292 C528 303 523 314 521 327 L486 327 Z"/>
+          <path d="M518 206 C532 203 545 208 550 216 C554 224 555 232 557.5 238.5 C558.6 243 556.6 247 557.4 251 C559 255.4 562.6 257.6 566.4 260 C571.4 263 576.6 265.2 577 268.4 C576.8 271.6 569.4 272.6 563.2 273 C561.6 279.4 561 286.4 557.4 293 C553.6 299.4 545.2 302.4 536 301 C526 299.6 517.4 294.4 511 287 L507 240 Z"/>
+          <path d="M470 175 C492 173 514 178 530 190 C542 199 550 208 553.6 216.4 C548.4 213.6 543.4 215 540 219.6 C535.2 226 532.4 234 531.2 243 C530.4 250 529.4 256.6 527 262.6 L508 272 C506 282 504.6 290 502.4 297 L496 302.6 L489 297 L481 304 L473 298.4 L465 304 L457 297.4 L450 303 L443 296.6 L436 302 C428 301 419 297 413 291 C403 279 397.4 262 397.4 242 C396.6 220 404.4 200 420.4 187 C432 178 450 175 470 175 Z"/>
+          <path d="M517 239 C507 236 501 248 502 261 C503 275 509 285 519 285 C525 285 528 280 527 274 C526 268 528 262 529 255 C530 246 526 240 517 239 Z"/>
+          <path d="M453 181 C459 166 481 161 496 169 C486 169.6 477 174 471 183 Z"/>
+        </g>
+        <g class="desk__rim" fill="none" stroke="#6bb8ff" stroke-width="3" stroke-linecap="round">
+          <path d="M395.6 236 C396.6 214 404.6 198 419.6 186 C428 180 438 176 448 174.4 M472 172.6 C492 171 512 175.6 529 187"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- torso con jersey oscuro -->
+    <path d="M430 314 C410 317 390 322 376 332 C362 342 356 360 352 384 C350 402 350 422 352 440 L588 440 C590 422 590 402 588 384 C584 360 578 342 564 332 C550 322 530 317 510 314 C494 326 446 326 430 314 Z" fill="var(--ill-dark,#23272d)"/>
+    <path d="M378 334 C392 322 414 317 432 316 C438 320 444 323 450 324.6 C424 327.6 398 335 382 347 Z" fill="#33373f"/>
+    <path d="M562 334 C548 322 526 317 508 316 C502 320 496 323 490 324.6 C516 327.6 542 335 558 347 Z" fill="#33373f"/>
+    <path d="M354 392 C352 410 352 426 353 440 L374 440 C372 420 372 404 374 386 Z" fill="#0f131c"/>
+    <path d="M586 392 C588 410 588 426 587 440 L566 440 C568 420 568 404 566 386 Z" fill="#0f131c"/>
+    <path d="M404 372 C430 380 510 380 536 372 C540 400 540 424 538 440 L402 440 C400 424 400 400 404 372 Z" fill="#1c2025" opacity=".7"/>
+    <g fill="none" stroke-linecap="round">
+      <path d="M471 338 C469 370 472 404 470 440" stroke="#16191d" stroke-width="3"/>
+      <path d="M420 352 C432 358 444 360 452 358 M520 352 C508 358 496 360 488 358" stroke="#16191d" stroke-width="2.5"/>
+    </g>
+    <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M430 313.4 C410 316.6 389.6 321.6 375.6 331.6 C361.4 341.6 355.4 360 351.4 384 C349.4 402 349.6 422 351.6 440" stroke-width="5"/>
+      <path d="M510 313.4 C530 316.6 550.4 321.6 564.4 331.6 C578.6 341.6 584.6 360 588.6 384 C590.6 402 590.4 422 588.4 440" stroke-width="5"/>
+      <path d="M384 350 C378 372 376 398 377 422 M556 350 C562 372 564 398 563 422" stroke-width="3"/>
+    </g>
+    <!-- cuello del jersey (canale) -->
+    <path d="M430 312.4 C446 324.4 494 324.4 510 312.4 C515.6 315.6 519.6 319.6 522 324 C500 338 440 338 418 324 C420.4 319.6 424.4 315.6 430 312.4 Z" fill="#17191d"/>
+    <g fill="none" stroke="#2e3138" stroke-width="2" stroke-linecap="round">
+      <path d="M428 318 L425 324 M436 322 L434 329 M445 325 L444 332 M455 327 L454.6 334 M465 328 L465 335 M475 328 L475.4 335 M485 327 L485.6 334 M495 325 L496 332 M504 322 L506 329 M512 318 L515 324"/>
+    </g>
+    <path d="M418 324 C440 338.4 500 338.4 522 324 M430 312.4 C446 324.8 494 324.8 510 312.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+    <!-- luz calida de la lampara sobre el hombro derecho -->
+    <path class="desk__warm" d="M512 316.4 C534 320 553 327 565.6 338.6" fill="none" stroke="#ffc27a" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+    <g class="desk__shade" fill="#050a14">
+      <path d="M430 314 C410 317 390 322 376 332 C362 342 356 360 352 384 C350 402 350 422 352 440 L588 440 C590 422 590 402 588 384 C584 360 578 342 564 332 C550 322 530 317 510 314 C494 326 446 326 430 314 Z"/>
+      <path d="M430 312.4 C446 324.4 494 324.4 510 312.4 C515.6 315.6 519.6 319.6 522 324 C500 338 440 338 418 324 C420.4 319.6 424.4 315.6 430 312.4 Z"/>
+    </g>
+    <path class="desk__rim" d="M374.6 330 C388.6 320.4 408.6 315.6 428.6 312.6 M565.4 330 C551.4 320.4 531.4 315.6 511.4 312.6" fill="none" stroke="#6bb8ff" stroke-width="3" stroke-linecap="round"/>
+    <!-- la espalda: el borde azul baja por los costados y se apaga -->
+    <path class="desk__rim desk__rim--dark" d="M372.4 334.4 C360 344 354 362 350.2 386 C348.6 398 348.4 408 348.8 418 M567.6 334.4 C580 344 586 362 589.8 386 C591.4 398 591.6 408 591.2 418" fill="none" stroke="url(#desk-rim-fade)" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+
+  <!-- luz calida de la lampara: cono y charco sobre la mesa -->
+  <g class="desk__light">
+    <path d="M766 137 C700 196 610 262 480 306 C500 346 560 358 640 360 C740 362 830 358 910 348 C888 292 864 246 838 207 Z" fill="url(#desk-cone-g)" opacity=".5"/>
+    <path d="M772 142 C716 200 640 262 540 312 C570 344 640 352 720 352 C790 352 850 350 890 344 C872 294 852 248 832 204 Z" fill="url(#desk-cone-g)" opacity=".65"/>
+    <path d="M780 150 C740 204 690 262 620 318 C660 340 720 344 780 342 C820 340 850 338 868 334 C856 292 840 250 824 198 Z" fill="url(#desk-cone-g)" opacity=".8"/>
+    <ellipse cx="700" cy="330" rx="230" ry="30" fill="url(#desk-pool-g)"/>
+  </g>
+
+  <!-- lampara de escritorio (en reposo: borde azul) -->
+  <g class="desk__lamp" filter="url(#desk-rim)">
+    <ellipse cx="890" cy="346" rx="48" ry="5" fill="#000" opacity=".35"/>
+    <path d="M844 338 C844 327 936 327 936 338 C936 347.4 844 347.4 844 338 Z" fill="#1a2030"/>
+    <ellipse cx="890" cy="334.6" rx="42" ry="6.6" fill="#2a3346"/>
+    <path d="M874 332 C874 321 906 321 906 332 Z" fill="#23272d"/>
+    <path d="M880 324.6 C886 322.6 894 322.6 898 325" fill="none" stroke="#3a4252" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- brazos -->
+    <g fill="none" stroke-linecap="round">
+      <path d="M885.3 324.2 L927.3 212.2 M894.7 327.8 L936.7 215.8" stroke="var(--ill-ink,#151a24)" stroke-width="9"/>
+      <path d="M885.3 324.2 L927.3 212.2 M894.7 327.8 L936.7 215.8" stroke="#3a4150" stroke-width="4"/>
+      <path d="M936.1 211.2 L866.1 109.2 M927.9 216.8 L857.9 114.8" stroke="var(--ill-ink,#151a24)" stroke-width="9"/>
+      <path d="M936.1 211.2 L866.1 109.2 M927.9 216.8 L857.9 114.8" stroke="#3a4150" stroke-width="4"/>
+      <path d="M902 302 L906 298 L905 293 L910 290 L909 285 L914 282 L913 277 L918 274 L917 269 L922 266 L921 261" stroke="#8e98a8" stroke-width="2"/>
+      <path d="M884 324 L925 214 M925.4 208.6 L864 118" stroke="#5a6478" stroke-width="1.6"/>
+    </g>
+    <g stroke="var(--ill-ink,#151a24)" stroke-width="3">
+      <circle cx="890" cy="326" r="9.5" fill="#2e3138"/>
+      <circle cx="932" cy="214" r="10.5" fill="#2e3138"/>
+    </g>
+    <g fill="#9aa6b8"><circle cx="890" cy="326" r="3"/><circle cx="932" cy="214" r="3.4"/></g>
+    <!-- pantalla: azul por fuera, calida por dentro -->
+    <path d="M846 104 C822 110 786 124 766.6 136.6 A50 15 45 0 0 837.4 207.4 C850 190 864 150 870 128 C874 116 856 98 846 104 Z" fill="var(--action,#2997ff)"/>
+    <path d="M870 128 C864 150 850 190 837.4 207.4 C826 206 818 202 812 198 C830 178 848 150 858 126 Z" fill="#1b6fd0"/>
+    <path d="M842 107.6 C822 113.6 792 125.6 774 136" fill="none" stroke="#8cc8ff" stroke-width="4" stroke-linecap="round"/>
+    <ellipse class="desk__inner-off" cx="802" cy="172" rx="50" ry="15" transform="rotate(45 802 172)" fill="#4e4136"/>
+    <ellipse class="desk__inner-on" cx="802" cy="172" rx="50" ry="15" transform="rotate(45 802 172)" fill="url(#desk-inner-g)"/>
+    <circle class="desk__bulb-off" cx="808" cy="164" r="10" fill="#7d7264"/>
+    <circle class="desk__bulb-on" cx="808" cy="164" r="10" fill="#fffaf0"/>
+    <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M846 103.6 C822 109.6 786 123.6 766.2 136.4 M837.6 207.8 C850.4 190.4 864.4 150.4 870.4 128.2 C874.6 115.6 856 97.6 846 103.6" stroke-width="4"/>
+      <ellipse cx="802" cy="172" rx="50" ry="15" transform="rotate(45 802 172)" stroke-width="3.5"/>
+    </g>
+    <circle cx="864" cy="112" r="8" fill="#2e3138" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+    <circle cx="864" cy="112" r="2.6" fill="#9aa6b8"/>
+  </g>
+  <circle class="desk__bulb-glow" cx="806" cy="168" r="78" fill="url(#desk-bulb-g)"/>
+
+  <!-- cadena de tirar: el grupo exterior se balancea, el interior baja con el tiron -->
+  <g class="desk__cord" style="transform-origin:808px 170px">
+    <g class="desk__cord-pull">
+      <path d="M808 172 V256" fill="none" stroke="#151a24" stroke-width="7" stroke-linecap="round" stroke-dasharray=".1 7.5" opacity=".7"/>
+      <path class="desk__chain" d="M808 172 V256" fill="none" stroke="#aeb8c7" stroke-width="4.6" stroke-linecap="round" stroke-dasharray=".1 7.5"/>
+      <circle class="desk__bead" cx="808" cy="265" r="7.5" fill="#b9c3d1" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+      <circle cx="805.4" cy="262.4" r="2.4" fill="#fff" opacity=".85"/>
+    </g>
+  </g>
+</svg>
+<!-- /partial:desk -->
+</template>
+<template data-for="lava">
+<!-- partial:lava -->
+<svg class="lava__art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 480" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="lava-clip">
+      <path d="M86 66H154C164 130 190 220 194 268C196 296 188 320 178 334H62C52 320 44 296 46 268C50 220 76 130 86 66Z"/>
+    </clipPath>
+    <!-- metal cepillado: oscuro con un brillo a un cuarto del ancho -->
+    <linearGradient id="lava-metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0b0e15"/>
+      <stop offset=".13" stop-color="#161c28"/>
+      <stop offset=".24" stop-color="#2d3648"/>
+      <stop offset=".31" stop-color="#131822"/>
+      <stop offset=".56" stop-color="var(--tile-black, #05070b)"/>
+      <stop offset=".88" stop-color="var(--tile-black, #05070b)"/>
+      <stop offset="1" stop-color="#10141d"/>
+    </linearGradient>
+    <!-- luz calida del cristal que cae sobre la base y el tapon -->
+    <linearGradient id="lava-spill-down" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffa468" stop-opacity=".18"/>
+      <stop offset=".4" stop-color="#ffa468" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="lava-spill-up" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#ffa468" stop-opacity=".2"/>
+      <stop offset=".6" stop-color="#ffa468" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="lava-shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity=".22"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <!-- liquido marino translucido -->
+    <linearGradient id="lava-liquid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#101c36" stop-opacity=".94"/>
+      <stop offset=".6" stop-color="#15294d" stop-opacity=".92"/>
+      <stop offset="1" stop-color="#1d3a6b" stop-opacity=".92"/>
+    </linearGradient>
+    <radialGradient id="lava-heat" cx="120" cy="336" r="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffc58a" stop-opacity=".5"/>
+      <stop offset=".35" stop-color="#ff9a66" stop-opacity=".2"/>
+      <stop offset="1" stop-color="#ff9a66" stop-opacity="0"/>
+    </radialGradient>
+    <!-- volumen del cilindro: bordes en sombra -->
+    <linearGradient id="lava-volume" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#03060c" stop-opacity=".6"/>
+      <stop offset=".2" stop-color="#03060c" stop-opacity="0"/>
+      <stop offset=".78" stop-color="#03060c" stop-opacity="0"/>
+      <stop offset="1" stop-color="#03060c" stop-opacity=".55"/>
+    </linearGradient>
+    <!-- cera: nucleo ambar que brilla con la bombilla y borde coral mas frio -->
+    <radialGradient id="lava-wax" cx=".5" cy=".6" r=".58">
+      <stop offset="0" stop-color="#ffbd66"/>
+      <stop offset=".5" stop-color="#ff9155"/>
+      <stop offset="1" stop-color="#df5443"/>
+    </radialGradient>
+    <linearGradient id="lava-pool" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f98450"/>
+      <stop offset=".3" stop-color="#ffa159"/>
+      <stop offset="1" stop-color="#ffbe6a"/>
+    </linearGradient>
+    <filter id="lava-goo" x="30" y="50" width="180" height="300" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6"/>
+      <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8"/>
+    </filter>
+  </defs>
+
+  <!-- sombra de contacto -->
+  <ellipse cx="120" cy="472" rx="108" ry="6" fill="#000" opacity=".35"/>
+
+  <!-- base conica -->
+  <g class="lava__base">
+    <path d="M62 344H178L220 462H20Z" fill="url(#lava-metal)"/>
+    <path d="M62 344H178L220 462H20Z" fill="url(#lava-spill-down)"/>
+    <g fill="none" stroke="#fff" stroke-opacity=".035" stroke-width=".8">
+      <path d="M79 346L45 460M96 346L70 460M131 346L125 460M148 346L150 460M165 346L175 460"/>
+    </g>
+    <path d="M89 348L60 456" fill="none" stroke="url(#lava-shine)" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M62 344H178L220 462H20Z" fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1.5" stroke-linejoin="round"/>
+    <rect x="14" y="460" width="212" height="12" rx="6" fill="url(#lava-metal)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1.5"/>
+    <path d="M22 462.5H218" fill="none" stroke="#fff" stroke-opacity=".08" stroke-width="1" stroke-linecap="round"/>
+  </g>
+
+  <!-- cristal: liquido, luz interna, cera y reflejos -->
+  <g clip-path="url(#lava-clip)">
+    <rect x="30" y="50" width="180" height="300" fill="#9fbde6" fill-opacity=".05"/>
+    <rect x="30" y="80" width="180" height="270" fill="url(#lava-liquid)"/>
+    <rect x="30" y="50" width="180" height="300" fill="url(#lava-heat)"/>
+    <g class="lava__wax" filter="url(#lava-goo)" fill="url(#lava-wax)">
+      <path class="lava__pool" d="M36 318C58 313 78 308 94 302C110 296 128 295 144 300C162 306 184 312 206 316V350H36Z" fill="url(#lava-pool)"/>
+      <circle class="lava__blob lava__blob--1" cx="110" cy="294" r="24"/>
+      <circle class="lava__blob lava__blob--2" cx="134" cy="206" r="17"/>
+      <circle class="lava__blob lava__blob--3" cx="128" cy="108" r="14"/>
+      <circle class="lava__blob lava__blob--4" cx="106" cy="178" r="21"/>
+      <circle class="lava__blob lava__blob--5" cx="106" cy="258" r="12"/>
+      <circle class="lava__blob lava__blob--6" cx="156" cy="302" r="16"/>
+    </g>
+    <rect x="30" y="50" width="180" height="300" fill="url(#lava-volume)"/>
+    <path d="M30 80.5Q120 84 210 80.5" fill="none" stroke="#bcd3f5" stroke-opacity=".22" stroke-width="1"/>
+    <path d="M89 96C84 146 68 212 62 258" fill="none" stroke="#fff" stroke-opacity=".11" stroke-width="4" stroke-linecap="round"/>
+    <path d="M94 76L92 86" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M174 208C180 236 183 262 181 290" fill="none" stroke="#fff" stroke-opacity=".06" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <path d="M86 66H154C164 130 190 220 194 268C196 296 188 320 178 334H62C52 320 44 296 46 268C50 220 76 130 86 66Z" fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- collar entre cristal y base -->
+  <rect x="56" y="330" width="128" height="15" rx="4" fill="url(#lava-metal)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1.5"/>
+  <path d="M60 331.5H180" fill="none" stroke="#ffb27a" stroke-opacity=".35" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- tapon -->
+  <g class="lava__cap">
+    <path d="M100 22Q120 14 140 22L156 64H84Z" fill="url(#lava-metal)"/>
+    <path d="M100 22Q120 14 140 22L156 64H84Z" fill="url(#lava-spill-up)"/>
+    <path d="M106 25L93 60" fill="none" stroke="url(#lava-shine)" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M100 22Q120 14 140 22L156 64H84Z" fill="none" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1.5" stroke-linejoin="round"/>
+    <rect x="81" y="61" width="78" height="8" rx="3" fill="url(#lava-metal)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1.5"/>
+  </g>
+</svg>
+<!-- /partial:lava -->
+</template>
+<!-- [lazy:project] -->

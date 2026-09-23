@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Diagrama de un autoencoder: capas de 30, 16, 4, 16 y 30 neuronas con un cuello de botella central y un indicador de error de reconstrucción" data-i18n-attr="aria-label:projects.tfg.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <!-- connections -->
+  <g fill="none" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1">
+    <line x1="80" y1="44" x2="200" y2="100"/>
+    <line x1="80" y1="44" x2="200" y2="184"/>
+    <line x1="80" y1="72" x2="200" y2="128"/>
+    <line x1="80" y1="72" x2="200" y2="212"/>
+    <line x1="80" y1="100" x2="200" y2="156"/>
+    <line x1="80" y1="100" x2="200" y2="240"/>
+    <line x1="80" y1="128" x2="200" y2="100"/>
+    <line x1="80" y1="128" x2="200" y2="184"/>
+    <line x1="80" y1="156" x2="200" y2="128"/>
+    <line x1="80" y1="156" x2="200" y2="212"/>
+    <line x1="80" y1="184" x2="200" y2="156"/>
+    <line x1="80" y1="184" x2="200" y2="240"/>
+    <line x1="80" y1="212" x2="200" y2="100"/>
+    <line x1="80" y1="212" x2="200" y2="184"/>
+    <line x1="80" y1="240" x2="200" y2="128"/>
+    <line x1="80" y1="240" x2="200" y2="212"/>
+    <line x1="80" y1="268" x2="200" y2="156"/>
+    <line x1="80" y1="268" x2="200" y2="240"/>
+    <line x1="80" y1="296" x2="200" y2="100"/>
+    <line x1="80" y1="296" x2="200" y2="184"/>
+    <line x1="200" y1="100" x2="320" y2="128"/>
+    <line x1="200" y1="100" x2="320" y2="156"/>
+    <line x1="200" y1="100" x2="320" y2="184"/>
+    <line x1="200" y1="100" x2="320" y2="212"/>
+    <line x1="200" y1="128" x2="320" y2="128"/>
+    <line x1="200" y1="128" x2="320" y2="156"/>
+    <line x1="200" y1="128" x2="320" y2="184"/>
+    <line x1="200" y1="128" x2="320" y2="212"/>
+    <line x1="200" y1="156" x2="320" y2="128"/>
+    <line x1="200" y1="156" x2="320" y2="156"/>
+    <line x1="200" y1="156" x2="320" y2="184"/>
+    <line x1="200" y1="156" x2="320" y2="212"/>
+    <line x1="200" y1="184" x2="320" y2="128"/>
+    <line x1="200" y1="184" x2="320" y2="156"/>
+    <line x1="200" y1="184" x2="320" y2="184"/>
+    <line x1="200" y1="184" x2="320" y2="212"/>
+    <line x1="200" y1="212" x2="320" y2="128"/>
+    <line x1="200" y1="212" x2="320" y2="156"/>
+    <line x1="200" y1="212" x2="320" y2="184"/>
+    <line x1="200" y1="212" x2="320" y2="212"/>
+    <line x1="200" y1="240" x2="320" y2="128"/>
+    <line x1="200" y1="240" x2="320" y2="156"/>
+    <line x1="200" y1="240" x2="320" y2="184"/>
+    <line x1="200" y1="240" x2="320" y2="212"/>
+    <line x1="320" y1="128" x2="440" y2="100"/>
+    <line x1="320" y1="128" x2="440" y2="128"/>
+    <line x1="320" y1="128" x2="440" y2="156"/>
+    <line x1="320" y1="128" x2="440" y2="184"/>
+    <line x1="320" y1="128" x2="440" y2="212"/>
+    <line x1="320" y1="128" x2="440" y2="240"/>
+    <line x1="320" y1="156" x2="440" y2="100"/>
+    <line x1="320" y1="156" x2="440" y2="128"/>
+    <line x1="320" y1="156" x2="440" y2="156"/>
+    <line x1="320" y1="156" x2="440" y2="184"/>
+    <line x1="320" y1="156" x2="440" y2="212"/>
+    <line x1="320" y1="156" x2="440" y2="240"/>
+    <line x1="320" y1="184" x2="440" y2="100"/>
+    <line x1="320" y1="184" x2="440" y2="128"/>
+    <line x1="320" y1="184" x2="440" y2="156"/>
+    <line x1="320" y1="184" x2="440" y2="184"/>
+    <line x1="320" y1="184" x2="440" y2="212"/>
+    <line x1="320" y1="184" x2="440" y2="240"/>
+    <line x1="320" y1="212" x2="440" y2="100"/>
+    <line x1="320" y1="212" x2="440" y2="128"/>
+    <line x1="320" y1="212" x2="440" y2="156"/>
+    <line x1="320" y1="212" x2="440" y2="184"/>
+    <line x1="320" y1="212" x2="440" y2="212"/>
+    <line x1="320" y1="212" x2="440" y2="240"/>
+    <line x1="440" y1="100" x2="560" y2="44"/>
+    <line x1="440" y1="100" x2="560" y2="128"/>
+    <line x1="440" y1="100" x2="560" y2="212"/>
+    <line x1="440" y1="100" x2="560" y2="296"/>
+    <line x1="440" y1="128" x2="560" y2="72"/>
+    <line x1="440" y1="128" x2="560" y2="156"/>
+    <line x1="440" y1="128" x2="560" y2="240"/>
+    <line x1="440" y1="156" x2="560" y2="100"/>
+    <line x1="440" y1="156" x2="560" y2="184"/>
+    <line x1="440" y1="156" x2="560" y2="268"/>
+    <line x1="440" y1="184" x2="560" y2="44"/>
+    <line x1="440" y1="184" x2="560" y2="128"/>
+    <line x1="440" y1="184" x2="560" y2="212"/>
+    <line x1="440" y1="184" x2="560" y2="296"/>
+    <line x1="440" y1="212" x2="560" y2="72"/>
+    <line x1="440" y1="212" x2="560" y2="156"/>
+    <line x1="440" y1="212" x2="560" y2="240"/>
+    <line x1="440" y1="240" x2="560" y2="100"/>
+    <line x1="440" y1="240" x2="560" y2="184"/>
+    <line x1="440" y1="240" x2="560" y2="268"/>
+  </g>
+  <!-- neurons -->
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="80" cy="44" r="5"/>
+    <circle cx="80" cy="72" r="5"/>
+    <circle cx="80" cy="100" r="5"/>
+    <circle cx="80" cy="128" r="5"/>
+    <circle cx="80" cy="156" r="5"/>
+    <circle cx="80" cy="184" r="5"/>
+    <circle cx="80" cy="212" r="5"/>
+    <circle cx="80" cy="240" r="5"/>
+    <circle cx="80" cy="268" r="5"/>
+    <circle cx="80" cy="296" r="5"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="200" cy="100" r="5"/>
+    <circle cx="200" cy="128" r="5"/>
+    <circle cx="200" cy="156" r="5"/>
+    <circle cx="200" cy="184" r="5"/>
+    <circle cx="200" cy="212" r="5"/>
+    <circle cx="200" cy="240" r="5"/>
+  </g>
+  <g fill="var(--action, #2997ff)" stroke="none" class="ae-bottleneck">
+    <circle cx="320" cy="128" r="5"/>
+    <circle cx="320" cy="156" r="5"/>
+    <circle cx="320" cy="184" r="5"/>
+    <circle cx="320" cy="212" r="5"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="440" cy="100" r="5"/>
+    <circle cx="440" cy="128" r="5"/>
+    <circle cx="440" cy="156" r="5"/>
+    <circle cx="440" cy="184" r="5"/>
+    <circle cx="440" cy="212" r="5"/>
+    <circle cx="440" cy="240" r="5"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" stroke="none">
+    <circle cx="560" cy="44" r="5"/>
+    <circle cx="560" cy="72" r="5"/>
+    <circle cx="560" cy="100" r="5"/>
+    <circle cx="560" cy="128" r="5"/>
+    <circle cx="560" cy="156" r="5"/>
+    <circle cx="560" cy="184" r="5"/>
+    <circle cx="560" cy="212" r="5"/>
+    <circle cx="560" cy="240" r="5"/>
+    <circle cx="560" cy="268" r="5"/>
+    <circle cx="560" cy="296" r="5"/>
+  </g>
+  <!-- labels -->
+  <g fill="var(--mute, #8e98a8)" font-size="12" text-anchor="middle">
+    <text x="80" y="322">30</text>
+    <text x="80" y="342">entrada</text>
+    <text x="200" y="322">16</text>
+    <text x="200" y="342">codificador</text>
+    <text x="320" y="322">4</text>
+    <text x="320" y="342">código</text>
+    <text x="440" y="322">16</text>
+    <text x="440" y="342">decodificador</text>
+    <text x="560" y="322">30</text>
+    <text x="560" y="342">salida</text>
+  </g>
+  <!-- reconstruction error gauge -->
+  <text x="610" y="370" text-anchor="end" fill="var(--mute, #8e98a8)" font-size="12">error de reconstrucción</text>
+  <rect x="430" y="378" width="180" height="6" rx="3" fill="var(--surface-elevated, #222a3a)" stroke="none"/>
+  <rect class="ae-gauge" x="430" y="378" width="111.6" height="6" rx="3" fill="var(--action, #2997ff)" stroke="none"/>
+</svg>

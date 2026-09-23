@@ -1,0 +1,328 @@
+<article class="pdoc" data-project="faro">
+  <header class="pdoc__head">
+    <p class="eyebrow pdoc__kicker" data-i18n="projects.faro.detail.kicker">Proyecto profesional · extensión de Chrome</p>
+    <h2 class="display-md" id="pdialog-title" data-i18n="projects.faro.title">Faro — copiloto de Jira y Confluence</h2>
+    <p class="lead pdoc__lead" data-i18n="projects.faro.detail.lead">Un panel lateral de Chrome que usa como motor el opencode de tu propio equipo. Responde sobre Jira y Confluence con el modelo que elijas, te guía por el árbol hasta la página y marca el pasaje del que habla. En local y en solo lectura.</p>
+    <div class="pdoc__actions">
+      <span class="badge" data-i18n="projects.private_note">Proyecto privado · sin repositorio público</span>
+    </div>
+    <ul class="chips chips--inline" aria-label="Tecnologías" data-i18n-attr="aria-label:projects.detail.tech">
+      <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span>Spec-Driven Development</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#googlechrome"/></svg><span>Chrome MV3</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#javascript"/></svg><span>JavaScript (ES modules)</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#opencode"/></svg><span>opencode</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#modelcontextprotocol"/></svg><span>MCP</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#jira"/></svg><span>Jira</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#confluence"/></svg><span>Confluence</span></li>
+      <li class="chip"><svg class="chip__icon" aria-hidden="true"><use href="/icons/sprite.svg#nodedotjs"/></svg><span>Node test runner</span></li>
+    </ul>
+  </header>
+
+  <dl class="pdoc__facts" aria-label="En cifras" data-i18n-attr="aria-label:projects.detail.facts">
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.faro.detail.fact1_label">pruebas unitarias, sin dependencias</dt><dd class="pdoc__fact-value" data-i18n="projects.faro.detail.fact1_value">1 283</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.faro.detail.fact2_label">revisiones adversarias multiagente</dt><dd class="pdoc__fact-value" data-i18n="projects.faro.detail.fact2_value">13</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.faro.detail.fact3_label">hallazgos aplicados</dt><dd class="pdoc__fact-value" data-i18n="projects.faro.detail.fact3_value">145</dd></div>
+    <div class="pdoc__fact"><dt class="pdoc__fact-label" data-i18n="projects.faro.detail.fact4_label">prompts comparados byte a byte</dt><dd class="pdoc__fact-value" data-i18n="projects.faro.detail.fact4_value">37</dd></div>
+  </dl>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.context">Contexto</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.faro.detail.context">En un proyecto grande la documentación se reparte entre miles de páginas e incidencias, y encontrar el párrafo que resuelve una duda cuesta más que la duda. Un asistente genérico contesta, pero no dice dónde está escrito. Faro existe para eso: cada respuesta llega con su sitio, y el sitio se puede comprobar.</p>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.role">Qué hice</h3>
+    <div class="pdoc__content">
+      <ul class="bullets">
+        <li data-i18n="projects.faro.detail.role1">Diseñé y construí la extensión completa: panel lateral, content scripts, service worker y cliente de opencode por HTTP y SSE, en módulos ES sin build.</li>
+        <li data-i18n="projects.faro.detail.role2">Hice que el camino hasta cada página salga del árbol real del sitio, no del modelo: se lee de la API REST con tu sesión y se navega una sola vez.</li>
+        <li data-i18n="projects.faro.detail.role3">Monté el modo Análisis: el modelo ve la página en bloques numerados y un script, no el modelo, decide qué pasaje subraya cada observación.</li>
+        <li data-i18n="projects.faro.detail.role4">Cerré la puerta a la inyección de instrucciones: lo que llega de una página es información, el modelo nunca emite URLs y opencode lo deniega todo salvo el MCP.</li>
+      </ul>
+      <p class="body" data-i18n="projects.faro.detail.cycle_text">Lo desarrollé con Spec-Driven Development y agentes de IA: un CLAUDE.md hace de especificación viva y los trece hitos siguieron el mismo ciclo, sin pasar al siguiente hasta cerrar la revisión.</p>
+      <figure class="pdoc__figure">
+        <div class="pdoc__canvas pdoc__canvas--compact">
+          <svg class="dg pdoc__diagram pdoc__diagram--small" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Ciclo de cada hito alrededor de CLAUDE.md" data-i18n-attr="aria-label:projects.faro.detail.cycle_alt" focusable="false">
+            <defs>
+              <marker id="faro-c-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+              <marker id="faro-c-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            </defs>
+            <!-- la especificación en el centro guía cada paso -->
+            <g class="dg-line dg-line--faint dg-line--dash">
+              <path d="M200 124V60"/>
+              <path d="M272 140 286 126"/>
+              <path d="M242 176 270 220"/>
+              <path d="M158 176 130 220"/>
+              <path d="M128 140 114 126"/>
+            </g>
+            <!-- el ciclo, en el sentido de las agujas del reloj -->
+            <g class="dg-line" marker-end="url(#faro-c-arrow)">
+              <path d="M261 51.3A150 108 0 0 1 329.9 96"/>
+              <path d="M349.6 142.5A150 108 0 0 1 318.2 216.5"/>
+              <path d="M228.6 256A150 108 0 0 1 171.4 256"/>
+              <path d="M81.8 216.5A150 108 0 0 1 50.4 142.5"/>
+            </g>
+            <path class="dg-line dg-line--accent" marker-end="url(#faro-c-arrow-accent)" d="M75.6 89.6A150 108 0 0 1 139 51.3"/>
+            <rect class="dg-box" x="144" y="25" width="112" height="34" rx="10"/>
+            <rect class="dg-box" x="286.7" y="99.6" width="112" height="34" rx="10"/>
+            <rect class="dg-box" x="232.2" y="220.4" width="112" height="34" rx="10"/>
+            <rect class="dg-box" x="55.8" y="220.4" width="112" height="34" rx="10"/>
+            <rect class="dg-box dg-box--accent" x="1.3" y="96.6" width="112" height="40" rx="10"/>
+            <text class="dg-mid dg-strong" x="200" y="46.5" data-i18n="projects.faro.detail.cycle1">módulo + test</text>
+            <text class="dg-mid dg-strong" x="342.7" y="121" data-i18n="projects.faro.detail.cycle2">cableado</text>
+            <text class="dg-mid dg-strong" x="288.2" y="241.8" data-i18n="projects.faro.detail.cycle3">banco visual</text>
+            <text class="dg-mid dg-strong" x="111.8" y="241.8" data-i18n="projects.faro.detail.cycle4">documentación</text>
+            <text class="dg-mid dg-strong" x="57.3" y="112.5" data-i18n="projects.faro.detail.cycle5">revisión</text>
+            <text class="dg-mid dg-strong" x="57.3" y="128" data-i18n="projects.faro.detail.cycle5b">adversaria</text>
+            <rect class="dg-fill-accent" x="128" y="124" width="144" height="52" rx="12"/>
+            <text class="dg-mid dg-title dg-on-accent" x="200" y="147.5">CLAUDE.md</text>
+            <text class="dg-mid dg-tiny dg-on-accent" x="200" y="165" data-i18n="projects.faro.detail.cycle_spec">especificación viva</text>
+            <text class="dg-mid dg-sub" x="200" y="288" data-i18n="projects.faro.detail.cycle_loop">× 13 hitos</text>
+          </svg>
+        </div>
+      </figure>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.architecture">Arquitectura</h3>
+    <div class="pdoc__content">
+      <p class="body" data-i18n="projects.faro.detail.arch_intro">Cinco piezas y una regla: solo el panel habla con opencode. El content script vive dentro de Jira o Confluence, en una página que no controla, y se limita a ejecutar órdenes ya validadas.</p>
+    </div>
+    <figure class="pdoc__figure pdoc__wide">
+      <div class="pdoc__canvas">
+        <!-- ancho: navegador a la izquierda, opencode en medio, modelo / MCP / API a la derecha -->
+        <svg class="dg pdoc__diagram pdoc__diagram--wide" viewBox="0 0 880 424" width="880" height="424" role="img" aria-label="Arquitectura de Faro" data-i18n-attr="aria-label:projects.faro.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="faro-w-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="faro-w-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <!-- navegador -->
+          <rect class="dg-frame" x="16" y="12" width="524" height="392" rx="14"/>
+          <circle class="dg-dot" cx="36" cy="31" r="4.5"/><circle class="dg-dot" cx="51" cy="31" r="4.5"/><circle class="dg-dot" cx="66" cy="31" r="4.5"/>
+          <text class="dg-tiny" x="84" y="35">Chrome</text>
+          <rect class="dg-pane" x="188" y="22" width="180" height="18" rx="9"/>
+          <text class="dg-tiny dg-mid" x="278" y="35">jira · confluence</text>
+          <path class="dg-rule" d="M16 50H540M120 50V404"/>
+          <!-- árbol de páginas: la rama que Faro despliega va en azul -->
+          <g class="dg-head"><path d="M31 69l3 3-3 3"/><path d="M31 201l3 3-3 3"/><path d="M31 223l3 3-3 3"/></g>
+          <g class="dg-head dg-head--accent"><path d="M29.5 92.5l3 3 3-3"/><path d="M41.5 114.5l3 3 3-3"/></g>
+          <rect class="dg-bar" x="42" y="69" width="54" height="6" rx="3"/>
+          <rect class="dg-fill-accent" x="42" y="91" width="60" height="6" rx="3" opacity=".75"/>
+          <rect class="dg-fill-accent" x="54" y="113" width="48" height="6" rx="3" opacity=".75"/>
+          <rect x="24" y="128" width="92" height="18" rx="5" fill="var(--action-soft)"/>
+          <rect class="dg-fill-accent" x="66" y="134" width="40" height="6" rx="3"/>
+          <rect class="dg-bar" x="66" y="156" width="34" height="6" rx="3"/>
+          <rect class="dg-bar" x="54" y="178" width="44" height="6" rx="3"/>
+          <rect class="dg-bar" x="42" y="201" width="58" height="6" rx="3"/>
+          <rect class="dg-bar" x="42" y="223" width="46" height="6" rx="3"/>
+          <!-- página: el pasaje subrayado -->
+          <rect class="dg-bar dg-bar--faint" x="134" y="64" width="30" height="5" rx="2.5"/>
+          <rect class="dg-bar dg-bar--faint" x="170" y="64" width="44" height="5" rx="2.5"/>
+          <rect class="dg-bar dg-bar--strong" x="134" y="80" width="150" height="11" rx="4"/>
+          <g class="dg-bar">
+            <rect x="134" y="110" width="196" height="7" rx="3.5"/>
+            <rect x="134" y="128" width="178" height="7" rx="3.5"/>
+            <rect x="134" y="146" width="190" height="7" rx="3.5"/>
+            <rect x="134" y="164" width="120" height="7" rx="3.5"/>
+            <rect x="134" y="248" width="192" height="7" rx="3.5"/>
+            <rect x="134" y="266" width="170" height="7" rx="3.5"/>
+            <rect x="134" y="284" width="186" height="7" rx="3.5"/>
+            <rect x="134" y="302" width="96" height="7" rx="3.5"/>
+            <rect x="134" y="330" width="182" height="7" rx="3.5"/>
+            <rect x="134" y="348" width="140" height="7" rx="3.5"/>
+          </g>
+          <rect class="dg-mark" x="129" y="188" width="202" height="42" rx="7" opacity=".16"/>
+          <rect class="dg-mark" x="134" y="196" width="188" height="7" rx="3.5" opacity=".7"/>
+          <rect class="dg-mark" x="134" y="214" width="118" height="7" rx="3.5" opacity=".7"/>
+          <circle class="dg-mark" cx="262" cy="217.5" r="5"/>
+          <!-- panel lateral -->
+          <path class="dg-pane" d="M352 50H540V390A14 14 0 0 1 526 404H352Z"/>
+          <path class="dg-rule" d="M352 50V404M352 92H540"/>
+          <circle cx="372" cy="71" r="6" fill="none" stroke="#e9ac4a" stroke-width="1.8"/>
+          <circle class="dg-mark" cx="372" cy="71" r="2"/>
+          <text class="dg-strong" x="386" y="75.5" font-weight="600">Faro</text>
+          <rect class="dg-box" x="420" y="106" width="106" height="34" rx="10"/>
+          <rect class="dg-bar dg-bar--ink" x="432" y="116" width="80" height="5" rx="2.5"/>
+          <rect class="dg-bar dg-bar--ink" x="432" y="127" width="56" height="5" rx="2.5"/>
+          <rect class="dg-bar" x="366" y="156" width="150" height="6" rx="3"/>
+          <rect class="dg-bar" x="366" y="170" width="128" height="6" rx="3"/>
+          <circle class="dg-mark" cx="370" cy="191" r="3.5"/><rect class="dg-bar" x="380" y="188" width="120" height="6" rx="3"/>
+          <circle class="dg-mark" cx="370" cy="205" r="3.5"/><rect class="dg-bar" x="380" y="202" width="96" height="6" rx="3"/>
+          <rect class="dg-box dg-box--accent" x="366" y="222" width="116" height="30" rx="8"/>
+          <text class="dg-strong" x="378" y="241" data-i18n="projects.faro.detail.dg_take">Llévame →</text>
+          <rect class="dg-pill" x="366" y="334" width="160" height="40" rx="10"/>
+          <rect class="dg-bar" x="378" y="351" width="70" height="6" rx="3"/>
+          <circle class="dg-mark" cx="510" cy="354" r="9"/>
+          <path d="M510 358.5v-9M506.3 353l3.7-3.7 3.7 3.7" fill="none" stroke="#1b1405" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- ⑤ del botón al pasaje -->
+          <path class="dg-line dg-line--accent" marker-end="url(#faro-w-arrow-accent)" d="M366 237C348 237 346 214 336 211"/>
+          <!-- etiquetas sobre el borde -->
+          <rect class="dg-pill" x="124" y="393" width="120" height="22" rx="11"/>
+          <text class="dg-mid" x="184" y="408">content script</text>
+          <rect class="dg-pill" x="386" y="393" width="120" height="22" rx="11"/>
+          <text class="dg-mid" x="446" y="408" data-i18n="projects.faro.detail.dg_panel">panel lateral</text>
+
+          <!-- ② panel ⇄ opencode -->
+          <path class="dg-line" marker-end="url(#faro-w-arrow)" d="M540 212H586"/>
+          <path class="dg-line dg-line--dash" marker-end="url(#faro-w-arrow)" d="M588 244H542"/>
+          <text class="dg-mid dg-tiny" x="652" y="166" data-i18n="projects.faro.detail.dg_local">en tu equipo</text>
+          <rect class="dg-box" x="588" y="178" width="128" height="100" rx="12"/>
+          <text class="dg-mid dg-title" x="652" y="210">opencode</text>
+          <text class="dg-mid dg-sub" x="652" y="232">127.0.0.1</text>
+          <text class="dg-mid dg-sub" x="652" y="250">HTTP · SSE</text>
+
+          <!-- ③ razona con el LLM y consulta por MCP -->
+          <path class="dg-line" marker-start="url(#faro-w-arrow)" marker-end="url(#faro-w-arrow)" d="M718 200H740V88H762"/>
+          <path class="dg-line" marker-end="url(#faro-w-arrow)" d="M716 228H762"/>
+          <path class="dg-line" marker-end="url(#faro-w-arrow)" d="M818 262V328"/>
+          <rect class="dg-box" x="764" y="56" width="108" height="64" rx="12"/>
+          <text class="dg-mid dg-title" x="818" y="84">LLM</text>
+          <text class="dg-mid dg-sub" x="818" y="104" data-i18n="projects.faro.detail.dg_llm">el que elijas</text>
+          <rect class="dg-box" x="764" y="196" width="108" height="64" rx="12"/>
+          <text class="dg-mid dg-title" x="818" y="224">MCP</text>
+          <text class="dg-mid dg-sub" x="818" y="244" data-i18n="projects.faro.detail.dg_readonly">solo lectura</text>
+          <rect class="dg-box" x="764" y="330" width="108" height="64" rx="12"/>
+          <text class="dg-mid dg-title" x="818" y="358">API REST</text>
+          <text class="dg-mid dg-sub" x="818" y="378">Atlassian</text>
+
+          <!-- ④ el camino se lee de la API del sitio -->
+          <path class="dg-line dg-line--dash" marker-end="url(#faro-w-arrow)" d="M540 362H762"/>
+          <text class="dg-mid dg-tiny" x="672" y="352" data-i18n="projects.faro.detail.dg_get">GET · con tu sesión</text>
+
+          <g class="dg-badge">
+            <circle cx="403" cy="123" r="10"/><text x="403" y="127">1</text>
+            <circle cx="564" cy="228" r="10"/><text x="564" y="232">2</text>
+            <circle cx="740" cy="146" r="10"/><text x="740" y="150">3</text>
+            <circle cx="572" cy="362" r="10"/><text x="572" y="366">4</text>
+            <circle cx="304" cy="244" r="10"/><text x="304" y="248">5</text>
+          </g>
+        </svg>
+
+        <!-- estrecho: el mismo sistema en vertical para móvil -->
+        <svg class="dg pdoc__diagram pdoc__diagram--tall" viewBox="0 0 360 632" width="360" height="632" role="img" aria-label="Arquitectura de Faro" data-i18n-attr="aria-label:projects.faro.detail.diagram_alt" focusable="false">
+          <defs>
+            <marker id="faro-t-arrow" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+            <marker id="faro-t-arrow-accent" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path class="dg-head dg-head--accent" d="M1.5 1.5 8.5 5 1.5 8.5"/></marker>
+          </defs>
+          <rect class="dg-frame" x="10" y="10" width="340" height="318" rx="14"/>
+          <circle class="dg-dot" cx="28" cy="28" r="4"/><circle class="dg-dot" cx="41" cy="28" r="4"/><circle class="dg-dot" cx="54" cy="28" r="4"/>
+          <rect class="dg-pane" x="118" y="19" width="154" height="18" rx="9"/>
+          <text class="dg-tiny dg-mid" x="195" y="32">jira · confluence</text>
+          <path class="dg-rule" d="M10 46H350M76 46V328"/>
+          <g class="dg-head"><path d="M21 63l3 3-3 3"/><path d="M21 163l3 3-3 3"/></g>
+          <g class="dg-head dg-head--accent"><path d="M19.5 84.5l3 3 3-3"/><path d="M27.5 104.5l3 3 3-3"/></g>
+          <rect class="dg-bar" x="30" y="63" width="36" height="6" rx="3"/>
+          <rect class="dg-fill-accent" x="30" y="83" width="38" height="6" rx="3" opacity=".75"/>
+          <rect class="dg-fill-accent" x="38" y="103" width="30" height="6" rx="3" opacity=".75"/>
+          <rect x="16" y="117" width="56" height="18" rx="5" fill="var(--action-soft)"/>
+          <rect class="dg-fill-accent" x="46" y="123" width="22" height="6" rx="3"/>
+          <rect class="dg-bar" x="46" y="143" width="20" height="6" rx="3"/>
+          <rect class="dg-bar" x="30" y="163" width="36" height="6" rx="3"/>
+          <rect class="dg-bar dg-bar--faint" x="86" y="58" width="44" height="5" rx="2.5"/>
+          <rect class="dg-bar dg-bar--strong" x="86" y="72" width="92" height="10" rx="4"/>
+          <g class="dg-bar">
+            <rect x="86" y="100" width="108" height="6" rx="3"/>
+            <rect x="86" y="116" width="96" height="6" rx="3"/>
+            <rect x="86" y="132" width="104" height="6" rx="3"/>
+            <rect x="86" y="148" width="68" height="6" rx="3"/>
+            <rect x="86" y="236" width="104" height="6" rx="3"/>
+            <rect x="86" y="252" width="86" height="6" rx="3"/>
+            <rect x="86" y="268" width="100" height="6" rx="3"/>
+            <rect x="86" y="284" width="58" height="6" rx="3"/>
+          </g>
+          <rect class="dg-mark" x="82" y="170" width="118" height="42" rx="7" opacity=".16"/>
+          <rect class="dg-mark" x="86" y="178" width="106" height="6" rx="3" opacity=".7"/>
+          <rect class="dg-mark" x="86" y="196" width="72" height="6" rx="3" opacity=".7"/>
+          <circle class="dg-mark" cx="168" cy="199" r="4.5"/>
+          <path class="dg-pane" d="M206 46H350V314A14 14 0 0 1 336 328H206Z"/>
+          <path class="dg-rule" d="M206 46V328M206 82H350"/>
+          <circle cx="224" cy="64" r="5.5" fill="none" stroke="#e9ac4a" stroke-width="1.6"/>
+          <circle class="dg-mark" cx="224" cy="64" r="1.8"/>
+          <text class="dg-strong" x="236" y="68.5" font-weight="600">Faro</text>
+          <rect class="dg-box" x="246" y="94" width="92" height="30" rx="9"/>
+          <rect class="dg-bar dg-bar--ink" x="256" y="103" width="66" height="5" rx="2.5"/>
+          <rect class="dg-bar dg-bar--ink" x="256" y="113" width="44" height="5" rx="2.5"/>
+          <rect class="dg-bar" x="218" y="138" width="116" height="5" rx="2.5"/>
+          <rect class="dg-bar" x="218" y="150" width="96" height="5" rx="2.5"/>
+          <circle class="dg-mark" cx="222" cy="167.5" r="3"/><rect class="dg-bar" x="230" y="165" width="90" height="5" rx="2.5"/>
+          <rect class="dg-box dg-box--accent" x="218" y="188" width="108" height="28" rx="8"/>
+          <text class="dg-strong" x="229" y="206" data-i18n="projects.faro.detail.dg_take">Llévame →</text>
+          <rect class="dg-pill" x="218" y="266" width="120" height="34" rx="9"/>
+          <rect class="dg-bar" x="228" y="280" width="52" height="5" rx="2.5"/>
+          <circle class="dg-mark" cx="324" cy="283" r="8"/>
+          <path d="M324 287v-8M320.8 282.2l3.2-3.2 3.2 3.2" fill="none" stroke="#1b1405" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="dg-line dg-line--accent" marker-end="url(#faro-t-arrow-accent)" d="M218 202C210 202 212 190 204 188"/>
+          <rect class="dg-pill" x="50" y="317" width="116" height="22" rx="11"/>
+          <text class="dg-mid" x="108" y="332">content script</text>
+          <rect class="dg-pill" x="220" y="317" width="116" height="22" rx="11"/>
+          <text class="dg-mid" x="278" y="332" data-i18n="projects.faro.detail.dg_panel">panel lateral</text>
+
+          <path class="dg-line" marker-end="url(#faro-t-arrow)" d="M258 341V394"/>
+          <path class="dg-line dg-line--dash" marker-end="url(#faro-t-arrow)" d="M290 396V343"/>
+          <rect class="dg-box" x="150" y="396" width="160" height="92" rx="12"/>
+          <text class="dg-mid dg-title" x="230" y="422">opencode</text>
+          <text class="dg-mid dg-sub" x="230" y="441">127.0.0.1</text>
+          <text class="dg-mid dg-sub" x="230" y="457">HTTP · SSE</text>
+          <text class="dg-mid dg-tiny dg-accent" x="230" y="475" data-i18n="projects.faro.detail.dg_local">en tu equipo</text>
+
+          <path class="dg-line" marker-end="url(#faro-t-arrow)" d="M180 490V554"/>
+          <path class="dg-line" marker-start="url(#faro-t-arrow)" marker-end="url(#faro-t-arrow)" d="M280 490V520H298V554"/>
+          <path class="dg-line" marker-end="url(#faro-t-arrow)" d="M128 588H108"/>
+          <rect class="dg-box" x="10" y="556" width="96" height="64" rx="12"/>
+          <text class="dg-mid dg-title" x="58" y="584">API REST</text>
+          <text class="dg-mid dg-sub" x="58" y="604">Atlassian</text>
+          <rect class="dg-box" x="130" y="556" width="100" height="64" rx="12"/>
+          <text class="dg-mid dg-title" x="180" y="584">MCP</text>
+          <text class="dg-mid dg-sub" x="180" y="604" data-i18n="projects.faro.detail.dg_readonly">solo lectura</text>
+          <rect class="dg-box" x="248" y="556" width="102" height="64" rx="12"/>
+          <text class="dg-mid dg-title" x="299" y="584">LLM</text>
+          <text class="dg-mid dg-sub" x="299" y="604" data-i18n="projects.faro.detail.dg_llm">el que elijas</text>
+
+          <path class="dg-line dg-line--dash" marker-end="url(#faro-t-arrow)" d="M36 341V554"/>
+          <text class="dg-tiny" x="48" y="530" data-i18n="projects.faro.detail.dg_get">GET · con tu sesión</text>
+
+          <g class="dg-badge">
+            <circle cx="232" cy="109" r="10"/><text x="232" y="113">1</text>
+            <circle cx="274" cy="368" r="10"/><text x="274" y="372">2</text>
+            <circle cx="230" cy="522" r="10"/><text x="230" y="526">3</text>
+            <circle cx="36" cy="448" r="10"/><text x="36" y="452">4</text>
+            <circle cx="178" cy="226" r="10"/><text x="178" y="230">5</text>
+          </g>
+        </svg>
+      </div>
+    </figure>
+    <ol class="pdoc__steps pdoc__wide">
+      <li data-i18n="projects.faro.detail.flow1">Preguntas en el panel; la página viaja en bloques numerados, marcada como información y nunca como instrucciones.</li>
+      <li data-i18n="projects.faro.detail.flow2">El panel manda el turno a opencode, en tu equipo, por HTTP con contraseña, y la respuesta vuelve por SSE.</li>
+      <li data-i18n="projects.faro.detail.flow3">opencode razona con el modelo que elijas y consulta Jira y Confluence por MCP, en solo lectura.</li>
+      <li data-i18n="projects.faro.detail.flow4">El camino hasta la página no lo inventa el modelo: sale de la API REST del sitio, con tu sesión y solo GET.</li>
+      <li data-i18n="projects.faro.detail.flow5">La respuesta trae identificadores, no URLs: el panel los valida contra el índice y el content script despliega el árbol, navega una vez y subraya.</li>
+    </ol>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.results">Resultados</h3>
+    <div class="pdoc__content">
+      <ul class="bullets">
+        <li data-i18n="projects.faro.detail.result1">1 283 pruebas unitarias en un arnés propio sin dependencias, más integración contra un opencode real y un banco visual.</li>
+        <li data-i18n="projects.faro.detail.result2">Los prompts de 37 escenarios se comparan byte a byte con sus instantáneas: ningún cambio pasa sin verse.</li>
+        <li data-i18n="projects.faro.detail.result3">Un test de contraste WCAG 2.1 para cada pareja de colores y un paso que falla si la documentación se aleja del código.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pdoc__section">
+    <h3 class="heading-lg" data-i18n="projects.detail.learned">Qué aprendí</h3>
+    <div class="pdoc__content">
+      <p class="pdoc__quote" data-i18n="projects.faro.detail.learned">Que con IA el cuello de botella ya no es escribir código, sino especificar y verificar. Funcionó tratar cada decisión como un contrato escrito y no fiarse de lo que afirma el modelo: el camino, las anclas y los enlaces los decide un script.</p>
+    </div>
+  </section>
+
+  <footer class="pdoc__footer">
+    <button type="button" class="btn btn--secondary pdoc__back" data-pdialog-close><span class="pdoc__back-arrow" aria-hidden="true">←</span><span data-i18n="projects.detail.back">Volver</span></button>
+    <span class="badge" data-i18n="projects.private_note">Proyecto privado · sin repositorio público</span>
+  </footer>
+</article>

@@ -1,0 +1,11 @@
+<svg class="house__art" viewBox="0 0 220 200" width="242" height="220" aria-hidden="true" focusable="false" overflow="visible">
+  <rect class="house__back-wall" x="20" y="90" width="180" height="110" fill="var(--tile-2,#1a2030)"/>
+  <!-- door interior: dark at the top, tile-1 at the floor (stepped bands, no gradient ids) -->
+  <path class="house__door" d="M120,200 V135 a40,40 0 0 1 80,0 V200 Z" fill="var(--tile-1,#131822)"/>
+  <path d="M120,152 V135 a40,40 0 0 1 80,0 V152 Z" fill="#0b0e15"/>
+  <rect x="120" y="150" width="80" height="16" fill="#0b0e15" opacity=".8"/>
+  <rect x="120" y="165" width="80" height="14" fill="#0b0e15" opacity=".55"/>
+  <rect x="120" y="178" width="80" height="12" fill="#0b0e15" opacity=".3"/>
+  <ellipse class="house__glow" cx="160" cy="185" rx="34" ry="10" fill="var(--action,#2997ff)" opacity=".35"/>
+  <g class="house__eyes" opacity="0"><circle cx="150" cy="150" r="4" fill="var(--action,#2997ff)"/><circle cx="170" cy="150" r="4" fill="var(--action,#2997ff)"/></g>
+</svg>
