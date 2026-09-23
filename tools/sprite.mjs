@@ -11,7 +11,8 @@ export const SLUGS = [
   'javascript', 'html5', 'css', 'react', 'expo', 'tailwindcss', 'bootstrap',
   'keras', 'tensorflow', 'kaggle', 'googlecloud',
   'git', 'github', 'openapiinitiative', 'jira', 'confluence', 'trello', 'unity', 'telegram',
-  'googlechrome', 'opencode', 'modelcontextprotocol', 'nodedotjs'
+  'googlechrome', 'opencode', 'modelcontextprotocol', 'nodedotjs',
+  'githubactions', 'gitlab', 'docker', 'kubernetes', 'claude', 'githubcopilot', 'googlebigquery', 'pandas', 'gnubash', 'jsonwebtokens', 'openbao'
 ];
 
 const missing = [];
