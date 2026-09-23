@@ -463,11 +463,16 @@
   /* ---------- proyectos ---------- */
   .projects__subtitle { margin-top: 12px; max-width: 40ch; }
   .projects__grid { display: grid; gap: 24px; margin-top: 40px; }
-  .projects__grid .card:nth-child(even) { background: var(--tile-3); }
+  /* la alternancia se cuenta solo entre las tarjetas normales, para que no dependa de cuántas destacadas haya delante */
+  .projects__grid .card:nth-child(even of :not(.card--featured)) { background: var(--tile-3); }
   .projects__grid .card.card--featured { background: var(--tile-black); }
   .projects__more { margin-top: 32px; }
   .card__kicker { color: var(--action); }
   .card__facts { font-size: 13px; color: var(--mute); letter-spacing: .02em; }
+  /* títulos muy largos (el del artículo): algo más pequeños en móvil y con líneas equilibradas */
+  .card__title--long { font-size: clamp(24px, 6.4vw, 30px); text-wrap: balance; }
+  /* si una pastilla de estado no cabe en una pantalla muy estrecha, crece en alto en vez de desbordarse */
+  .card__actions .badge { height: auto; min-height: 24px; padding-block: 4px; line-height: 1.3; }
   .method { margin-top: 56px; }
   .method__list { list-style: none; display: grid; gap: 12px; margin-top: 24px; }
   .method__item { display: grid; grid-template-columns: 52px 1fr; gap: 14px; align-items: start; padding: 16px; border: 1px solid var(--hairline); border-radius: var(--radius-card); background: var(--tile-1); }
@@ -479,6 +484,9 @@
     .card--featured { grid-column: 1 / -1; display: grid; grid-template-columns: 1.1fr 0.9fr; background: var(--tile-black); }
     .projects__grid .card--featured + .card--featured { grid-template-columns: 0.9fr 1.1fr; }
     .projects__grid .card--featured + .card--featured .card__media { order: 1; border-right: 0; border-left: 1px solid var(--hairline); }
+    /* la tercera destacada (el artículo) vuelve a llevar la media a la izquierda: izquierda, derecha, izquierda */
+    .projects__grid .card--featured + .card--featured + .card--featured { grid-template-columns: 1.1fr 0.9fr; }
+    .projects__grid .card--featured + .card--featured + .card--featured .card__media { order: 0; border-left: 0; border-right: 1px solid var(--hairline); }
     .card--featured .card__media { aspect-ratio: auto; min-height: 320px; border-bottom: 0; border-right: 1px solid var(--hairline); }
     .card--featured .card__body { padding: 40px; justify-content: center; }
   }
@@ -751,9 +759,11 @@
   @keyframes faro-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
 
   /* lampara y escritorio del hero (src/partials/desk.svg + src/js/lamp.js): Marco de espaldas bajo su retrato.
-     El hueco se reserva con aspect-ratio antes de estampar el SVG (sin CLS). Apagada, .desk__room queda en
-     penumbra (la opacidad del grupo hace de velo sin oscurecer el fondo) y la cadena se balancea; .is-lit
-     enciende cono, monitor y bucles. La cadena real es #lamp-pull, un boton de 44 px encima del dibujo. */
+     El hueco se reserva con aspect-ratio antes de estampar el SVG (sin CLS). Apagada, Marco programa a oscuras:
+     el monitor es la unica luz (halo y brillo frio estaticos; .desk__room en penumbra, la opacidad del grupo hace
+     de velo sin oscurecer el fondo; Marco en sombra con borde azul) y la cadena se balancea. .is-lit enciende la
+     lampara y data-pose (typing > turn > reach > hold) encadena la pausa: gira la cabeza, coge la taza y la
+     levanta. La cadena real es #lamp-pull, un boton de 44 px encima del dibujo. */
   .hero__desk { position: relative; grid-area: 2 / 1; width: min(calc(var(--hero-w, 250px) * 1.04), 100%); aspect-ratio: 1000 / 440; }
   .hero__desk-art {
     position: absolute; inset: 0; pointer-events: none;
@@ -776,17 +786,24 @@
   }
   .hero__desk-hint:not([hidden]) { animation: desk-hint 420ms var(--ease-out) both, hint-pulse 900ms var(--ease-out) 700ms 2; }
 
-  .desk__art :is(.desk__cord, .desk__cord-pull, .desk__head, .desk__head-rim, .desk__hand, .desk__line, .desk__steam path) { transform-box: view-box; }
-  .desk__room, .desk__rimlight, .desk__screen-on, .desk__halo, .desk__light, .desk__warm, .desk__inner-on, .desk__inner-off,
-  .desk__bulb-on, .desk__bulb-off, .desk__bulb-glow { transition: opacity 300ms var(--ease-out); }
-  .desk__room { opacity: 0.3; }
-  .desk__rimlight { opacity: 0.5; }
-  .desk__screen-on, .desk__halo, .desk__light, .desk__warm, .desk__inner-on, .desk__bulb-on, .desk__bulb-glow, .desk__steam path { opacity: 0; }
+  .desk__art :is(.desk__cord, .desk__cord-pull, .desk__head, .desk__head-back, .desk__arm, .desk__fore, .desk__hand, .desk__mug,
+    .desk__mug-shadow, .desk__line, .desk__cursor, .desk__steam path) { transform-box: view-box; }
+  /* luz: a oscuras solo alumbra el monitor; con la lampara, cono calido y la escena entera (la pantalla sigue encendida) */
+  .desk__room, .desk__halo, .desk__glow, .desk__shade, .desk__rim, .desk__light, .desk__warm, .desk__steam, .desk__inner-on,
+  .desk__inner-off, .desk__bulb-on, .desk__bulb-off, .desk__bulb-glow { transition: opacity 300ms var(--ease-out); }
+  .desk__room { opacity: 0.34; }
+  .desk__room--front { opacity: 0.5; }
+  .desk__shade { opacity: 0.62; }
+  .desk__light, .desk__warm, .desk__steam, .desk__inner-on, .desk__bulb-on, .desk__bulb-glow { opacity: 0; }
   .desk__bead { transition: fill var(--dur-fast); }
   .hero__desk:has(.hero__pull:is(:hover, :focus-visible)) .desk__bead { fill: #f5f7fa; }
   .hero__desk.is-lit .desk__room { opacity: 1; }
-  .hero__desk.is-lit .desk__rimlight { opacity: 0.8; }
-  .hero__desk.is-lit :is(.desk__screen-on, .desk__halo, .desk__light, .desk__inner-on, .desk__bulb-on, .desk__bulb-glow) { opacity: 1; }
+  .hero__desk.is-lit .desk__halo { opacity: 0.55; }
+  .hero__desk.is-lit .desk__glow { opacity: 0.3; }
+  .hero__desk.is-lit .desk__shade { opacity: 0; }
+  .hero__desk.is-lit .desk__rim { opacity: 0.35; }
+  .hero__desk.is-lit .desk__rim--dark { opacity: 0; }
+  .hero__desk.is-lit :is(.desk__light, .desk__steam, .desk__inner-on, .desk__bulb-on, .desk__bulb-glow) { opacity: 1; }
   .hero__desk.is-lit .desk__warm { opacity: 0.7; }
   .hero__desk.is-lit :is(.desk__inner-off, .desk__bulb-off) { opacity: 0; }
   /* luz calida muy suave en la parte baja del retrato */
@@ -797,23 +814,54 @@
   }
   .hero__media:has(.hero__desk.is-lit) .hero__disc::after { opacity: 1; }
 
-  /* bucles: la cadena invita a tirar mientras esta apagada; encendida, Marco teclea */
+  /* bucles: a oscuras la cadena invita a tirar y Marco programa (codigo, cursor, manos, cabeza). En la pausa se
+     congelan donde estaban (paused y no none: al apagar, el codigo sigue por donde iba) y solo parpadea el cursor.
+     El codigo arranca a mitad de ciclo para que la pantalla nunca se vea vacia al llegar. */
   .hero__desk:not(.is-lit) .desk__cord { animation: desk-swing 2.2s ease-in-out -1.1s infinite alternate; }
-  .hero__desk.is-lit :is(.desk__head, .desk__head-rim) { animation: desk-head 3.6s ease-in-out infinite alternate; }
-  .hero__desk.is-lit .desk__hand--l { animation: desk-type-l 1.3s linear infinite; }
-  .hero__desk.is-lit .desk__hand--r { animation: desk-type-r 1.1s linear infinite; }
-  .hero__desk.is-lit .desk__steam path { animation: desk-steam 3s ease-in-out infinite; }
-  .hero__desk.is-lit .desk__steam path:nth-child(2) { animation-delay: -1s; }
-  .hero__desk.is-lit .desk__steam path:nth-child(3) { animation-delay: -2s; }
-  .hero__desk.is-lit .desk__line--1 { animation: desk-code-1 8s linear infinite; }
-  .hero__desk.is-lit .desk__line--2 { animation: desk-code-2 8s linear infinite; }
-  .hero__desk.is-lit .desk__line--3 { animation: desk-code-3 8s linear infinite; }
-  .hero__desk.is-lit .desk__line--4 { animation: desk-code-4 8s linear infinite; }
-  .hero__desk.is-lit .desk__line--5 { animation: desk-code-5 8s linear infinite; }
-  .hero__desk.is-lit .desk__line--6 { animation: desk-code-6 8s linear infinite; }
-  .hero__desk.is-lit .desk__line--7 { animation: desk-code-7 8s linear infinite; }
-  .hero__desk.is-lit .desk__line--8 { animation: desk-code-8 8s linear infinite; }
+  .desk__head-back { animation: desk-head 3.6s ease-in-out infinite alternate; }
+  .desk__hand--l { animation: desk-type-l 1.3s linear infinite; }
+  .desk__hand--r { animation: desk-type-r 1.1s linear infinite; }
+  .desk__line--1 { animation: desk-code-1 8s linear -2.6s infinite; }
+  .desk__line--2 { animation: desk-code-2 8s linear -2.6s infinite; }
+  .desk__line--3 { animation: desk-code-3 8s linear -2.6s infinite; }
+  .desk__line--4 { animation: desk-code-4 8s linear -2.6s infinite; }
+  .desk__line--5 { animation: desk-code-5 8s linear -2.6s infinite; }
+  .desk__line--6 { animation: desk-code-6 8s linear -2.6s infinite; }
+  .desk__line--7 { animation: desk-code-7 8s linear -2.6s infinite; }
+  .desk__line--8 { animation: desk-code-8 8s linear -2.6s infinite; }
+  .desk__cursor { animation: desk-cursor 8s linear -2.6s infinite; }
+  .desk__cursor-bar { animation: desk-blink 1.1s steps(1, end) infinite; }
+  .desk__steam path { animation: desk-steam 3s ease-in-out infinite; }
+  .desk__steam path:nth-child(2) { animation-delay: -1s; }
+  .desk__steam path:nth-child(3) { animation-delay: -2s; }
+  .hero__desk:is([data-pose="turn"], [data-pose="reach"], [data-pose="hold"]) :is(.desk__head-back, .desk__hand, .desk__line, .desk__cursor) { animation-play-state: paused; }
+  .hero__desk:not(.is-lit) .desk__steam path { animation-play-state: paused; }
   .hero__desk.is-offscreen *, .hero__desk.is-hidden * { animation-play-state: paused !important; }
+
+  /* la pausa (data-pose, la encadena lamp.js): gira la cabeza (400 ms) > el brazo va a la taza (450 ms) > la
+     levanta (280 ms). Los tiempos los marca la regla de la pose de destino, asi la vuelta usa los mismos. La
+     cabeza cruza sus dos versiones en ~100 ms y la que llega entra antes de que se vaya la otra. */
+  .desk__head { transform: translate(0, 0) rotate(0deg); transition: transform 400ms cubic-bezier(.3, .7, .25, 1); }
+  .desk__head-back { transition: opacity 150ms linear; }
+  /* la version girada entra deslizandose hacia la derecha: la oreja y la nariz "giran" con la cabeza */
+  .desk__head-turned { opacity: 0; transform: translate(-7px, 0); transition: opacity 120ms linear 150ms, transform 400ms cubic-bezier(.3, .7, .25, 1); }
+  .desk__arm, .desk__mug { transform: translate(0, 0) rotate(0deg); }
+  .desk__fore { transform: rotate(0deg); }
+  .desk__arm, .desk__fore, .desk__mug, .desk__mug-shadow { transition: transform 450ms cubic-bezier(.45, .05, .25, 1), opacity 450ms var(--ease-out); }
+  .hero__desk:is([data-pose="turn"], [data-pose="reach"], [data-pose="hold"]) .desk__head { transform: translate(3px, -2px) rotate(-4deg); }
+  .hero__desk:is([data-pose="turn"], [data-pose="reach"], [data-pose="hold"]) .desk__head-back { opacity: 0; transition-delay: 90ms; }
+  .hero__desk:is([data-pose="turn"], [data-pose="reach"], [data-pose="hold"]) .desk__head-turned { opacity: 1; transform: translate(0, 0); transition-duration: 100ms, 400ms; transition-delay: 0ms; }
+  /* hombro y codo llevan la mano al asa (661,327); para levantar la taza 10 u el brazo sube girando, sin
+     trasladarse, para que la manga no asome por encima del hombro */
+  .hero__desk:is([data-pose="reach"], [data-pose="hold"]) .desk__arm { transform: translate(0, 0) rotate(-30deg); }
+  .hero__desk:is([data-pose="reach"], [data-pose="hold"]) .desk__fore { transform: rotate(65deg); }
+  .hero__desk[data-pose="hold"] :is(.desk__arm, .desk__fore, .desk__mug, .desk__mug-shadow) { transition-duration: 280ms; }
+  .hero__desk[data-pose="hold"] .desk__arm { transform: translate(0, 0) rotate(-38deg); }
+  .hero__desk[data-pose="hold"] .desk__fore { transform: rotate(69.7deg); }
+  .hero__desk[data-pose="hold"] .desk__mug { transform: translate(0, -10px) rotate(-6deg); }
+  .hero__desk[data-pose="hold"] .desk__mug-shadow { transform: scale(0.8); opacity: 0.16; }
+  /* salto sin transicion (?lamp=on, o al llamar a toggle() desde fuera) */
+  .hero__desk.is-snap :is(.desk__head, .desk__head-back, .desk__head-turned, .desk__arm, .desk__fore, .desk__mug, .desk__mug-shadow) { transition: none !important; }
 
   @keyframes desk-in { from { opacity: 0; } }
   @keyframes desk-hint { from { opacity: 0; transform: translateY(4px); } }
@@ -837,6 +885,27 @@
   @keyframes desk-code-6 { 0%, 41.5% { transform: scaleX(0); opacity: 1; animation-timing-function: steps(6, end); } 47%, 88% { transform: scaleX(1); opacity: 1; } 93%, 100% { transform: scaleX(1); opacity: 0; } }
   @keyframes desk-code-7 { 0%, 49% { transform: scaleX(0); opacity: 1; animation-timing-function: steps(8, end); } 54.5%, 88% { transform: scaleX(1); opacity: 1; } 93%, 100% { transform: scaleX(1); opacity: 0; } }
   @keyframes desk-code-8 { 0%, 56.5% { transform: scaleX(0); opacity: 1; animation-timing-function: steps(6, end); } 62%, 88% { transform: scaleX(1); opacity: 1; } 93%, 100% { transform: scaleX(1); opacity: 0; } }
+  /* el cursor recorre cada linea con sus mismos pasos y salta a la siguiente; en reposo queda al final de la ultima */
+  @keyframes desk-cursor {
+    0%, 4% { transform: translate(-276px, -105px); animation-timing-function: steps(5, end); }
+    9.5% { transform: translate(-120px, -105px); animation-timing-function: steps(1, end); }
+    11.5% { transform: translate(-254px, -90px); animation-timing-function: steps(6, end); }
+    17% { transform: translate(-22px, -90px); animation-timing-function: steps(1, end); }
+    19% { transform: translate(-254px, -75px); animation-timing-function: steps(5, end); }
+    24.5% { transform: translate(-66px, -75px); animation-timing-function: steps(1, end); }
+    26.5% { transform: translate(-232px, -60px); animation-timing-function: steps(7, end); }
+    32% { transform: translate(24px, -60px); animation-timing-function: steps(1, end); }
+    34% { transform: translate(-232px, -45px); animation-timing-function: steps(6, end); }
+    39.5% { transform: translate(2px, -45px); animation-timing-function: steps(1, end); }
+    41.5% { transform: translate(-210px, -30px); animation-timing-function: steps(6, end); }
+    47% { transform: translate(20px, -30px); animation-timing-function: steps(1, end); }
+    49% { transform: translate(-254px, -15px); animation-timing-function: steps(8, end); }
+    54.5% { transform: translate(-4px, -15px); animation-timing-function: steps(1, end); }
+    56.5% { transform: translate(-254px, 0); animation-timing-function: steps(6, end); }
+    62% { transform: translate(0, 0); animation-timing-function: steps(1, end); }
+    93%, 100% { transform: translate(-276px, -105px); }
+  }
+  @keyframes desk-blink { 50% { opacity: 0; } }
 
   /* [css:lava] lampara de lava: ocupa las celdas que sobran en la ultima fila de Habilidades.
      El SVG va en absoluto para no empujar la fila: la altura la marca la tarjeta vecina (o el min-height). */
@@ -902,9 +971,13 @@
     overflow: hidden; overscroll-behavior: contain;
   }
   .pdialog[open] { display: flex; align-items: flex-start; justify-content: center; }
+  /* velo sin backdrop-filter: un desenfoque a pantalla completa se recalcula en cada frame de scroll del panel
+     (el daño dentro de un backdrop-filter se extiende a toda su caja) y en un portátil con GPU integrada
+     hunde el scroll a ~30 fps. La profundidad la dan el viñeteado y el halo azul, que se pintan una vez. */
   .pdialog::backdrop {
-    background: rgba(2, 4, 8, 0.65);
-    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    background:
+      radial-gradient(60% 50% at 50% 38%, rgba(41, 151, 255, 0.06), transparent 72%),
+      radial-gradient(130% 100% at 50% 42%, rgba(7, 10, 17, 0.9) 0%, rgba(4, 6, 11, 0.92) 58%, rgba(1, 2, 5, 0.97) 100%);
     transition: opacity var(--dur-base) var(--ease-out);
   }
   @starting-style { .pdialog[open]::backdrop { opacity: 0; } }
@@ -912,6 +985,11 @@
   /* sin scroll de fondo y sin salto: el hueco de la barra se reserva mientras está abierto */
   html.pdialog-open { overflow: hidden; scrollbar-gutter: stable; }
   html:has(.pdialog[open]) { overflow: hidden; scrollbar-gutter: stable; } /* aparte: sin :has() no se cae la de arriba */
+  /* la página queda quieta detrás del velo mientras se lee la ficha: projects.js pone html.dialog-open cuando
+     el panel termina de entrar (el recálculo de estilos no cae en la animación) y la quita al cerrar del todo */
+  html.dialog-open :is(#main, footer, #play, #dog-peek) *,
+  html.dialog-open :is(#main, footer, #play, #dog-peek) *::before,
+  html.dialog-open :is(#main, footer, #play, #dog-peek) *::after { animation-play-state: paused !important; }
 
   .pdialog__panel {
     position: relative; display: flex; flex-direction: column;
@@ -929,15 +1007,18 @@
   }
   .pdialog__close:hover { background: var(--surface-elevated); color: var(--ink); }
   .pdialog__close:focus-visible { outline-offset: -3px; border-radius: 12px; }
+  /* fondo opaco (el mismo del panel): con él Chrome compone el scroll aunque la pantalla no llegue a 1,5x
+     (portátil al 125 %) sin perder el suavizado de texto; sin él repinta y rasteriza el panel en cada frame */
   .pdialog__body {
     flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
     scrollbar-width: thin; scrollbar-color: var(--surface-elevated) transparent;
+    background-color: var(--tile-1);
     container: pdoc / inline-size;
   }
   .pdialog__body:focus { outline: none; }
   @media (hover: none) { .pdialog__esc { display: none; } }
   @media (max-width: 767px) {
-    .pdialog::backdrop { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(2, 4, 8, 0.8); }
+    .pdialog::backdrop { background: rgba(2, 4, 8, 0.8); }
     .pdialog__panel {
       width: 100%; height: calc(100vh - 10px); height: calc(100dvh - 10px); max-height: none; margin: 10px 0 0;
       border-bottom: 0; border-radius: var(--radius-card) var(--radius-card) 0 0;

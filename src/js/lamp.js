@@ -1,8 +1,12 @@
 // lamp.js: la lampara del hero. La cadena es un <button> real colocado sobre el dibujo del escritorio
-// (src/partials/desk.svg): al tirar, la cadena baja y vuelve (WAAPI) y la escena pasa de la penumbra a
-// encendida (cono calido, monitor con codigo, manos tecleando). Maquina de estados en data-lamp:
-// off -> pulling -> on -> pulling -> off. La clase .is-lit gobierna el aspecto (cambia en el fondo del
-// tiron, como el clic de un interruptor). No se guarda: cada visita empieza apagada.
+// (src/partials/desk.svg). A oscuras Marco programa: el monitor es la unica luz, el codigo se va escribiendo y
+// las manos teclean. Al tirar, la cadena baja y vuelve (WAAPI), la lampara se enciende en el fondo del tiron
+// (.is-lit, como el clic de un interruptor) y Marco hace una pausa encadenada en data-pose:
+// typing -> turn (gira la cabeza hacia la lampara) -> reach (el brazo va a la taza) -> hold (la levanta).
+// Otro tiron apaga y deshace la pausa en orden inverso hasta volver a programar. Cada paso espera a que acaben
+// las transiciones CSS que lanza (getAnimations + finished), asi que un tiron a mitad invierte desde donde este.
+// Con prefers-reduced-motion las dos poses cambian de golpe. Maquina de estados en data-lamp:
+// off -> pulling -> on -> pulling -> off. No se guarda: cada visita empieza a oscuras.
 
 const EASE_IN = 'cubic-bezier(.4,0,1,1)';
 const EASE_OUT = 'cubic-bezier(.2,.7,.2,1)';
@@ -11,10 +15,14 @@ const PULL_PX = 13; // lo que baja la cadena en pantalla
 const PULL_MAX_UNITS = 42; // tope en unidades del viewBox (en movil la cadena es corta)
 const HINT_DELAY = 1800;
 const HINT_KEY = 'play.lamp.hint';
+const POSES = ['typing', 'turn', 'reach', 'hold'];
+const STEP_MS = { typing: 400, turn: 450, reach: 450, hold: 280 }; // respaldo si no hay getAnimations (igual que el CSS)
+const REACT_MS = 90; // lo que tarda Marco en darse cuenta de que ha cambiado la luz
 
 function storage(kind) {
   try { return window[kind]; } catch { return null; }
 }
+const sleep = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
 
 export function initLamp(root, { i18n } = {}) {
   if (!root) return null;
@@ -36,6 +44,9 @@ export function initLamp(root, { i18n } = {}) {
   let settling = null;
   let hintTimer = 0;
   let hintIO = null;
+  let poseIdx = 0;
+  let choreo = 0; // generacion de la coreografia: un tiron nuevo deja obsoleta la que estuviera en curso
+  let snapFrame = 0;
 
   // ---------- estado visible ----------
   function syncLabel() {
@@ -60,6 +71,37 @@ export function initLamp(root, { i18n } = {}) {
     running.push(anim);
     anim.finished.then(() => { running = running.filter((a) => a !== anim); }, () => {});
     return anim;
+  }
+
+  // ---------- la pausa: poses encadenadas (el CSS define cada pose y sus tiempos) ----------
+  function setPose(i) {
+    poseIdx = i;
+    root.dataset.pose = POSES[i];
+  }
+  // espera a las transiciones CSS en curso del dibujo (getAnimations recalcula antes los estilos); las
+  // interrumpidas por un tiron nuevo tambien cuentan como acabadas
+  function transitionsDone(pose) {
+    if (typeof svg.getAnimations !== 'function') return sleep(STEP_MS[pose]);
+    const list = svg.getAnimations({ subtree: true }).filter((a) => typeof a.transitionProperty === 'string');
+    return Promise.allSettled(list.map((a) => a.finished));
+  }
+  async function choreograph(toLit) {
+    const my = ++choreo;
+    const target = toLit ? POSES.length - 1 : 0;
+    await sleep(REACT_MS);
+    while (my === choreo && poseIdx !== target) {
+      setPose(poseIdx + (target > poseIdx ? 1 : -1));
+      await transitionsDone(POSES[poseIdx]);
+    }
+  }
+  // cambio de pose sin transiciones (arranque, ?lamp=on, reduced motion)
+  function snapPose(i) {
+    choreo++;
+    cancelAnimationFrame(snapFrame);
+    root.classList.add('is-snap');
+    setPose(i);
+    void getComputedStyle(svg.querySelector('.desk__head') || svg).transform; // aplica la pose ya, con .is-snap puesto
+    snapFrame = requestAnimationFrame(() => root.classList.remove('is-snap'));
   }
 
   // ---------- tiron ----------
@@ -95,6 +137,7 @@ export function initLamp(root, { i18n } = {}) {
       ));
       await down.finished;
       setLit(target); // el clic: la luz cambia en el fondo del recorrido
+      choreograph(target); // y Marco reacciona: pausa con la taza, o vuelta al teclado
       const up = track(pullPart.animate(
         [{ transform: `translateY(${dy}px)` }, { transform: 'translateY(0px)' }],
         { duration: 140, easing: EASE_OUT },
@@ -111,6 +154,7 @@ export function initLamp(root, { i18n } = {}) {
   function toggle(on = !lit) {
     stopAnimations();
     setLit(Boolean(on));
+    snapPose(lit ? POSES.length - 1 : 0);
     setState(lit ? 'on' : 'off');
     return state;
   }
@@ -152,10 +196,13 @@ export function initLamp(root, { i18n } = {}) {
   return {
     get state() { return state; },
     get lit() { return lit; },
+    get pose() { return POSES[poseIdx]; },
     toggle,
     pull,
     destroy() {
       stopAnimations();
+      choreo++;
+      cancelAnimationFrame(snapFrame);
       hideHint();
       btn.removeEventListener('click', onClick);
       document.removeEventListener('mtc:lang', onLang);

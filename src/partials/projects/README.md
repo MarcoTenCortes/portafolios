@@ -6,7 +6,8 @@ solo van los fragmentos de contenido, uno por proyecto, cargados bajo demanda co
 `import.meta.glob('../partials/projects/*.html', { query: '?raw' })` (cada uno es un chunk). No hay que registrar
 nada: basta con crear el fichero con el nombre del `data-project` de su tarjeta.
 
-Ids de las tarjetas, en el orden del HTML: `faro`, `simpl`, `qa`, `tfg`, `cinema`, `nakoa`, `telegram`, `tareas`.
+Ids de las tarjetas, en el orden del HTML: `faro`, `simpl`, `paper`, `qa`, `tfg`, `cinema`, `nakoa`, `telegram`, `tareas`
+(las tres primeras son destacadas).
 Si falta el fichero, el sistema no abre nada y enseña el aviso `projects.detail.missing`.
 
 Referencia completa: `faro.html` (dos diagramas, cifras, resultados) y `simpl.html` (diagrama, stack, enlaces).
@@ -56,6 +57,10 @@ Referencia completa: `faro.html` (dos diagramas, cifras, resultados) y `simpl.ht
 Secciones disponibles (usa solo las que tengan sentido, en este orden): Contexto (`projects.detail.context`), Qué
 hice (`.role`), Arquitectura (`.architecture`), Stack (`.stack`), Resultados (`.results`), Qué aprendí
 (`.learned`), Enlaces (`.links`).
+
+Ninguna sección es obligatoria, tampoco el diagrama: `paper.html` (un artículo que aún no se puede divulgar) solo
+lleva Contexto y una sección propia, Publicación (`projects.paper.detail.publication`), sin Arquitectura ni
+diagrama. Una sección propia lleva su título en `projects.<id>.detail.<nombre>`; el número lo sigue poniendo el CSS.
 
 Piezas de contenido que ya tienen estilo dentro de `.pdoc__content`:
 

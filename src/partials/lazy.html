@@ -160,6 +160,168 @@
 </svg>
 <!-- /partial:simpl-graph -->
 </template>
+<template data-for="paper-sheet">
+<!-- partial:paper-sheet -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <path id="paper-seal-ring" d="M0 -28.5A28.5 28.5 0 1 1 0 28.5A28.5 28.5 0 1 1 0 -28.5"/>
+    <clipPath id="paper-film"><rect x="355" y="56" width="204" height="104" rx="4"/></clipPath>
+    <radialGradient id="paper-glow" cx="457" cy="110" r="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="var(--action, #2997ff)" stop-opacity=".16"/>
+      <stop offset="1" stop-color="var(--action, #2997ff)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- sombras de las dos páginas -->
+  <g fill="var(--tile-black, #05070b)" opacity=".4">
+    <rect x="62" y="30" width="250" height="352" rx="5"/>
+    <rect x="336" y="30" width="250" height="352" rx="5"/>
+  </g>
+
+  <!-- página 1: título, autores, resumen y comienzo a dos columnas -->
+  <rect x="58" y="24" width="250" height="352" rx="5" fill="var(--surface-elevated, #222a3a)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <g fill="var(--ink, #f5f7fa)" font-size="12.5" font-weight="600" text-anchor="middle">
+    <text x="183" y="61">Evaluating the Incremental</text>
+    <text x="183" y="76.5">Contribution of Chest X-ray to</text>
+    <text x="183" y="92">24-Hour ICU Deterioration</text>
+    <text x="183" y="107.5">Prediction</text>
+  </g>
+  <g fill="var(--body, #c6cfdb)" font-size="8" text-anchor="middle">
+    <text x="183" y="127">Marco Tenorio Cortés, Andreea Madalina Oprescu,</text>
+    <text x="183" y="138">and María del Carmen Romero Ternero</text>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".32">
+    <rect x="124" y="147" width="118" height="3.5" rx="1.75"/>
+    <rect x="141" y="154" width="84" height="3.5" rx="1.75"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" font-size="7">
+    <text x="95" y="175" font-weight="700">Abstract.</text>
+    <text x="95" y="227" font-style="italic">Keywords:</text>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="130" y="171.5" width="141" height="3.5" rx="1.75"/>
+    <rect x="95" y="180" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="188.5" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="197" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="205.5" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="214" width="104" height="3.5" rx="1.75"/>
+    <rect x="134" y="223.5" width="112" height="3.5" rx="1.75"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".62">
+    <rect x="81" y="243" width="56" height="4.5" rx="2.25"/>
+    <rect x="189" y="311" width="64" height="4.5" rx="2.25"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="81" y="256" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="264.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="273" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="281.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="290" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="298.5" width="60" height="3.5" rx="1.75"/>
+    <rect x="87" y="307" width="90" height="3.5" rx="1.75"/>
+    <rect x="81" y="315.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="324" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="332.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="341" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="349.5" width="72" height="3.5" rx="1.75"/>
+    <rect x="189" y="243.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="252" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="260.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="269" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="277.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="286" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="294.5" width="42" height="3.5" rx="1.75"/>
+    <rect x="189" y="324" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="332.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="341" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="349.5" width="96" height="3.5" rx="1.75"/>
+  </g>
+
+  <!-- página 2: la figura con la radiografía y el texto a dos columnas -->
+  <rect x="332" y="24" width="250" height="352" rx="5" fill="var(--surface-elevated, #222a3a)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <g fill="var(--mute, #8e98a8)" font-size="7">
+    <text x="355" y="45">2</text>
+    <text x="367" y="45" font-style="italic">M. Tenorio Cortés et al.</text>
+  </g>
+  <rect x="355" y="56" width="204" height="104" rx="4" fill="var(--tile-black, #05070b)" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+  <rect x="355" y="56" width="204" height="104" rx="4" fill="url(#paper-glow)"/>
+  <text x="364" y="70" fill="var(--action, #2997ff)" opacity=".75" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="600">R</text>
+  <!-- radiografía de tórax: silueta, costillas, pulmones, corazón, tráquea y clavículas -->
+  <g fill="none" stroke="var(--action, #2997ff)" stroke-linecap="round" stroke-linejoin="round" clip-path="url(#paper-film)">
+    <path d="M448 56C448 64 446 68 438 70C422 73 407 77 401 89C396 99 398 128 402 162M466 56C466 64 468 68 476 70C492 73 507 77 513 89C518 99 516 128 512 162" stroke-width="1" opacity=".3"/>
+    <path d="M457 68V156" stroke-width="1" stroke-dasharray="2.6 2.2" opacity=".4"/>
+    <g stroke-width="1" opacity=".36">
+      <path d="M454 86C440 83 424 89 416 101"/>
+      <path d="M454 96C439 93 421 101 413 114"/>
+      <path d="M454 106C439 104 420 113 413 126"/>
+      <path d="M454 116C440 115 421 125 415 138"/>
+      <path d="M460 86C474 83 490 89 498 101"/>
+      <path d="M460 96C475 93 493 101 501 114"/>
+      <path d="M460 106C475 104 494 113 501 126"/>
+      <path d="M460 116C474 115 493 125 499 138"/>
+    </g>
+    <path d="M445 80C433 81 419 103 415 130C414 141 419 148 427 146C435 144 443 144 450 148C451 130 450 102 445 80Z" fill="var(--action, #2997ff)" fill-opacity=".1" stroke-width="1.4"/>
+    <path d="M469 80C481 81 495 103 499 130C500 141 495 148 487 146C482 145 478 146 474 148C470 139 471 127 466 119C465 105 466 91 469 80Z" fill="var(--action, #2997ff)" fill-opacity=".1" stroke-width="1.4"/>
+    <path d="M452 114C463 110 480 118 482 133C483 142 475 148 463 148C455 148 451 141 452 114Z" fill="var(--action, #2997ff)" fill-opacity=".22" stroke="none"/>
+    <path d="M457 64V89M457 89C454 92 451 94 447 96M457 89C460 92 463 94 467 96" stroke-width="1.5"/>
+    <path d="M454 78C446 79 436 74 424 74C419 74 415 75 411 77M460 78C468 79 478 74 490 74C495 74 499 75 503 77" stroke-width="1.4" opacity=".75"/>
+  </g>
+  <text x="355" y="175" fill="var(--body, #c6cfdb)" font-size="7" font-weight="700">Fig. 1.</text>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="382" y="171.5" width="177" height="3.5" rx="1.75"/>
+    <rect x="355" y="180" width="118" height="3.5" rx="1.75"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".62">
+    <rect x="463" y="276" width="60" height="4.5" rx="2.25"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="355" y="200" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="208.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="217" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="225.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="234" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="242.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="251" width="54" height="3.5" rx="1.75"/>
+    <rect x="361" y="259.5" width="90" height="3.5" rx="1.75"/>
+    <rect x="355" y="268" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="276.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="285" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="293.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="302" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="310.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="319" width="66" height="3.5" rx="1.75"/>
+    <rect x="361" y="327.5" width="90" height="3.5" rx="1.75"/>
+    <rect x="355" y="336" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="344.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="353" width="80" height="3.5" rx="1.75"/>
+    <rect x="463" y="200" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="208.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="217" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="225.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="234" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="242.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="251" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="259.5" width="38" height="3.5" rx="1.75"/>
+    <rect x="463" y="289" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="297.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="306" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="314.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="323" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="331.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="340" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="348.5" width="70" height="3.5" rx="1.75"/>
+  </g>
+
+  <!-- sello del congreso -->
+  <g transform="translate(572 326) rotate(-12)">
+    <circle r="38" fill="var(--tile-2, #1a2030)" fill-opacity=".92" stroke="var(--action, #2997ff)" stroke-width="1.5"/>
+    <circle r="23.5" fill="none" stroke="var(--action, #2997ff)" stroke-width=".9" opacity=".6"/>
+    <text fill="var(--action, #2997ff)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="7" font-weight="600" letter-spacing="1.2"><textPath href="#paper-seal-ring" textLength="178" lengthAdjust="spacing">CAEPIA 2026 · JAÉN · CAEPIA 2026 · JAÉN ·</textPath></text>
+    <text y="4.5" fill="var(--ink, #f5f7fa)" font-size="13" font-weight="600" text-anchor="middle">XXI</text>
+  </g>
+</svg>
+<!-- /partial:paper-sheet -->
+</template>
 <template data-for="qa-terminal">
 <!-- partial:qa-terminal -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Terminal con una suite de pruebas Cucumber para banca: 12 escenarios y 48 pasos superados" data-i18n-attr="aria-label:projects.qa.alt" font-family="ui-monospace, Menlo, Consolas, monospace">
@@ -714,6 +876,15 @@
       <stop offset=".55" stop-color="#2997ff" stop-opacity=".07"/>
       <stop offset="1" stop-color="#2997ff" stop-opacity="0"/>
     </radialGradient>
+    <radialGradient id="desk-glow-g">
+      <stop offset="0" stop-color="#6bb8ff" stop-opacity=".42"/>
+      <stop offset=".5" stop-color="#2997ff" stop-opacity=".15"/>
+      <stop offset="1" stop-color="#2997ff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="desk-rim-fade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6bb8ff"/>
+      <stop offset="1" stop-color="#6bb8ff" stop-opacity="0"/>
+    </linearGradient>
     <radialGradient id="desk-inner-g" cx=".45" cy=".4" r=".7">
       <stop offset="0" stop-color="#fff4d6"/>
       <stop offset=".55" stop-color="#ffd48e"/>
@@ -726,10 +897,11 @@
     </radialGradient>
   </defs>
 
-  <!-- todo lo que queda en penumbra con la lampara apagada (la opacidad del grupo hace de velo) -->
+  <!-- brillo azul del monitor en la pared: el monitor esta encendido en los dos estados -->
+  <ellipse class="desk__halo" cx="560" cy="150" rx="330" ry="190" fill="url(#desk-halo-g)"/>
+
+  <!-- lo que queda en penumbra con la lampara apagada (la opacidad del grupo hace de velo) -->
   <g class="desk__room">
-    <!-- brillo azul del monitor encendido -->
-    <ellipse class="desk__halo" cx="560" cy="150" rx="330" ry="190" fill="url(#desk-halo-g)"/>
 
     <!-- patas y mesa -->
     <g class="desk__table">
@@ -781,74 +953,56 @@
         <path d="M89 263 L89.4 272.8 L97 309.6 C111 310.6 127 310.8 143.4 309.2 L149.4 274" stroke-width="4"/>
       </g>
     </g>
+  </g>
 
-    <!-- taza con franja azul -->
-    <g class="desk__mug">
-      <ellipse cx="247" cy="345" rx="30" ry="4.5" fill="#000" opacity=".3"/>
-      <path d="M226 309 C210 308.4 207 333 227 331.6" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="8.5" stroke-linecap="round"/>
-      <path d="M226 309 C210 308.4 207 333 227 331.6" fill="none" stroke="var(--ill-cream,#f3eedb)" stroke-width="3.5" stroke-linecap="round"/>
-      <path d="M224.6 302 L266.4 302 L264.6 338 C264.6 345.4 226.4 345.4 226.4 338 Z" fill="var(--ill-cream,#f3eedb)"/>
-      <path d="M225.8 328 L265.2 328 L264.6 338 C264.6 345.4 226.4 345.4 226.4 338 Z" fill="#c7bfaf"/>
-      <path d="M225.1 312 L265.9 312 L265.5 319.5 L225.5 319.5 Z" fill="var(--action,#2997ff)"/>
-      <path d="M254 305 L256 336" fill="none" stroke="#fbfaf1" stroke-width="3" stroke-linecap="round"/>
-      <ellipse cx="245.5" cy="302" rx="21" ry="4.8" fill="#fbfaf1"/>
-      <ellipse cx="245.5" cy="302.6" rx="16.5" ry="3" fill="#6a3f26"/>
-      <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M224.4 302.4 C226 296.6 265 296.4 266.8 302.2 C265 307.4 227 307.8 224.4 302.4" stroke-width="3"/>
-        <path d="M224.4 302.6 L226.2 338.4 C226.8 346.2 264.2 346.2 264.8 338.2 L266.6 303" stroke-width="4"/>
+  <!-- monitor: encendido siempre. A oscuras es la unica luz de la escena y el codigo se va escribiendo;
+       con la lampara el codigo se queda quieto y solo parpadea el cursor -->
+  <g class="desk__monitor">
+    <path d="M498 312.6 C520 304.4 600 304.6 622 312.4 C624 319.4 496 319.6 498 312.6 Z" fill="#1a2030"/>
+    <path d="M512 309 C540 305.6 580 305.6 608 309" fill="none" stroke="#2e3850" stroke-width="3" stroke-linecap="round"/>
+    <path d="M546 260 L574 260 L578 309 L542 309 Z" fill="#131822"/>
+    <path d="M549 264 L546 306" fill="none" stroke="#2a3346" stroke-width="3" stroke-linecap="round"/>
+    <path d="M352 32 C480 30.6 640 31.6 768 32.4 C774 32.5 778.6 37 778.6 43 L779.4 250 C779.4 256 774.4 260.6 768.4 260.6 L352.6 261.4 C346.6 261.4 342 256.4 342 250.4 L341.2 43 C341.2 37 346 32 352 32 Z" fill="#131822"/>
+    <g class="desk__screen-on">
+      <path d="M357.6 46.2 L762.4 45.8 L762.6 244.6 L357.8 245.2 Z" fill="url(#desk-screen-g)"/>
+      <path d="M357.6 46.2 L762.4 45.8 L762.4 60 L357.6 60.2 Z" fill="#05070b" opacity=".4"/>
+      <g fill="#fff" opacity=".24"><circle cx="369" cy="53" r="3"/><circle cx="380" cy="53" r="3"/><circle cx="391" cy="53" r="3"/></g>
+      <rect x="406" y="48.6" width="64" height="9" rx="3" fill="#fff" opacity=".08"/>
+      <path d="M407 59.2 H469" fill="none" stroke="var(--action,#2997ff)" stroke-width="1.8"/>
+      <g fill="#3d4a66">
+        <rect x="366" y="71" width="12" height="6" rx="2"/><rect x="366" y="86" width="12" height="6" rx="2"/><rect x="366" y="101" width="12" height="6" rx="2"/>
+        <rect x="366" y="116" width="12" height="6" rx="2"/><rect x="366" y="131" width="12" height="6" rx="2"/><rect x="366" y="146" width="12" height="6" rx="2"/>
+        <rect x="366" y="161" width="12" height="6" rx="2"/><rect x="366" y="176" width="12" height="6" rx="2"/><rect x="366" y="191" width="12" height="6" rx="2"/>
+        <rect x="366" y="206" width="12" height="6" rx="2"/><rect x="366" y="221" width="12" height="6" rx="2"/>
       </g>
+      <g class="desk__code">
+        <g class="desk__line" style="transform-origin:392px 74px"><rect x="392" y="71" width="34" height="6.5" rx="3" fill="#6bb8ff"/><rect x="432" y="71" width="72" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="510" y="71" width="40" height="6.5" rx="3" fill="#8fd6a8"/></g>
+        <g class="desk__line" style="transform-origin:392px 89px"><rect x="392" y="86" width="34" height="6.5" rx="3" fill="#6bb8ff"/><rect x="432" y="86" width="56" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="494" y="86" width="64" height="6.5" rx="3" fill="#8fd6a8"/></g>
+        <g class="desk__line desk__line--1" style="transform-origin:392px 119px"><rect x="392" y="116" width="44" height="6.5" rx="3" fill="#6bb8ff"/><rect x="442" y="116" width="80" height="6.5" rx="3" fill="#f5c27a"/><rect x="528" y="116" width="20" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/></g>
+        <g class="desk__line desk__line--2" style="transform-origin:414px 134px"><rect x="414" y="131" width="30" height="6.5" rx="3" fill="#6bb8ff"/><rect x="450" y="131" width="60" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="516" y="131" width="130" height="6.5" rx="3" fill="#8fd6a8"/></g>
+        <g class="desk__line desk__line--3" style="transform-origin:414px 149px"><rect x="414" y="146" width="26" height="6.5" rx="3" fill="#6bb8ff"/><rect x="446" y="146" width="92" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="544" y="146" width="58" height="6.5" rx="3" fill="#f5c27a"/></g>
+        <g class="desk__line desk__line--4" style="transform-origin:436px 164px"><rect x="436" y="161" width="70" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="512" y="161" width="150" height="6.5" rx="3" fill="#8fd6a8"/><rect x="668" y="161" width="24" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/></g>
+        <g class="desk__line desk__line--5" style="transform-origin:436px 179px"><rect x="436" y="176" width="30" height="6.5" rx="3" fill="#6bb8ff"/><rect x="472" y="176" width="96" height="6.5" rx="3" fill="#f5c27a"/><rect x="574" y="176" width="36" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="616" y="176" width="54" height="6.5" rx="3" fill="#6bb8ff"/></g>
+        <g class="desk__line desk__line--6" style="transform-origin:458px 194px"><rect x="458" y="191" width="84" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="548" y="191" width="140" height="6.5" rx="3" fill="#8fd6a8"/></g>
+        <g class="desk__line desk__line--7" style="transform-origin:414px 209px"><rect x="414" y="206" width="250" height="6.5" rx="3" fill="#66707f"/></g>
+        <g class="desk__line desk__line--8" style="transform-origin:414px 224px"><rect x="414" y="221" width="26" height="6.5" rx="3" fill="#6bb8ff"/><rect x="446" y="221" width="120" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="572" y="221" width="96" height="6.5" rx="3" fill="#f5c27a"/></g>
+        <!-- cursor: sigue a la linea que se esta escribiendo (misma duracion y mismos saltos que las lineas) -->
+        <g class="desk__cursor"><rect class="desk__cursor-bar" x="671" y="219" width="4.6" height="10.5" rx="1.4" fill="#dfeaff"/></g>
+      </g>
+      <path d="M612 46 L668 46 L574 244 L518 244 Z" fill="#fff" opacity=".03"/>
     </g>
-    <g class="desk__steam" fill="none" stroke="#f5f7fa" stroke-width="4" stroke-linecap="round">
-      <path d="M238 290 C232 280 244 272 238 261 C234 253 240 247 238 241"/>
-      <path d="M252 291 C258 281 247 272 253 262 C257 254 251 248 253 243"/>
-      <path d="M245 286 C241 278 249 272 245 264"/>
+    <path d="M352.6 34.4 C480 33 640 34 766 34.8" fill="none" stroke="#2a3346" stroke-width="3" stroke-linecap="round"/>
+    <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M352 31.6 C480 30.2 640 31.2 768 32 C774.4 32.1 779 36.8 779 43 L779.8 250.2 C779.8 256.6 774.6 261 768.4 261 L600 261.4 M586 261.5 L352.6 261.8 C346.4 261.8 341.6 256.6 341.6 250.4 L340.8 43 C340.8 36.6 345.8 31.6 352 31.6" stroke-width="4.5"/>
+      <path d="M357.4 46 L762.6 45.6 L762.8 244.8 L357.6 245.4 Z" stroke-width="2.5"/>
+      <path d="M546 261.5 L542 309 M574 261.5 L578 309" stroke-width="3.5"/>
+      <path d="M497.6 312.8 C520 304 600 304.2 622.4 312.4 C624 320.2 496 320.4 497.6 312.8" stroke-width="3.5"/>
     </g>
+    <path class="desk__rim" d="M356 30.6 C480 29.2 640 30.2 764 31" fill="none" stroke="#6bb8ff" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
 
-    <!-- monitor -->
-    <g class="desk__monitor">
-      <path d="M498 312.6 C520 304.4 600 304.6 622 312.4 C624 319.4 496 319.6 498 312.6 Z" fill="#1a2030"/>
-      <path d="M512 309 C540 305.6 580 305.6 608 309" fill="none" stroke="#2e3850" stroke-width="3" stroke-linecap="round"/>
-      <path d="M546 260 L574 260 L578 309 L542 309 Z" fill="#131822"/>
-      <path d="M549 264 L546 306" fill="none" stroke="#2a3346" stroke-width="3" stroke-linecap="round"/>
-      <path d="M352 32 C480 30.6 640 31.6 768 32.4 C774 32.5 778.6 37 778.6 43 L779.4 250 C779.4 256 774.4 260.6 768.4 260.6 L352.6 261.4 C346.6 261.4 342 256.4 342 250.4 L341.2 43 C341.2 37 346 32 352 32 Z" fill="#131822"/>
-      <path d="M357.6 46.2 L762.4 45.8 L762.6 244.6 L357.8 245.2 Z" fill="#0a0f1c"/>
-      <path d="M380 58 L446 58 L396 232 L378 232 Z M456 58 L470 58 L418 232 L404 232 Z" fill="#fff" opacity=".035"/>
-      <g class="desk__screen-on">
-        <path d="M357.6 46.2 L762.4 45.8 L762.6 244.6 L357.8 245.2 Z" fill="url(#desk-screen-g)"/>
-        <path d="M357.6 46.2 L762.4 45.8 L762.4 60 L357.6 60.2 Z" fill="#05070b" opacity=".4"/>
-        <g fill="#fff" opacity=".24"><circle cx="369" cy="53" r="3"/><circle cx="380" cy="53" r="3"/><circle cx="391" cy="53" r="3"/></g>
-        <rect x="406" y="48.6" width="64" height="9" rx="3" fill="#fff" opacity=".08"/>
-        <path d="M407 59.2 H469" fill="none" stroke="var(--action,#2997ff)" stroke-width="1.8"/>
-        <g fill="#3d4a66">
-          <rect x="366" y="71" width="12" height="6" rx="2"/><rect x="366" y="86" width="12" height="6" rx="2"/><rect x="366" y="101" width="12" height="6" rx="2"/>
-          <rect x="366" y="116" width="12" height="6" rx="2"/><rect x="366" y="131" width="12" height="6" rx="2"/><rect x="366" y="146" width="12" height="6" rx="2"/>
-          <rect x="366" y="161" width="12" height="6" rx="2"/><rect x="366" y="176" width="12" height="6" rx="2"/><rect x="366" y="191" width="12" height="6" rx="2"/>
-          <rect x="366" y="206" width="12" height="6" rx="2"/><rect x="366" y="221" width="12" height="6" rx="2"/>
-        </g>
-        <g class="desk__code">
-          <g class="desk__line" style="transform-origin:392px 74px"><rect x="392" y="71" width="34" height="6.5" rx="3" fill="#6bb8ff"/><rect x="432" y="71" width="72" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="510" y="71" width="40" height="6.5" rx="3" fill="#8fd6a8"/></g>
-          <g class="desk__line" style="transform-origin:392px 89px"><rect x="392" y="86" width="34" height="6.5" rx="3" fill="#6bb8ff"/><rect x="432" y="86" width="56" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="494" y="86" width="64" height="6.5" rx="3" fill="#8fd6a8"/></g>
-          <g class="desk__line desk__line--1" style="transform-origin:392px 119px"><rect x="392" y="116" width="44" height="6.5" rx="3" fill="#6bb8ff"/><rect x="442" y="116" width="80" height="6.5" rx="3" fill="#f5c27a"/><rect x="528" y="116" width="20" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/></g>
-          <g class="desk__line desk__line--2" style="transform-origin:414px 134px"><rect x="414" y="131" width="30" height="6.5" rx="3" fill="#6bb8ff"/><rect x="450" y="131" width="60" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="516" y="131" width="130" height="6.5" rx="3" fill="#8fd6a8"/></g>
-          <g class="desk__line desk__line--3" style="transform-origin:414px 149px"><rect x="414" y="146" width="26" height="6.5" rx="3" fill="#6bb8ff"/><rect x="446" y="146" width="92" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="544" y="146" width="58" height="6.5" rx="3" fill="#f5c27a"/></g>
-          <g class="desk__line desk__line--4" style="transform-origin:436px 164px"><rect x="436" y="161" width="70" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="512" y="161" width="150" height="6.5" rx="3" fill="#8fd6a8"/><rect x="668" y="161" width="24" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/></g>
-          <g class="desk__line desk__line--5" style="transform-origin:436px 179px"><rect x="436" y="176" width="30" height="6.5" rx="3" fill="#6bb8ff"/><rect x="472" y="176" width="96" height="6.5" rx="3" fill="#f5c27a"/><rect x="574" y="176" width="36" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="616" y="176" width="54" height="6.5" rx="3" fill="#6bb8ff"/></g>
-          <g class="desk__line desk__line--6" style="transform-origin:458px 194px"><rect x="458" y="191" width="84" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="548" y="191" width="140" height="6.5" rx="3" fill="#8fd6a8"/></g>
-          <g class="desk__line desk__line--7" style="transform-origin:414px 209px"><rect x="414" y="206" width="250" height="6.5" rx="3" fill="#66707f"/></g>
-          <g class="desk__line desk__line--8" style="transform-origin:414px 224px"><rect x="414" y="221" width="26" height="6.5" rx="3" fill="#6bb8ff"/><rect x="446" y="221" width="120" height="6.5" rx="3" fill="#c6cfdb" opacity=".7"/><rect x="572" y="221" width="96" height="6.5" rx="3" fill="#f5c27a"/></g>
-        </g>
-        <path d="M612 46 L668 46 L574 244 L518 244 Z" fill="#fff" opacity=".03"/>
-      </g>
-      <path d="M352.6 34.4 C480 33 640 34 766 34.8" fill="none" stroke="#2a3346" stroke-width="3" stroke-linecap="round"/>
-      <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M352 31.6 C480 30.2 640 31.2 768 32 C774.4 32.1 779 36.8 779 43 L779.8 250.2 C779.8 256.6 774.6 261 768.4 261 L600 261.4 M586 261.5 L352.6 261.8 C346.4 261.8 341.6 256.6 341.6 250.4 L340.8 43 C340.8 36.6 345.8 31.6 352 31.6" stroke-width="4.5"/>
-        <path d="M357.4 46 L762.6 45.6 L762.8 244.8 L357.6 245.4 Z" stroke-width="2.5"/>
-        <path d="M546 261.5 L542 309 M574 261.5 L578 309" stroke-width="3.5"/>
-        <path d="M497.6 312.8 C520 304 600 304.2 622.4 312.4 C624 320.2 496 320.4 497.6 312.8" stroke-width="3.5"/>
-      </g>
-    </g>
-
-    <!-- teclado -->
+  <!-- teclado y taza, tambien en penumbra (el teclado algo menos: le da la pantalla) -->
+  <g class="desk__room desk__room--front">
     <g class="desk__keyboard">
       <path d="M318 318 C400 317 540 317.6 622 318 L634 342 C540 343 400 342.4 306 342 Z" fill="#222a3a"/>
       <g fill="none" stroke="#3a4764" stroke-width="3.4" stroke-dasharray="8 3.5">
@@ -858,63 +1012,98 @@
       <path d="M318 317.6 C400 316.6 540 317.2 622 317.6 L634.4 342.2 C540 343.4 400 342.8 305.6 342.4 Z" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linejoin="round"/>
     </g>
 
-    <!-- Marco de espaldas -->
-    <g class="desk__marco">
-      <!-- antebrazos y manos (por detras del torso) -->
-      <g class="desk__hand desk__hand--l" style="transform-origin:362px 404px">
-        <path d="M342 348 C337 368 340 392 352 412 L374 402 C364 386 360 366 360 348 Z" fill="#2c3037"/>
-        <path d="M333.4 341 C340 338.6 356 338.6 362.6 341.4 L361.4 351 C354.6 348.4 340.6 348.4 334 350.4 Z" fill="#17191d"/>
-        <path d="M330 329.6 C329.4 321.6 336.4 317.4 346.6 317.6 C356.8 317.8 364 322 363.8 330 C363.6 338 357.6 343 347 343 C336.4 343 330.6 337.8 330 329.6 Z" fill="#eecdb4"/>
-        <path d="M331.6 334 C336 340 358 340.6 362.6 334.6 C361 340.6 355 343 347 343 C338.6 343 333 339.6 331.6 334 Z" fill="#d8a98a"/>
+    <!-- taza con franja azul, a la derecha del teclado y bajo la lampara: la mano derecha la coge por el asa
+         (el pivote de .desk__mug es el asa, asi la taza se inclina sin despegarse de la mano) -->
+    <ellipse class="desk__mug-shadow" cx="692" cy="345" rx="30" ry="4.5" fill="#000" opacity=".3" style="transform-origin:692px 345px"/>
+    <g class="desk__mug" style="transform-origin:661px 327px">
+      <g transform="translate(446 0)">
+        <path d="M226 305.4 C203.6 304.4 200.4 337.6 227 335.6" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="8.5" stroke-linecap="round"/>
+        <path d="M226 305.4 C203.6 304.4 200.4 337.6 227 335.6" fill="none" stroke="var(--ill-cream,#f3eedb)" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M224.6 302 L266.4 302 L264.6 338 C264.6 345.4 226.4 345.4 226.4 338 Z" fill="var(--ill-cream,#f3eedb)"/>
+        <path d="M225.8 328 L265.2 328 L264.6 338 C264.6 345.4 226.4 345.4 226.4 338 Z" fill="#c7bfaf"/>
+        <path d="M225.1 312 L265.9 312 L265.5 319.5 L225.5 319.5 Z" fill="var(--action,#2997ff)"/>
+        <path d="M254 305 L256 336" fill="none" stroke="#fbfaf1" stroke-width="3" stroke-linecap="round"/>
+        <ellipse cx="245.5" cy="302" rx="21" ry="4.8" fill="#fbfaf1"/>
+        <ellipse cx="245.5" cy="302.6" rx="16.5" ry="3" fill="#6a3f26"/>
         <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M330 329.6 C329.4 321.6 336.4 317.4 346.6 317.6 C356.8 317.8 364 322 363.8 330 C363.6 338 357.6 343 347 343" stroke-width="3"/>
-          <path d="M336 322.4 C338 319.6 341 319.4 343 321.6 M344.6 320.6 C346.6 317.8 350 318 351.6 320.6 M353 321.8 C355 319.4 358 319.8 359.2 322.6" stroke-width="2"/>
-          <path d="M342 350 C337 370 340 392 352 411" stroke-width="3.5"/>
+          <path d="M224.4 302.4 C226 296.6 265 296.4 266.8 302.2 C265 307.4 227 307.8 224.4 302.4" stroke-width="3"/>
+          <path d="M224.4 302.6 L226.2 338.4 C226.8 346.2 264.2 346.2 264.8 338.2 L266.6 303" stroke-width="4"/>
+        </g>
+        <!-- vapor: solo con la luz encendida -->
+        <g class="desk__steam" fill="none" stroke="#f5f7fa" stroke-width="4" stroke-linecap="round">
+          <path d="M238 290 C232 280 244 272 238 261 C234 253 240 247 238 241"/>
+          <path d="M252 291 C258 281 247 272 253 262 C257 254 251 248 253 243"/>
+          <path d="M245 286 C241 278 249 272 245 264"/>
         </g>
       </g>
-      <g class="desk__hand desk__hand--r" style="transform-origin:578px 404px">
-        <path d="M598 348 C603 368 600 392 588 412 L566 402 C576 386 580 366 580 348 Z" fill="#2c3037"/>
-        <path d="M606.6 341 C600 338.6 584 338.6 577.4 341.4 L578.6 351 C585.4 348.4 599.4 348.4 606 350.4 Z" fill="#17191d"/>
-        <path d="M610 329.6 C610.6 321.6 603.6 317.4 593.4 317.6 C583.2 317.8 576 322 576.2 330 C576.4 338 582.4 343 593 343 C603.6 343 609.4 337.8 610 329.6 Z" fill="#eecdb4"/>
-        <path d="M608.4 334 C604 340 582 340.6 577.4 334.6 C579 340.6 585 343 593 343 C601.4 343 607 339.6 608.4 334 Z" fill="#d8a98a"/>
-        <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M610 329.6 C610.6 321.6 603.6 317.4 593.4 317.6 C583.2 317.8 576 322 576.2 330 C576.4 338 582.4 343 593 343" stroke-width="3"/>
-          <path d="M604 322.4 C602 319.6 599 319.4 597 321.6 M595.4 320.6 C593.4 317.8 590 318 588.4 320.6 M587 321.8 C585 319.4 582 319.8 580.8 322.6" stroke-width="2"/>
-          <path d="M598 350 C603 370 600 392 588 411" stroke-width="3.5"/>
-        </g>
-      </g>
+    </g>
+  </g>
 
-      <!-- cuello -->
-      <path d="M448 290 C448.6 300 447.4 310 446 320 L494 320 C492.8 310 491.8 300 492.4 290 Z" fill="#d9ab8c"/>
-      <path d="M449 292 C448.4 302 447.6 311 446.4 319 M491.6 292 C492 302 493 311 494 319" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+  <!-- luz fria del monitor sobre la mesa y el teclado (degradado estatico, sin filtros) -->
+  <ellipse class="desk__glow" cx="560" cy="328" rx="300" ry="38" fill="url(#desk-glow-g)"/>
 
-      <!-- torso con jersey oscuro -->
-      <path d="M430 314 C410 317 390 322 376 332 C362 342 356 360 352 384 C350 402 350 422 352 440 L588 440 C590 422 590 402 588 384 C584 360 578 342 564 332 C550 322 530 317 510 314 C494 326 446 326 430 314 Z" fill="var(--ill-dark,#23272d)"/>
-      <path d="M378 334 C392 322 414 317 432 316 C438 320 444 323 450 324.6 C424 327.6 398 335 382 347 Z" fill="#33373f"/>
-      <path d="M562 334 C548 322 526 317 508 316 C502 320 496 323 490 324.6 C516 327.6 542 335 558 347 Z" fill="#33373f"/>
-      <path d="M354 392 C352 410 352 426 353 440 L374 440 C372 420 372 404 374 386 Z" fill="#0f131c"/>
-      <path d="M586 392 C588 410 588 426 587 440 L566 440 C568 420 568 404 566 386 Z" fill="#0f131c"/>
-      <path d="M404 372 C430 380 510 380 536 372 C540 400 540 424 538 440 L402 440 C400 424 400 400 404 372 Z" fill="#1c2025" opacity=".7"/>
-      <g fill="none" stroke-linecap="round">
-        <path d="M471 338 C469 370 472 404 470 440" stroke="#16191d" stroke-width="3"/>
-        <path d="M420 352 C432 358 444 360 452 358 M520 352 C508 358 496 360 488 358" stroke="#16191d" stroke-width="2.5"/>
-      </g>
+  <!-- Marco de espaldas. A oscuras le da la pantalla por detras: silueta en sombra (.desk__shade) con borde
+       azul (.desk__rim); con la lampara, sus colores y la luz calida. -->
+  <g class="desk__marco">
+    <!-- antebrazo y mano izquierdos (por detras del torso) -->
+    <g class="desk__hand desk__hand--l" style="transform-origin:362px 404px">
+      <path d="M342 348 C337 368 340 392 352 412 L374 402 C364 386 360 366 360 348 Z" fill="#2c3037"/>
+      <path d="M333.4 341 C340 338.6 356 338.6 362.6 341.4 L361.4 351 C354.6 348.4 340.6 348.4 334 350.4 Z" fill="#17191d"/>
+      <path d="M330 329.6 C329.4 321.6 336.4 317.4 346.6 317.6 C356.8 317.8 364 322 363.8 330 C363.6 338 357.6 343 347 343 C336.4 343 330.6 337.8 330 329.6 Z" fill="#eecdb4"/>
+      <path d="M331.6 334 C336 340 358 340.6 362.6 334.6 C361 340.6 355 343 347 343 C338.6 343 333 339.6 331.6 334 Z" fill="#d8a98a"/>
       <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M430 313.4 C410 316.6 389.6 321.6 375.6 331.6 C361.4 341.6 355.4 360 351.4 384 C349.4 402 349.6 422 351.6 440" stroke-width="5"/>
-        <path d="M510 313.4 C530 316.6 550.4 321.6 564.4 331.6 C578.6 341.6 584.6 360 588.6 384 C590.6 402 590.4 422 588.4 440" stroke-width="5"/>
-        <path d="M384 350 C378 372 376 398 377 422 M556 350 C562 372 564 398 563 422" stroke-width="3"/>
+        <path d="M330 329.6 C329.4 321.6 336.4 317.4 346.6 317.6 C356.8 317.8 364 322 363.8 330 C363.6 338 357.6 343 347 343" stroke-width="3"/>
+        <path d="M336 322.4 C338 319.6 341 319.4 343 321.6 M344.6 320.6 C346.6 317.8 350 318 351.6 320.6 M353 321.8 C355 319.4 358 319.8 359.2 322.6" stroke-width="2"/>
+        <path d="M342 350 C337 370 340 392 352 411" stroke-width="3.5"/>
       </g>
-      <!-- cuello del jersey (canale) -->
-      <path d="M430 312.4 C446 324.4 494 324.4 510 312.4 C515.6 315.6 519.6 319.6 522 324 C500 338 440 338 418 324 C420.4 319.6 424.4 315.6 430 312.4 Z" fill="#17191d"/>
-      <g fill="none" stroke="#2e3138" stroke-width="2" stroke-linecap="round">
-        <path d="M428 318 L425 324 M436 322 L434 329 M445 325 L444 332 M455 327 L454.6 334 M465 328 L465 335 M475 328 L475.4 335 M485 327 L485.6 334 M495 325 L496 332 M504 322 L506 329 M512 318 L515 324"/>
+      <g class="desk__shade" fill="#050a14">
+        <path d="M342 348 C337 368 340 392 352 412 L374 402 C364 386 360 366 360 348 Z"/>
+        <path d="M333.4 341 C340 338.6 356 338.6 362.6 341.4 L361.4 351 C354.6 348.4 340.6 348.4 334 350.4 Z"/>
+        <path d="M330 329.6 C329.4 321.6 336.4 317.4 346.6 317.6 C356.8 317.8 364 322 363.8 330 C363.6 338 357.6 343 347 343 C336.4 343 330.6 337.8 330 329.6 Z"/>
       </g>
-      <path d="M418 324 C440 338.4 500 338.4 522 324 M430 312.4 C446 324.8 494 324.8 510 312.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
-      <!-- luz calida de la lampara sobre el hombro derecho -->
-      <path class="desk__warm" d="M512 316.4 C534 320 553 327 565.6 338.6" fill="none" stroke="#ffc27a" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+      <path class="desk__rim desk__rim--dark" d="M332.4 324.2 C336.4 318.8 356.4 318 362 323.8" fill="none" stroke="#6bb8ff" stroke-width="2.2" stroke-linecap="round"/>
+    </g>
 
-      <!-- cabeza: pelo castano, orejas y patillas de las gafas -->
-      <g class="desk__head" style="transform-origin:470px 300px">
+    <!-- brazo derecho articulado: .desk__arm gira en el hombro (548,344), .desk__fore en el codo (580,406) y la
+         mano teclea; al encenderse la lampara el brazo sale de detras del torso hasta el asa de la taza -->
+    <g class="desk__arm desk__arm--r" style="transform-origin:548px 344px">
+      <path d="M561 337 C572 358 583 378 593.4 398.6 C598 408.6 592 419.4 581.6 420.6 C574.4 421.4 568.4 418 566.6 412.4 C556 392 545 372 535 351 Z" fill="#2c3037"/>
+      <path d="M563.4 343 C573 361 581.6 378.4 589.6 395" fill="none" stroke="#3a3f48" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M561 337 C572 358 583 378 593.4 398.6 C598 408.6 592 419.4 581.6 420.6 C574.4 421.4 568.4 418 566.6 412.4 C556 392 545 372 535 351" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path class="desk__shade" d="M561 337 C572 358 583 378 593.4 398.6 C598 408.6 592 419.4 581.6 420.6 C574.4 421.4 568.4 418 566.6 412.4 C556 392 545 372 535 351 Z" fill="#050a14"/>
+      <g class="desk__fore desk__fore--r" style="transform-origin:580px 406px">
+        <g class="desk__hand desk__hand--r" style="transform-origin:578px 404px">
+          <path d="M598 348 C603 368 600 392 588 412 L566 402 C576 386 580 366 580 348 Z" fill="#2c3037"/>
+          <path d="M606.6 341 C600 338.6 584 338.6 577.4 341.4 L578.6 351 C585.4 348.4 599.4 348.4 606 350.4 Z" fill="#17191d"/>
+          <path d="M610 329.6 C610.6 321.6 603.6 317.4 593.4 317.6 C583.2 317.8 576 322 576.2 330 C576.4 338 582.4 343 593 343 C603.6 343 609.4 337.8 610 329.6 Z" fill="#eecdb4"/>
+          <path d="M608.4 334 C604 340 582 340.6 577.4 334.6 C579 340.6 585 343 593 343 C601.4 343 607 339.6 608.4 334 Z" fill="#d8a98a"/>
+          <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M610 329.6 C610.6 321.6 603.6 317.4 593.4 317.6 C583.2 317.8 576 322 576.2 330 C576.4 338 582.4 343 593 343" stroke-width="3"/>
+            <path d="M604 322.4 C602 319.6 599 319.4 597 321.6 M595.4 320.6 C593.4 317.8 590 318 588.4 320.6 M587 321.8 C585 319.4 582 319.8 580.8 322.6" stroke-width="2"/>
+            <path d="M598 350 C603 370 600 392 588 411" stroke-width="3.5"/>
+            <path d="M580 350 C580 366 576 386 566.4 401.6" stroke-width="3.5"/>
+          </g>
+          <g class="desk__shade" fill="#050a14">
+            <path d="M598 348 C603 368 600 392 588 412 L566 402 C576 386 580 366 580 348 Z"/>
+            <path d="M606.6 341 C600 338.6 584 338.6 577.4 341.4 L578.6 351 C585.4 348.4 599.4 348.4 606 350.4 Z"/>
+            <path d="M610 329.6 C610.6 321.6 603.6 317.4 593.4 317.6 C583.2 317.8 576 322 576.2 330 C576.4 338 582.4 343 593 343 C603.6 343 609.4 337.8 610 329.6 Z"/>
+          </g>
+          <path class="desk__rim desk__rim--dark" d="M607.6 324.2 C603.6 318.8 583.6 318 578 323.8" fill="none" stroke="#6bb8ff" stroke-width="2.2" stroke-linecap="round"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- cuello (la luz de la pantalla le perfila los lados de la nuca) -->
+    <path d="M448 290 C448.6 300 447.4 310 446 320 L494 320 C492.8 310 491.8 300 492.4 290 Z" fill="#d9ab8c"/>
+    <path d="M449 292 C448.4 302 447.6 311 446.4 319 M491.6 292 C492 302 493 311 494 319" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+    <path class="desk__shade" d="M448 290 C448.6 300 447.4 310 446 320 L494 320 C492.8 310 491.8 300 492.4 290 Z" fill="#050a14"/>
+    <path class="desk__rim" d="M446 298 C445.6 305 444.8 311.6 443.8 318 M494.4 298 C494.6 305 495.4 311.6 496.4 318" fill="none" stroke="#6bb8ff" stroke-width="2.4" stroke-linecap="round"/>
+
+    <!-- cabeza (por delante del cuello y por detras del jersey), con pivote en el cuello. De espaldas mientras
+         programa; al encenderse la lampara gira hacia ella en perfil perdido (oreja, patilla y montura de las
+         gafas, nariz): cross-fade entre las dos versiones y un pequeno giro del grupo -->
+    <g class="desk__head" style="transform-origin:470px 300px">
+      <g class="desk__head-back" style="transform-origin:470px 300px">
         <g stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
           <path d="M404 242 C392 236 384 248 385 262 C386 274 393 284 405 284 Z" fill="#eecdb4" stroke-width="3"/>
           <path d="M536 242 C548 236 556 248 555 262 C554 274 547 284 535 284 Z" fill="#eecdb4" stroke-width="3"/>
@@ -944,26 +1133,108 @@
           <path d="M553.6 251.4 C557 257 556.6 265 552.4 271" stroke-width="3"/>
         </g>
         <path d="M390 248.4 L396 247.2 M550 248.4 L544 247.2" fill="none" stroke="#9aa6b8" stroke-width="1.6" stroke-linecap="round"/>
+        <g class="desk__shade" fill="#050a14">
+          <path d="M404 242 C392 236 384 248 385 262 C386 274 393 284 405 284 Z"/>
+          <path d="M536 242 C548 236 556 248 555 262 C554 274 547 284 535 284 Z"/>
+          <path d="M470 176 C488 174 506 178 518 188 C534 200 542 220 541 242 C541 262 536 280 526 292 C520 298 512 301 505 302 L500 296.6 L494 303 L487 297 L480 304 L472 298.4 L464 304 L457 297.4 L450 303 L443 296.6 L436 302 C428 301 420 298 414 292 C404 280 399 262 399 242 C398 220 406 200 422 188 C434 179 452 176 470 176 Z"/>
+          <path d="M461 181 C467 166 489 161 504 169 C494 169.6 485 174 479 183 Z"/>
+        </g>
+        <g class="desk__rim" fill="none" stroke="#6bb8ff" stroke-width="3" stroke-linecap="round">
+          <path d="M397 236 C398 214 406 198 421 186 C432 177.6 446 174.4 458 174 M503 167 C509 170 514 174 519 186 C534 198 543 216 543 236"/>
+          <path d="M383 256 C383 270 390 282 402 286 M557 256 C557 270 550 282 538 286"/>
+        </g>
+      </g>
+
+      <g class="desk__head-turned">
+        <!-- lado del cuello bajo la mandibula (el cuello del jersey lo tapa por abajo) -->
+        <path d="M486 272 C500 280 514 286 534 292 C528 303 523 314 521 327 L486 327 Z" fill="#d9ab8c"/>
+        <path d="M533 297 C528.6 305.6 524.4 314.4 521.8 324" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+        <!-- cara en perfil perdido: frente, ceja, pomulo, punta de la nariz y barbilla -->
+        <path d="M518 206 C532 203 545 208 550 216 C554 224 555 232 557.5 238.5 C558.6 243 556.6 247 557.4 251 C559 255.4 562.6 257.6 566.4 260 C571.4 263 576.6 265.2 577 268.4 C576.8 271.6 569.4 272.6 563.2 273 C561.6 279.4 561 286.4 557.4 293 C553.6 299.4 545.2 302.4 536 301 C526 299.6 517.4 294.4 511 287 L507 240 Z" fill="#eecdb4"/>
+        <path d="M511 287 C517.4 294.4 526 299.6 536 301 C545.2 302.4 553.6 299.4 557.4 293 C547 297 535 295.6 526.4 289.6 C520.6 285.4 517 278.6 516 270.6 Z" fill="#d8a98a"/>
+        <path class="desk__warm" d="M551.4 221 C554.4 228.4 556 234.4 557.2 239.6 M561.8 257.4 C567.2 260.8 572.6 263.4 575.6 266.6" fill="none" stroke="#fff1de" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M545.4 232.4 C549.8 229.8 554.4 230.2 557.8 233" fill="none" stroke="#3b2a21" stroke-width="3.4" stroke-linecap="round"/>
+        <!-- patilla de las gafas por detras de la oreja -->
+        <path d="M510.4 247 C505 251 503.8 258.6 505.8 266" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+        <!-- pelo: coronilla, nuca y flequillo; la patilla del pelo baja por delante de la oreja -->
+        <path d="M470 175 C492 173 514 178 530 190 C542 199 550 208 553.6 216.4 C548.4 213.6 543.4 215 540 219.6 C535.2 226 532.4 234 531.2 243 C530.4 250 529.4 256.6 527 262.6 L508 272 C506 282 504.6 290 502.4 297 L496 302.6 L489 297 L481 304 L473 298.4 L465 304 L457 297.4 L450 303 L443 296.6 L436 302 C428 301 419 297 413 291 C403 279 397.4 262 397.4 242 C396.6 220 404.4 200 420.4 187 C432 178 450 175 470 175 Z" fill="#3b2a21"/>
+        <path d="M403 262 C409 284 423 298 440 302 L498 302 C502 296 504 290 505.6 282 C488 290 470 291 452 289 C430 287 414 278 403 262 Z" fill="#241913"/>
+        <path d="M424 191 C442 180 492 179 516 191 C498 187 478 186 460 188.6 C446 190.4 434 194 424 191 Z" fill="#5b4232"/>
+        <path d="M453 181 C459 166 481 161 496 169 C486 169.6 477 174 471 183 Z" fill="#3b2a21"/>
+        <path d="M458 176 C464 168 478 165 489 168" fill="none" stroke="#5b4232" stroke-width="2.5" stroke-linecap="round"/>
+        <g fill="none" stroke="#1a120e" stroke-width="2.5" stroke-linecap="round" opacity=".75">
+          <path d="M462 196 C442 201 424 216 413 238"/>
+          <path d="M460 199 C444 214 434 240 431 264"/>
+          <path d="M464 200 C460 226 458 252 458 278"/>
+          <path d="M468 197 C486 198 506 204 524 216"/>
+          <path d="M468 200 C484 212 496 232 500 256"/>
+        </g>
+        <path class="desk__warm" d="M512 183 C528 191 541 201 550 211" fill="none" stroke="#ffc27a" stroke-width="3.5" stroke-linecap="round" opacity=".6"/>
+        <path d="M436 302.4 C428 301.4 419 297.4 413 291.4 C403 279.4 397 262.4 397 242 C396.2 220 404 200 420 186.6 C428 180.6 438 177 448 175.6 M470 174.6 C492 172.6 514 177.6 530.4 189.6 C542.4 198.6 550.4 207.6 554 216.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M453 181 C459 166 481 161 496 169 C486 169.6 477 174 471 183" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M554 216.4 C548.4 213.6 543.4 215 540 219.6 C535.2 226 532.4 234 531.2 243 C530.4 250 529.4 256.6 527 262.6 M507.6 276 C506 284 504.6 290 502.4 297" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- perfil de la cara -->
+        <path d="M550.4 216.4 C554.4 224 555.4 232 557.9 238.5 C559 243 557 247 557.8 251 C559.4 255.4 563 257.6 566.8 260 C571.8 263 577 265.2 577.4 268.4 C577.2 271.8 569.6 272.8 563.4 273.2 C561.8 279.6 561.2 286.6 557.6 293.2 C553.8 299.8 545.2 302.8 536 301.4 C526 300 518 295 511.4 288" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- oreja -->
+        <path d="M517 239 C507 236 501 248 502 261 C503 275 509 285 519 285 C525 285 528 280 527 274 C526 268 528 262 529 255 C530 246 526 240 517 239 Z" fill="#eecdb4" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M513.6 249 C508.6 255 508.6 266 513.6 274 M520 256.4 C518 259.4 518 263.4 520 266.4" fill="none" stroke="#c98f70" stroke-width="2.5" stroke-linecap="round"/>
+        <!-- patilla y canto de la montura de las gafas -->
+        <path d="M509.4 247.4 C524 244.8 540 243.6 556.6 242.8" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M556 233.4 C559.4 239.4 560 247.6 557.4 255.2" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5" stroke-linecap="round"/>
+        <path class="desk__warm" d="M559.2 237.6 L560 243.4" fill="none" stroke="#fff3de" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M514 246.6 L520 245.8" fill="none" stroke="#9aa6b8" stroke-width="1.6" stroke-linecap="round"/>
+        <g class="desk__shade" fill="#050a14">
+          <path d="M486 272 C500 280 514 286 534 292 C528 303 523 314 521 327 L486 327 Z"/>
+          <path d="M518 206 C532 203 545 208 550 216 C554 224 555 232 557.5 238.5 C558.6 243 556.6 247 557.4 251 C559 255.4 562.6 257.6 566.4 260 C571.4 263 576.6 265.2 577 268.4 C576.8 271.6 569.4 272.6 563.2 273 C561.6 279.4 561 286.4 557.4 293 C553.6 299.4 545.2 302.4 536 301 C526 299.6 517.4 294.4 511 287 L507 240 Z"/>
+          <path d="M470 175 C492 173 514 178 530 190 C542 199 550 208 553.6 216.4 C548.4 213.6 543.4 215 540 219.6 C535.2 226 532.4 234 531.2 243 C530.4 250 529.4 256.6 527 262.6 L508 272 C506 282 504.6 290 502.4 297 L496 302.6 L489 297 L481 304 L473 298.4 L465 304 L457 297.4 L450 303 L443 296.6 L436 302 C428 301 419 297 413 291 C403 279 397.4 262 397.4 242 C396.6 220 404.4 200 420.4 187 C432 178 450 175 470 175 Z"/>
+          <path d="M517 239 C507 236 501 248 502 261 C503 275 509 285 519 285 C525 285 528 280 527 274 C526 268 528 262 529 255 C530 246 526 240 517 239 Z"/>
+          <path d="M453 181 C459 166 481 161 496 169 C486 169.6 477 174 471 183 Z"/>
+        </g>
+        <g class="desk__rim" fill="none" stroke="#6bb8ff" stroke-width="3" stroke-linecap="round">
+          <path d="M395.6 236 C396.6 214 404.6 198 419.6 186 C428 180 438 176 448 174.4 M472 172.6 C492 171 512 175.6 529 187"/>
+        </g>
       </g>
     </g>
 
-    <!-- luz calida de la lampara: cono y charco sobre la mesa -->
-    <g class="desk__light">
-      <path d="M766 137 C700 196 610 262 480 306 C500 346 560 358 640 360 C740 362 830 358 910 348 C888 292 864 246 838 207 Z" fill="url(#desk-cone-g)" opacity=".5"/>
-      <path d="M772 142 C716 200 640 262 540 312 C570 344 640 352 720 352 C790 352 850 350 890 344 C872 294 852 248 832 204 Z" fill="url(#desk-cone-g)" opacity=".65"/>
-      <path d="M780 150 C740 204 690 262 620 318 C660 340 720 344 780 342 C820 340 850 338 868 334 C856 292 840 250 824 198 Z" fill="url(#desk-cone-g)" opacity=".8"/>
-      <ellipse cx="700" cy="330" rx="230" ry="30" fill="url(#desk-pool-g)"/>
+    <!-- torso con jersey oscuro -->
+    <path d="M430 314 C410 317 390 322 376 332 C362 342 356 360 352 384 C350 402 350 422 352 440 L588 440 C590 422 590 402 588 384 C584 360 578 342 564 332 C550 322 530 317 510 314 C494 326 446 326 430 314 Z" fill="var(--ill-dark,#23272d)"/>
+    <path d="M378 334 C392 322 414 317 432 316 C438 320 444 323 450 324.6 C424 327.6 398 335 382 347 Z" fill="#33373f"/>
+    <path d="M562 334 C548 322 526 317 508 316 C502 320 496 323 490 324.6 C516 327.6 542 335 558 347 Z" fill="#33373f"/>
+    <path d="M354 392 C352 410 352 426 353 440 L374 440 C372 420 372 404 374 386 Z" fill="#0f131c"/>
+    <path d="M586 392 C588 410 588 426 587 440 L566 440 C568 420 568 404 566 386 Z" fill="#0f131c"/>
+    <path d="M404 372 C430 380 510 380 536 372 C540 400 540 424 538 440 L402 440 C400 424 400 400 404 372 Z" fill="#1c2025" opacity=".7"/>
+    <g fill="none" stroke-linecap="round">
+      <path d="M471 338 C469 370 472 404 470 440" stroke="#16191d" stroke-width="3"/>
+      <path d="M420 352 C432 358 444 360 452 358 M520 352 C508 358 496 360 488 358" stroke="#16191d" stroke-width="2.5"/>
     </g>
+    <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M430 313.4 C410 316.6 389.6 321.6 375.6 331.6 C361.4 341.6 355.4 360 351.4 384 C349.4 402 349.6 422 351.6 440" stroke-width="5"/>
+      <path d="M510 313.4 C530 316.6 550.4 321.6 564.4 331.6 C578.6 341.6 584.6 360 588.6 384 C590.6 402 590.4 422 588.4 440" stroke-width="5"/>
+      <path d="M384 350 C378 372 376 398 377 422 M556 350 C562 372 564 398 563 422" stroke-width="3"/>
+    </g>
+    <!-- cuello del jersey (canale) -->
+    <path d="M430 312.4 C446 324.4 494 324.4 510 312.4 C515.6 315.6 519.6 319.6 522 324 C500 338 440 338 418 324 C420.4 319.6 424.4 315.6 430 312.4 Z" fill="#17191d"/>
+    <g fill="none" stroke="#2e3138" stroke-width="2" stroke-linecap="round">
+      <path d="M428 318 L425 324 M436 322 L434 329 M445 325 L444 332 M455 327 L454.6 334 M465 328 L465 335 M475 328 L475.4 335 M485 327 L485.6 334 M495 325 L496 332 M504 322 L506 329 M512 318 L515 324"/>
+    </g>
+    <path d="M418 324 C440 338.4 500 338.4 522 324 M430 312.4 C446 324.8 494 324.8 510 312.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+    <!-- luz calida de la lampara sobre el hombro derecho -->
+    <path class="desk__warm" d="M512 316.4 C534 320 553 327 565.6 338.6" fill="none" stroke="#ffc27a" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+    <g class="desk__shade" fill="#050a14">
+      <path d="M430 314 C410 317 390 322 376 332 C362 342 356 360 352 384 C350 402 350 422 352 440 L588 440 C590 422 590 402 588 384 C584 360 578 342 564 332 C550 322 530 317 510 314 C494 326 446 326 430 314 Z"/>
+      <path d="M430 312.4 C446 324.4 494 324.4 510 312.4 C515.6 315.6 519.6 319.6 522 324 C500 338 440 338 418 324 C420.4 319.6 424.4 315.6 430 312.4 Z"/>
+    </g>
+    <path class="desk__rim" d="M374.6 330 C388.6 320.4 408.6 315.6 428.6 312.6 M565.4 330 C551.4 320.4 531.4 315.6 511.4 312.6" fill="none" stroke="#6bb8ff" stroke-width="3" stroke-linecap="round"/>
+    <!-- la espalda: el borde azul baja por los costados y se apaga -->
+    <path class="desk__rim desk__rim--dark" d="M372.4 334.4 C360 344 354 362 350.2 386 C348.6 398 348.4 408 348.8 418 M567.6 334.4 C580 344 586 362 589.8 386 C591.4 398 591.6 408 591.2 418" fill="none" stroke="url(#desk-rim-fade)" stroke-width="2.6" stroke-linecap="round"/>
   </g>
 
-  <!-- luz de borde azul (ambiente con la lampara apagada, pantalla con ella encendida) -->
-  <g class="desk__rimlight" fill="none" stroke="#6bb8ff" stroke-width="3" stroke-linecap="round">
-    <path d="M356 30.6 C480 29.2 640 30.2 764 31" stroke-width="2.5"/>
-    <path d="M374.6 330 C388.6 320.4 408.6 315.6 428.6 312.6 M565.4 330 C551.4 320.4 531.4 315.6 511.4 312.6"/>
-    <g class="desk__head-rim" style="transform-origin:470px 300px">
-      <path d="M397 236 C398 214 406 198 421 186 C432 177.6 446 174.4 458 174 M503 167 C509 170 514 174 519 186 C534 198 543 216 543 236"/>
-      <path d="M383 256 C383 270 390 282 402 286 M557 256 C557 270 550 282 538 286"/>
-    </g>
+  <!-- luz calida de la lampara: cono y charco sobre la mesa -->
+  <g class="desk__light">
+    <path d="M766 137 C700 196 610 262 480 306 C500 346 560 358 640 360 C740 362 830 358 910 348 C888 292 864 246 838 207 Z" fill="url(#desk-cone-g)" opacity=".5"/>
+    <path d="M772 142 C716 200 640 262 540 312 C570 344 640 352 720 352 C790 352 850 350 890 344 C872 294 852 248 832 204 Z" fill="url(#desk-cone-g)" opacity=".65"/>
+    <path d="M780 150 C740 204 690 262 620 318 C660 340 720 344 780 342 C820 340 850 338 868 334 C856 292 840 250 824 198 Z" fill="url(#desk-cone-g)" opacity=".8"/>
+    <ellipse cx="700" cy="330" rx="230" ry="30" fill="url(#desk-pool-g)"/>
   </g>
 
   <!-- lampara de escritorio (en reposo: borde azul) -->

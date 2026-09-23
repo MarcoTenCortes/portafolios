@@ -33,7 +33,7 @@ describe('fichas de proyecto: sistema', () => {
     assert.match(html, /class="pdialog__body" tabindex="-1"/);
   });
   it('cada tarjeta de proyecto tiene un data-project único y su botón «Más detalles»', () => {
-    assert.equal(cards.length, 8);
+    assert.equal(cards.length, 9);
     assert.equal(new Set(cards).size, cards.length);
     const more = html.match(/class="btn btn--secondary btn--sm card__more"/g) || [];
     assert.equal(more.length, cards.length);

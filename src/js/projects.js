@@ -31,6 +31,8 @@ export function initProjects({ i18n, showToast }) {
   let downOnBackdrop = false;
 
   const setState = (s) => { state = s; dialog.dataset.state = s; };
+  // html.dialog-open: la página queda quieta detrás del velo (site.css pausa sus bucles CSS; dog.js no asoma el perro)
+  const cover = (on) => document.documentElement.classList.toggle('dialog-open', on);
   const hashId = () => (HASH_RE.exec(window.location.hash) || [])[1] || null;
   const cleanUrl = () => window.location.pathname + window.location.search;
   const cardOf = (id) => grid?.querySelector(`.card[data-project="${id}"]`) || null;
@@ -64,6 +66,7 @@ export function initProjects({ i18n, showToast }) {
     if (dialog.open) dialog.close();
     setState('closed');
     document.documentElement.classList.remove('pdialog-open');
+    cover(false);
     const target = returnTo;
     returnTo = null;
     if (target && target.isConnected) target.focus({ preventScroll: true });
@@ -101,10 +104,12 @@ export function initProjects({ i18n, showToast }) {
     if (wasOpen) { body.focus({ preventScroll: true }); return true; }
     setState('opening');
     document.documentElement.classList.add('pdialog-open');
+    window.MTC?.dog?.hidePeek?.(); // el perro asomado por el borde se va: quedaría debajo del velo
     dialog.showModal();
     body.focus({ preventScroll: true });
     await animatePanel(true);
     if (token === seq && state === 'opening') setState('open');
+    if (state === 'opening' || state === 'open') cover(true); // ya entró: el recálculo de estilos no pisa la animación
     return true;
   }
 

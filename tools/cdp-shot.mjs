@@ -7,7 +7,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 
 const CHROME = process.env.CHROME || 'C:/Program Files/Google/Chrome/Application/chrome.exe';
-const PORT = 9333;
+const PORT = Number(process.env.CDP_PORT) || 9333; // CDP_PORT=9335 para lanzar dos suites a la vez sin compartir Chrome
 const jobs = JSON.parse(readFileSync(process.argv[2], 'utf8'));
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 

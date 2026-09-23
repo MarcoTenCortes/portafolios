@@ -135,7 +135,7 @@
           <div class="hero__disc" aria-hidden="true"></div>
           <img class="hero__bust ill" src="/src/assets/img/character/hero-bust-800.webp" srcset="/src/assets/img/character/hero-bust-520.webp 520w, /src/assets/img/character/hero-bust-800.webp 800w, /src/assets/img/character/hero-bust-1024.webp 1024w" sizes="(min-width: 1080px) 480px, (min-width: 768px) 380px, 260px" width="1024" height="930" fetchpriority="high" decoding="sync" alt="Ilustración de Marco Tenorio Cortés con gafas y chaqueta azul" data-i18n-attr="alt:hero.bust_alt">
           <div class="hero__desk" id="hero-desk" data-lamp="off">
-            <div class="hero__desk-art" data-lazy="desk" role="img" aria-label="Ilustración de Marco de espaldas, programando en su escritorio junto a una lámpara con cadena" data-i18n-attr="aria-label:hero.desk_alt"></div>
+            <div class="hero__desk-art" data-lazy="desk" role="img" aria-label="Ilustración de Marco de espaldas, programando a oscuras con la sola luz del monitor. Si enciendes la lámpara de cadena, hace una pausa: gira la cabeza y coge su taza de café" data-i18n-attr="aria-label:hero.desk_alt"></div>
             <button type="button" class="hero__pull" id="lamp-pull" aria-pressed="false" aria-label="Encender la lámpara" data-i18n-attr="aria-label:hero.lamp.on" hidden></button>
             <span class="keycap hero__desk-hint" id="lamp-hint" hidden data-i18n="hero.lamp.hint">Tira de la cuerda</span>
           </div>
@@ -350,6 +350,30 @@
               </ul>
               <div class="card__actions">
                 <a class="btn btn--secondary btn--sm" href="https://code.europa.eu/simpl/simpl-open" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_repo_public">Repositorio público</span><span class="arrow" aria-hidden="true">↗</span></a>
+                <button type="button" class="btn btn--secondary btn--sm card__more" aria-haspopup="dialog" aria-controls="project-dialog"><span data-i18n="projects.cta_more">Más detalles</span><span class="arrow" aria-hidden="true">→</span></button>
+              </div>
+            </div>
+          </article>
+
+          <!-- 2b. Artículo en CAEPIA 2026 (destacado): solo título, autores y dónde se presenta hasta que salgan las actas -->
+          <article class="card card--featured" data-reveal data-project="paper">
+            <div class="card__media card__media--svg" data-lazy="paper-sheet" role="img" aria-label="Dos páginas de un artículo científico con el título, los autores, una figura con una radiografía de tórax y el sello de CAEPIA 2026 en Jaén" data-i18n-attr="aria-label:projects.paper.alt">
+            </div>
+            <div class="card__body">
+              <p class="eyebrow card__kicker" data-i18n="projects.paper.kicker">Publicación científica · CAEPIA 2026</p>
+              <h3 class="heading-xl card__title--long" lang="en" data-i18n="projects.paper.title">Evaluating the Incremental Contribution of Chest X-⁠ray to 24-⁠Hour ICU Deterioration Prediction</h3>
+              <p class="body card__authors" data-i18n="projects.paper.authors">Marco Tenorio Cortés, Andreea Madalina Oprescu y María del Carmen Romero Ternero</p>
+              <p class="body" data-i18n="projects.paper.venue">Se presentará en CAEPIA 2026, en Jaén: miércoles 11 de noviembre, de 11:00 a 12:30, en la sesión SG 3 · Visión por computador y robótica.</p>
+              <p class="caption" data-i18n="projects.paper.note">Día y hora según el programa provisional del congreso.</p>
+              <ul class="chips chips--inline" aria-label="Temas" data-i18n-attr="aria-label:projects.paper.topics">
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="skills.chips.deep_learning">Deep Learning</span></li>
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="projects.paper.chip_xray">Radiografía de tórax</span></li>
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="projects.paper.chip_cv">Visión por computador</span></li>
+                <li class="chip chip--text"><span class="chip__dot" aria-hidden="true"></span><span data-i18n="projects.paper.chip_icu">UCI</span></li>
+              </ul>
+              <div class="card__actions">
+                <span class="badge" data-i18n="projects.paper.badge">En prensa · texto completo con las actas</span>
+                <a class="btn btn--secondary btn--sm" href="https://simidat.ujaen.es/caepia26/inicio_files/programa_detallado.pdf" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.paper.cta_program">Programa del congreso</span><span class="arrow" aria-hidden="true">↗</span></a>
                 <button type="button" class="btn btn--secondary btn--sm card__more" aria-haspopup="dialog" aria-controls="project-dialog"><span data-i18n="projects.cta_more">Más detalles</span><span class="arrow" aria-hidden="true">→</span></button>
               </div>
             </div>

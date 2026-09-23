@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false" font-family="Georgia, 'Times New Roman', serif">
+  <defs>
+    <path id="paper-seal-ring" d="M0 -28.5A28.5 28.5 0 1 1 0 28.5A28.5 28.5 0 1 1 0 -28.5"/>
+    <clipPath id="paper-film"><rect x="355" y="56" width="204" height="104" rx="4"/></clipPath>
+    <radialGradient id="paper-glow" cx="457" cy="110" r="96" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="var(--action, #2997ff)" stop-opacity=".16"/>
+      <stop offset="1" stop-color="var(--action, #2997ff)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- sombras de las dos páginas -->
+  <g fill="var(--tile-black, #05070b)" opacity=".4">
+    <rect x="62" y="30" width="250" height="352" rx="5"/>
+    <rect x="336" y="30" width="250" height="352" rx="5"/>
+  </g>
+
+  <!-- página 1: título, autores, resumen y comienzo a dos columnas -->
+  <rect x="58" y="24" width="250" height="352" rx="5" fill="var(--surface-elevated, #222a3a)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <g fill="var(--ink, #f5f7fa)" font-size="12.5" font-weight="600" text-anchor="middle">
+    <text x="183" y="61">Evaluating the Incremental</text>
+    <text x="183" y="76.5">Contribution of Chest X-ray to</text>
+    <text x="183" y="92">24-Hour ICU Deterioration</text>
+    <text x="183" y="107.5">Prediction</text>
+  </g>
+  <g fill="var(--body, #c6cfdb)" font-size="8" text-anchor="middle">
+    <text x="183" y="127">Marco Tenorio Cortés, Andreea Madalina Oprescu,</text>
+    <text x="183" y="138">and María del Carmen Romero Ternero</text>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".32">
+    <rect x="124" y="147" width="118" height="3.5" rx="1.75"/>
+    <rect x="141" y="154" width="84" height="3.5" rx="1.75"/>
+  </g>
+  <g fill="var(--body, #c6cfdb)" font-size="7">
+    <text x="95" y="175" font-weight="700">Abstract.</text>
+    <text x="95" y="227" font-style="italic">Keywords:</text>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="130" y="171.5" width="141" height="3.5" rx="1.75"/>
+    <rect x="95" y="180" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="188.5" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="197" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="205.5" width="176" height="3.5" rx="1.75"/>
+    <rect x="95" y="214" width="104" height="3.5" rx="1.75"/>
+    <rect x="134" y="223.5" width="112" height="3.5" rx="1.75"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".62">
+    <rect x="81" y="243" width="56" height="4.5" rx="2.25"/>
+    <rect x="189" y="311" width="64" height="4.5" rx="2.25"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="81" y="256" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="264.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="273" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="281.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="290" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="298.5" width="60" height="3.5" rx="1.75"/>
+    <rect x="87" y="307" width="90" height="3.5" rx="1.75"/>
+    <rect x="81" y="315.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="324" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="332.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="341" width="96" height="3.5" rx="1.75"/>
+    <rect x="81" y="349.5" width="72" height="3.5" rx="1.75"/>
+    <rect x="189" y="243.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="252" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="260.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="269" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="277.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="286" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="294.5" width="42" height="3.5" rx="1.75"/>
+    <rect x="189" y="324" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="332.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="341" width="96" height="3.5" rx="1.75"/>
+    <rect x="189" y="349.5" width="96" height="3.5" rx="1.75"/>
+  </g>
+
+  <!-- página 2: la figura con la radiografía y el texto a dos columnas -->
+  <rect x="332" y="24" width="250" height="352" rx="5" fill="var(--surface-elevated, #222a3a)" stroke="var(--hairline-strong, rgba(255,255,255,.16))" stroke-width="1"/>
+  <g fill="var(--mute, #8e98a8)" font-size="7">
+    <text x="355" y="45">2</text>
+    <text x="367" y="45" font-style="italic">M. Tenorio Cortés et al.</text>
+  </g>
+  <rect x="355" y="56" width="204" height="104" rx="4" fill="var(--tile-black, #05070b)" stroke="var(--hairline, rgba(255,255,255,.08))" stroke-width="1"/>
+  <rect x="355" y="56" width="204" height="104" rx="4" fill="url(#paper-glow)"/>
+  <text x="364" y="70" fill="var(--action, #2997ff)" opacity=".75" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="8" font-weight="600">R</text>
+  <!-- radiografía de tórax: silueta, costillas, pulmones, corazón, tráquea y clavículas -->
+  <g fill="none" stroke="var(--action, #2997ff)" stroke-linecap="round" stroke-linejoin="round" clip-path="url(#paper-film)">
+    <path d="M448 56C448 64 446 68 438 70C422 73 407 77 401 89C396 99 398 128 402 162M466 56C466 64 468 68 476 70C492 73 507 77 513 89C518 99 516 128 512 162" stroke-width="1" opacity=".3"/>
+    <path d="M457 68V156" stroke-width="1" stroke-dasharray="2.6 2.2" opacity=".4"/>
+    <g stroke-width="1" opacity=".36">
+      <path d="M454 86C440 83 424 89 416 101"/>
+      <path d="M454 96C439 93 421 101 413 114"/>
+      <path d="M454 106C439 104 420 113 413 126"/>
+      <path d="M454 116C440 115 421 125 415 138"/>
+      <path d="M460 86C474 83 490 89 498 101"/>
+      <path d="M460 96C475 93 493 101 501 114"/>
+      <path d="M460 106C475 104 494 113 501 126"/>
+      <path d="M460 116C474 115 493 125 499 138"/>
+    </g>
+    <path d="M445 80C433 81 419 103 415 130C414 141 419 148 427 146C435 144 443 144 450 148C451 130 450 102 445 80Z" fill="var(--action, #2997ff)" fill-opacity=".1" stroke-width="1.4"/>
+    <path d="M469 80C481 81 495 103 499 130C500 141 495 148 487 146C482 145 478 146 474 148C470 139 471 127 466 119C465 105 466 91 469 80Z" fill="var(--action, #2997ff)" fill-opacity=".1" stroke-width="1.4"/>
+    <path d="M452 114C463 110 480 118 482 133C483 142 475 148 463 148C455 148 451 141 452 114Z" fill="var(--action, #2997ff)" fill-opacity=".22" stroke="none"/>
+    <path d="M457 64V89M457 89C454 92 451 94 447 96M457 89C460 92 463 94 467 96" stroke-width="1.5"/>
+    <path d="M454 78C446 79 436 74 424 74C419 74 415 75 411 77M460 78C468 79 478 74 490 74C495 74 499 75 503 77" stroke-width="1.4" opacity=".75"/>
+  </g>
+  <text x="355" y="175" fill="var(--body, #c6cfdb)" font-size="7" font-weight="700">Fig. 1.</text>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="382" y="171.5" width="177" height="3.5" rx="1.75"/>
+    <rect x="355" y="180" width="118" height="3.5" rx="1.75"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".62">
+    <rect x="463" y="276" width="60" height="4.5" rx="2.25"/>
+  </g>
+  <g fill="var(--mute, #8e98a8)" opacity=".3">
+    <rect x="355" y="200" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="208.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="217" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="225.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="234" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="242.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="251" width="54" height="3.5" rx="1.75"/>
+    <rect x="361" y="259.5" width="90" height="3.5" rx="1.75"/>
+    <rect x="355" y="268" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="276.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="285" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="293.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="302" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="310.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="319" width="66" height="3.5" rx="1.75"/>
+    <rect x="361" y="327.5" width="90" height="3.5" rx="1.75"/>
+    <rect x="355" y="336" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="344.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="355" y="353" width="80" height="3.5" rx="1.75"/>
+    <rect x="463" y="200" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="208.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="217" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="225.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="234" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="242.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="251" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="259.5" width="38" height="3.5" rx="1.75"/>
+    <rect x="463" y="289" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="297.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="306" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="314.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="323" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="331.5" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="340" width="96" height="3.5" rx="1.75"/>
+    <rect x="463" y="348.5" width="70" height="3.5" rx="1.75"/>
+  </g>
+
+  <!-- sello del congreso -->
+  <g transform="translate(572 326) rotate(-12)">
+    <circle r="38" fill="var(--tile-2, #1a2030)" fill-opacity=".92" stroke="var(--action, #2997ff)" stroke-width="1.5"/>
+    <circle r="23.5" fill="none" stroke="var(--action, #2997ff)" stroke-width=".9" opacity=".6"/>
+    <text fill="var(--action, #2997ff)" font-family="ui-monospace, Menlo, Consolas, monospace" font-size="7" font-weight="600" letter-spacing="1.2"><textPath href="#paper-seal-ring" textLength="178" lengthAdjust="spacing">CAEPIA 2026 · JAÉN · CAEPIA 2026 · JAÉN ·</textPath></text>
+    <text y="4.5" fill="var(--ink, #f5f7fa)" font-size="13" font-weight="600" text-anchor="middle">XXI</text>
+  </g>
+</svg>

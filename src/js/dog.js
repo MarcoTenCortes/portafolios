@@ -561,7 +561,7 @@ export function initDog(yard, { i18n, showToast } = {}) {
   function peekGate() {
     return {
       hidden: document.hidden, reduced: reduced(), dragging: html.classList.contains('is-dragging') || html.classList.contains('is-inking'),
-      sheetOpen: html.classList.contains('sheet-open'), state, idleMs: performance.now() - lastInput, width: window.innerWidth, dogVisible: dogVisible(),
+      sheetOpen: html.classList.contains('sheet-open') || html.classList.contains('dialog-open'), state, idleMs: performance.now() - lastInput, width: window.innerWidth, dogVisible: dogVisible(),
     };
   }
   function armPeek(ms) {
