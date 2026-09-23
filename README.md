@@ -99,6 +99,26 @@ Un único `<svg viewBox="0 0 1000 1100">` con las capas PNG originales colocadas
 
 ## Despliegue
 
+### En Docker, automático desde GitHub (servidor Ubuntu ARM)
+
+- `.github/workflows/deploy.yml`: en cada push a `main` pasa los tests, construye el sitio y publica la imagen `ghcr.io/marcotencortes/portafolios:latest` (y `sha-<commit>`) para `linux/arm64` y `linux/amd64`. La etapa de build del `Dockerfile` corre en la plataforma del runner (`--platform=$BUILDPLATFORM`), así que no se emula Node; solo la imagen final de nginx es multiarquitectura. Se puede lanzar a mano desde otra rama (etiqueta con el nombre de la rama, sin tocar `latest`).
+- `Dockerfile` + `deploy/nginx.conf`: nginx sin privilegios en el puerto 8080 sirviendo `dist/` con gzip, `Cache-Control` inmutable para `/assets/` y `no-cache` para el HTML, `404.html` y cabeceras de seguridad básicas. `HEALTHCHECK` incluido.
+- `deploy/docker-compose.yml`: lo que corre en el servidor: el sitio en el puerto **8951** con `restart: always` y Watchtower, que cada 5 minutos comprueba GHCR y reinicia el contenedor con la imagen nueva (solo los contenedores etiquetados). No hace falta abrir puertos ni dar acceso SSH a GitHub.
+
+En el servidor (una vez):
+
+```bash
+curl -fsSL https://get.docker.com | sh && sudo usermod -aG docker $USER
+```
+
+```bash
+mkdir -p /opt/portafolios && cd /opt/portafolios && curl -fsSLO https://raw.githubusercontent.com/MarcoTenCortes/portafolios/main/deploy/docker-compose.yml && docker compose up -d
+```
+
+El paquete de GHCR debe ser público (GitHub → Packages → portafolios → Package settings → Change visibility) o, si se prefiere privado, hacer `docker login ghcr.io` en el servidor y descomentar el volumen de `config.json` en Watchtower. Prueba local: `docker build -t portafolios . && docker run --rm -p 8951:8080 portafolios`.
+
+### A mano (scp/rsync)
+
 `npm run build` genera `dist/` con los assets con hash. Se sube **el contenido de `dist/`** a la raíz del sitio:
 
 ```powershell
