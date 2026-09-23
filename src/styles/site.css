@@ -745,6 +745,12 @@
   @keyframes house-wiggle { from { transform: translate(-1.5px, 0); } to { transform: translate(1.5px, 0); } }
   @keyframes marker-wobble { 0%, 100% { transform: rotate(0deg) translateY(0); } 30% { transform: rotate(-2.5deg) translateY(-2px); } 65% { transform: rotate(2deg) translateY(-1px); } }
   @keyframes faro-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+
+  /* [css:lamp] lampara y escritorio del hero */
+
+  /* [css:lava] lampara de lava */
+
+  /* [css:project] subpaginas de proyectos */
 }
 
 /* -------------------------------------------------------------------------- */

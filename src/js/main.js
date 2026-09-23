@@ -37,6 +37,9 @@ function bootPlay() {
     if (playTokens.includes('dog') && document.getElementById('yard')) {
       jobs.push(Promise.all([stamped, import('./dog.js')]).then(([, m]) => { window.MTC.dog = measure('initDog', () => m.initDog(document.getElementById('yard'), { i18n, showToast })); }));
     }
+    // [boot:lamp]
+    // [boot:lava]
+    // [boot:project]
     Promise.all(jobs).then(() => readyResolve(), () => readyResolve());
   });
 }
@@ -78,6 +81,9 @@ if (import.meta.env.DEV) {
         marker.loadInk(demo);
       }
       if (marker && params.get('marker') === 'grabbed') marker.demoHold(window.innerWidth * 0.6, window.innerHeight * 0.5);
+      // [hook:lamp]
+      // [hook:lava]
+      // [hook:project]
       setTimeout(scroll, 30);
     });
   }
