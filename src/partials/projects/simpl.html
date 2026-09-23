@@ -2,7 +2,7 @@
   <header class="pdoc__head">
     <p class="eyebrow pdoc__kicker" data-i18n="projects.simpl.detail.kicker">Comisión Europea · middleware de código abierto</p>
     <h2 class="display-md" id="pdialog-title" data-i18n="projects.simpl.title">SIMPL-Open</h2>
-    <p class="lead pdoc__lead" data-i18n="projects.simpl.detail.lead">El middleware de código abierto con el que la Comisión Europea quiere que organizaciones públicas y privadas compartan datos, aplicaciones e infraestructura en espacios de datos, con confianza y sin atarse a un proveedor. Trabajo en él como arquitecto de soluciones.</p>
+    <p class="lead pdoc__lead" data-i18n="projects.simpl.detail.lead">El middleware de código abierto con el que la Comisión Europea quiere que organizaciones públicas y privadas compartan datos, aplicaciones e infraestructura en espacios de datos, con confianza y sin atarse a un proveedor. Llevo más de un año en su equipo de arquitectura (PSO), definiendo y revisando contratos API-first, modelos de datos y flujos de integración con equipos internacionales.</p>
     <div class="pdoc__actions">
       <a class="btn btn--primary btn--sm" href="https://code.europa.eu/simpl/simpl-open" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.cta_repo_public">Repositorio público</span><span class="arrow" aria-hidden="true">↗</span></a>
     </div>
@@ -35,10 +35,10 @@
     <h3 class="heading-lg" data-i18n="projects.detail.role">Qué hice</h3>
     <div class="pdoc__content">
       <ul class="bullets">
-        <li data-i18n="projects.simpl.detail.role1">Diseño la arquitectura de integración entre agentes y servicios, con sus requisitos de interoperabilidad, seguridad y gobernanza.</li>
-        <li data-i18n="projects.simpl.detail.role2">Defino y reviso los contratos OpenAPI de los servicios frente a la guía de API del programa y al modelo conceptual de datos que los sostiene.</li>
-        <li data-i18n="projects.simpl.detail.role3">Reviso la arquitectura que entrega cada equipo en cada sprint y compruebo que lo documentado coincide con lo construido.</li>
-        <li data-i18n="projects.simpl.detail.role4">Mantengo estándares de desarrollo comunes para que los repositorios de todos los equipos sigan siendo coherentes y mantenibles.</li>
+        <li data-i18n="projects.simpl.detail.role1">Defino y reviso APIs REST API-first: contratos OpenAPI 3, esquemas (allOf/anyOf), versionado, OAuth 2.0/OIDC y errores RFC 9457, según las guías de API del programa y Belgif; cada cambio, verificado frente a su épica y criterios de aceptación en Jira.</li>
+        <li data-i18n="projects.simpl.detail.role2">Reviso los Common Data Models y la coherencia entre requisitos funcionales, contratos de integración y documentación de arquitectura, y he propuesto su validación automática en CI.</li>
+        <li data-i18n="projects.simpl.detail.role3">Trabajo los flujos de integración del espacio de datos: identidad y acceso (Tier 1/2, JWT, RBAC/ABAC, mTLS/X.509), catálogos federados, conectores EDC y flujos de intercambio e integración de datos (ETL).</li>
+        <li data-i18n="projects.simpl.detail.role4">Coordino técnicamente en inglés: hallazgos y seguimiento en Jira/Confluence, actas de las reuniones de arquitectura y bloqueos y dependencias entre equipos.</li>
       </ul>
     </div>
   </section>
@@ -247,7 +247,7 @@
     <h3 class="heading-lg" data-i18n="projects.detail.stack">Stack</h3>
     <div class="pdoc__content">
       <dl class="pdoc__dl">
-        <div><dt data-i18n="projects.simpl.detail.stack1_label">Contratos</dt><dd data-i18n="projects.simpl.detail.stack1">OpenAPI, revisados frente a la guía de API del programa</dd></div>
+        <div><dt data-i18n="projects.simpl.detail.stack1_label">Contratos</dt><dd data-i18n="projects.simpl.detail.stack1">OpenAPI 3, revisados frente a las guías de API del programa y Belgif (errores RFC 9457)</dd></div>
         <div><dt data-i18n="projects.simpl.detail.stack2_label">Servicios</dt><dd data-i18n="projects.simpl.detail.stack2">Java y Spring Boot</dd></div>
         <div><dt data-i18n="projects.simpl.detail.stack3_label">Protocolo</dt><dd data-i18n="projects.simpl.detail.stack3">Dataspace Protocol: catálogo, negociación de contratos y transferencia</dd></div>
         <div><dt data-i18n="projects.simpl.detail.stack4_label">Confianza</dt><dd data-i18n="projects.simpl.detail.stack4">Certificados X.509 con atributos y TLS mutuo entre agentes</dd></div>

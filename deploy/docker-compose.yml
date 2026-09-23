@@ -1,0 +1,36 @@
+# Servidor (Ubuntu ARM): el portafolio en el puerto 8951 y Watchtower, que cada 5 minutos comprueba si hay
+# una imagen nueva en GHCR (la publica GitHub Actions en cada push a main) y, si la hay, la descarga y
+# reinicia el contenedor. Solo toca los contenedores con la etiqueta de Watchtower.
+#
+#   mkdir -p /opt/portafolios && cd /opt/portafolios
+#   curl -fsSLO https://raw.githubusercontent.com/MarcoTenCortes/portafolios/main/deploy/docker-compose.yml
+#   docker compose up -d
+#
+# Si el paquete de GHCR es privado, en el servidor: docker login ghcr.io (usuario MarcoTenCortes + token con
+# read:packages) y descomenta el volumen de config.json en watchtower.
+
+services:
+  portafolios:
+    image: ghcr.io/marcotencortes/portafolios:latest
+    container_name: portafolios
+    restart: always
+    ports:
+      - "8951:8080"
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+    logging:
+      driver: json-file
+      options:
+        max-size: "5m"
+        max-file: "3"
+
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    restart: always
+    command: --label-enable --cleanup --interval 300
+    environment:
+      TZ: Europe/Madrid
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      # - /root/.docker/config.json:/config.json:ro   # solo si la imagen de GHCR es privada
