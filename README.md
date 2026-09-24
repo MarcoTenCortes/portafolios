@@ -115,7 +115,7 @@ curl -fsSL https://get.docker.com | sh && sudo usermod -aG docker $USER
 mkdir -p /opt/portafolios && cd /opt/portafolios && curl -fsSLO https://raw.githubusercontent.com/MarcoTenCortes/portafolios/main/deploy/docker-compose.yml && docker compose up -d
 ```
 
-El paquete de GHCR debe ser público (GitHub → Packages → portafolios → Package settings → Change visibility) o, si se prefiere privado, hacer `docker login ghcr.io` en el servidor y descomentar el volumen de `config.json` en Watchtower. Prueba local: `docker build -t portafolios . && docker run --rm -p 8951:8080 portafolios`.
+Watchtower lleva un cliente Docker antiguo: el compose fija `DOCKER_API_VERSION=1.44` para que funcione con Docker Engine 29+ (si no, registra «client version 1.25 is too old» y nunca actualiza). El paquete de GHCR debe ser público (GitHub → Packages → portafolios → Package settings → Change visibility) o, si se prefiere privado, hacer `docker login ghcr.io` en el servidor y descomentar el volumen de `config.json` en Watchtower. Prueba local: `docker build -t portafolios . && docker run --rm -p 8951:8080 portafolios`.
 
 ### A mano (scp/rsync)
 
