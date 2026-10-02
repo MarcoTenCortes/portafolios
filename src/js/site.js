@@ -116,7 +116,7 @@ function initReveals() {
 }
 
 function initLoopPausing() {
-  const targets = [...document.querySelectorAll('#scene, #yard, .card__media--svg, .skills__lava, #hero-desk')];
+  const targets = [...document.querySelectorAll('#scene, #yard, .card__media--svg, .skills__lava, #hero-desk, #exp-bg')];
   if (!targets.length) return;
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {

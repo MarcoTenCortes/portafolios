@@ -1,0 +1,127 @@
+<svg class="exp__art" viewBox="0 0 1600 640" width="100%" height="100%" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">
+ <!-- Dynos: Marco agachado, con una rodilla en el suelo, conecta un latiguillo en el panel de parcheo de un rack
+      de servidores con LEDs azules; el destornillador asoma del bolsillo trasero. Al fondo, mas racks. -->
+ <defs>
+  <radialGradient id="exp-d-glow"><stop offset="0" stop-color="#2997ff" stop-opacity=".16"/><stop offset="1" stop-color="#2997ff" stop-opacity="0"/></radialGradient>
+ </defs>
+ <g stroke-linecap="round" stroke-linejoin="round">
+  <!-- bandeja de cables en el techo y fila de racks al fondo (ambiente, a lo ancho) -->
+  <path d="M0 64C400 63 1000 65 1600 64M0 84C400 83 1000 85 1600 84" fill="none" stroke="#262f44" stroke-width="6"/>
+  <path d="M60 64V84M180 64V84M300 64V84M420 64V84M540 64V84M660 64V84M780 64V84M900 64V84M1020 64V84M1140 64V84M1260 64V84" stroke="#262f44" stroke-width="4"/>
+  <path d="M380 86C384 120 380 140 384 160M780 86C786 116 778 136 784 160M1180 86C1184 110 1180 130 1184 160" fill="none" stroke="#262f44" stroke-width="5"/>
+  <path d="M320 160H1300V560H320Z" fill="#202839" opacity=".7"/>
+  <path d="M400 160V560M480 160V560M600 160V560M680 160V560M800 160V560M880 160V560M1000 160V560M1080 160V560M1200 160V560M1280 160V560" stroke="#1a2030" stroke-width="10"/>
+  <path d="M330 230H1290M330 300H1290M330 380H1290M330 450H1290" stroke="#262f44" stroke-width="3"/>
+  <path d="M352 190h.1M352 214h.1M432 250h.1M432 262h.1M560 200h.1M560 300h.1M640 236h.1M640 248h.1M768 180h.1M768 322h.1M848 214h.1M976 260h.1M976 272h.1M1056 198h.1M1056 340h.1M1184 230h.1M1184 242h.1M1264 206h.1" stroke="var(--action,#2997ff)" stroke-width="5" opacity=".5"/>
+  <!-- suelo tecnico -->
+  <path d="M0 600C400 599 1000 601 1600 600V640H0Z" fill="#151a26" opacity=".6"/>
+  <path d="M0 600C400 599 1000 601 1600 600M200 600L140 640M520 600L500 640M840 600L860 640M1160 600L1220 640" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4"/>
+  <!-- el rack: lo que brilla son los LEDs -->
+  <ellipse cx="1470" cy="360" rx="200" ry="240" fill="url(#exp-d-glow)"/>
+  <g stroke="var(--ill-ink,#151a24)">
+  <path d="M1384 116L1404 108L1406 600L1386 598Z" fill="#1a2030" stroke-width="4"/>
+  <path d="M1404 108C1480 106 1560 107 1600 108L1600 600L1406 600Z" fill="#202839" stroke-width="4.5"/>
+  <path d="M1418 124H1590V588H1418Z" fill="#131822" stroke-width="3"/>
+  <!-- servidores (2U), panel de parcheo, switch y SAI -->
+  <path d="M1420 140H1588V186H1420ZM1420 202H1588V248H1420ZM1420 264H1588V310H1420ZM1420 426H1588V472H1420Z" fill="#262f44" stroke-width="3"/>
+  <path d="M1420 344H1588V380H1420Z" fill="#202839" stroke-width="3"/>
+  <path d="M1420 388H1588V414H1420Z" fill="#262f44" stroke-width="3"/>
+  <path d="M1420 488H1588V586H1420Z" fill="#262f44" stroke-width="3"/>
+  </g>
+  <path d="M1434 152H1520M1434 162H1520M1434 172H1520M1434 214H1520M1434 224H1520M1434 234H1520M1434 276H1520M1434 286H1520M1434 296H1520M1434 438H1520M1434 448H1520M1434 458H1520" stroke="#1a2030" stroke-width="4"/>
+  <path d="M1434 500H1520M1434 512H1520M1434 524H1520M1434 536H1520" stroke="#202839" stroke-width="5"/>
+  <path d="M1540 152v24M1550 152v24M1540 214v24M1550 214v24M1540 276v24M1550 276v24" stroke="#1a2030" stroke-width="5"/>
+  <path d="M1436 362h7v8h-7zM1449 362h7v8h-7zM1462 362h7v8h-7zM1475 362h7v8h-7zM1488 362h7v8h-7zM1501 362h7v8h-7zM1514 362h7v8h-7zM1527 362h7v8h-7zM1540 362h7v8h-7zM1553 362h7v8h-7z" fill="#05070b"/>
+  <path d="M1436 398h120" stroke="#1a2030" stroke-width="8" stroke-dasharray="8 5" stroke-linecap="butt"/>
+  <path d="M1574 160h.1M1574 222h.1M1574 284h.1M1574 446h.1M1574 508h.1M1440 356h.1M1466 356h.1M1479 356h.1M1505 356h.1M1518 356h.1M1544 356h.1" stroke="var(--action,#2997ff)" stroke-width="6"/>
+  <path d="M1574 172h.1M1564 222h.1M1574 296h.1M1564 446h.1" stroke="#6bb8ff" stroke-width="5" opacity=".5"/>
+  <!-- latiguillos ya conectados -->
+  <path d="M1453 370C1456 392 1470 404 1494 406M1492 370C1494 386 1500 396 1516 398M1531 370C1530 384 1538 394 1550 396" fill="none" stroke="#c6cfdb" stroke-width="4" opacity=".75"/>
+  <!-- el latiguillo que esta conectando: del conector en la mano al rollo en el suelo -->
+  <path d="M1434 366C1424 410 1440 470 1430 530C1424 570 1390 592 1350 592C1320 592 1300 586 1290 580" fill="none" stroke="#e8b56a" stroke-width="5"/>
+  <ellipse cx="1300" cy="596" rx="34" ry="6" fill="none" stroke="#e8b56a" stroke-width="5"/>
+  <!-- Marco agachado -->
+  <ellipse cx="1290" cy="600" rx="120" ry="8" fill="#000" opacity=".3"/>
+  <g stroke="var(--ill-ink,#151a24)">
+  <!-- pierna de atras: rodilla arriba, pie plantado junto al rack -->
+  <path d="M1300 470C1330 462 1360 458 1384 460C1398 462 1404 474 1400 488L1394 580L1366 582L1368 498C1346 500 1318 504 1300 506Z" fill="#2c3038" stroke-width="5"/>
+  <path d="M1360 576C1374 572 1404 574 1418 584C1422 592 1416 598 1404 598L1362 598C1356 592 1356 582 1360 576Z" fill="#17191d" stroke-width="4.5"/>
+  <!-- pierna de delante: rodilla en el suelo, la espinilla hacia atras y la suela a la vista -->
+  <path d="M1280 568C1250 570 1220 574 1190 576L1188 597C1220 597 1252 597 1286 597Z" fill="#2c3038" stroke-width="5"/>
+  <path d="M1206 580C1230 579 1252 578 1272 577" fill="none" stroke="#3a3f4a" stroke-width="4"/>
+  <path d="M1238 478C1234 520 1242 560 1256 588C1266 598 1292 598 1302 589C1306 556 1302 520 1300 488Z" fill="#3a3f4a" stroke-width="5"/>
+  <path d="M1250 520C1252 548 1258 568 1266 582" fill="none" stroke="#4a505c" stroke-width="3.5"/>
+  <path d="M1158 568C1150 578 1150 592 1160 597L1194 598L1192 574C1182 566 1166 564 1158 568Z" fill="#17191d" stroke-width="4.5"/>
+  <path d="M1162 574C1157 582 1157 590 1163 594" fill="none" stroke="#2e3138" stroke-width="3"/>
+  <!-- cadera, bolsillo y destornillador -->
+  <path d="M1226 470C1250 462 1300 462 1324 470C1330 492 1326 512 1312 524C1290 534 1250 534 1234 524C1222 510 1220 490 1226 470Z" fill="#3a3f4a" stroke-width="5"/>
+  <path d="M1240 490C1252 488 1266 488 1276 490L1274 514C1264 518 1250 518 1242 514Z" fill="#2c3038" stroke-width="3"/>
+  </g>
+  <!-- tronco, brazos y cabeza (de desk.svg), inclinados hacia el rack -->
+  <g transform="translate(1026.8 206.6) scale(0.56) rotate(14 470 506)">
+  <g class="exp__rim" fill="none" stroke="#6bb8ff" stroke-width="14">
+  <path d="M470 175C492 173 514 178 530 190C542 199 550 208 554 216M453 181C459 166 481 161 496 169"/>
+  <path d="M510 313C530 317 550 322 564 332C579 342 585 360 589 384C591 420 590 460 586 500"/>
+  <path d="M572 340C590 320 606 290 620 262M628 246C640 238 654 242 658 252" opacity=".8"/>
+  </g>
+  <!-- brazo de delante: va hacia delante, la mano queda tapada por el cuerpo -->
+  <path d="M374 336C352 350 342 384 344 420C346 446 356 466 370 476L400 462C390 444 386 420 390 396C392 376 398 360 404 350Z" fill="#2c3037" stroke="var(--ill-ink,#151a24)" stroke-width="5.5"/>
+  <path d="M448 290C449 300 447 310 446 320L494 320C493 310 492 300 492 290Z" fill="#d9ab8c"/>
+  <path d="M449 292C448 302 448 311 446 319M492 292C492 302 493 311 494 319" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5"/>
+  <path d="M486 272C500 280 514 286 534 292C528 303 523 314 521 327L486 327Z" fill="#d9ab8c"/>
+  <path d="M533 297C529 306 524 314 522 324" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5"/>
+  <path d="M518 206C532 203 545 208 550 216C554 224 555 232 558 238C559 243 557 247 557 251C559 255 563 258 566 260C571 263 577 265 577 268C577 272 569 273 563 273C562 279 561 286 557 293C554 299 545 302 536 301C526 300 517 294 511 287L507 240Z" fill="#eecdb4"/>
+  <path d="M511 287C517 294 526 300 536 301C545 302 554 299 557 293C547 297 535 296 526 290C521 285 517 279 516 271Z" fill="#d8a98a"/>
+  <path d="M545 232C550 230 554 230 558 233" fill="none" stroke="#3b2a21" stroke-width="5.1"/>
+  <path d="M510 247C505 251 504 259 506 266" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5"/>
+  <path d="M470 175C492 173 514 178 530 190C542 199 550 208 554 216C548 214 543 215 540 220C535 226 532 234 531 243C530 250 529 257 527 263L508 272C506 282 505 290 502 297L496 303L489 297L481 304L473 298L465 304L457 297L450 303L443 297L436 302C428 301 419 297 413 291C403 279 397 262 397 242C397 220 404 200 420 187C432 178 450 175 470 175Z" fill="#3b2a21"/>
+  <path d="M403 262C409 284 423 298 440 302L498 302C502 296 504 290 506 282C488 290 470 291 452 289C430 287 414 278 403 262Z" fill="#241913"/>
+  <path d="M424 191C442 180 492 179 516 191C498 187 478 186 460 189C446 190 434 194 424 191Z" fill="#5b4232"/>
+  <path d="M453 181C459 166 481 161 496 169C486 170 477 174 471 183Z" fill="#3b2a21"/>
+  <path d="M458 176C464 168 478 165 489 168" fill="none" stroke="#5b4232" stroke-width="3.8"/>
+  <g fill="none" stroke="#1a120e" stroke-width="3.8" opacity=".75">
+  <path d="M462 196C442 201 424 216 413 238"/>
+  <path d="M460 199C444 214 434 240 431 264"/>
+  <path d="M464 200C460 226 458 252 458 278"/>
+  <path d="M468 197C486 198 506 204 524 216"/>
+  <path d="M468 200C484 212 496 232 500 256"/>
+  </g>
+  <path d="M436 302C428 301 419 297 413 291C403 279 397 262 397 242C396 220 404 200 420 187C428 181 438 177 448 176M470 175C492 173 514 178 530 190C542 199 550 208 554 216" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6.8"/>
+  <path d="M453 181C459 166 481 161 496 169C486 170 477 174 471 183" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.2"/>
+  <path d="M554 216C548 214 543 215 540 220C535 226 532 234 531 243C530 250 529 257 527 263M508 276C506 284 505 290 502 297" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5"/>
+  <path d="M550 216C554 224 555 232 558 238C559 243 557 247 558 251C559 255 563 258 567 260C572 263 577 265 577 268C577 272 570 273 563 273C562 280 561 287 558 293C554 300 545 303 536 301C526 300 518 295 511 288" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.2"/>
+  <path d="M517 239C507 236 501 248 502 261C503 275 509 285 519 285C525 285 528 280 527 274C526 268 528 262 529 255C530 246 526 240 517 239Z" fill="#eecdb4" stroke="var(--ill-ink,#151a24)" stroke-width="4.5"/>
+  <path d="M514 249C509 255 509 266 514 274M520 256C518 259 518 263 520 266" fill="none" stroke="#c98f70" stroke-width="3.8"/>
+  <path d="M509 247C524 245 540 244 557 243" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6.8"/>
+  <path d="M556 233C559 239 560 248 557 255" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7.5"/>
+  <path d="M514 247L520 246" fill="none" stroke="#9aa6b8" stroke-width="2.4"/>
+  <path d="M430 314C410 317 390 322 376 332C362 342 356 360 352 384C349 420 352 460 356 498L584 498C588 460 591 420 588 384C584 360 578 342 564 332C550 322 530 317 510 314C494 326 446 326 430 314Z" fill="var(--ill-dark,#23272d)"/>
+  <path d="M378 334C392 322 414 317 432 316C438 320 444 323 450 325C424 328 398 335 382 347ZM562 334C548 322 526 317 508 316C502 320 496 323 490 325C516 328 542 335 558 347Z" fill="#33373f"/>
+  <path d="M354 392C350 430 352 466 357 496L378 496C374 460 372 424 374 386ZM586 392C590 430 588 466 583 496L562 496C566 460 568 424 566 386Z" fill="#0f131c"/>
+  <path d="M404 372C430 380 510 380 536 372C540 410 540 456 538 494L402 494C400 456 400 410 404 372Z" fill="#1c2025" opacity=".7"/>
+  <path d="M471 338C469 380 472 440 470 488M420 352C432 358 444 360 452 358" fill="none" stroke="#16191d" stroke-width="3.5"/>
+  <path d="M355 486C420 494 520 494 585 486L586 506C520 514 420 514 354 506Z" fill="#17191d"/>
+  <path d="M372 492V508M392 494V510M412 495V511M432 496V512M452 496V512M472 496V512M492 496V512M512 495V511M532 495V511M552 494V510M572 492V508" stroke="#2e3138" stroke-width="2.5"/>
+  <path d="M430 313C410 317 390 322 376 332C361 342 355 360 351 384C348 420 351 460 354 506C420 514 520 514 586 506C589 460 592 420 589 384C585 360 579 342 564 332C550 322 530 317 510 313" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7"/>
+  <path d="M430 312C446 324 494 324 510 312C516 316 520 320 522 324C500 338 440 338 418 324C420 320 424 316 430 312Z" fill="#17191d"/>
+  <g fill="none" stroke="#2e3138" stroke-width="3">
+  <path d="M428 318L425 324M436 322L434 329M445 325L444 332M455 327L455 334M465 328L465 335M475 328L475 335M485 327L486 334M495 325L496 332M504 322L506 329M512 318L515 324"/>
+  </g>
+  <path d="M418 324C440 338 500 338 522 324M430 312C446 325 494 325 510 312" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5"/>
+  <!-- brazo de atras: sube hasta el panel con el conector del latiguillo -->
+  <path d="M548 330C566 330 580 340 588 354C600 330 610 300 618 272L646 278C640 306 628 346 612 380C604 396 586 400 574 392C564 384 556 368 552 354Z" fill="#2c3037"/>
+  <path d="M618 272L646 278L644 292L615 286Z" fill="#17191d"/>
+  <path d="M620 262C618 248 628 236 642 236C656 236 664 248 660 262C656 274 644 278 634 276C626 274 621 270 620 262Z" fill="#eecdb4"/>
+  <path d="M630 268C638 272 648 270 654 264" fill="none" stroke="#c98f70" stroke-width="3"/>
+  <path d="M548 330C566 330 580 340 588 354C600 330 610 300 618 272M646 278C640 306 628 346 612 380C604 396 586 400 574 392M620 262C618 248 628 236 642 236C656 236 664 248 660 262C656 274 644 278 634 276C626 274 621 270 620 262Z" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.5"/>
+  </g>
+  <!-- destornillador en el bolsillo trasero: el mango asoma por encima del elastico del jersey -->
+  <g stroke="var(--ill-ink,#151a24)">
+  <path d="M1248 494L1236 458C1235 454 1238 451 1242 450L1250 448C1254 447 1257 450 1258 454L1264 490Z" fill="#e0655a" stroke-width="3.5"/>
+  <path d="M1244 474L1256 471M1246 482L1258 479" stroke="#a8473f" stroke-width="2.5"/>
+  <path d="M1241 456L1243 466" stroke="#f08a7f" stroke-width="2.5"/>
+  </g>
+  <!-- conector en la mano, entrando en el puerto -->
+  <path d="M1416 360L1434 362L1434 372L1416 372Z" fill="#c6cfdb" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+ </g>
+</svg>
