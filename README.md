@@ -9,7 +9,7 @@ Portafolio de **Marco Tenorio Cortés** (Software Engineer · Technical Analyst)
 - [Vite 8](https://vite.dev) como servidor de desarrollo y empaquetador. Sin framework: HTML semántico, CSS moderno (`@layer`, custom properties, `clamp()`, container-free) y JavaScript en módulos ES.
 - Tipografía Inter Variable auto-alojada (subset latino, ~64 KB) con fallback métrico.
 - Iconos de tecnologías desde [simple-icons](https://simpleicons.org) en un sprite SVG generado.
-- Sin analítica, sin cookies, sin dependencias externas en runtime.
+- Sin analítica en el navegador (las visitas se cuentan en el log del servidor: ver [Registro de visitas](#registro-de-visitas)), sin cookies, sin dependencias externas en runtime.
 - Una **zona de juego** (rotulador para dibujar, perro con hueso y caseta, luz azul que sigue al ratón, lámpara de cuerda en el hero, lámpara de lava) cargada tras `load`, con alternativa de teclado y `prefers-reduced-motion`.
 - **Fichas de proyecto**: cada tarjeta abre una subpágina (`<dialog>`) con scroll propio, cifras y diagramas, cargada bajo demanda y enlazable (`#proyecto/<id>`).
 
@@ -120,6 +120,63 @@ mkdir -p /opt/portafolios && cd /opt/portafolios && curl -fsSLO https://raw.gith
 ```
 
 Watchtower lleva un cliente Docker antiguo: el compose fija `DOCKER_API_VERSION=1.44` para que funcione con Docker Engine 29+ (si no, registra «client version 1.25 is too old» y nunca actualiza). El paquete de GHCR debe ser público (GitHub → Packages → portafolios → Package settings → Change visibility) o, si se prefiere privado, hacer `docker login ghcr.io` en el servidor y descomentar el volumen de `config.json` en Watchtower. Prueba local: `docker build -t portafolios . && docker run --rm -p 8951:8080 portafolios`.
+
+### Registro de visitas
+
+Delante del contenedor hay un nginx en el propio servidor: el proxy inverso con TLS de `portafolios.mtcor.es` hacia el puerto 8951. Las visitas se registran **ahí y no en el contenedor**: es quien ve la IP real del visitante (el contenedor solo ve la del proxy), sus logs ya los rota `logrotate` y no se pierden cuando Watchtower cambia la imagen, y GoAccess los lee en el propio servidor sin exponer nada. El contenedor (`Dockerfile`, `deploy/nginx.conf`, `deploy/docker-compose.yml`) no cambia y sigue mandando sus logs a stdout.
+
+- `deploy/host-nginx/portafolios-visitas.conf` (va en `/etc/nginx/conf.d/`): el formato `portafolios_visitas` (combined + `Accept-Language`) y la variable `$portafolios_registrar`, que vale 1 solo en las **vistas de página**: `GET` de `/` o `/index.html` (con o sin query) hecho por un navegador.
+- `deploy/host-nginx/portafolios.vhost.example`: el `server {}` del proxy como referencia; del vhost real solo se tocan las líneas `access_log` (y las cabeceras `proxy_set_header`, si faltan).
+- `deploy/visitas-informe.sh`: el informe HTML de GoAccess con el log actual y los rotados, o el mismo informe en tiempo real.
+
+**Qué se guarda** de cada visita: fecha y hora, IP, petición (con su query, p. ej. `?utm_source=…`), estado, bytes, referer, user-agent e idioma del navegador. **Qué no**: assets, favicon, `robots.txt`, `sitemap.xml`, páginas 404, peticiones `HEAD` o `POST`, el healthcheck de Docker (va directo al contenedor) y los bots conocidos (buscadores, previsualizaciones de enlaces de LinkedIn, WhatsApp, Telegram o Slack, monitores, `curl`, navegadores headless, user-agent vacío). Las fichas (`#proyecto/<id>`) y el cambio de idioma no llegan al servidor: una visita es una carga de la página.
+
+En el servidor (una vez; los ficheros se bajan de `main`):
+
+```bash
+sudo apt install -y goaccess
+sudo curl -fsSL -o /etc/nginx/conf.d/portafolios-visitas.conf https://raw.githubusercontent.com/MarcoTenCortes/portafolios/main/deploy/host-nginx/portafolios-visitas.conf
+cd /opt/portafolios && curl -fsSLO https://raw.githubusercontent.com/MarcoTenCortes/portafolios/main/deploy/visitas-informe.sh
+```
+
+En el vhost de `portafolios.mtcor.es` (p. ej. `/etc/nginx/sites-available/portafolios.mtcor.es`), dentro del `server {}` que escucha en 443 (a nivel de `server`, p. ej. tras `server_name`; no dentro del `location`):
+
+```nginx
+access_log /var/log/nginx/access.log;
+access_log /var/log/nginx/portafolios.visitas.log portafolios_visitas if=$portafolios_registrar;
+```
+
+La primera línea conserva el log general: un `server {}` que declara su propio `access_log` deja de heredar el de `http` (si el vhost ya tenía uno, se deja ese y solo se añade la segunda). Si el `location /` declara `access_log`, la segunda línea va también ahí. Después (los `curl`, desde tu equipo o desde el servidor):
+
+```bash
+sudo nginx -t && sudo systemctl reload nginx
+curl -s -o /dev/null -A 'Mozilla/5.0 (prueba)' https://portafolios.mtcor.es/             # cuenta como visita
+curl -s -o /dev/null -A 'Mozilla/5.0 (prueba)' https://portafolios.mtcor.es/robots.txt   # no cuenta: no es la página
+curl -s -o /dev/null https://portafolios.mtcor.es/                                       # no cuenta: curl es un bot
+sudo grep -c 'Mozilla/5.0 (prueba)' /var/log/nginx/portafolios.visitas.log               # 1
+sudo tail -n 1 /var/log/nginx/portafolios.visitas.log                                    # tu IP, "GET / ..." y "Mozilla/5.0 (prueba)"
+```
+
+Al abrir la web en el navegador aparece otra línea con tu IP y tu navegador, y ninguna de `/assets/…`. Para ver el informe:
+
+```bash
+sudo sh /opt/portafolios/visitas-informe.sh                    # en el servidor: escribe /opt/portafolios/informe-visitas.html
+scp usuario@servidor:/opt/portafolios/informe-visitas.html .   # en tu equipo; se abre en el navegador
+```
+
+En tiempo real (el informe se actualiza solo con cada visita; Ctrl+C lo termina):
+
+```bash
+sudo sh /opt/portafolios/visitas-informe.sh --tiempo-real      # en el servidor: WebSocket solo en 127.0.0.1:7890
+ssh -N -L 7890:127.0.0.1:7890 usuario@servidor                 # en tu equipo, en otra terminal: el túnel
+scp usuario@servidor:/opt/portafolios/informe-visitas.html .   # ábrelo en local: se conecta a localhost:7890
+```
+
+- **Rotación**: el log entra en el `logrotate` de nginx (`/etc/logrotate.d/nginx` cubre `/var/log/nginx/*.log`): a diario y 14 copias comprimidas, así que el informe abarca unas dos semanas. Para conservar más, sube `rotate` en ese fichero (afecta a todos los logs de nginx); un fichero propio en `/etc/logrotate.d/` para este log no sirve: logrotate lo rechaza porque ya está cubierto («duplicate log entry»).
+- **Países** (opcional): con la base gratuita GeoLite2 Country de MaxMind (requiere cuenta) en `/opt/portafolios/GeoLite2-Country.mmdb`, el script la usa sola y el informe muestra el país; en otra ruta, `sudo GEOIP=/ruta/base.mmdb sh /opt/portafolios/visitas-informe.sh`. Del mismo modo, `LOG`, `INFORME` y `PUERTO` cambian el log, el HTML y el puerto; van tras `sudo` (`sudo PUERTO=7891 sh …`) porque `sudo` no hereda las variables del entorno.
+- **Bots**: nginx descarta los conocidos al escribir y GoAccess quita además los de su propia lista (`--ignore-crawlers`). La app de LinkedIn en iPhone se anuncia de forma que GoAccess la tomaría por un bot: el script la mantiene como navegador.
+- **Puerto 8951**: `deploy/docker-compose.yml` publica `"8951:8080"` en todas las interfaces y Docker se salta ufw, así que una petición directa a `http://IP:8951` entra sin TLS y sin pasar por el registro. Si el proxy hace `proxy_pass` a `127.0.0.1` (como en el ejemplo), cambia esa línea en el compose del servidor (`/opt/portafolios/docker-compose.yml`) por `"127.0.0.1:8951:8080"` y aplícalo con `cd /opt/portafolios && docker compose up -d`.
+- **Privacidad**: la IP completa es un dato personal (RGPD). Conviene decirlo en una línea en el pie de la web o en un aviso de privacidad (qué se guarda, para qué y cuánto tiempo) y no conservarla más de lo necesario; con la rotación por defecto desaparece en unas dos semanas. El informe HTML también lleva las IPs: no se publica, se copia con `scp`.
 
 ### A mano (scp/rsync)
 

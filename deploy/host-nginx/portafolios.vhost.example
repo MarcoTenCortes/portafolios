@@ -1,0 +1,37 @@
+# Ejemplo del vhost de portafolios.mtcor.es en el nginx del host: proxy inverso con TLS hacia el contenedor del
+# puerto 8951 (deploy/docker-compose.yml). No se copia entero: en el vhost real (p. ej.
+# /etc/nginx/sites-available/portafolios.mtcor.es, con las lineas "# managed by Certbot") basta con poner en el
+# server {} del 443 las dos lineas access_log y, si faltan, las cabeceras proxy_set_header. Necesita
+# portafolios-visitas.conf en /etc/nginx/conf.d/ (define el formato y $portafolios_registrar).
+
+server {
+  listen 443 ssl;
+  listen [::]:443 ssl;
+  server_name portafolios.mtcor.es;
+
+  ssl_certificate     /etc/letsencrypt/live/portafolios.mtcor.es/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/portafolios.mtcor.es/privkey.pem;
+
+  # Un server {} que declara su propio access_log deja de heredar el de http: se repite aqui el general
+  # (o el que ya tenga el vhost) para no perderlo.
+  access_log /var/log/nginx/access.log;
+  # Visitas: solo vistas de pagina de personas. Lo lee deploy/visitas-informe.sh. Sin buffer: cada visita se
+  # escribe al momento. Si el location / tuviera su propio access_log, esta linea iria tambien alli.
+  access_log /var/log/nginx/portafolios.visitas.log portafolios_visitas if=$portafolios_registrar;
+
+  location / {
+    proxy_pass http://127.0.0.1:8951;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+}
+
+# HTTP solo redirige: sin linea de visitas, la visita se cuenta cuando llega al 443.
+server {
+  listen 80;
+  listen [::]:80;
+  server_name portafolios.mtcor.es;
+  return 301 https://$host$request_uri;
+}
