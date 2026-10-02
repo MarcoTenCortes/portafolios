@@ -51,7 +51,7 @@ const afterFirstPaint = (fn) => requestAnimationFrame(() => requestAnimationFram
 if (document.readyState === 'complete') afterFirstPaint(bootPlay);
 else window.addEventListener('load', () => afterFirstPaint(bootPlay), { once: true });
 
-// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo
+// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo&lamp=on&pose=typing|turn|reach|hold|face
 if (import.meta.env.DEV) {
   const params = new URLSearchParams(window.location.search);
   const shot = params.get('shot');
@@ -86,6 +86,9 @@ if (import.meta.env.DEV) {
       // ?lamp=on: la escena del escritorio arranca encendida
       if (params.get('lamp') === 'on') window.MTC.lamp?.toggle(true);
       // [hook:lava]
+      // [hook:pose] &pose=typing|turn|reach|hold|face: el escritorio salta a esa pose sin transiciones (y con la luz que le toca)
+      const deskPose = params.get('pose');
+      if (deskPose) window.MTC.lamp?.snap(deskPose);
       // ?project=<id>: abre esa ficha de proyecto (sin tocar el historial)
       const projectId = params.get('project');
       if (projectId && window.MTC.projects) window.MTC.projects.open(projectId, { push: false });
