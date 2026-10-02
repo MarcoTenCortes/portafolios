@@ -10,6 +10,18 @@ initSite({ i18n });
 
 // Zona de juego: se carga tras `load` y en tiempo ocioso para no competir con el LCP del busto.
 const playTokens = (document.body.dataset.play || '').split(/\s+/).filter(Boolean);
+// Momento (performance.now()) en que el visitante ve la pagina: 0 = la navegacion; si la pestana se abrio en segundo
+// plano, cuando se hace visible (bootPlay espera a rAF, que no corre con la pestana oculta: sin esto el perro de los
+// bordes saldria nada mas arrancar). El perro asomado sale por primera vez a los 10 s de este momento.
+let enteredAt = document.hidden ? null : 0;
+if (enteredAt == null) {
+  const seen = () => {
+    if (document.hidden) return;
+    enteredAt = performance.now();
+    document.removeEventListener('visibilitychange', seen);
+  };
+  document.addEventListener('visibilitychange', seen);
+}
 function bootPlay() {
   const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 0));
   idle(() => {
@@ -35,7 +47,7 @@ function bootPlay() {
       jobs.push(Promise.all([stamped, import('./marker.js')]).then(([, m]) => { window.MTC.marker = measure('initMarker', () => m.initMarker(document.getElementById('play'), { i18n, showToast })); }));
     }
     if (playTokens.includes('dog') && document.getElementById('yard')) {
-      jobs.push(Promise.all([stamped, import('./dog.js')]).then(([, m]) => { window.MTC.dog = measure('initDog', () => m.initDog(document.getElementById('yard'), { i18n, showToast })); }));
+      jobs.push(Promise.all([stamped, import('./dog.js')]).then(([, m]) => { window.MTC.dog = measure('initDog', () => m.initDog(document.getElementById('yard'), { i18n, showToast, enteredAt })); }));
     }
     // lampara del hero: el escritorio se estampa desde lazy.html y la cadena enciende o apaga la escena
     if (document.getElementById('hero-desk')) jobs.push(Promise.all([stamped, import('./lamp.js')]).then(([, m]) => { window.MTC.lamp = measure('initLamp', () => m.initLamp(document.getElementById('hero-desk'), { i18n, showToast })); }));
