@@ -30,6 +30,8 @@
     --action: #2997ff;
     --action-soft: rgba(41, 151, 255, 0.14);
     --action-glow: rgba(41, 151, 255, 0.18);
+    --cursor-glow: rgba(41, 151, 255, 0.13); /* luz del raton: nucleo del foco (el sitio antiguo: rgba(29, 78, 216, 0.15)) */
+    --cursor-glow-size: 960px;               /* diametro del disco: transparente a 480 px, como 600px ... transparent 80% */
     --primary: #ffffff;
     --primary-hover: #e9edf3;
     --on-primary: #05070b;
@@ -689,6 +691,29 @@
   html.sheet-open .play, html.sheet-open .dog-peek { pointer-events: none !important; }
   @media (hover: none) { .marker { width: 160px; height: 42px; transform-origin: 0px 21px; } }
 
+  /* [css:glow] luz del raton (glow.js): disco azul amplio y tenue que sigue al puntero. Por encima de las secciones
+     (fondos opacos) y por debajo de la tinta, el rotulador, el perro asomado (40), el menu (45), la nav (50) y el
+     toast (80). Sin mix-blend-mode ni filter: solo se mueve .cursor-glow__pos con translate3d (compositor).
+     Apagada no se compone (visibility: hidden) y el disco solo reserva capa (will-change) mientras esta encendida.
+     No entra en la lista de html.dialog-open (mas abajo): no tiene animation, y con la ficha abierta ya se oculta. */
+  .cursor-glow {
+    position: fixed; inset: 0; z-index: 30; overflow: hidden; pointer-events: none;
+    opacity: 0; visibility: hidden;
+    transition: opacity var(--dur-base) var(--ease-in-out), visibility 0s linear var(--dur-base);
+  }
+  .cursor-glow.is-on { opacity: 1; visibility: visible; transition: opacity var(--dur-slow) var(--ease-out), visibility 0s; }
+  .cursor-glow__pos { position: absolute; left: 0; top: 0; width: 0; height: 0; }
+  .cursor-glow__disc {
+    position: absolute; width: var(--cursor-glow-size); height: var(--cursor-glow-size);
+    left: calc(var(--cursor-glow-size) / -2); top: calc(var(--cursor-glow-size) / -2); border-radius: 50%;
+    /* la parada media sale del token (0.13 x 38,5 % = 0.05): bajar --cursor-glow atenua todo el disco, no solo el nucleo */
+    background: radial-gradient(circle closest-side, var(--cursor-glow) 0%, color-mix(in srgb, var(--cursor-glow) 38.5%, transparent) 42%, transparent 100%);
+    transform: scale(0.72); transition: transform 700ms var(--ease-out);
+  }
+  .cursor-glow.is-on .cursor-glow__disc { transform: scale(1); will-change: transform; }
+  html:is(.pdialog-open, .sheet-open) .cursor-glow { opacity: 0; visibility: hidden; }
+  @media (forced-colors: active) { .cursor-glow { display: none; } }
+
   /* patio: caseta y hueso sueltos al pie de Contacto (franja a sangre; el perro entra por el borde) */
   .yard { position: relative; height: 216px; margin: 24px 0 calc(-1 * var(--section-y)); overflow: hidden; pointer-events: none; user-select: none; -webkit-user-select: none; }
   .yard__house { position: absolute; right: var(--gutter); bottom: 0; width: 200px; height: 182px; transform: scaleX(-1); }
@@ -1258,6 +1283,9 @@
     .scene__stars { opacity: 0.4; }
     .card:hover .card__media img { transform: none; }
     .arrow, .btn, .chip, .action, .nav { transition: none; }
+    /* luz del raton: pegada al puntero (glow.js quita la cola), sin fundidos ni crecimiento */
+    .cursor-glow, .cursor-glow__disc { transition: none; }
+    .cursor-glow.is-on .cursor-glow__disc { transform: none; }
   }
 }
 
@@ -1268,7 +1296,7 @@
     body { background: #fff; color: #111; }
     .tile, .tile--black, .tile--canvas, .tile--1, .tile--2, .tile--3 { background: #fff !important; padding-block: 24px; }
     h1, h2, h3, .body, .lead, .caption, .eyebrow, .chip, .action, .facts dd { color: #111 !important; }
-    .nav, .sheet, .skip, .hero__disc, .hero::before, .rig, .scene-window, .toast, #to-top, .rig__hit, .projects__more, .play, .dog-peek, .yard, .skills__lava, .hero__desk { display: none !important; }
+    .nav, .sheet, .skip, .hero__disc, .hero::before, .rig, .scene-window, .toast, #to-top, .rig__hit, .projects__more, .play, .dog-peek, .yard, .skills__lava, .hero__desk, .cursor-glow { display: none !important; }
     .about__media::after { content: ""; display: block; width: 160px; height: 160px; background: url("../assets/img/rig/fallback.webp") center / contain no-repeat; }
     html.js [data-reveal] { opacity: 1 !important; transform: none !important; }
     a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 12px; color: #555; }

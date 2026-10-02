@@ -5,12 +5,15 @@
 // Maquina de estados explicita (inHouse -> running -> entering -> inHouse), Web Animations API encadenada
 // por animation.finished, el hueso es un <button> arrastrable (Enter = darselo: alternativa de teclado).
 // Aparte, el perro que se asoma por los bordes de la ventana (#dog-peek, capa fija): nunca mientras el del
-// patio este a la vista (solo hay un perro), y se esconde si el puntero se le acerca.
+// patio este a la vista (solo hay un perro), y se esconde si el puntero se le acerca. La primera vez sale a los
+// 10 s de ver la pagina (enteredAt, desde main.js) aunque el visitante se este moviendo; despues, escondido 3-7 s
+// y a la vista 8-12 s, solo si lleva 2,5 s sin tocar nada (si no, lo reintenta cada 1,5-3 s). Tiempos en dog-machine.js.
 import { attachDrag } from './drag.js';
 import { clamp } from './play/geom.js';
 import {
   next as nextState, doorRect, doorCenter, isInDoor, isNearDoor, dogStopX, homeDogX, settleBone, spawnX,
   pointerZone, runDuration, nextPeekDelay, nextPeekHold, shouldPeek, peekBox, isShy, SHY, bonesAfter, announceFor,
+  firstPeekDelay, peekRetryDelay, isFirstPeekWindow,
 } from './play/dog-machine.js';
 
 const EASE_OUT = 'cubic-bezier(.2,.7,.2,1)';
@@ -52,7 +55,7 @@ function timer(fn, ms) {
   return t;
 }
 
-export function initDog(yard, { i18n, showToast } = {}) {
+export function initDog(yard, { i18n, showToast, enteredAt = 0 } = {}) {
   if (!yard) return null;
   const q = (sel) => yard.querySelector(sel);
   const houseFront = q('.yard__house--front');
@@ -504,6 +507,8 @@ export function initDog(yard, { i18n, showToast } = {}) {
   let peekBoxNow = null; // caja visible del perro asomado (px de cliente) para esconderse si el puntero se acerca
   let lastInput = performance.now();
   let lastSides = [];
+  let firstPeek = true; // la primera aparicion se salta la regla de estar quieto (solo dentro de FIRST_PEEK_WINDOW)
+  const peekLog = [];   // ultimas apariciones { side, y, shownAt, hiddenAt } para debugPeekLog() y las capturas
   const noteInput = () => { lastInput = performance.now(); };
   for (const ev of ['pointermove', 'pointerdown', 'keydown', 'scroll', 'touchstart', 'wheel']) {
     window.addEventListener(ev, noteInput, { passive: true });
@@ -567,16 +572,23 @@ export function initDog(yard, { i18n, showToast } = {}) {
   function armPeek(ms) {
     if (!peek) return;
     peekTimer?.cancel();
+    peekTimer = null;
+    if (reduced()) return; // con movimiento reducido no se asoma: no sondear en vano (reducedMQ lo vuelve a armar)
     peekTimer = timer(tryPeek, ms ?? nextPeekDelay());
   }
   function tryPeek() {
-    if (!shouldPeek(peekGate()) || peekState !== 'hidden') { armPeek(3000 + Math.random() * 3000); return; }
+    // la primera vez no exige estar quieto (minIdle aparte: debugShouldPeek() sigue dando la puerta normal)
+    const first = firstPeek && isFirstPeekWindow(performance.now(), enteredAt);
+    if (!shouldPeek({ ...peekGate(), minIdle: first ? 0 : undefined }) || peekState !== 'hidden') { armPeek(peekRetryDelay()); return; }
     const spot = placePeek();
     if (!spot) { armPeek(); return; }
     showPeek(spot.side, spot.y, nextPeekHold());
   }
   function showPeek(side, y, holdMs) {
     if (!peek) return;
+    firstPeek = false;
+    peekLog.push({ side, y, shownAt: Math.round(performance.now()), hiddenAt: null });
+    if (peekLog.length > 12) peekLog.shift();
     lastSides = [...lastSides.slice(-2), side];
     peek.dataset.side = side;
     peek.style.top = `${y}px`;
@@ -597,7 +609,14 @@ export function initDog(yard, { i18n, showToast } = {}) {
     peekBoxNow = null;
     peek.classList.remove('is-visible');
     peekState = 'peekingOut';
-    const done = () => { peek.hidden = true; peekState = 'hidden'; if (!document.hidden) armPeek(); };
+    const done = () => {
+      peek.hidden = true;
+      peekState = 'hidden';
+      // el hueco hasta la siguiente aparicion (nextPeekDelay) cuenta desde aqui
+      const last = peekLog[peekLog.length - 1];
+      if (last && last.hiddenAt == null) last.hiddenAt = Math.round(performance.now());
+      if (!document.hidden) armPeek();
+    };
     if (immediate || reduced()) done(); else setTimeout(done, 420); // = transition de .dog-peek
   }
   if (peek) {
@@ -628,7 +647,8 @@ export function initDog(yard, { i18n, showToast } = {}) {
       playTimer?.resume();
       peekTimer?.resume();
       peekHold?.resume();
-      if (!peekTimer || peekTimer.done) armPeek(4000 + Math.random() * 4000);
+      if (enteredAt == null) enteredAt = performance.now(); // arrancado con la pestana oculta: se ve ahora
+      if (!peekTimer || peekTimer.done) armPeek(peekRetryDelay());
     }
   });
   function relayout() {
@@ -672,9 +692,13 @@ export function initDog(yard, { i18n, showToast } = {}) {
     if (layout.house.left + layout.house.width > layout.size.width) console.warn('[dog] la caseta se sale de la franja');
     if (!dog.querySelector('.dog__bone')) console.warn('[dog] el dibujo del perro no trae el hueso en la boca');
   }
-  let firstScroll = false;
-  window.addEventListener('scroll', () => { if (!firstScroll) { firstScroll = true; armPeek(5000 + Math.random() * 4000); } }, { passive: true, once: true });
-  armPeek(6000 + Math.random() * 6000);
+  // perro asomado: la primera vez a los 10 s de ver la pagina (sin atajo por scroll: plazo determinista). Con
+  // movimiento reducido armPeek no arma nada; si el visitante lo desactiva, se arma aqui.
+  armPeek(firstPeekDelay(performance.now(), enteredAt));
+  const onReducedChange = () => {
+    if (!reduced() && peekState === 'hidden') armPeek(firstPeek ? firstPeekDelay(performance.now(), enteredAt) : undefined);
+  };
+  reducedMQ.addEventListener('change', onReducedChange);
 
   function forcePlaying() {
     home = true;
@@ -733,12 +757,13 @@ export function initDog(yard, { i18n, showToast } = {}) {
       measure();
       return { yard: layout.size, house: layout.house, door: doorRect(layout.house), dog: { ...layout.dog, x: dogX, classes: dog.className }, bone: { ...bonePos, ...layout.bone }, state, boneState, shown, home };
     },
-    debugShouldPeek() { return { gate: peekGate(), ok: shouldPeek(peekGate()) }; },
+    debugShouldPeek() { return { gate: peekGate(), ok: shouldPeek(peekGate()), firstPeek }; },
+    debugPeekLog() { return { enteredAt, firstPeek, now: Math.round(performance.now()), log: peekLog.map((e) => ({ ...e })) }; },
     debugPeekHits() {
       if (!peek || peek.hidden) return { visible: false, hits: [] };
       const y = parseFloat(peek.style.top) || 0;
       return { visible: true, side: peek.dataset.side, y, box: peekBoxNow, hits: peekHits(peek.dataset.side, y).map((el) => el.tagName + (el.id ? '#' + el.id : '') + '.' + String(el.className).slice(0, 30)) };
     },
-    destroy() { drag.destroy(); cancelLive(); cooldown?.cancel(); playTimer?.cancel(); peekTimer?.cancel(); peekHold?.cancel(); window.removeEventListener('pointermove', onPointer); },
+    destroy() { drag.destroy(); cancelLive(); cooldown?.cancel(); playTimer?.cancel(); peekTimer?.cancel(); peekHold?.cancel(); window.removeEventListener('pointermove', onPointer); reducedMQ.removeEventListener('change', onReducedChange); },
   };
 }
