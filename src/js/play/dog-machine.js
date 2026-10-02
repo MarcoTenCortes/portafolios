@@ -70,15 +70,38 @@ export function pointerZone(pointer, boneCenter, wasNear) {
 export function runDuration(px, speed = 380, min = 500, max = 2800) {
   return clamp((Math.abs(px) / speed) * 1000, min, max);
 }
-export function nextPeekDelay(rng = Math.random, min = 6000, max = 14000) {
+// Perro asomado por los bordes: la primera vez a los 10 s de ver la pagina (aunque el visitante se este moviendo);
+// despues, escondido 3-7 s (contando desde que se esconde) y a la vista 8-12 s; si falla la puerta, reintento en 1,5-3 s.
+export const FIRST_PEEK_AT = 10000;     // ms desde que se ve la pagina hasta la primera aparicion
+export const FIRST_PEEK_WINDOW = 20000; // ms: pasada esta ventana desde enteredAt la primera deja de ser especial
+export const PEEK_IDLE = 2500;          // ms sin tocar nada que exige la puerta (salvo la primera vez)
+export const PEEK_GAP = { min: 3000, max: 7000 };
+export const PEEK_HOLD = { min: 8000, max: 12000 };
+export const PEEK_RETRY = { min: 1500, max: 3000 };
+export function nextPeekDelay(rng = Math.random, min = PEEK_GAP.min, max = PEEK_GAP.max) {
   return Math.round(min + rng() * (max - min));
 }
-export function nextPeekHold(rng = Math.random, min = 8000, max = 12000) {
+export function nextPeekHold(rng = Math.random, min = PEEK_HOLD.min, max = PEEK_HOLD.max) {
   return Math.round(min + rng() * (max - min));
+}
+export function peekRetryDelay(rng = Math.random) {
+  return Math.round(PEEK_RETRY.min + rng() * (PEEK_RETRY.max - PEEK_RETRY.min));
+}
+// Espera hasta la primera aparicion: `at` ms desde enteredAt (performance.now() en que se vio la pagina; 0 = la
+// navegacion). Sin enteredAt (pestana abierta en segundo plano y aun sin ver), el plazo entero. Nunca negativo.
+export function firstPeekDelay(now, enteredAt = 0, at = FIRST_PEEK_AT) {
+  if (enteredAt == null) return at;
+  return Math.max(0, Math.round(enteredAt + at - now));
+}
+// La primera aparicion solo se salta la regla de estar quieto dentro de esta ventana (sin enteredAt aun no ha empezado).
+export function isFirstPeekWindow(now, enteredAt = 0, windowMs = FIRST_PEEK_WINDOW) {
+  if (enteredAt == null) return true;
+  return now - enteredAt < windowMs;
 }
 // dogVisible: el perro del patio esta fuera (asomado por el borde o jugando en la puerta): no puede estar en dos sitios.
-export function shouldPeek({ hidden, reduced, dragging, sheetOpen, state, idleMs, width, dogVisible = false }) {
-  return !hidden && !reduced && !dragging && !sheetOpen && state === 'inHouse' && !dogVisible && idleMs >= 2500 && width >= 360;
+// minIdle: ms sin tocar nada que se exigen (0 en la primera aparicion; sin el campo, PEEK_IDLE).
+export function shouldPeek({ hidden, reduced, dragging, sheetOpen, state, idleMs, width, dogVisible = false, minIdle = PEEK_IDLE }) {
+  return !hidden && !reduced && !dragging && !sheetOpen && state === 'inHouse' && !dogVisible && idleMs >= minIdle && width >= 360;
 }
 // Caja (px de cliente) que ocupa el perro asomado por un borde: solo la parte visible.
 export function peekBox(side, y, size, viewportW, visibleFraction = 0.7) {

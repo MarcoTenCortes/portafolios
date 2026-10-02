@@ -2,6 +2,8 @@
 // Uso: node tools/cdp-shot.mjs jobs.json
 // jobs.json = [{ "name": "hero", "url": "http://localhost:5173/", "width": 1280, "height": 720,
 //                "mobile": false, "steps": [{ "eval": "scrollTo(0,0)", "wait": 300 }], "out": "tools/out/shots/hero.png" }]
+// Pasos (se aplican en este orden dentro de cada uno): click / hover (selector: clic real o solo mover el raton
+// a su centro), key, eval (+ print), wait.
 import { spawn } from 'node:child_process';
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
@@ -55,6 +57,12 @@ const waitEvent = (method, timeout = 15000) => new Promise((resolve) => {
   tick();
 });
 
+// centro del elemento en px de cliente (null si no existe)
+const centerOf = async (sel) => {
+  const r = await send('Runtime.evaluate', { expression: `(() => { const el = document.querySelector(${JSON.stringify(sel)}); if (!el) return null; const b = el.getBoundingClientRect(); return [b.left + b.width / 2, b.top + b.height / 2]; })()`, returnByValue: true });
+  return r.result?.result?.value || null;
+};
+
 await send('Page.enable');
 await send('Runtime.enable');
 await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'no-preference' }] });
@@ -73,13 +81,19 @@ for (const job of jobs) {
   for (const step of job.steps || []) {
     if (step.click) {
       // clic real (con activación de usuario) en el centro del elemento
-      const r = await send('Runtime.evaluate', { expression: `(() => { const el = document.querySelector(${JSON.stringify(step.click)}); if (!el) return null; const b = el.getBoundingClientRect(); return [b.left + b.width / 2, b.top + b.height / 2]; })()`, returnByValue: true });
-      const pt = r.result?.result?.value;
+      const pt = await centerOf(step.click);
       if (!pt) { console.warn(`[${job.name}] no existe ${step.click}`); continue; }
       const [x, y] = pt;
       await send('Input.dispatchMouseEvent', { type: 'mouseMoved', x, y });
       await send('Input.dispatchMouseEvent', { type: 'mousePressed', x, y, button: 'left', clickCount: 1 });
       await send('Input.dispatchMouseEvent', { type: 'mouseReleased', x, y, button: 'left', clickCount: 1 });
+    }
+    if (step.hover) {
+      // solo mueve el raton real al centro del elemento, sin pulsar (:hover, pointermove, mouseover)
+      const pt = await centerOf(step.hover);
+      if (!pt) { console.warn(`[${job.name}] no existe ${step.hover}`); continue; }
+      const [x, y] = pt;
+      await send('Input.dispatchMouseEvent', { type: 'mouseMoved', x, y });
     }
     if (step.key) {
       await send('Input.dispatchKeyEvent', { type: 'keyDown', key: step.key, code: step.code || step.key, windowsVirtualKeyCode: step.keyCode || 0, text: step.text ?? (step.key === 'Enter' ? String.fromCharCode(13) : step.key === ' ' ? ' ' : undefined) });

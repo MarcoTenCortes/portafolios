@@ -10,6 +10,18 @@ initSite({ i18n });
 
 // Zona de juego: se carga tras `load` y en tiempo ocioso para no competir con el LCP del busto.
 const playTokens = (document.body.dataset.play || '').split(/\s+/).filter(Boolean);
+// Momento (performance.now()) en que el visitante ve la pagina: 0 = la navegacion; si la pestana se abrio en segundo
+// plano, cuando se hace visible (bootPlay espera a rAF, que no corre con la pestana oculta: sin esto el perro de los
+// bordes saldria nada mas arrancar). El perro asomado sale por primera vez a los 10 s de este momento.
+let enteredAt = document.hidden ? null : 0;
+if (enteredAt == null) {
+  const seen = () => {
+    if (document.hidden) return;
+    enteredAt = performance.now();
+    document.removeEventListener('visibilitychange', seen);
+  };
+  document.addEventListener('visibilitychange', seen);
+}
 function bootPlay() {
   const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 0));
   idle(() => {
@@ -35,11 +47,13 @@ function bootPlay() {
       jobs.push(Promise.all([stamped, import('./marker.js')]).then(([, m]) => { window.MTC.marker = measure('initMarker', () => m.initMarker(document.getElementById('play'), { i18n, showToast })); }));
     }
     if (playTokens.includes('dog') && document.getElementById('yard')) {
-      jobs.push(Promise.all([stamped, import('./dog.js')]).then(([, m]) => { window.MTC.dog = measure('initDog', () => m.initDog(document.getElementById('yard'), { i18n, showToast })); }));
+      jobs.push(Promise.all([stamped, import('./dog.js')]).then(([, m]) => { window.MTC.dog = measure('initDog', () => m.initDog(document.getElementById('yard'), { i18n, showToast, enteredAt })); }));
     }
     // lampara del hero: el escritorio se estampa desde lazy.html y la cadena enciende o apaga la escena
     if (document.getElementById('hero-desk')) jobs.push(Promise.all([stamped, import('./lamp.js')]).then(([, m]) => { window.MTC.lamp = measure('initLamp', () => m.initLamp(document.getElementById('hero-desk'), { i18n, showToast })); }));
     // [boot:lava]
+    // [boot:glow] luz del raton: no depende de lazy.html; la capa se crea en el primer movimiento de raton
+    if (playTokens.includes('glow')) jobs.push(import('./glow.js').then((m) => { window.MTC.glow = measure('initGlow', () => m.initGlow(document.body)); }));
     // [boot:exp] escenas de Experiencia: se estampan desde lazy.html y se encienden al pasar por cada entrada
     if (document.getElementById('exp-bg')) jobs.push(Promise.all([stamped, import('./experience.js')]).then(([, m]) => { window.MTC.experience = measure('initExperience', () => m.initExperience(document.getElementById('experiencia'))); }));
     // subpaginas de proyectos: el <dialog> ya esta en index.html; el modulo y cada ficha se cargan bajo demanda
@@ -53,7 +67,7 @@ const afterFirstPaint = (fn) => requestAnimationFrame(() => requestAnimationFram
 if (document.readyState === 'complete') afterFirstPaint(bootPlay);
 else window.addEventListener('load', () => afterFirstPaint(bootPlay), { once: true });
 
-// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo&exp=minsait|ntt|dynos
+// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo&glow=<x>,<y>&lamp=on&pose=typing|turn|reach|hold|face&exp=minsait|ntt|dynos
 if (import.meta.env.DEV) {
   const params = new URLSearchParams(window.location.search);
   const shot = params.get('shot');
@@ -88,6 +102,12 @@ if (import.meta.env.DEV) {
       // ?lamp=on: la escena del escritorio arranca encendida
       if (params.get('lamp') === 'on') window.MTC.lamp?.toggle(true);
       // [hook:lava]
+      // [hook:glow] ?glow=<x>,<y>: enciende la luz del raton en ese punto (px de cliente), sin cola
+      const glowAt = (params.get('glow') || '').split(',').map(Number);
+      if (glowAt.length === 2 && glowAt.every(Number.isFinite)) window.MTC.glow?.moveTo(glowAt[0], glowAt[1], { snap: true });
+      // [hook:pose] &pose=typing|turn|reach|hold|face: el escritorio salta a esa pose sin transiciones (y con la luz que le toca)
+      const deskPose = params.get('pose');
+      if (deskPose) window.MTC.lamp?.snap(deskPose);
       // [hook:exp] ?exp=minsait|ntt|dynos: enciende esa escena de Experiencia
       const expId = params.get('exp');
       if (expId) window.MTC.experience?.show(expId);
