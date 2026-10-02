@@ -30,8 +30,8 @@
     --action: #2997ff;
     --action-soft: rgba(41, 151, 255, 0.14);
     --action-glow: rgba(41, 151, 255, 0.18);
-    --cursor-glow: rgba(41, 151, 255, 0.13); /* luz del raton: nucleo del foco (el sitio antiguo: rgba(29, 78, 216, 0.15)) */
-    --cursor-glow-size: 960px;               /* diametro del disco: transparente a 480 px, como 600px ... transparent 80% */
+    --cursor-glow: rgba(41, 151, 255, 0.18); /* luz del raton: nucleo del foco (el sitio antiguo: rgba(29, 78, 216, 0.15)) */
+    --cursor-glow-size: 400px;               /* diametro del disco: transparente a 200 px del puntero (antes 960px) */
     --primary: #ffffff;
     --primary-hover: #e9edf3;
     --on-primary: #05070b;
@@ -740,7 +740,7 @@
   html.sheet-open .play, html.sheet-open .dog-peek { pointer-events: none !important; }
   @media (hover: none) { .marker { width: 160px; height: 42px; transform-origin: 0px 21px; } }
 
-  /* [css:glow] luz del raton (glow.js): disco azul amplio y tenue que sigue al puntero. Por encima de las secciones
+  /* [css:glow] luz del raton (glow.js): disco azul compacto y tenue que sigue al puntero. Por encima de las secciones
      (fondos opacos) y por debajo de la tinta, el rotulador, el perro asomado (40), el menu (45), la nav (50) y el
      toast (80). Sin mix-blend-mode ni filter: solo se mueve .cursor-glow__pos con translate3d (compositor).
      Apagada no se compone (visibility: hidden) y el disco solo reserva capa (will-change) mientras esta encendida.
@@ -755,8 +755,13 @@
   .cursor-glow__disc {
     position: absolute; width: var(--cursor-glow-size); height: var(--cursor-glow-size);
     left: calc(var(--cursor-glow-size) / -2); top: calc(var(--cursor-glow-size) / -2); border-radius: 50%;
-    /* la parada media sale del token (0.13 x 38,5 % = 0.05): bajar --cursor-glow atenua todo el disco, no solo el nucleo */
-    background: radial-gradient(circle closest-side, var(--cursor-glow) 0%, color-mix(in srgb, var(--cursor-glow) 38.5%, transparent) 42%, transparent 100%);
+    /* caida gaussiana (sigma ~ 0,32 del radio) que llega a cero con pendiente nula: sin anillo ni contorno; los ultimos
+       ~20 px quedan por debajo de 1/255 de alfa. Todas las paradas salen del token: bajar --cursor-glow atenua todo el
+       disco. Las capturas sin GPU oscurecen un nivel ese ultimo tramo: es el redondeo del compositor por software */
+    background: radial-gradient(circle closest-side, var(--cursor-glow) 0%,
+      color-mix(in srgb, var(--cursor-glow) 82%, transparent) 18%, color-mix(in srgb, var(--cursor-glow) 50%, transparent) 38%,
+      color-mix(in srgb, var(--cursor-glow) 24%, transparent) 56%, color-mix(in srgb, var(--cursor-glow) 9%, transparent) 72%,
+      color-mix(in srgb, var(--cursor-glow) 3%, transparent) 86%, color-mix(in srgb, var(--cursor-glow) 0.8%, transparent) 94%, transparent 100%);
     transform: scale(0.72); transition: transform 700ms var(--ease-out);
   }
   .cursor-glow.is-on .cursor-glow__disc { transform: scale(1); will-change: transform; }
