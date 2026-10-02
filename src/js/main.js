@@ -54,6 +54,8 @@ function bootPlay() {
     // [boot:lava]
     // [boot:glow] luz del raton: no depende de lazy.html; la capa se crea en el primer movimiento de raton
     if (playTokens.includes('glow')) jobs.push(import('./glow.js').then((m) => { window.MTC.glow = measure('initGlow', () => m.initGlow(document.body)); }));
+    // [boot:exp] escenas de Experiencia: se estampan desde lazy.html y se encienden al pasar por cada entrada
+    if (document.getElementById('exp-bg')) jobs.push(Promise.all([stamped, import('./experience.js')]).then(([, m]) => { window.MTC.experience = measure('initExperience', () => m.initExperience(document.getElementById('experiencia'))); }));
     // subpaginas de proyectos: el <dialog> ya esta en index.html; el modulo y cada ficha se cargan bajo demanda
     jobs.push(import('./projects.js').then((m) => { window.MTC.projects = measure('initProjects', () => m.initProjects({ i18n, showToast })); }));
     Promise.all(jobs).then(() => readyResolve(), () => readyResolve());
@@ -65,7 +67,7 @@ const afterFirstPaint = (fn) => requestAnimationFrame(() => requestAnimationFram
 if (document.readyState === 'complete') afterFirstPaint(bootPlay);
 else window.addEventListener('load', () => afterFirstPaint(bootPlay), { once: true });
 
-// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo&glow=<x>,<y>&lamp=on&pose=typing|turn|reach|hold|face
+// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo&glow=<x>,<y>&lamp=on&pose=typing|turn|reach|hold|face&exp=minsait|ntt|dynos
 if (import.meta.env.DEV) {
   const params = new URLSearchParams(window.location.search);
   const shot = params.get('shot');
@@ -106,6 +108,9 @@ if (import.meta.env.DEV) {
       // [hook:pose] &pose=typing|turn|reach|hold|face: el escritorio salta a esa pose sin transiciones (y con la luz que le toca)
       const deskPose = params.get('pose');
       if (deskPose) window.MTC.lamp?.snap(deskPose);
+      // [hook:exp] ?exp=minsait|ntt|dynos: enciende esa escena de Experiencia
+      const expId = params.get('exp');
+      if (expId) window.MTC.experience?.show(expId);
       // ?project=<id>: abre esa ficha de proyecto (sin tocar el historial)
       const projectId = params.get('project');
       if (projectId && window.MTC.projects) window.MTC.projects.open(projectId, { push: false });

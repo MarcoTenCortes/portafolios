@@ -1,0 +1,128 @@
+<svg class="exp__art" viewBox="0 0 1600 640" width="100%" height="100%" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">
+ <!-- Minsait: Marco de pie, en perfil perdido, ante una pizarra de cristal con un diagrama de APIs (pasarela con
+      candado OAuth, anillo de estrellas) que dibuja con el rotulador; detras, el portatil en una mesa alta.
+      Sin fondo propio: se ve el de la seccion. -->
+ <defs>
+  <radialGradient id="exp-m-glow"><stop offset="0" stop-color="#2997ff" stop-opacity=".2"/><stop offset="1" stop-color="#2997ff" stop-opacity="0"/></radialGradient>
+  <linearGradient id="exp-m-scr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c3a6c"/><stop offset="1" stop-color="#0f1f3a"/></linearGradient>
+ </defs>
+ <g stroke-linecap="round" stroke-linejoin="round">
+  <!-- ventanal con la ciudad (ambiente, a lo ancho) -->
+  <path d="M0 70H1080V520H0Z" fill="#202839" opacity=".55"/>
+  <path d="M0 520V404H58V362H118V420H168V328H226V300H246V328H298V410H356V372H428V440H468V352H538V392H598V320H636V288H658V320H700V430H758V380H818V418H900V346H960V316H982V346H1030V404H1080V520Z" fill="#262f44" opacity=".8"/>
+  <path d="M184 346h7v9h-7zM204 370h7v9h-7zM484 372h7v9h-7zM612 338h7v9h-7zM616 362h7v9h-7zM388 388h7v9h-7zM72 380h7v9h-7zM772 398h7v9h-7zM938 360h7v9h-7zM1002 392h7v9h-7z" fill="#f5c27a" opacity=".3"/>
+  <path d="M270 70V520M540 70V520M810 70V520" stroke="#262f44" stroke-width="8"/>
+  <path d="M0 68H1084M0 522H1084" stroke="#262f44" stroke-width="12"/>
+  <path d="M1080 62V530" stroke="var(--ill-ink,#151a24)" stroke-width="4"/>
+  <!-- suelo -->
+  <path d="M0 600C400 599 1000 601 1600 600V640H0Z" fill="#151a26" opacity=".6"/>
+  <path d="M0 600C400 599 1000 601 1600 600" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4"/>
+  <!-- pizarra de cristal: sigue mas alla del borde derecho -->
+  <path d="M1392 150C1480 148 1560 149 1640 150L1640 432C1560 434 1480 433 1390 435Z" fill="#9fc6ff" opacity=".07"/>
+  <path d="M1430 151L1470 151L1424 434L1392 434Z" fill="#fff" opacity=".035"/>
+  <path d="M1640 150C1560 149 1480 148 1392 150L1390 435C1480 433 1560 434 1640 432M1398 156C1480 154 1560 155 1640 156" fill="none" stroke="#4a5878" stroke-width="3"/>
+  <g fill="#8e98a8" stroke="var(--ill-ink,#151a24)" stroke-width="3"><circle cx="1405" cy="164" r="6"/><circle cx="1404" cy="421" r="6"/></g>
+  <path d="M1452 440C1500 439 1560 439 1610 440L1608 449C1560 450 1500 450 1455 449Z" fill="#262f44" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+  <path d="M1480 434H1510M1528 435H1556" stroke="#c6cfdb" stroke-width="5"/>
+  <path d="M1510 434H1517" stroke="#3a4252" stroke-width="5"/>
+  <!-- diagrama: pasarela con candado OAuth, el servicio de mas alla (cortado) y la flecha que esta dibujando -->
+  <g fill="none" stroke="var(--action,#2997ff)" stroke-width="4">
+  <path d="M1502 182C1530 180 1570 181 1596 183C1598 204 1597 230 1596 250C1566 252 1530 251 1503 252C1501 230 1501 204 1502 182Z"/>
+  <path d="M1484 289C1530 287 1590 288 1640 289M1520 364C1560 366 1600 365 1640 366"/>
+  <path d="M1551 256C1552 264 1551 272 1552 280M1543 271L1552 283L1561 271"/>
+  </g>
+  <path d="M1470 220C1480 220 1488 220 1496 219" fill="none" stroke="var(--action,#2997ff)" stroke-width="3" stroke-dasharray="7 7" opacity=".8"/>
+  <path d="M1500 310H1590M1500 326H1560M1500 342H1576M1522 234H1580" fill="none" stroke="#c6cfdb" stroke-width="3" opacity=".55"/>
+  <path d="M1465 206h.1M1462 216h.1M1456 222h.1M1446 225h.1M1436 222h.1M1430 216h.1M1427 206h.1M1430 196h.1M1436 190h.1M1446 187h.1M1456 190h.1M1462 196h.1" stroke="#f5c27a" stroke-width="5.5" opacity=".7"/>
+  <path d="M1538 207V200C1538 189 1558 189 1558 200V207" fill="none" stroke="#c6cfdb" stroke-width="4"/>
+  <path d="M1532 207C1542 206 1555 206 1565 207L1564 225C1555 226 1542 226 1533 225Z" fill="#c6cfdb" opacity=".85"/>
+  <circle cx="1548" cy="215" r="2.6" fill="#202839"/>
+  <!-- mesa alta con el portatil, a la espalda de Marco: su pantalla tine la pared -->
+  <ellipse cx="1166" cy="372" rx="110" ry="84" fill="url(#exp-m-glow)"/>
+  <g stroke="var(--ill-ink,#151a24)">
+  <path d="M1158 432L1172 432L1174 594L1156 594Z" fill="#202839" stroke-width="3.5"/>
+  <path d="M1124 596C1124 589 1206 589 1206 596C1206 602 1124 602 1124 596Z" fill="#262f44" stroke-width="3.5"/>
+  <path d="M1096 422C1140 420 1190 420 1236 421L1238 435C1190 436 1140 436 1094 437Z" fill="#262f44" stroke-width="4"/>
+  <path d="M1124 352L1200 347L1206 412L1120 416Z" fill="#131822" stroke-width="4"/>
+  <path d="M1130 358L1194 354L1199 406L1127 409Z" fill="url(#exp-m-scr)" stroke="none"/>
+  <path d="M1112 416L1212 411L1220 420L1104 423Z" fill="#2e3850" stroke-width="3.5"/>
+  </g>
+  <path d="M1134 365L1190 362" stroke="var(--action,#2997ff)" stroke-width="4.5"/>
+  <path d="M1137 376H1160M1137 386H1180M1137 396H1154M1166 396H1184" stroke="#6bb8ff" stroke-width="3" opacity=".7"/>
+  <!-- Marco (de pie, de espaldas, girado hacia la pizarra): cabeza en perfil perdido, cuello y jersey de desk.svg -->
+  <ellipse cx="1320" cy="601" rx="84" ry="8" fill="#000" opacity=".3"/>
+  <g transform="translate(1056.8 135.2) scale(0.56)">
+  <!-- luz de borde azul de la pizarra: detras de la silueta, asoma por fuera del contorno -->
+  <g class="exp__rim" fill="none" stroke="#6bb8ff" stroke-width="15">
+  <path d="M397 242C396 220 404 200 420 187C428 181 438 177 448 176M453 181C459 166 481 161 496 169M470 175C492 173 514 178 530 190C542 199 550 208 554 216"/>
+  <path d="M510 313C530 317 550 322 564 332M546 328C566 328 586 338 600 346L640 368C656 346 670 322 683 299M690 288C692 274 710 270 720 278"/>
+  <path d="M430 313C410 317 390 322 376 332C361 342 355 360 351 384C348 420 351 460 354 500" opacity=".45"/>
+  </g>
+  <!-- pantalon y zapatos: apoyado en una pierna, la otra un poco abierta hacia la pizarra -->
+  <path d="M362 500C356 580 372 680 386 802L444 802C450 720 458 650 468 600C470 592 474 592 476 600C494 660 516 730 532 800L588 794C586 700 588 600 578 500Z" fill="#3a3f4a"/>
+  <path d="M468 600C458 650 450 720 444 802L424 802C430 730 444 660 460 560ZM476 600C494 660 516 730 532 800L552 798C536 730 510 650 486 560Z" fill="#2c3038"/>
+  <path d="M380 560C382 630 390 700 400 770" fill="none" stroke="#4a505c" stroke-width="4"/>
+  <path d="M362 500C356 580 372 680 386 802M444 802C450 720 458 650 468 600C470 592 474 592 476 600C494 660 516 730 532 800M588 794C586 700 588 600 578 500" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6"/>
+  <path d="M380 796C376 812 382 826 396 828L442 828C454 826 456 812 450 796ZM528 794C524 810 532 824 546 826L600 822C612 818 612 804 602 790Z" fill="#17191d" stroke="var(--ill-ink,#151a24)" stroke-width="5.5"/>
+  <path d="M386 820H446M534 818L604 814" stroke="#2e3138" stroke-width="3"/>
+  <!-- cuello y cabeza girada hacia la pizarra -->
+  <path d="M448 290C449 300 447 310 446 320L494 320C493 310 492 300 492 290Z" fill="#d9ab8c"/>
+  <path d="M449 292C448 302 448 311 446 319M492 292C492 302 493 311 494 319" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.7"/>
+  <path d="M486 272C500 280 514 286 534 292C528 303 523 314 521 327L486 327Z" fill="#d9ab8c"/>
+  <path d="M533 297C529 306 524 314 522 324" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.7"/>
+  <path d="M518 206C532 203 545 208 550 216C554 224 555 232 558 238C559 243 557 247 557 251C559 255 563 258 566 260C571 263 577 265 577 268C577 272 569 273 563 273C562 279 561 286 557 293C554 299 545 302 536 301C526 300 517 294 511 287L507 240Z" fill="#eecdb4"/>
+  <path d="M511 287C517 294 526 300 536 301C545 302 554 299 557 293C547 297 535 296 526 290C521 285 517 279 516 271Z" fill="#d8a98a"/>
+  <path d="M545 232C550 230 554 230 558 233" fill="none" stroke="#3b2a21" stroke-width="5.3"/>
+  <path d="M510 247C505 251 504 259 506 266" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.7"/>
+  <path d="M470 175C492 173 514 178 530 190C542 199 550 208 554 216C548 214 543 215 540 220C535 226 532 234 531 243C530 250 529 257 527 263L508 272C506 282 505 290 502 297L496 303L489 297L481 304L473 298L465 304L457 297L450 303L443 297L436 302C428 301 419 297 413 291C403 279 397 262 397 242C397 220 404 200 420 187C432 178 450 175 470 175Z" fill="#3b2a21"/>
+  <path d="M403 262C409 284 423 298 440 302L498 302C502 296 504 290 506 282C488 290 470 291 452 289C430 287 414 278 403 262Z" fill="#241913"/>
+  <path d="M424 191C442 180 492 179 516 191C498 187 478 186 460 189C446 190 434 194 424 191Z" fill="#5b4232"/>
+  <path d="M453 181C459 166 481 161 496 169C486 170 477 174 471 183Z" fill="#3b2a21"/>
+  <path d="M458 176C464 168 478 165 489 168" fill="none" stroke="#5b4232" stroke-width="3.9"/>
+  <g fill="none" stroke="#1a120e" stroke-width="3.9" opacity=".75">
+  <path d="M462 196C442 201 424 216 413 238"/>
+  <path d="M460 199C444 214 434 240 431 264"/>
+  <path d="M464 200C460 226 458 252 458 278"/>
+  <path d="M468 197C486 198 506 204 524 216"/>
+  <path d="M468 200C484 212 496 232 500 256"/>
+  </g>
+  <path d="M436 302C428 301 419 297 413 291C403 279 397 262 397 242C396 220 404 200 420 187C428 181 438 177 448 176M470 175C492 173 514 178 530 190C542 199 550 208 554 216" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7"/>
+  <path d="M453 181C459 166 481 161 496 169C486 170 477 174 471 183" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.4"/>
+  <path d="M554 216C548 214 543 215 540 220C535 226 532 234 531 243C530 250 529 257 527 263M508 276C506 284 505 290 502 297" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.7"/>
+  <path d="M550 216C554 224 555 232 558 238C559 243 557 247 558 251C559 255 563 258 567 260C572 263 577 265 577 268C577 272 570 273 563 273C562 280 561 287 558 293C554 300 545 303 536 301C526 300 518 295 511 288" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.4"/>
+  <path d="M517 239C507 236 501 248 502 261C503 275 509 285 519 285C525 285 528 280 527 274C526 268 528 262 529 255C530 246 526 240 517 239Z" fill="#eecdb4" stroke="var(--ill-ink,#151a24)" stroke-width="4.7"/>
+  <path d="M514 249C509 255 509 266 514 274M520 256C518 259 518 263 520 266" fill="none" stroke="#c98f70" stroke-width="3.9"/>
+  <path d="M509 247C524 245 540 244 557 243" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7"/>
+  <path d="M556 233C559 239 560 248 557 255" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7.8"/>
+  <path d="M514 247L520 246" fill="none" stroke="#9aa6b8" stroke-width="2.5"/>
+  <!-- jersey hasta la cadera, con el elastico -->
+  <path d="M430 314C410 317 390 322 376 332C362 342 356 360 352 384C349 420 352 460 356 498L584 498C588 460 591 420 588 384C584 360 578 342 564 332C550 322 530 317 510 314C494 326 446 326 430 314Z" fill="var(--ill-dark,#23272d)"/>
+  <path d="M378 334C392 322 414 317 432 316C438 320 444 323 450 325C424 328 398 335 382 347ZM562 334C548 322 526 317 508 316C502 320 496 323 490 325C516 328 542 335 558 347Z" fill="#33373f"/>
+  <path d="M354 392C350 430 352 466 357 496L378 496C374 460 372 424 374 386ZM586 392C590 430 588 466 583 496L562 496C566 460 568 424 566 386Z" fill="#0f131c"/>
+  <path d="M404 372C430 380 510 380 536 372C540 410 540 456 538 494L402 494C400 456 400 410 404 372Z" fill="#1c2025" opacity=".7"/>
+  <path d="M471 338C469 380 472 440 470 488M420 352C432 358 444 360 452 358" fill="none" stroke="#16191d" stroke-width="3.5"/>
+  <path d="M355 486C420 494 520 494 585 486L586 506C520 514 420 514 354 506Z" fill="#17191d"/>
+  <path d="M372 492V508M392 494V510M412 495V511M432 496V512M452 496V512M472 496V512M492 496V512M512 495V511M532 495V511M552 494V510M572 492V508" stroke="#2e3138" stroke-width="2.5"/>
+  <path d="M430 313C410 317 390 322 376 332C361 342 355 360 351 384C348 420 351 460 354 506C420 514 520 514 586 506C589 460 592 420 589 384C585 360 579 342 564 332C550 322 530 317 510 313" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="7"/>
+  <path d="M430 312C446 324 494 324 510 312C516 316 520 320 522 324C500 338 440 338 418 324C420 320 424 316 430 312Z" fill="#17191d"/>
+  <g fill="none" stroke="#2e3138" stroke-width="3.1">
+  <path d="M428 318L425 324M436 322L434 329M445 325L444 332M455 327L455 334M465 328L465 335M475 328L475 335M485 327L486 334M495 325L496 332M504 322L506 329M512 318L515 324"/>
+  </g>
+  <path d="M418 324C440 338 500 338 522 324M430 312C446 325 494 325 510 312" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.7"/>
+  <!-- brazo que cuelga -->
+  <path d="M374 336C354 348 344 380 340 420C337 458 337 492 340 522L374 524C372 494 373 460 377 428C381 400 387 374 394 352Z" fill="#2c3037"/>
+  <path d="M340 514L374 516L374 528L340 526Z" fill="#17191d"/>
+  <path d="M343 526C338 542 344 558 357 560C369 562 376 548 373 528Z" fill="#eecdb4"/>
+  <path d="M374 336C354 348 344 380 340 420C337 458 337 492 340 526C338 542 344 558 357 560C369 562 376 548 373 528M377 428C381 400 387 374 394 352" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.5"/>
+  <!-- brazo que escribe: el codo abajo y la mano a la altura de la cara, rotulador contra el cristal -->
+  <path d="M546 328C566 328 586 338 600 346L640 368C656 346 670 322 683 299L713 317C700 345 684 374 668 404C664 414 656 420 646 418C626 414 606 404 588 394C574 386 562 374 556 360Z" fill="#2c3037"/>
+  <path d="M600 362C614 374 628 382 642 386" fill="none" stroke="#3a3f48" stroke-width="3"/>
+  <path d="M683 299L713 317L706 330L676 312Z" fill="#17191d"/>
+  <path d="M716 280L744 270L750 282L722 292Z" fill="#f5f7fa"/>
+  <path d="M744 270L754 267L758 278L750 282Z" fill="#3a4252"/>
+  <path d="M690 288C692 274 710 270 720 278C730 288 726 306 712 310C700 313 690 302 690 288Z" fill="#eecdb4"/>
+  <path d="M700 300C708 304 716 302 720 296" fill="none" stroke="#c98f70" stroke-width="3"/>
+  <path d="M546 328C566 328 586 338 600 346L640 368C656 346 670 322 683 299M713 317C700 345 684 374 668 404C664 414 656 420 646 418C626 414 606 404 588 394M690 288C692 274 710 270 720 278C730 288 726 306 712 310C700 313 690 302 690 288M716 280L744 270L758 266L762 278L722 292" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.5"/>
+  </g>
+ </g>
+</svg>

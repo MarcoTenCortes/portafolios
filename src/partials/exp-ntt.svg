@@ -1,0 +1,182 @@
+<svg class="exp__art" viewBox="0 0 1600 640" width="100%" height="100%" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">
+ <!-- NTT DATA: Marco de espaldas, tecleando ante dos monitores (lista de pruebas en verde y el informe), con el
+      movil en su soporte (pruebas en movil) y la taza al lado. En la pared, el tablero del sprint. -->
+ <defs>
+  <radialGradient id="exp-n-glow"><stop offset="0" stop-color="#2997ff" stop-opacity=".2"/><stop offset=".6" stop-color="#2997ff" stop-opacity=".06"/><stop offset="1" stop-color="#2997ff" stop-opacity="0"/></radialGradient>
+  <linearGradient id="exp-n-scr" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1c3a6c"/><stop offset="1" stop-color="#0f1f3a"/></linearGradient>
+ </defs>
+ <g stroke-linecap="round" stroke-linejoin="round">
+  <!-- ventana con persiana y tablero del sprint (ambiente) -->
+  <path d="M90 90H560V470H90Z" fill="#202839" opacity=".6"/>
+  <path d="M96 120H554M96 150H554M96 180H554M96 210H554M96 240H554M96 270H554M96 300H554M96 330H554M96 360H554M96 390H554M96 420H554M96 450H554" stroke="#262f44" stroke-width="9"/>
+  <path d="M90 88H560V472H90Z" fill="none" stroke="#262f44" stroke-width="10"/>
+  <path d="M640 132C760 130 900 131 1000 132L1002 330C900 332 760 331 638 332Z" fill="#202839"/>
+  <path d="M640 132C760 130 900 131 1000 132L1002 330C900 332 760 331 638 332ZM760 140V322M880 140V322" fill="none" stroke="#262f44" stroke-width="4"/>
+  <path d="M656 150h34v30h-34zM700 150h34v30h-34zM656 192h34v30h-34zM656 234h34v30h-34zM776 150h34v30h-34zM820 192h34v30h-34zM776 234h34v30h-34z" fill="#f5c27a" opacity=".32"/>
+  <path d="M896 150h34v30h-34zM940 150h34v30h-34zM896 192h34v30h-34zM940 192h34v30h-34zM896 234h34v30h-34z" fill="#59d499" opacity=".3"/>
+  <path d="M700 192h34v30h-34zM820 150h34v30h-34z" fill="#c6cfdb" opacity=".22"/>
+  <!-- suelo -->
+  <path d="M0 600C400 599 1000 601 1600 600V640H0Z" fill="#151a26" opacity=".6"/>
+  <path d="M0 600C400 599 1000 601 1600 600" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4"/>
+  <!-- el puesto de trabajo, algo mas grande que el dibujo base (escala sobre el pie de la silla) -->
+  <g transform="translate(-204.3 -90) scale(1.15)">
+  <!-- brillo de las pantallas en la pared -->
+  <ellipse cx="1372" cy="318" rx="290" ry="170" fill="url(#exp-n-glow)"/>
+  <!-- mesa -->
+  <g stroke="var(--ill-ink,#151a24)">
+  <path d="M1060 474L1084 474L1082 598L1062 598ZM1592 474L1616 474L1618 598L1598 598Z" fill="#202839" stroke-width="3.5"/>
+  <path d="M1056 430C1240 428 1440 429 1640 430L1640 462C1440 463 1240 462 1040 463Z" fill="#262f44" stroke-width="4"/>
+  <path d="M1040 463C1240 462 1440 463 1640 462L1640 476C1440 477 1240 476 1041 477Z" fill="#202839" stroke-width="4"/>
+  </g>
+  <path d="M1062 436C1240 434 1440 435 1636 436" fill="none" stroke="#2e3850" stroke-width="3"/>
+  <!-- monitores: izquierda la lista de pruebas en verde; derecha el informe (codigo y la barra verde) -->
+  <g stroke="var(--ill-ink,#151a24)">
+  <path d="M1254 392L1274 392L1278 432L1250 432ZM1466 392L1486 392L1490 432L1462 432Z" fill="#131822" stroke-width="3.5"/>
+  <path d="M1226 432C1240 425 1290 425 1302 432ZM1438 432C1452 425 1502 425 1514 432Z" fill="#1a2030" stroke-width="3.5"/>
+  <path d="M1172 260C1250 258 1310 259 1360 260C1365 260 1368 263 1368 268L1368 386C1368 391 1365 394 1360 394L1178 395C1173 395 1170 392 1170 387L1168 268C1168 263 1172 260 1172 260Z" fill="#131822" stroke-width="4"/>
+  <path d="M1384 260C1462 258 1522 259 1572 260C1577 260 1580 263 1580 268L1580 386C1580 391 1577 394 1572 394L1390 395C1385 395 1382 392 1382 387L1380 268C1380 263 1384 260 1384 260Z" fill="#131822" stroke-width="4"/>
+  </g>
+  <path d="M1180 270H1358V384H1180ZM1392 270H1570V384H1392Z" fill="url(#exp-n-scr)"/>
+  <path d="M1180 270H1358V282H1180ZM1392 270H1570V282H1392Z" fill="#05070b" opacity=".4"/>
+  <path d="M1190 276h40M1402 276h40" stroke="var(--action,#2997ff)" stroke-width="3"/>
+  <path d="M1196 294l4 4 7-8M1196 311l4 4 7-8M1196 328l4 4 7-8M1196 345l4 4 7-8" fill="none" stroke="#59d499" stroke-width="3.5"/>
+  <path d="M1214 294h86M1214 311h64M1214 328h98M1214 345h72" stroke="#c6cfdb" stroke-width="5" opacity=".6"/>
+  <circle cx="1201" cy="362" r="5" fill="none" stroke="var(--action,#2997ff)" stroke-width="3"/>
+  <path d="M1214 362h54" stroke="#6bb8ff" stroke-width="5" opacity=".7"/>
+  <path d="M1404 296h30M1440 296h60M1416 310h44M1466 310h70M1416 324h80M1404 338h26M1436 338h50" stroke="#6bb8ff" stroke-width="5" opacity=".7"/>
+  <path d="M1300 270L1336 270L1276 384L1240 384ZM1512 270L1548 270L1488 384L1452 384Z" fill="#fff" opacity=".035"/>
+  <path d="M1404 362H1556" stroke="#262f44" stroke-width="9"/>
+  <path d="M1404 362H1520" stroke="#59d499" stroke-width="9"/>
+  <!-- movil en su soporte, conectado (pruebas en movil) -->
+  <g stroke="var(--ill-ink,#151a24)">
+  <path d="M1102 430L1112 404L1144 404L1150 430Z" fill="#262f44" stroke-width="3.5"/>
+  <path d="M1108 332C1108 327 1111 324 1116 324L1140 324C1145 324 1148 327 1148 332L1148 398C1148 403 1145 406 1140 406L1116 406C1111 406 1108 403 1108 398Z" fill="#131822" stroke-width="4"/>
+  </g>
+  <path d="M1113 333H1143V396H1113Z" fill="url(#exp-n-scr)"/>
+  <path d="M1118 342h20M1118 356h20M1118 370h12" stroke="#59d499" stroke-width="5" opacity=".85"/>
+  <path d="M1118 384h20" stroke="var(--action,#2997ff)" stroke-width="5"/>
+  <path d="M1128 406C1130 420 1150 426 1170 422" fill="none" stroke="#8e98a8" stroke-width="3"/>
+  <!-- silla: el respaldo tapa la espalda; base de estrella en el suelo -->
+  <g stroke="var(--ill-ink,#151a24)">
+  <path d="M1358 534L1366 534L1368 576L1356 576Z" fill="#131822" stroke-width="3.5"/>
+  <path d="M1300 588C1330 574 1394 574 1424 588M1362 578L1362 592" fill="none" stroke-width="7"/>
+  <path d="M1300 588C1330 574 1394 574 1424 588M1362 578L1362 592" fill="none" stroke="#2e3850" stroke-width="3"/>
+  <g fill="#131822" stroke-width="3"><circle cx="1300" cy="594" r="6"/><circle cx="1424" cy="594" r="6"/><circle cx="1362" cy="596" r="6"/></g>
+  </g>
+  <ellipse cx="1362" cy="600" rx="90" ry="7" fill="#000" opacity=".3"/>
+  <!-- Marco de espaldas, tecleando: manos, brazos, cabeza, cuello, jersey y taza copiados de desk.svg -->
+  <g transform="translate(1080.0 251.2) scale(0.6)">
+  <path d="M318 318C400 317 540 318 622 318L634 342C540 343 400 342 306 342Z" fill="#222a3a"/>
+  <g stroke-linecap="butt" fill="none" stroke="#3a4764" stroke-width="4.9" stroke-dasharray="8 3.5">
+  <path d="M322 324H618"/><path d="M318 330H622"/><path d="M314 336H626"/>
+  </g>
+  <path d="M319 320C400 319 540 319 621 320" fill="none" stroke="#4a5878" stroke-width="2.9"/>
+  <path d="M318 318C400 317 540 317 622 318L634 342C540 343 400 343 306 342Z" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.3"/>
+  <g transform="translate(446 0)">
+  <path d="M226 305C204 304 200 338 227 336" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="12.3"/>
+  <path d="M226 305C204 304 200 338 227 336" fill="none" stroke="var(--ill-cream,#f3eedb)" stroke-width="5.1"/>
+  <path d="M225 302L266 302L265 338C265 345 226 345 226 338Z" fill="var(--ill-cream,#f3eedb)"/>
+  <path d="M226 328L265 328L265 338C265 345 226 345 226 338Z" fill="#c7bfaf"/>
+  <path d="M225 312L266 312L266 320L226 320Z" fill="#8e98a8"/>
+  <path d="M254 305L256 336" fill="none" stroke="#fbfaf1" stroke-width="4.3"/>
+  <ellipse cx="245.5" cy="302" rx="21" ry="4.8" fill="#fbfaf1"/>
+  <ellipse cx="245.5" cy="302.6" rx="16.5" ry="3" fill="#6a3f26"/>
+  <g fill="none" stroke="var(--ill-ink,#151a24)">
+  <path d="M224 302C226 297 265 296 267 302C265 307 227 308 224 302" stroke-width="4.3"/>
+  <path d="M224 303L226 338C227 346 264 346 265 338L267 303" stroke-width="5.8"/>
+  </g>
+  </g>
+  <g>
+  <path d="M342 348C337 368 340 392 352 412L374 402C364 386 360 366 360 348Z" fill="#2c3037"/>
+  <path d="M333 341C340 339 356 339 363 341L361 351C355 348 341 348 334 350Z" fill="#17191d"/>
+  <path d="M330 330C329 322 336 317 347 318C357 318 364 322 364 330C364 338 358 343 347 343C336 343 331 338 330 330Z" fill="#eecdb4"/>
+  <path d="M332 334C336 340 358 341 363 335C361 341 355 343 347 343C339 343 333 340 332 334Z" fill="#d8a98a"/>
+  <g fill="none" stroke="var(--ill-ink,#151a24)">
+  <path d="M330 330C329 322 336 317 347 318C357 318 364 322 364 330C364 338 358 343 347 343" stroke-width="4.3"/>
+  <path d="M336 322C338 320 341 319 343 322M345 321C347 318 350 318 352 321M353 322C355 319 358 320 359 323" stroke-width="2.9"/>
+  <path d="M342 350C337 370 340 392 352 411" stroke-width="5.1"/>
+  </g>
+  </g>
+  <!-- luz de borde azul de los monitores: detras de la silueta -->
+  <g class="exp__rim" fill="none" stroke="#6bb8ff" stroke-width="13">
+  <path d="M399 242C398 220 406 200 422 188C434 179 452 176 470 176C488 174 506 178 518 188C534 200 542 220 541 242M461 181C467 166 489 161 504 169"/>
+  <path d="M386 256C386 268 392 280 404 284M554 256C554 268 548 280 536 284M447 296V318M493 296V318"/>
+  <path d="M430 313C410 317 390 322 376 332C361 342 355 360 351 384M510 313C530 317 550 322 564 332C579 342 585 360 589 384" opacity=".7"/>
+  </g>
+  <path d="M448 290C449 300 447 310 446 320L494 320C493 310 492 300 492 290Z" fill="#d9ab8c"/>
+  <path d="M449 292C448 302 448 311 446 319M492 292C492 302 493 311 494 319" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.3"/>
+  <g>
+  <g stroke="var(--ill-ink,#151a24)">
+  <path d="M404 242C392 236 384 248 385 262C386 274 393 284 405 284Z" fill="#eecdb4" stroke-width="4.3"/>
+  <path d="M536 242C548 236 556 248 555 262C554 274 547 284 535 284Z" fill="#eecdb4" stroke-width="4.3"/>
+  </g>
+  <path d="M398 250C392 256 393 268 399 275M542 250C548 256 547 268 541 275" fill="none" stroke="#c98f70" stroke-width="3.6"/>
+  <path d="M470 176C488 174 506 178 518 188C534 200 542 220 541 242C541 262 536 280 526 292C520 298 512 301 505 302L500 297L494 303L487 297L480 304L472 298L464 304L457 297L450 303L443 297L436 302C428 301 420 298 414 292C404 280 399 262 399 242C398 220 406 200 422 188C434 179 452 176 470 176Z" fill="#3b2a21"/>
+  <path d="M404 262C410 284 424 298 440 302L505 302C520 298 534 284 538 262C520 280 500 288 470 288C440 288 418 280 404 262Z" fill="#241913"/>
+  <path d="M428 192C446 181 494 181 512 193C498 188 480 187 462 190C450 191 438 195 428 192Z" fill="#5b4232"/>
+  <path d="M461 181C467 166 489 161 504 169C494 170 485 174 479 183Z" fill="#3b2a21"/>
+  <path d="M466 176C472 168 486 165 497 168" fill="none" stroke="#5b4232" stroke-width="3.6"/>
+  <g fill="none" stroke="#1a120e" stroke-width="3.6" opacity=".75">
+  <path d="M472 196C452 200 432 214 420 236"/>
+  <path d="M474 196C492 202 510 216 520 240"/>
+  <path d="M470 200C465 224 461 250 459 276"/>
+  <path d="M478 200C486 228 490 254 491 280"/>
+  <path d="M466 198C446 212 436 238 432 262"/>
+  <path d="M482 198C500 214 508 238 510 262"/>
+  </g>
+  <path d="M470 176C488 174 506 178 518 188C534 200 542 220 541 242C541 262 536 280 526 292C520 299 512 301 505 302M436 302C428 301 420 298 414 292C404 280 399 262 399 242C398 220 406 200 422 188C430 181 442 178 456 176" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6.5"/>
+  <path d="M461 181C467 166 489 161 504 169C494 170 485 174 479 183" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.1"/>
+  <g fill="none" stroke="var(--ill-ink,#151a24)">
+  <path d="M386 251C392 246 400 246 408 249" stroke-width="6.5"/>
+  <path d="M386 251C383 257 383 265 388 271" stroke-width="4.3"/>
+  <path d="M554 251C548 246 540 246 532 249" stroke-width="6.5"/>
+  <path d="M554 251C557 257 557 265 552 271" stroke-width="4.3"/>
+  </g>
+  <path d="M390 248L396 247M550 248L544 247" fill="none" stroke="#9aa6b8" stroke-width="2.3"/>
+  </g>
+  <path d="M430 314C410 317 390 322 376 332C362 342 356 360 352 384C350 402 350 422 352 440L588 440C590 422 590 402 588 384C584 360 578 342 564 332C550 322 530 317 510 314C494 326 446 326 430 314Z" fill="var(--ill-dark,#23272d)"/>
+  <path d="M378 334C392 322 414 317 432 316C438 320 444 323 450 325C424 328 398 335 382 347Z" fill="#33373f"/>
+  <path d="M562 334C548 322 526 317 508 316C502 320 496 323 490 325C516 328 542 335 558 347Z" fill="#33373f"/>
+  <path d="M354 392C352 410 352 426 353 440L374 440C372 420 372 404 374 386Z" fill="#0f131c"/>
+  <path d="M586 392C588 410 588 426 587 440L566 440C568 420 568 404 566 386Z" fill="#0f131c"/>
+  <path d="M404 372C430 380 510 380 536 372C540 400 540 424 538 440L402 440C400 424 400 400 404 372Z" fill="#1c2025" opacity=".7"/>
+  <g fill="none">
+  <path d="M471 338C469 370 472 404 470 440" stroke="#16191d" stroke-width="4.3"/>
+  <path d="M420 352C432 358 444 360 452 358M520 352C508 358 496 360 488 358" stroke="#16191d" stroke-width="3.6"/>
+  </g>
+  <g fill="none" stroke="var(--ill-ink,#151a24)">
+  <path d="M430 313C410 317 390 322 376 332C361 342 355 360 351 384C349 402 350 422 352 440" stroke-width="7.2"/>
+  <path d="M510 313C530 317 550 322 564 332C579 342 585 360 589 384C591 402 590 422 588 440" stroke-width="7.2"/>
+  <path d="M384 350C378 372 376 398 377 422M556 350C562 372 564 398 563 422" stroke-width="4.3"/>
+  </g>
+  <path d="M430 312C446 324 494 324 510 312C516 316 520 320 522 324C500 338 440 338 418 324C420 320 424 316 430 312Z" fill="#17191d"/>
+  <g fill="none" stroke="#2e3138" stroke-width="2.9">
+  <path d="M428 318L425 324M436 322L434 329M445 325L444 332M455 327L455 334M465 328L465 335M475 328L475 335M485 327L486 334M495 325L496 332M504 322L506 329M512 318L515 324"/>
+  </g>
+  <path d="M418 324C440 338 500 338 522 324M430 312C446 325 494 325 510 312" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.3"/>
+  <g>
+  <path d="M561 337C572 358 583 378 593 399C598 409 592 419 582 421C574 421 568 418 567 412C556 392 545 372 535 351Z" fill="#2c3037"/>
+  <path d="M563 343C573 361 582 378 590 395" fill="none" stroke="#3a3f48" stroke-width="3.6"/>
+  <path d="M561 337C572 358 583 378 593 399C598 409 592 419 582 421C574 421 568 418 567 412C556 392 545 372 535 351" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="5.1"/>
+  <g>
+  <g>
+  <path d="M598 348C603 368 600 392 588 412L566 402C576 386 580 366 580 348Z" fill="#2c3037"/>
+  <path d="M607 341C600 339 584 339 577 341L579 351C585 348 599 348 606 350Z" fill="#17191d"/>
+  <path d="M610 330C611 322 604 317 593 318C583 318 576 322 576 330C576 338 582 343 593 343C604 343 609 338 610 330Z" fill="#eecdb4"/>
+  <path d="M608 334C604 340 582 341 577 335C579 341 585 343 593 343C601 343 607 340 608 334Z" fill="#d8a98a"/>
+  <g fill="none" stroke="var(--ill-ink,#151a24)">
+  <path d="M610 330C611 322 604 317 593 318C583 318 576 322 576 330C576 338 582 343 593 343" stroke-width="4.3"/>
+  <path d="M604 322C602 320 599 319 597 322M595 321C593 318 590 318 588 321M587 322C585 319 582 320 581 323" stroke-width="2.9"/>
+  <path d="M598 350C603 370 600 392 588 411" stroke-width="5.1"/>
+  <path d="M580 350C580 366 576 386 566 402" stroke-width="5.1"/>
+  </g>
+  </g>
+  </g>
+  </g>
+  <!-- respaldo de la silla, por delante de la espalda -->
+  <path d="M384 432C380 470 384 506 396 538C440 548 500 548 544 538C556 506 560 470 556 432C520 422 420 422 384 432Z" fill="#202839" stroke="var(--ill-ink,#151a24)" stroke-width="6"/>
+  <path d="M400 446C440 438 500 438 540 446M398 474C440 466 500 466 542 474M402 502C440 494 500 494 538 502" fill="none" stroke="#2e3850" stroke-width="4"/>
+  </g>
+  </g>
+ </g>
+</svg>
