@@ -4,6 +4,7 @@ import {
   DOG_STATES, BONE_STATES, PEEK_STATES, HOUSE_VB, NEAR, APPROACH, LEAVE,
   next, doorRect, doorCenter, isInDoor, isNearDoor, dogStopX, homeDogX, settleBone, spawnX,
   pointerZone, runDuration, nextPeekDelay, nextPeekHold, shouldPeek, peekBox, distanceToRect, isShy, SHY, bonesAfter, announceFor,
+  FIRST_PEEK_AT, FIRST_PEEK_WINDOW, PEEK_IDLE, PEEK_GAP, PEEK_HOLD, PEEK_RETRY, firstPeekDelay, peekRetryDelay, isFirstPeekWindow,
 } from '../src/js/play/dog-machine.js';
 
 // caseta de 220 px de ancho (escala 1) en (500, 300)
@@ -98,13 +99,41 @@ describe('tiempos', () => {
     assert.equal(runDuration(3800), 2800);
     assert.equal(runDuration(760), 2000);
   });
-  it('nextPeekDelay esta entre 6 y 14 s (se cuenta desde que se esconde; con 8-12 s de permanencia sale cada ~20 s)', () => {
-    assert.equal(nextPeekDelay(() => 0), 6000);
-    assert.equal(nextPeekDelay(() => 1), 14000);
+  it('nextPeekDelay esta entre 3 y 7 s (se cuenta desde que se esconde; con 8-12 s de permanencia sale cada ~15 s)', () => {
+    assert.equal(nextPeekDelay(() => 0), 3000);
+    assert.equal(nextPeekDelay(() => 1), 7000);
+    assert.deepEqual(PEEK_GAP, { min: 3000, max: 7000 });
   });
   it('nextPeekHold esta entre 8 y 12 s (el triple que antes)', () => {
     assert.equal(nextPeekHold(() => 0), 8000);
     assert.equal(nextPeekHold(() => 1), 12000);
+    assert.deepEqual(PEEK_HOLD, { min: 8000, max: 12000 });
+  });
+  it('peekRetryDelay (la puerta ha fallado) reintenta entre 1,5 y 3 s', () => {
+    assert.equal(peekRetryDelay(() => 0), 1500);
+    assert.equal(peekRetryDelay(() => 1), 3000);
+    assert.deepEqual(PEEK_RETRY, { min: 1500, max: 3000 });
+  });
+  it('la primera aparicion es a los 10 s de ver la pagina y la regla de estar quieto son 2,5 s', () => {
+    assert.equal(FIRST_PEEK_AT, 10000);
+    assert.equal(FIRST_PEEK_WINDOW, 20000);
+    assert.equal(PEEK_IDLE, 2500);
+  });
+  it('firstPeekDelay cuenta los 10 s desde enteredAt, entero sin enteredAt y nunca negativo', () => {
+    assert.equal(firstPeekDelay(0), 10000);
+    assert.equal(firstPeekDelay(2500), 7500, 'el modulo arranca 2,5 s despues de la navegacion');
+    assert.equal(firstPeekDelay(12000), 0, 'ya han pasado los 10 s: al instante');
+    assert.equal(firstPeekDelay(9000, 3000), 4000, 'la pestana se vio a los 3 s');
+    assert.equal(firstPeekDelay(9000, null), 10000, 'pestana en segundo plano: aun no se ha visto');
+    assert.equal(firstPeekDelay(1000, 0, 4000), 3000);
+  });
+  it('isFirstPeekWindow: la primera solo es especial durante FIRST_PEEK_WINDOW desde enteredAt', () => {
+    assert.ok(isFirstPeekWindow(10000, 0));
+    assert.ok(isFirstPeekWindow(19999, 0));
+    assert.ok(!isFirstPeekWindow(20000, 0));
+    assert.ok(isFirstPeekWindow(24000, 6000), 'cuenta desde que se vio');
+    assert.ok(isFirstPeekWindow(50000, null), 'sin ver la pagina la ventana no ha empezado');
+    assert.ok(!isFirstPeekWindow(5000, 0, 4000));
   });
   it('shouldPeek exige pestana visible, sin movimiento reducido, sin arrastre, sin menu, perro en casa y no a la vista, 2,5 s quieto y ancho >= 360', () => {
     const ok = { hidden: false, reduced: false, dragging: false, sheetOpen: false, state: 'inHouse', idleMs: 2500, width: 360, dogVisible: false };
@@ -115,6 +144,16 @@ describe('tiempos', () => {
     // sin el campo (llamadas antiguas) se asume que el perro del patio no esta a la vista
     const { dogVisible, ...legacy } = ok;
     assert.ok(shouldPeek(legacy));
+  });
+  it('shouldPeek con minIdle 0 (primera aparicion) acepta al visitante en movimiento pero mantiene el resto de la puerta', () => {
+    const moving = { hidden: false, reduced: false, dragging: false, sheetOpen: false, state: 'inHouse', idleMs: 0, width: 360, dogVisible: false };
+    assert.ok(shouldPeek({ ...moving, minIdle: 0 }));
+    assert.ok(!shouldPeek(moving), 'sin minIdle sigue exigiendo PEEK_IDLE');
+    assert.ok(!shouldPeek({ ...moving, idleMs: 2499 }));
+    assert.ok(!shouldPeek({ ...moving, idleMs: 2499, minIdle: undefined }), 'undefined = valor por defecto');
+    for (const [k, v] of Object.entries({ hidden: true, reduced: true, dragging: true, sheetOpen: true, state: 'running', width: 359, dogVisible: true })) {
+      assert.ok(!shouldPeek({ ...moving, minIdle: 0, [k]: v }), k);
+    }
   });
 });
 
