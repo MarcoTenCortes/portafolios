@@ -65,7 +65,7 @@ const afterFirstPaint = (fn) => requestAnimationFrame(() => requestAnimationFram
 if (document.readyState === 'complete') afterFirstPaint(bootPlay);
 else window.addEventListener('load', () => afterFirstPaint(bootPlay), { once: true });
 
-// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo&glow=<x>,<y>
+// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo&glow=<x>,<y>&lamp=on&pose=typing|turn|reach|hold|face
 if (import.meta.env.DEV) {
   const params = new URLSearchParams(window.location.search);
   const shot = params.get('shot');
@@ -103,6 +103,9 @@ if (import.meta.env.DEV) {
       // [hook:glow] ?glow=<x>,<y>: enciende la luz del raton en ese punto (px de cliente), sin cola
       const glowAt = (params.get('glow') || '').split(',').map(Number);
       if (glowAt.length === 2 && glowAt.every(Number.isFinite)) window.MTC.glow?.moveTo(glowAt[0], glowAt[1], { snap: true });
+      // [hook:pose] &pose=typing|turn|reach|hold|face: el escritorio salta a esa pose sin transiciones (y con la luz que le toca)
+      const deskPose = params.get('pose');
+      if (deskPose) window.MTC.lamp?.snap(deskPose);
       // ?project=<id>: abre esa ficha de proyecto (sin tocar el historial)
       const projectId = params.get('project');
       if (projectId && window.MTC.projects) window.MTC.projects.open(projectId, { push: false });

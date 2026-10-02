@@ -2,11 +2,13 @@
 // (src/partials/desk.svg). A oscuras Marco programa: el monitor es la unica luz, el codigo se va escribiendo y
 // las manos teclean. Al tirar, la cadena baja y vuelve (WAAPI), la lampara se enciende en el fondo del tiron
 // (.is-lit, como el clic de un interruptor) y Marco hace una pausa encadenada en data-pose:
-// typing -> turn (gira la cabeza hacia la lampara) -> reach (el brazo va a la taza) -> hold (la levanta).
+// typing -> turn (gira la cabeza hacia la lampara) -> reach (el brazo va a la taza) -> hold (la levanta) ->
+// face (tras un instante se gira entero hacia ti con la taza en la mano y te mira, parpadeando de vez en cuando:
+// el cuerpo de espaldas se estrecha hasta quedar de canto y se cambia por el de frente, que se ensancha).
 // Otro tiron apaga y deshace la pausa en orden inverso hasta volver a programar. Cada paso espera a que acaben
 // las transiciones CSS que lanza (getAnimations + finished), asi que un tiron a mitad invierte desde donde este.
-// Con prefers-reduced-motion las dos poses cambian de golpe. Maquina de estados en data-lamp:
-// off -> pulling -> on -> pulling -> off. No se guarda: cada visita empieza a oscuras.
+// Con prefers-reduced-motion las dos poses extremas (typing y face) cambian de golpe. Maquina de estados en
+// data-lamp: off -> pulling -> on -> pulling -> off. No se guarda: cada visita empieza a oscuras.
 
 const EASE_IN = 'cubic-bezier(.4,0,1,1)';
 const EASE_OUT = 'cubic-bezier(.2,.7,.2,1)';
@@ -15,8 +17,9 @@ const PULL_PX = 13; // lo que baja la cadena en pantalla
 const PULL_MAX_UNITS = 42; // tope en unidades del viewBox (en movil la cadena es corta)
 const HINT_DELAY = 1800;
 const HINT_KEY = 'play.lamp.hint';
-const POSES = ['typing', 'turn', 'reach', 'hold'];
-const STEP_MS = { typing: 400, turn: 450, reach: 450, hold: 280 }; // respaldo si no hay getAnimations (igual que el CSS)
+const POSES = ['typing', 'turn', 'reach', 'hold', 'face'];
+// respaldo si no hay getAnimations (igual que el CSS); face = 200 de pausa + 280 estrechar + 360 ensanchar
+const STEP_MS = { typing: 400, turn: 450, reach: 450, hold: 280, face: 840 };
 const REACT_MS = 90; // lo que tarda Marco en darse cuenta de que ha cambiado la luz
 
 function storage(kind) {
@@ -158,6 +161,16 @@ export function initLamp(root, { i18n } = {}) {
     setState(lit ? 'on' : 'off');
     return state;
   }
+  // salto a una pose concreta (desarrollo: &pose=<nombre> con ?shot=); typing es la unica a oscuras
+  function snap(name) {
+    const i = POSES.indexOf(name);
+    if (i < 0) return state;
+    stopAnimations();
+    setLit(i > 0);
+    snapPose(i);
+    setState(lit ? 'on' : 'off');
+    return state;
+  }
 
   // ---------- pista: una vez por sesion, ~1,8 s despues de que el escritorio este a la vista ----------
   function hideHint() {
@@ -199,6 +212,7 @@ export function initLamp(root, { i18n } = {}) {
     get pose() { return POSES[poseIdx]; },
     toggle,
     pull,
+    snap,
     destroy() {
       stopAnimations();
       choreo++;
