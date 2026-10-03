@@ -890,7 +890,7 @@
 
   .desk__art :is(.desk__cord, .desk__cord-pull, .desk__head, .desk__head-back, .desk__arm, .desk__fore, .desk__hand, .desk__mug,
     .desk__mug-shadow, .desk__line, .desk__cursor, .desk__steam path, .desk__body, .desk__lid, .desk__spin, .desk__rig, .desk__chair,
-    .desk__chair-arm, .desk__mug-held, .desk__mug-tilt, .desk__steam-lean, .desk__skin, .desk__dark, .desk__room-mug) { transform-box: view-box; }
+    .desk__chair-arm, .desk__chair-edge, .desk__mug-held, .desk__mug-tilt, .desk__steam-lean, .desk__skin, .desk__dark, .desk__room-mug) { transform-box: view-box; }
   /* luz: a oscuras solo alumbra el monitor; con la lampara, cono calido y la escena entera (la pantalla sigue encendida) */
   .desk__room, .desk__halo, .desk__glow, .desk__shade, .desk__rim, .desk__light, .desk__warm, .desk__steam, .desk__inner-on,
   .desk__inner-off, .desk__bulb-on, .desk__bulb-off, .desk__bulb-glow { transition: opacity 300ms var(--ease-out); }
@@ -1017,16 +1017,19 @@
      -10deg en el perfil; el vapor se queda atras */
   .hero__desk.is-rig .desk__mug-tilt { transform: rotate(calc(-1 * (var(--dt-arm) + var(--dt-fore)) - 10deg * sin(var(--dt-m)))); }
   .hero__desk.is-rig .desk__steam-lean { transform: skewX(calc(-14deg * sin(var(--dt-m)))); }
-  /* respaldo: barre hacia la izquierda, se pone de canto (x ~ 382 a 90deg, scaleX minimo 0,08) y ahi cambia de capa;
-     de frente queda detras, mas alto y algo mas pequeno */
+  /* respaldo: barre hacia la izquierda, se pone de canto (x ~ 382 a 90deg, scaleX minimo 0,12) y ahi cambia de capa;
+     de frente queda detras, mas alto y algo mas pequeno. Su canto (.desk__chair-edge) deshace el estrechado y mide
+     10 u por |sin|: a 90deg se lee una tabla con grosor (a la derecha hasta 90, a la izquierda desde ahi) */
   .hero__desk.is-rig .desk__chair {
-    transform: translate(calc(-88px * sin(var(--desk-turn))), calc(14px * (cos(var(--desk-turn)) - 1))) scale(calc(0.96 + 0.04 * cos(var(--desk-turn)))) scaleX(max(0.08, cos(var(--desk-turn))));
+    transform: translate(calc(-88px * sin(var(--desk-turn))), calc(14px * (cos(var(--desk-turn)) - 1))) scale(calc(0.96 + 0.04 * cos(var(--desk-turn)))) scaleX(max(0.12, cos(var(--desk-turn))));
     opacity: clamp(0, sin(91.9deg - var(--desk-turn)) * 30, 1);
   }
   .hero__desk.is-rig .desk__chair--behind {
-    transform: translate(calc(-88px * sin(var(--desk-turn))), calc(14px * (cos(var(--desk-turn)) - 1))) scale(calc(0.96 + 0.04 * cos(var(--desk-turn)))) scaleX(max(0.08, -1 * cos(var(--desk-turn))));
+    transform: translate(calc(-88px * sin(var(--desk-turn))), calc(14px * (cos(var(--desk-turn)) - 1))) scale(calc(0.96 + 0.04 * cos(var(--desk-turn)))) scaleX(max(0.12, -1 * cos(var(--desk-turn))));
     opacity: clamp(0, sin(var(--desk-turn) - 88.1deg) * 30, 1);
   }
+  .hero__desk.is-rig .desk__chair--front .desk__chair-edge { transform: scaleX(calc(var(--dt-abs) / max(0.12, cos(var(--desk-turn))))); }
+  .hero__desk.is-rig .desk__chair--behind .desk__chair-edge { transform: scaleX(calc(var(--dt-abs) / max(0.12, -1 * cos(var(--desk-turn))))); }
   /* reposabrazos (lado de la lampara): de punta en reposo y de lado a 90deg; solo se ve mientras barre hacia ti */
   .hero__desk.is-rig .desk__chair-arm {
     transform: translate(calc(100px * (cos(var(--desk-turn)) - 1)), calc(14px * sin(var(--desk-turn)))) scaleX(calc(0.28 + 0.72 * var(--dt-abs)));
@@ -1039,12 +1042,22 @@
   /* dibujos por angulo (skins, rampa de ~5deg). En cada corte c la que entra llega a 1 en c y la que sale empieza a
      irse en c: nunca hay un instante con las dos a medias (se veria el monitor a traves del cuerpo).
      Hasta c: clamp(0, sin(c + 4.8deg - t) * 12, 1); desde c: clamp(0, sin(t - c + 4.8deg) * 12, 1) */
-  .hero__desk.is-rig :is(.desk__skin--head-back, .desk__skin--head-turned, .desk__skin--neck-back) { opacity: clamp(0, sin(104.8deg - var(--dt-h)) * 12, 1); }
-  .hero__desk.is-rig .desk__skin--head-front { opacity: clamp(0, sin(var(--dt-h) - 95.2deg) * 12, 1); }
-  .hero__desk.is-rig .desk__skin--hand-l { opacity: clamp(0, sin(74.8deg - var(--desk-turn)) * 12, 1); }
+  /* cabeza (con su angulo --dt-h): de espaldas o en perfil perdido hasta 78, tres cuartos de 78 a 140, de frente
+     desde 140 */
+  .hero__desk.is-rig :is(.desk__skin--head-back, .desk__skin--head-turned, .desk__skin--neck-back) { opacity: clamp(0, sin(82.8deg - var(--dt-h)) * 12, 1); }
+  .hero__desk.is-rig .desk__skin--head-3q { opacity: clamp(0, min(sin(var(--dt-h) - 73.2deg), sin(144.8deg - var(--dt-h))) * 12, 1); }
+  .hero__desk.is-rig .desk__skin--head-front { opacity: clamp(0, sin(var(--dt-h) - 135.2deg) * 12, 1); }
+  .hero__desk.is-rig .desk__skin--hand-l { opacity: clamp(0, sin(49.8deg - var(--desk-turn)) * 12, 1); }
+  /* brazo izquierdo: la mano se va del teclado a los 45deg y la manga (detras del jersey) existe desde ahi, metida
+     tras el torso mientras ese costado queda lejos (-14 u a 90deg) y sale hacia la derecha al ponerse de frente. El
+     desplazamiento va con sin * (1 + cos): identidad en reposo (no toca el raster de typing/turn/reach/hold) y a 180 */
+  .hero__desk.is-rig .desk__skin--sleeve-l {
+    opacity: clamp(0, sin(var(--desk-turn) - 40.2deg) * 12, 1);
+    transform: translate(calc(-14px * sin(var(--desk-turn)) * (1 + cos(var(--desk-turn)))), calc(8px * sin(var(--desk-turn)) * (1 + cos(var(--desk-turn)))));
+  }
   .hero__desk.is-rig .desk__skin--arm-back { opacity: clamp(0, sin(61.8deg - var(--desk-turn)) * 12, 1); }
   .hero__desk.is-rig .desk__skin--arm-front { opacity: clamp(0, sin(var(--desk-turn) - 52.2deg) * 12, 1); }
-  .hero__desk.is-rig :is(.desk__skin--sleeve-back, .desk__skin--hand-side) { opacity: clamp(0, sin(127.8deg - var(--desk-turn)) * 12, 1); }
+  .hero__desk.is-rig :is(.desk__skin--sleeve-side, .desk__skin--hand-side) { opacity: clamp(0, sin(127.8deg - var(--desk-turn)) * 12, 1); }
   .hero__desk.is-rig :is(.desk__skin--sleeve-front, .desk__skin--hand-front) { opacity: clamp(0, sin(var(--desk-turn) - 118.2deg) * 12, 1); }
   .hero__desk.is-rig .desk__torso-back { opacity: clamp(0, sin(94.8deg - var(--desk-turn)) * 12, 1); }
   .hero__desk.is-rig .desk__torso-front { opacity: clamp(0, sin(var(--desk-turn) - 85.2deg) * 12, 1); }
@@ -1059,16 +1072,17 @@
      de frente a los 400, se va lo de espaldas a los 450 y la sombra de frente a los 520; la vuelta, al reves */
   .hero__desk:not(.is-rig)[data-pose="face"] .desk__marco { --desk-turn: 180deg; }
   .hero__desk:not(.is-rig) :is(.desk__skin--head-back, .desk__skin--head-turned, .desk__skin--neck-back, .desk__skin--hand-l, .desk__skin--arm-back, .desk__torso-back, .desk__room-mug) { opacity: 1; transition: opacity 80ms linear 400ms; }
-  .hero__desk:not(.is-rig) :is(.desk__skin--head-front, .desk__skin--arm-front, .desk__torso-front) { opacity: 0; transition: opacity 80ms linear 450ms; }
+  .hero__desk:not(.is-rig) :is(.desk__skin--head-front, .desk__skin--arm-front, .desk__torso-front, .desk__skin--sleeve-l) { opacity: 0; transition: opacity 80ms linear 450ms; }
   .hero__desk:not(.is-rig) .desk__chair--front { opacity: 1; transition: opacity 80ms linear 520ms; }
+  .hero__desk:not(.is-rig) .desk__chair-edge { transform: scaleX(0); }
   .hero__desk:not(.is-rig) .desk__chair--behind { opacity: 0; transition: opacity 80ms linear 520ms; transform: translate(0, -28px) scale(0.92); }
   .hero__desk:not(.is-rig) .desk__dark { opacity: 0.62; transition: opacity 80ms linear 300ms; }
   .hero__desk:not(.is-rig)[data-pose="face"] :is(.desk__skin--head-back, .desk__skin--head-turned, .desk__skin--neck-back, .desk__skin--hand-l, .desk__skin--arm-back, .desk__torso-back, .desk__room-mug) { opacity: 0; transition-delay: 450ms; }
-  .hero__desk:not(.is-rig)[data-pose="face"] :is(.desk__skin--head-front, .desk__skin--arm-front, .desk__torso-front) { opacity: 1; transition-delay: 400ms; }
+  .hero__desk:not(.is-rig)[data-pose="face"] :is(.desk__skin--head-front, .desk__skin--arm-front, .desk__torso-front, .desk__skin--sleeve-l) { opacity: 1; transition-delay: 400ms; }
   .hero__desk:not(.is-rig)[data-pose="face"] .desk__chair--front { opacity: 0; transition-delay: 300ms; }
   .hero__desk:not(.is-rig)[data-pose="face"] .desk__chair--behind { opacity: 1; transition-delay: 300ms; }
   .hero__desk:not(.is-rig)[data-pose="face"] .desk__dark { opacity: 1; transition-delay: 520ms; }
-  .hero__desk:not(.is-rig) :is(.desk__skin--sleeve-back, .desk__skin--hand-side, .desk__chair-arm) { opacity: 0; }
+  .hero__desk:not(.is-rig) :is(.desk__skin--sleeve-side, .desk__skin--hand-side, .desk__skin--head-3q, .desk__chair-arm) { opacity: 0; }
   .hero__desk:not(.is-rig) :is(.desk__skin--sleeve-front, .desk__skin--hand-front) { opacity: 1; }
   .hero__desk:not(.is-rig) .desk__arm--r .desk__mug-held { opacity: 0; }
   .hero__desk:not(.is-rig) .desk__arm--front .desk__mug-held { opacity: 1; }

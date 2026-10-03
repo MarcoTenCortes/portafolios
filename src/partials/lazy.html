@@ -895,6 +895,10 @@
       <stop offset=".35" stop-color="#ffd89a" stop-opacity=".4"/>
       <stop offset="1" stop-color="#ffc070" stop-opacity="0"/>
     </radialGradient>
+    <!-- fuera del jersey (en el marco del torso): recorte de la manga izquierda -->
+    <clipPath id="desk-torso-out" clipPathUnits="userSpaceOnUse">
+      <path clip-rule="evenodd" d="M330 180 H700 V460 H330 Z M430 314 C410 317 390 322 376 332 C362 342 356 360 352 384 C350 402 350 422 352 440 L588 440 C590 422 590 402 588 384 C584 360 578 342 564 332 C550 322 530 317 510 314 C494 326 446 326 430 314 Z"/>
+    </clipPath>
   </defs>
 
   <!-- brillo azul del monitor en la pared: el monitor esta encendido en los dos estados -->
@@ -1021,7 +1025,8 @@
        con la silla hacia ti: rig 2.5D de un solo mando, la variable --desk-turn (0deg de espaldas, 180deg de frente,
        eje vertical en x = 470) de la que cada pieza deriva su transform y su opacidad en site.css. Capas, de atras
        adelante: respaldo trasero, cuerpo de espaldas (taza de la mesa, mano izquierda, brazo derecho por detras del
-       torso, cuello), cabeza, torso, respaldo delantero y reposabrazos, brazo derecho por delante del torso. Las
+       torso, cuello), cabeza, torso (con la manga izquierda detras del jersey), respaldo delantero y reposabrazos,
+       brazo derecho por delante del torso. Las
        piezas que cambian de dibujo con el angulo van en envolventes .desk__skin--*; los envolventes nuevos son la
        identidad a 0deg, asi que typing/turn/reach/hold se ven igual que antes del rig. -->
   <g class="desk__marco">
@@ -1037,6 +1042,13 @@
         <path d="M403.2 412 C436 406 504 405.8 537.2 411.6"/>
       </g>
       <path class="desk__warm" d="M541.8 373 C544.8 388 545.6 402 545.2 418" fill="none" stroke="#ffc27a" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+      <!-- canto (de frente queda a la izquierda): su ancho en pantalla no se aplasta con el respaldo -->
+      <g class="desk__chair-edge" style="transform-origin:394px 400px">
+        <path d="M396.6 368.4 C392.2 368.2 388.6 368.8 386.4 369.8 C382.6 393 381.6 418 383 446 L393 446 C391.6 418 392.6 392 396.6 368.4 Z" fill="#3a4560"/>
+        <path d="M390 373 C387.2 394 386.4 418 387.4 444" fill="none" stroke="#4a5878" stroke-width="2" stroke-linecap="round"/>
+        <path d="M396.4 368 C392 367.8 388.2 368.4 386 369.4 C382.2 393 381.2 418 382.8 446" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="desk__shade desk__shade--half" d="M396.6 368.4 C392.2 368.2 388.6 368.8 386.4 369.8 C382.6 393 381.6 418 383 446 L393 446 C391.6 418 392.6 392 396.6 368.4 Z" fill="#050a14"/>
+      </g>
       <path d="M396.6 368.2 C430 360.2 510 359.8 543.8 367.8 C547.8 392 548.8 418 547.2 446 M392.8 446 C391.4 418 392.4 392 396 371" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
       <path class="desk__shade desk__shade--half" d="M396.6 368.4 C430 360.6 510 360.2 543.6 368.2 C547.6 392 548.6 418 547 446 L393 446 C391.6 418 392.6 392 396.6 368.4 Z" fill="#050a14"/>
     </g>
@@ -1177,8 +1189,9 @@
     <!-- cabeza (por delante del cuello y por detras del jersey), con pivote en el cuello. De espaldas mientras
          programa; al encenderse la lampara gira hacia ella en perfil perdido (oreja, patilla y montura de las gafas,
          nariz): cross-fade entre las dos versiones y un pequeno giro del grupo. En el giro de la silla (face) se
-         endereza, se hunde un poco de perfil (.desk__spin--head) y llega antes que el cuerpo: de frente desde los
-         100 grados de su angulo. Parpadea con .desk__lid (pivote arriba de cada parpado). -->
+         endereza, se hunde un poco de perfil (.desk__spin--head) y llega antes que el cuerpo: en perfil perdido hasta
+         los 78 grados de su angulo, de tres cuartos hasta los 140 y de frente desde ahi. Parpadea con .desk__lid
+         (pivote arriba de cada parpado). -->
     <g class="desk__head" style="transform-origin:470px 300px">
       <g class="desk__spin desk__spin--head" style="transform-origin:470px 300px">
         <g class="desk__skin desk__skin--head-back">
@@ -1276,6 +1289,82 @@
             </g>
           </g>
         </g>
+        <!-- tres cuartos (de 78 a 140 grados de su angulo, vista hacia 125): mira hacia la lampara y ya casi hacia ti.
+             La nariz hace el contorno derecho, el ojo derecho y el puente de las gafas van al centro-derecha y la
+             lente izquierda asoma tras la nariz; la oreja derecha queda a la izquierda, delante de la nuca, y la
+             patilla cruza la mejilla hasta ella. Pelo de la coronilla y la nuca a la izquierda, flequillo hacia la
+             derecha. Sin parpados (solo parpadea de frente) -->
+        <g class="desk__skin desk__skin--head-3q">
+          <g class="desk__head-3q">
+            <!-- cuello: de la nuca (bajo la oreja) a la garganta; baja hasta y 336 para llenar el cuello del jersey
+                 estrechado -->
+            <path d="M428 286 C436 298 443.6 311 446 336 L508 336 C505.6 320 504 304 504.6 288 Z" fill="#d9ab8c"/>
+            <path d="M447 292 C466 303 490 307.6 504.4 300.6 L505 311 C490 317 462 313.4 444.6 303 Z" fill="#c98f70"/>
+            <path d="M431.6 293 C437.4 301.6 442.4 310.6 444.8 321 M504.4 298 C505 308 505.8 316 507 324" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linecap="round"/>
+            <!-- lente izquierda, por detras de la cara: solo asoma lo que sale del contorno -->
+            <path d="M535.6 249 C535.4 241.4 538 236.6 541.8 236.6 C545.8 236.8 548 241.6 547.8 249.2 C547.6 257 545.2 261.8 541.6 261.6 C537.8 261.4 535.8 256.8 535.6 249 Z" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linejoin="round"/>
+            <!-- cara: base, sombra del lado de la oreja (contrario a la lampara) y bajo la mandibula -->
+            <path d="M440 214 C470 202 512 198 536 208 C540.6 216 542.4 228 542 237 C541.6 241 540 244 540 247 C541 251 544 255 547.6 259.6 C550.4 263 551.4 266 550 268.4 C548.6 270.6 545 271.2 542.2 271.4 C543.4 274.4 544 277.4 542.6 280.4 C541.6 282.6 541.6 285 541.8 288 C541.6 294 538 299.6 528.6 303.4 C516 307.8 500 306.8 486 302.8 C470 298.4 455 291.6 445 285 C438.6 280.6 435.4 274 435.6 262 C435.8 246 437 228 440 214 Z" fill="#eecdb4"/>
+            <path d="M440 222 C437.4 238 436 252 435.8 264 C435.6 275 439 281 445 285 C455 291.6 470 298.4 486 302.8 C496 305.6 506 306.8 515 306.4 C498 303 484 297 472 290 C458 282 450 270 447.4 254 C446.4 244 446.4 232 447.4 222 Z" fill="#d8a98a"/>
+            <!-- luz calida de la lampara por el contorno derecho: frente, nariz y barbilla -->
+            <path class="desk__warm" d="M538.8 222 C540.8 228 541.6 233 541.4 237.6 M545.6 256.6 C548.4 259.6 550 262.6 550 265.4 M541.2 287.4 C540.6 293 537.6 298 532 301.4" fill="none" stroke="#fff1de" stroke-width="2.6" stroke-linecap="round"/>
+            <!-- cejas: la derecha entera, la izquierda apenas un trazo junto al contorno -->
+            <path d="M497 231.4 C503 228 511.4 227.6 520 229.8 M533.6 229.2 C536 228.4 538.4 228.6 540 229.6" fill="none" stroke="#3b2a21" stroke-width="3.4" stroke-linecap="round"/>
+            <!-- pelo: coronilla y nuca a la izquierda, flequillo cayendo hacia la derecha y patilla delante de la oreja -->
+            <path d="M413 291 C403 279 397.4 262 397.4 242 C396.6 220 404.4 200 420.4 187 C432 178 450 175 470 175 C492 173.6 513 178 527 190 C537 199 542 208 543 219 C540 225 537.6 229.6 533.4 233.4 C532.6 228 531 223.6 527.6 220.4 C524.4 227.4 519.4 232.6 511.6 236.2 C511.8 230 510.6 225 507.6 221 C501 226 494 229.4 485.6 231.2 C487.4 226 487.8 221.4 486.4 217.4 C477 221 468 226 460 233 C455 240 451.4 249 450 258 C449.4 263 448 267 445.6 270 C441.6 265 438.6 259 436 254 C435 266 434 278 431 288 L426 295 L420.6 290.4 L415.6 296 Z" fill="#3b2a21"/>
+            <path d="M397.6 246 C398.4 266 404 282 413 291 L415.6 296 L420.6 290.4 L426 295 L431 288 C426 283 419 276 413 267 C406.6 258 401.4 252 397.6 246 Z" fill="#241913"/>
+            <path d="M424 191 C442 180 492 179 516 191 C498 187 478 186 460 188.6 C446 190.4 434 194 424 191 Z" fill="#5b4232"/>
+            <path d="M483 181 C478 167 462 162 449 169 C458 169.6 465 174 469 183 Z" fill="#3b2a21"/>
+            <path d="M479 176 C473 168.6 461 166 452 168.6" fill="none" stroke="#5b4232" stroke-width="2.5" stroke-linecap="round"/>
+            <g fill="none" stroke="#1a120e" stroke-width="2.5" stroke-linecap="round" opacity=".75">
+              <path d="M462 196 C442 201 424 216 413 238"/>
+              <path d="M458 200 C442 214 434 234 431 252"/>
+              <path d="M468 197 C488 198 508 205 524 217"/>
+              <path d="M466 201 C476 210 482 218 486 226"/>
+            </g>
+            <path d="M474 204 C490 207 504 213 514 222 M498 202 C510 206 520 212 527 220" fill="none" stroke="#5b4232" stroke-width="2.5" stroke-linecap="round"/>
+            <path class="desk__warm" d="M514 184 C528 192 538 202 542 214" fill="none" stroke="#ffc27a" stroke-width="3.5" stroke-linecap="round" opacity=".6"/>
+            <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M413 291.4 C403 279.4 397 262.4 397 242 C396.2 220 404 200 420 186.6 C428 180.6 438 177 448 175.6 M470 174.6 C492 173 513 177.6 527.4 189.6 C537.4 198.6 542.4 208 543.4 219" stroke-width="4.5"/>
+              <path d="M483 181 C478 167 462 162 449 169 C458 169.6 465 174 469 183" stroke-width="3.5"/>
+              <path d="M543 219.4 C540 225 537.6 229.6 533.4 233.4 C532.6 228 531 223.6 527.6 220.4 C524.4 227.4 519.4 232.6 511.6 236.2 C511.8 230 510.6 225 507.6 221 C501 226 494 229.4 485.6 231.2 C487.4 226 487.8 221.4 486.4 217.4 C477 221 468 226 460 233 C455 240 451.4 249 450 258 C449.4 263 448 267 445.6 270" stroke-width="3"/>
+              <!-- contorno de la cara: frente, nariz, labios, barbilla y mandibula hasta la oreja (abierto en la sien) -->
+              <path d="M539.8 232 C541.8 236 541.6 240.6 540.2 244 C539.8 247 540.6 250 543.6 253.6 C546.4 257.4 550.4 262.4 550.4 266.6 C550 270.4 545.6 271.4 542.4 271.6 C543.8 274.6 544.2 277.6 542.8 280.4 C541.8 282.6 541.8 285 542 288 C541.8 294.4 538.2 300 528.8 303.8 C516 308.2 500 307.2 486 303.2 C470 298.8 456 292.6 448.4 288" stroke-width="3.5"/>
+            </g>
+            <!-- oreja derecha (la de la oreja girada, llevada a la izquierda) -->
+            <path d="M423 239 C413 236 407 248 408 261 C409 275 415 285 425 285 C431 285 434 280 433 274 C432 268 434 262 435 255 C436 246 432 240 423 239 Z" fill="#eecdb4" stroke="var(--ill-ink,#151a24)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M419.6 249 C414.6 255 414.6 266 419.6 274 M426 256.4 C424 259.4 424 263.4 426 266.4" fill="none" stroke="#c98f70" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- ojo derecho (tinta con brillo), aleta de la nariz y sonrisa cerrada corrida a la derecha -->
+            <path d="M511.6 250 C511.6 247.4 513.2 247 514.8 247 C516.6 247 517.8 247.6 517.8 250 C517.8 252.4 516.6 252.8 514.8 252.8 C513 252.8 511.6 252.4 511.6 250 Z" fill="var(--ill-ink,#151a24)"/>
+            <path d="M515.6 248.6 C516.4 248.2 517 248.6 516.8 249.4" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M538.4 266.6 C540.4 268.8 543.4 269.4 545.8 268.4" fill="none" stroke="#b5795a" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M512 282.6 C517.6 287.6 527.6 288 535 283" fill="none" stroke="#b05030" stroke-width="3.2" stroke-linecap="round"/>
+            <path d="M516.6 287.6 C521 289.6 526.6 289.4 530.6 287.2" fill="none" stroke="#e08060" stroke-width="1.8" stroke-linecap="round"/>
+            <!-- gafas: lente derecha estrechada, puente sobre la nariz y patilla por la mejilla hasta la oreja -->
+            <g fill="none" stroke="var(--ill-ink,#151a24)" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M502.6 248.6 C502.4 240.8 507.4 236.2 514 236.2 C520.8 236.4 525.8 241.4 525.6 249.4 C525.4 257.6 520.4 262.4 513.8 262.2 C507 262 502.8 256.8 502.6 248.6 Z" stroke-width="4.5"/>
+              <path d="M525.4 245.4 C528.4 243.4 533 243.2 536.2 245" stroke-width="3.5"/>
+              <path d="M502.8 245.2 C484 243.4 458 243 435.4 245.4" stroke-width="3.5"/>
+            </g>
+            <path d="M506 243 C507.4 240.4 509.6 239 512 238.6" fill="none" stroke="#9aa6b8" stroke-width="1.6" stroke-linecap="round"/>
+            <path class="desk__warm" d="M546.4 243.4 C547.4 246.4 547.6 249.6 547.2 252.6" fill="none" stroke="#fff3de" stroke-width="1.6" stroke-linecap="round"/>
+            <!-- a oscuras, en sombra como la de frente (.desk__dark) -->
+            <g class="desk__dark">
+              <g class="desk__shade desk__shade--full" fill="#050a14">
+                <path d="M428 286 C436 298 443.6 311 446 336 L508 336 C505.6 320 504 304 504.6 288 Z"/>
+                <path d="M440 214 C470 202 512 198 536 208 C540.6 216 542.4 228 542 237 C541.6 241 540 244 540 247 C541 251 544 255 547.6 259.6 C550.4 263 551.4 266 550 268.4 C548.6 270.6 545 271.2 542.2 271.4 C543.4 274.4 544 277.4 542.6 280.4 C541.6 282.6 541.6 285 541.8 288 C541.6 294 538 299.6 528.6 303.4 C516 307.8 500 306.8 486 302.8 C470 298.4 455 291.6 445 285 C438.6 280.6 435.4 274 435.6 262 C435.8 246 437 228 440 214 Z"/>
+                <path d="M413 291 C403 279 397.4 262 397.4 242 C396.6 220 404.4 200 420.4 187 C432 178 450 175 470 175 C492 173.6 513 178 527 190 C537 199 542 208 543 219 C540 225 537.6 229.6 533.4 233.4 C532.6 228 531 223.6 527.6 220.4 C524.4 227.4 519.4 232.6 511.6 236.2 C511.8 230 510.6 225 507.6 221 C501 226 494 229.4 485.6 231.2 C487.4 226 487.8 221.4 486.4 217.4 C477 221 468 226 460 233 C455 240 451.4 249 450 258 C449.4 263 448 267 445.6 270 C441.6 265 438.6 259 436 254 C435 266 434 278 431 288 L426 295 L420.6 290.4 L415.6 296 Z"/>
+                <path d="M423 239 C413 236 407 248 408 261 C409 275 415 285 425 285 C431 285 434 280 433 274 C432 268 434 262 435 255 C436 246 432 240 423 239 Z"/>
+                <path d="M483 181 C478 167 462 162 449 169 C458 169.6 465 174 469 183 Z"/>
+              </g>
+            </g>
+            <!-- contraluz del monitor: coronilla, nuca y canto de la oreja -->
+            <g class="desk__rim" fill="none" stroke="#6bb8ff" stroke-width="3" stroke-linecap="round">
+              <path d="M395.6 236 C396.6 214 404.6 198 419.6 186 C428 180 438 176 448 174.4 M472 172.6 C490 171 508 174.6 522 183"/>
+              <path d="M395 252 C396.4 268 402 281 410.6 291.4 M405.4 252 C404.6 264 406.6 276 412.6 283.4"/>
+            </g>
+          </g>
+        </g>
         <!-- de frente: te mira con una sonrisa cerrada; el monitor le queda detras (borde azul en la coronilla) y la
              lampara a su izquierda, a la derecha del dibujo (luz calida en ese contorno) -->
         <g class="desk__skin desk__skin--head-front">
@@ -1370,6 +1459,23 @@
          giro se estrecha hasta el 70 % de perfil y se desplaza un poco hacia la lampara -->
     <g class="desk__spin desk__spin--torso" style="transform-origin:470px 300px">
       <path d="M430 314 C410 317 390 322 376 332 C362 342 356 360 352 384 C350 402 350 422 352 440 L588 440 C590 422 590 402 588 384 C584 360 578 342 564 332 C550 322 530 317 510 314 C494 326 446 326 430 314 Z" fill="var(--ill-dark,#23272d)"/>
+      <!-- manga izquierda (desde 45 grados): cuelga junto al costado del lado de la lampara, detras del jersey: va
+           recortada a lo que sobresale del torso (#desk-torso-out, en el marco del torso: se estrecha con el), asi que
+           solo asoma el hombro y el canto exterior, con luz calida. Mientras ese costado queda lejos, el CSS la mete
+           tras el torso y sale al ponerse de frente. Va justo despues del relleno del jersey y no antes: un grupo con
+           opacidad entre la cabeza y el jersey cambia el rasterizado de typing/turn/reach/hold en Chrome -->
+      <g clip-path="url(#desk-torso-out)">
+        <g class="desk__skin desk__skin--sleeve-l">
+          <path d="M548 330 C560 325.6 576 329.4 588.4 339.6 C597.4 349.6 601.8 366 602.8 386 C603.6 404 603.8 424 603.6 446 L566 446 C566 420 566 396 562 372 Z" fill="#2a2e35"/>
+          <path d="M560 326.4 C572 326.6 582 331 589.4 339.4 C582 336 572 334.4 564 336 Z" fill="#33373f"/>
+          <path d="M596.6 392 C598.4 410 598.8 428 598.4 446 L590 446 C590.6 426 590.4 408 589 392 Z" fill="#16191d"/>
+          <path class="desk__warm" d="M572 331.8 C581.4 335.6 589.4 342.4 594.2 353 C596.8 360.6 597.8 368.4 598.2 378" fill="none" stroke="#ffc27a" stroke-width="3.5" stroke-linecap="round" opacity=".7"/>
+          <path d="M560 326 C575.6 327 588.6 334.6 595.4 346.4 C600.6 356 602.8 370 603.2 386 C604 404 604.2 424 604 440" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4.5" stroke-linecap="round"/>
+          <g class="desk__dark">
+            <path class="desk__shade desk__shade--full" d="M548 330 C560 325.6 576 329.4 588.4 339.6 C597.4 349.6 601.8 366 602.8 386 C603.6 404 603.8 424 603.6 446 L566 446 C566 420 566 396 562 372 Z" fill="#050a14"/>
+          </g>
+        </g>
+      </g>
       <path d="M378 334 C392 322 414 317 432 316 C438 320 444 323 450 324.6 C424 327.6 398 335 382 347 Z" fill="#33373f"/>
       <path d="M562 334 C548 322 526 317 508 316 C502 320 496 323 490 324.6 C516 327.6 542 335 558 347 Z" fill="#33373f"/>
       <path d="M354 392 C352 410 352 426 353 440 L374 440 C372 420 372 404 374 386 Z" fill="#0f131c"/>
@@ -1426,39 +1532,68 @@
         <path d="M403.2 412 C436 406 504 405.8 537.2 411.6"/>
       </g>
       <path class="desk__warm" d="M541.8 373 C544.8 388 545.6 402 545.2 418" fill="none" stroke="#ffc27a" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+      <!-- canto del lado de la lampara: su ancho en pantalla no se aplasta con el respaldo (10 u por |sin| del angulo,
+           nada en reposo) -->
+      <g class="desk__chair-edge" style="transform-origin:546px 400px">
+        <path d="M543.6 368.2 C548 368 551.6 368.6 553.8 369.6 C557.6 393 558.6 418 557 446 L547 446 C548.6 418 547.6 392 543.6 368.2 Z" fill="#3a4560"/>
+        <path d="M550 373 C552.8 394 553.6 418 552.6 444" fill="none" stroke="#4a5878" stroke-width="2" stroke-linecap="round"/>
+        <path d="M543.8 367.8 C548.2 367.6 552 368.2 554.2 369.2 C558 393 559 418 557.4 446" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path class="desk__shade desk__shade--half" d="M543.6 368.2 C548 368 551.6 368.6 553.8 369.6 C557.6 393 558.6 418 557 446 L547 446 C548.6 418 547.6 392 543.6 368.2 Z" fill="#050a14"/>
+      </g>
       <path d="M396.6 368.2 C430 360.2 510 359.8 543.8 367.8 C547.8 392 548.8 418 547.2 446 M392.8 446 C391.4 418 392.4 392 396 371" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
       <path class="desk__shade desk__shade--half" d="M396.6 368.4 C430 360.6 510 360.2 543.6 368.2 C547.6 392 548.6 418 547 446 L393 446 C391.6 418 392.6 392 396.6 368.4 Z" fill="#050a14"/>
     </g>
     <!-- reposabrazos del lado de la lampara: de punta (tapado por el brazo) en reposo; se ve solo mientras barre
-         hacia ti. Va fuera del respaldo para no heredar su estrechado ni su opacidad -->
+         hacia ti. Almohadilla de 12 u con brillo arriba sobre un soporte de 8 u que baja hasta la mascara. Va fuera
+         del respaldo para no heredar su estrechado ni su opacidad -->
     <g class="desk__chair-arm" style="transform-origin:570px 391px">
-      <path d="M546.4 386.6 C560 385.2 582 385.2 594 386.6 C597.4 387.8 597.6 394.2 594.2 395.4 C582 396.8 560 396.8 546.2 395.4 C542.8 394.2 543 387.8 546.4 386.6 Z" fill="#2b3447"/>
-      <path d="M547 386.4 C560 385 582 385 594 386.4 C597.6 387.6 597.8 394.2 594.4 395.6 C582 397 560 397 546.2 395.6 C543.2 394.4 543 389.6 545 387.6" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-      <path class="desk__shade desk__shade--half" d="M546.4 386.6 C560 385.2 582 385.2 594 386.6 C597.4 387.8 597.6 394.2 594.2 395.4 C582 396.8 560 396.8 546.2 395.4 C542.8 394.2 543 387.8 546.4 386.6 Z" fill="#050a14"/>
+      <path d="M566 394 L574.4 394 C574.2 410 574.2 428 574.6 446 L565.8 446 C566.2 428 566.2 410 566 394 Z" fill="#2b3447"/>
+      <path d="M571.6 400 C571.4 414 571.4 428 571.8 442" fill="none" stroke="#3a4560" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M566 397 C566.2 412 566.2 428 565.8 446 M574.4 397 C574.2 412 574.2 428 574.6 446" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M546.4 385 C560 383.4 582 383.4 594 385 C598 386.4 598.2 395.8 594.4 397.4 C582 399 560 399 546.2 397.4 C542.4 395.8 542.6 386.4 546.4 385 Z" fill="#2b3447"/>
+      <path d="M548.4 388.2 C562 386.6 580 386.6 592.4 388.2" fill="none" stroke="#3a4560" stroke-width="2.5" stroke-linecap="round"/>
+      <path class="desk__warm" d="M581 385.4 C586 385.4 590.4 385.6 593.4 386.2" fill="none" stroke="#ffc27a" stroke-width="2.2" stroke-linecap="round" opacity=".6"/>
+      <path d="M547 384.8 C560 383.2 582 383.2 594 384.8 C598.2 386.2 598.4 395.8 594.6 397.6 C582 399.2 560 399.2 546.2 397.6 C542.6 396 542.6 390.4 544.6 386.8" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <g class="desk__shade desk__shade--half" fill="#050a14">
+        <path d="M566 394 L574.4 394 C574.2 410 574.2 428 574.6 446 L565.8 446 C566.2 428 566.2 410 566 394 Z"/>
+        <path d="M546.4 385 C560 383.4 582 383.4 594 385 C598 386.4 598.2 395.8 594.4 397.4 C582 399 560 399 546.2 397.4 C542.4 395.8 542.6 386.4 546.4 385 Z"/>
+      </g>
     </g>
 
     <!-- brazo derecho, copia delantera (por delante del torso, desde 57 grados): el mismo rig y la misma taza que la
-         de atras. Manga y mano de lado hasta 123 grados; desde ahi el antebrazo y el puno de frente, re-encajados
-         en el marco local del rig (a 180 grados quedan donde estaban dibujados) -->
+         de atras. Manga y mano de lado hasta 123 grados; desde ahi la manga de frente, partida por el codo (el tramo
+         del codo en .desk__rig--arm, el antebrazo con el puno en .desk__rig--fore), re-encajada en el marco local
+         del rig (a 180 grados queda donde estaba dibujada) -->
     <g class="desk__spin desk__spin--shoulder desk__spin--shoulder-front" style="transform-origin:470px 300px">
       <g class="desk__skin desk__skin--arm-front">
         <g class="desk__arm desk__arm--front" style="transform-origin:548px 344px">
           <g class="desk__rig desk__rig--arm" style="transform-origin:548px 344px">
-            <g class="desk__skin desk__skin--sleeve-back">
-              <path d="M561 337 C572 358 583 378 593.4 398.6 C598 408.6 592 419.4 581.6 420.6 C574.4 421.4 568.4 418 566.6 412.4 C556 392 545 372 535 351 Z" fill="#2c3037"/>
-              <path d="M563.4 343 C573 361 581.6 378.4 589.6 395" fill="none" stroke="#3a3f48" stroke-width="2.5" stroke-linecap="round"/>
-              <path d="M561 337 C572 358 583 378 593.4 398.6 C598 408.6 592 419.4 581.6 420.6 C574.4 421.4 568.4 418 566.6 412.4 C556 392 545 372 535 351" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path class="desk__shade" d="M561 337 C572 358 583 378 593.4 398.6 C598 408.6 592 419.4 581.6 420.6 C574.4 421.4 568.4 418 566.6 412.4 C556 392 545 372 535 351 Z" fill="#050a14"/>
+            <!-- manga de lado (de 57 a 123 grados): brazo superior algo mas estrecho que el de espaldas, con el hombro
+                 redondeado (costura en vez de tinta: queda dentro del jersey), luz calida por delante (lado de la
+                 lampara), sombra por detras y bajo el codo y pliegues en la cara interna del codo -->
+            <g class="desk__skin desk__skin--sleeve-side">
+              <path d="M540.4 352 C541.6 341 547 333 554.6 332 C560 331.4 563.4 334 564.8 338.6 C572 357 580 376 588.4 394.6 C593.8 405.6 590.6 418.6 580.4 420.6 C573.6 422 568 418.6 566 413.4 C557.4 393 549 374 540.4 352 Z" fill="#30343c"/>
+              <path d="M556.6 333 C560.6 332.6 563.6 334.8 564.8 338.6 C572 357 580 376 588.4 394.6 C584.4 392.4 580.8 387.4 577.4 380.6 C570.6 366 563.4 350 556.6 333 Z" fill="#3d424b"/>
+              <path d="M540.4 352 C549 374 557.4 393 566 413.4 C568 418.6 573.6 422 580.4 420.6 C587.4 419.2 591.4 413.2 591.6 406.4 C585 412.4 576.4 412 571.4 404.6 C562.4 387 554.4 369 547 348.4 C544.4 349 542 350.4 540.4 352 Z" fill="#23272e"/>
+              <path d="M584.6 386.6 C581.6 389.2 578.2 389.4 575.8 387.8 M588.8 394.8 C585.6 397.8 581.4 398.4 578.4 396.8" fill="none" stroke="#16191d" stroke-width="2.2" stroke-linecap="round"/>
+              <path class="desk__warm" d="M553.6 331.8 C559 331.2 563 333.4 565 338 C569 347 572.8 355.6 576.4 363" fill="none" stroke="#ffc27a" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+              <path d="M540.4 352 C541.6 341 547 333 554.6 332 C559.6 331.4 563 333.6 564.6 337.6" fill="none" stroke="#16191d" stroke-width="2.5" stroke-linecap="round"/>
+              <path d="M565.4 340 C572.4 358 580.4 376.6 588.6 394.8 C594 405.8 590.6 418.8 580.4 420.8 C573.6 422.2 568 418.8 566 413.6 C557.6 393.4 549.6 375 542 356" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <g class="desk__dark">
+                <path class="desk__shade desk__shade--full" d="M540.4 352 C541.6 341 547 333 554.6 332 C560 331.4 563.4 334 564.8 338.6 C572 357 580 376 588.4 394.6 C593.8 405.6 590.6 418.6 580.4 420.6 C573.6 422 568 418.6 566 413.4 C557.4 393 549 374 540.4 352 Z" fill="#050a14"/>
+              </g>
             </g>
             <g class="desk__skin desk__skin--sleeve-front">
               <g transform="matrix(0.91636 0.40035 -0.40035 0.91636 354.16578 -121.53764)">
-                <path d="M354 440 C356 410 364 380 376 350 L402 352 C396 380 392 410 390 440 L389.6 448 L353.6 448 Z" fill="#383d46"/>
-                <path d="M354 440 C356 410 364 380 376 350 L383 350.6 C373 380 366 410 365 440 L364.8 448 L353.6 448 Z" fill="#2a2e35"/>
-                <path d="M397.6 360 C394 384 391.6 410 390.6 436" fill="none" stroke="#4e5562" stroke-width="2.5" stroke-linecap="round"/>
-                <path d="M353.6 448 L354 440 C356 410 364 380 376 352 M402 353 C396 380 392 410 390 438 L389.6 448" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
+                <!-- tramo del codo: el antebrazo (en .desk__rig--fore, con el puno) lo tapa a 180 grados y se monta
+                     sobre el al girar, asi la muneca no se separa del puno -->
+                <path d="M354 440 C355.4 419.3 359.6 398.7 366 378 L397.1 378 C393.8 398.2 391.4 419.1 390 440 L389.6 448 L353.6 448 Z" fill="#383d46"/>
+                <path d="M354 440 C355.4 419.3 359.6 398.7 366 378 L374.7 378 C369.2 398.5 365.7 419.3 365 440 L364.8 448 L353.6 448 Z" fill="#2a2e35"/>
+                <path d="M395.2 378 C392.9 396.8 391.4 416.4 390.6 436" fill="none" stroke="#4e5562" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M353.6 448 L354 440 C355.4 419.1 359.7 398.2 366.2 378 M397.1 378 C393.8 397.8 391.4 418.4 390 438 L389.6 448" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
                 <g class="desk__dark">
                   <g class="desk__shade desk__shade--full" fill="#050a14">
-                    <path d="M354 440 C356 410 364 380 376 350 L402 352 C396 380 392 410 390 440 L389.6 448 L353.6 448 Z"/>
+                    <path d="M354 440 C355.4 419.3 359.6 398.7 366 378 L397.1 378 C393.8 398.2 391.4 419.1 390 440 L389.6 448 L353.6 448 Z"/>
                   </g>
                 </g>
               </g>
@@ -1497,7 +1632,12 @@
                 </g>
                 <g class="desk__skin desk__skin--hand-side">
                   <g class="desk__hand desk__hand--front" style="transform-origin:578px 404px">
-                    <path d="M598 348 C603 368 600 392 588 412 L566 402 C576 386 580 366 580 348 Z" fill="#2c3037"/>
+                    <!-- antebrazo con volumen: luz por fuera (lado de la lampara), sombra por dentro junto al codo y un pliegue -->
+                    <path d="M598 348 C603 368 600 392 588 412 L566 402 C576 386 580 366 580 348 Z" fill="#30343c"/>
+                    <path d="M590 349 C594 349.4 596.6 350 598 350.6 C602.6 370 600 392 588 412 C591.4 400 593 386 592.6 372 C592.4 362 591.6 355 590 349 Z" fill="#3d424b"/>
+                    <path d="M580 350 C580 368 576.4 386 566 402 L573.6 405.6 C579.6 393 583.4 380 584.6 366 C585.2 359 585 353.6 584.4 349.4 Z" fill="#23272e"/>
+                    <path d="M571.4 393.6 C574.8 395 578 394.6 580.4 392 M575.6 386 C578.4 386.8 580.8 386.2 582.6 384" fill="none" stroke="#16191d" stroke-width="2.2" stroke-linecap="round"/>
+                    <path class="desk__warm" d="M600 353.4 C602 363 602.2 373 600.6 383" fill="none" stroke="#ffc27a" stroke-width="3" stroke-linecap="round" opacity=".6"/>
                     <path d="M606.6 341 C600 338.6 584 338.6 577.4 341.4 L578.6 351 C585.4 348.4 599.4 348.4 606 350.4 Z" fill="#17191d"/>
                     <path d="M610 329.6 C610.6 321.6 603.6 317.4 593.4 317.6 C583.2 317.8 576 322 576.2 330 C576.4 338 582.4 343 593 343 C603.6 343 609.4 337.8 610 329.6 Z" fill="#eecdb4"/>
                     <path d="M608.4 334 C604 340 582 340.6 577.4 334.6 C579 340.6 585 343 593 343 C601.4 343 607 339.6 608.4 334 Z" fill="#d8a98a"/>
@@ -1507,16 +1647,25 @@
                       <path d="M598 350 C603 370 600 392 588 411" stroke-width="3.5"/>
                       <path d="M580 350 C580 366 576 386 566.4 401.6" stroke-width="3.5"/>
                     </g>
-                    <g class="desk__shade" fill="#050a14">
-                      <path d="M598 348 C603 368 600 392 588 412 L566 402 C576 386 580 366 580 348 Z"/>
-                      <path d="M606.6 341 C600 338.6 584 338.6 577.4 341.4 L578.6 351 C585.4 348.4 599.4 348.4 606 350.4 Z"/>
-                      <path d="M610 329.6 C610.6 321.6 603.6 317.4 593.4 317.6 C583.2 317.8 576 322 576.2 330 C576.4 338 582.4 343 593 343 C603.6 343 609.4 337.8 610 329.6 Z"/>
+                    <g class="desk__dark">
+                      <g class="desk__shade desk__shade--full" fill="#050a14">
+                        <path d="M598 348 C603 368 600 392 588 412 L566 402 C576 386 580 366 580 348 Z"/>
+                        <path d="M606.6 341 C600 338.6 584 338.6 577.4 341.4 L578.6 351 C585.4 348.4 599.4 348.4 606 350.4 Z"/>
+                        <path d="M610 329.6 C610.6 321.6 603.6 317.4 593.4 317.6 C583.2 317.8 576 322 576.2 330 C576.4 338 582.4 343 593 343 C603.6 343 609.4 337.8 610 329.6 Z"/>
+                      </g>
                     </g>
                     <path class="desk__rim desk__rim--dark" d="M607.6 324.2 C603.6 318.8 583.6 318 578 323.8" fill="none" stroke="#6bb8ff" stroke-width="2.2" stroke-linecap="round"/>
                   </g>
                 </g>
                 <g class="desk__skin desk__skin--hand-front">
                   <g transform="matrix(0.87036 0.49242 -0.49242 0.87036 409.589 -141.95725)">
+                    <!-- antebrazo de la manga de frente (del codo al puno): gira con el puno; su borde de abajo es un
+                         pliegue sobre el tramo del codo -->
+                    <path d="M358.9 405 C362.8 386.7 368.7 368.3 376 350 L402 352 C398.3 369.1 395.4 386.9 393.3 405 C384 409.4 368 409.4 358.9 405 Z" fill="#383d46"/>
+                    <path d="M358.9 405 C362.8 386.7 368.7 368.3 376 350 L383 350.6 C376.9 368.6 371.9 386.7 368.7 405 C365 406.8 361.4 406.4 358.9 405 Z" fill="#2a2e35"/>
+                    <path d="M397.6 360 C395.4 374.4 393.7 389.6 392.5 405" fill="none" stroke="#4e5562" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M361.4 404.4 C370 408.6 383 408.8 392 404" fill="none" stroke="#24272d" stroke-width="2.4" stroke-linecap="round"/>
+                    <path d="M359 405 C362.9 386.9 368.7 369.1 376 352 M402 353 C398.3 369.6 395.4 387.3 393.2 405" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3.5" stroke-linecap="round"/>
                     <path d="M373 340 C381 337.4 395 337.6 403 340.6 L401.8 352 C394 349.6 382 349.4 375.4 352 Z" fill="#17191d"/>
                     <!-- puno: los dedos rodean el asa y el pulgar descansa encima -->
                     <path d="M378 318 C377 310 383 305.4 391 305.6 C398 305.8 403 310 402.6 317 L402.4 331 C402 338.6 396 342.6 389 342.4 C381.4 342.2 377 337 377.4 329 Z" fill="#eecdb4"/>
@@ -1528,6 +1677,7 @@
                     </g>
                     <g class="desk__dark">
                       <g class="desk__shade desk__shade--full" fill="#050a14">
+                        <path d="M358.9 405 C362.8 386.7 368.7 368.3 376 350 L402 352 C398.3 369.1 395.4 386.9 393.3 405 C384 409.4 368 409.4 358.9 405 Z"/>
                         <path d="M373 340 C381 337.4 395 337.6 403 340.6 L401.8 352 C394 349.6 382 349.4 375.4 352 Z"/>
                         <path d="M378 318 C377 310 383 305.4 391 305.6 C398 305.8 403 310 402.6 317 L402.4 331 C402 338.6 396 342.6 389 342.4 C381.4 342.2 377 337 377.4 329 Z"/>
                       </g>

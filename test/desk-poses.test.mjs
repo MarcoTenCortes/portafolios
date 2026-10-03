@@ -131,7 +131,7 @@ describe('rig del giro de la silla (site.css)', () => {
   });
 
   it('los envolventes que dependen del angulo no llevan transition (salvo el respaldo sin rig y .is-snap)', () => {
-    const wrapperBases = ['desk__skin', 'desk__spin', 'desk__rig', 'desk__chair', 'desk__chair-arm', 'desk__mug-held', 'desk__mug-tilt', 'desk__steam-lean', 'desk__dark', 'desk__room-mug'];
+    const wrapperBases = ['desk__skin', 'desk__spin', 'desk__rig', 'desk__chair', 'desk__chair-arm', 'desk__chair-edge', 'desk__mug-held', 'desk__mug-tilt', 'desk__steam-lean', 'desk__dark', 'desk__room-mug'];
     const wrapperClasses = new Set(classLists(svg).filter((l) => l.some((c) => wrapperBases.includes(c))).flat());
     for (const base of wrapperBases) assert.ok(wrapperClasses.has(base), `desk.svg no usa ${base}`);
     for (const r of rules.filter((x) => /(^|;)\s*transition(-[a-z]+)?\s*:/.test(x.body))) {
@@ -190,17 +190,45 @@ describe('capas del rig (desk.svg)', () => {
     }
   });
 
-  it('una sola .desk__head (lamp.js la busca con querySelector) con sus tres caras y dos parpados', () => {
+  it('una sola .desk__head (lamp.js la busca con querySelector) con sus cuatro caras en orden y dos parpados', () => {
     assert.equal(countClass(svg, 'desk__head'), 1, 'debe haber una sola .desk__head');
     const head = group(marco, '<g class="desk__head"');
-    for (const cls of ['desk__spin--head', 'desk__head-back', 'desk__head-turned', 'desk__head-front']) assert.ok(hasClass(head, cls), `falta ${cls} en .desk__head`);
+    assert.ok(hasClass(head, 'desk__spin--head'), 'falta desk__spin--head en .desk__head');
+    // de espaldas, perfil perdido, tres cuartos y de frente: cada una pinta sobre la anterior en su corte
+    const skins = ['back', 'turned', '3q', 'front'].map((k) => `<g class="desk__skin desk__skin--head-${k}"`);
+    const at = skins.map((tag) => head.indexOf(tag));
+    skins.forEach((tag, i) => assert.ok(at[i] >= 0, `falta ${tag} en .desk__head`));
+    for (let i = 1; i < at.length; i++) assert.ok(at[i] > at[i - 1], `${skins[i]} debe ir despues de ${skins[i - 1]}`);
+    for (const cls of ['desk__head-back', 'desk__head-turned', 'desk__head-3q', 'desk__head-front']) assert.ok(hasClass(head, cls), `falta ${cls} en .desk__head`);
     assert.equal(countClass(head, 'desk__lid'), 2, 'la cabeza de frente lleva exactamente dos .desk__lid');
+    assert.equal(countClass(group(head, '<g class="desk__head-front"'), 'desk__lid'), 2, 'los parpados van solo en la cabeza de frente');
     assert.equal(countClass(svg, 'desk__lid'), 2, 'no hay mas .desk__lid fuera de la cabeza');
+    // tres cuartos: a oscuras en sombra como la de frente (por angulo), con luz calida y contraluz
+    const q = group(head, '<g class="desk__head-3q"');
+    for (const cls of ['desk__dark', 'desk__shade--full', 'desk__warm', 'desk__rim']) assert.ok(hasClass(q, cls), `falta ${cls} en .desk__head-3q`);
   });
 
   it('el torso lleva los detalles de espaldas y de frente y su sombra por angulo', () => {
     const torso = group(marco, '<g class="desk__spin desk__spin--torso"');
     for (const cls of ['desk__torso-back', 'desk__torso-front', 'desk__dark', 'desk__shade--full']) assert.ok(hasClass(torso, cls), `falta ${cls} en el torso`);
+  });
+
+  it('la manga izquierda va en el torso, detras del jersey (recortada a lo que sobresale) y tras su relleno', () => {
+    const torso = group(marco, '<g class="desk__spin desk__spin--torso"');
+    const clip = torso.indexOf('<g clip-path="url(#desk-torso-out)">');
+    assert.ok(clip > 0, 'la manga izquierda va en un envolvente con clip-path="url(#desk-torso-out)"');
+    assert.ok(group(torso, '<g clip-path="url(#desk-torso-out)">').includes('<g class="desk__skin desk__skin--sleeve-l"'), 'falta .desk__skin--sleeve-l dentro del recorte');
+    // justo despues del relleno del jersey: antes de el, un grupo con opacidad cambia el rasterizado en reposo
+    const paths = [...torso.matchAll(/<path /g)].map((m) => m.index);
+    assert.ok(paths[0] < clip && clip < paths[1], 'el recorte va justo despues del relleno del jersey');
+    assert.ok(/<clipPath id="desk-torso-out" clipPathUnits="userSpaceOnUse">/.test(svg), 'falta <clipPath id="desk-torso-out"> en defs');
+    assert.ok(hasClass(group(torso, '<g class="desk__skin desk__skin--sleeve-l"'), 'desk__shade--full'), 'la manga izquierda lleva su sombra por angulo');
+  });
+
+  it('las dos copias del respaldo llevan su canto (.desk__chair-edge)', () => {
+    for (const copy of ['desk__chair--behind', 'desk__chair--front']) {
+      assert.equal(countClass(group(marco, `<g class="desk__chair ${copy}"`), 'desk__chair-edge'), 1, `falta el canto en .${copy}`);
+    }
   });
 
   it('el reposabrazos va fuera del respaldo (no hereda su estrechado ni su opacidad)', () => {
@@ -211,11 +239,24 @@ describe('capas del rig (desk.svg)', () => {
 
   it('la copia delantera del brazo tiene el mismo rig, la taza en la mano y el vapor', () => {
     const arm = group(marco, '<g class="desk__arm desk__arm--front"');
-    for (const cls of ['desk__rig--arm', 'desk__rig--fore', 'desk__fore--front', 'desk__mug-held', 'desk__mug-tilt', 'desk__steam-lean', 'desk__steam', 'desk__skin--sleeve-back', 'desk__skin--sleeve-front', 'desk__skin--hand-side', 'desk__skin--hand-front']) {
+    for (const cls of ['desk__rig--arm', 'desk__rig--fore', 'desk__fore--front', 'desk__mug-held', 'desk__mug-tilt', 'desk__steam-lean', 'desk__steam', 'desk__skin--sleeve-side', 'desk__skin--sleeve-front', 'desk__skin--hand-side', 'desk__skin--hand-front']) {
       assert.ok(hasClass(arm, cls), `falta ${cls} en .desk__arm--front`);
     }
     // la mano de la copia no teclea (desk-type-r va en .desk__hand--r)
     assert.ok(!hasClass(arm, 'desk__hand--r'), '.desk__arm--front no debe usar .desk__hand--r');
+    // la manga de lado sustituye a la copia de la de espaldas en el tramo 57-123
+    assert.ok(!hasClass(arm, 'desk__skin--sleeve-back'), '.desk__arm--front ya no lleva la manga de espaldas');
+  });
+
+  it('la manga de frente va partida por el codo: el tramo del brazo en .desk__rig--arm, el antebrazo con el puno en .desk__rig--fore', () => {
+    const arm = group(marco, '<g class="desk__arm desk__arm--front"');
+    const fore = group(arm, '<g class="desk__rig desk__rig--fore"');
+    assert.ok(!hasClass(fore, 'desk__skin--sleeve-front') && !hasClass(fore, 'desk__skin--sleeve-side'), 'las mangas del brazo superior no van en el antebrazo');
+    assert.ok(hasClass(fore, 'desk__skin--hand-front') && hasClass(fore, 'desk__skin--hand-side'), 'puno y mano de lado van en el antebrazo');
+    // el puno de frente lleva el antebrazo de la manga: dos rellenos de manga (#383d46) en total, uno en cada rig
+    const sleeveFill = (src) => (src.match(/fill="#383d46"/g) || []).length;
+    assert.equal(sleeveFill(group(arm, '<g class="desk__skin desk__skin--sleeve-front"')), 1, 'tramo del codo en .desk__skin--sleeve-front');
+    assert.equal(sleeveFill(group(fore, '<g class="desk__skin desk__skin--hand-front"')), 1, 'antebrazo de la manga junto al puno');
   });
 
   it('la taza en la mano coincide con la de la mesa en hold: matrix = inv(Brazo * Antebrazo) * TazaHold', () => {
