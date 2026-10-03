@@ -2,8 +2,9 @@
 // Uso: node tools/cdp-shot.mjs jobs.json
 // jobs.json = [{ "name": "hero", "url": "http://localhost:5173/", "width": 1280, "height": 720,
 //                "mobile": false, "steps": [{ "eval": "scrollTo(0,0)", "wait": 300 }], "out": "tools/out/shots/hero.png" }]
-// Pasos (se aplican en este orden dentro de cada uno): click / hover (selector: clic real o solo mover el raton
-// a su centro), key, eval (+ print), wait.
+// Pasos (se aplican en este orden dentro de cada uno): viewport ({ width, height, mobile, scale }: cambia la
+// emulacion a mitad de job, para simular un redimensionado o un cambio de zoom, que mueve el ancho CSS),
+// click / hover (selector: clic real o solo mover el raton a su centro), key, eval (+ print), wait.
 import { spawn } from 'node:child_process';
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
@@ -79,6 +80,12 @@ for (const job of jobs) {
   await waitEvent('Page.loadEventFired');
   await sleep(job.settle ?? 600);
   for (const step of job.steps || []) {
+    if (step.viewport) {
+      // nueva ventana sin recargar: la pagina recibe resize como al arrastrar el borde o cambiar el zoom
+      const { width: w = 1280, height: h = 720, mobile = false, scale = 1 } = step.viewport;
+      await send('Emulation.setDeviceMetricsOverride', { width: w, height: h, deviceScaleFactor: scale || 1, mobile: !!mobile });
+      await send('Emulation.setTouchEmulationEnabled', { enabled: !!mobile });
+    }
     if (step.click) {
       // clic real (con activación de usuario) en el centro del elemento
       const pt = await centerOf(step.click);
