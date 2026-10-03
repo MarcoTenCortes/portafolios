@@ -3,8 +3,9 @@
 // las manos teclean. Al tirar, la cadena baja y vuelve (WAAPI), la lampara se enciende en el fondo del tiron
 // (.is-lit, como el clic de un interruptor) y Marco hace una pausa encadenada en data-pose:
 // typing -> turn (gira la cabeza hacia la lampara) -> reach (el brazo va a la taza) -> hold (la levanta) ->
-// face (tras un instante se gira entero hacia ti con la taza en la mano y te mira, parpadeando de vez en cuando:
-// el cuerpo de espaldas se estrecha hasta quedar de canto y se cambia por el de frente, que se ensancha).
+// face (con la taza en la mano gira con la silla hacia ti y te mira, parpadeando de vez en cuando: un rig 2.5D en el que
+// cada pieza deriva su transform y su opacidad del angulo --desk-turn, que el CSS transiciona; .is-rig lo activa
+// si el navegador tiene @property, linear() y sin(), y si no las piezas se cruzan por tiempo).
 // Otro tiron apaga y deshace la pausa en orden inverso hasta volver a programar. Cada paso espera a que acaben
 // las transiciones CSS que lanza (getAnimations + finished), asi que un tiron a mitad invierte desde donde este.
 // Con prefers-reduced-motion las dos poses extremas (typing y face) cambian de golpe. Maquina de estados en
@@ -18,8 +19,8 @@ const PULL_MAX_UNITS = 42; // tope en unidades del viewBox (en movil la cadena e
 const HINT_DELAY = 1800;
 const HINT_KEY = 'play.lamp.hint';
 const POSES = ['typing', 'turn', 'reach', 'hold', 'face'];
-// respaldo si no hay getAnimations (igual que el CSS); face = 200 de pausa + 280 estrechar + 360 ensanchar
-const STEP_MS = { typing: 400, turn: 450, reach: 450, hold: 280, face: 840 };
+// respaldo si no hay getAnimations (igual que el CSS); face = 40 de arranque + 960 del giro de la silla
+const STEP_MS = { typing: 400, turn: 450, reach: 450, hold: 280, face: 1000 };
 const REACT_MS = 90; // lo que tarda Marco en darse cuenta de que ha cambiado la luz
 
 function storage(kind) {
@@ -35,6 +36,11 @@ export function initLamp(root, { i18n } = {}) {
   const cord = svg?.querySelector('.desk__cord');
   const pullPart = svg?.querySelector('.desk__cord-pull');
   if (!btn || !svg || !cord || !pullPart) return null;
+  // rig del giro de la silla: --desk-turn registrada y transicionable, curva linear() y trigonometria en calc().
+  // Sin todo eso (Firefox < 128, Safari < 17.2) el CSS cruza las piezas por tiempo
+  const rig = typeof CSS !== 'undefined' && 'registerProperty' in CSS
+    && CSS.supports('transition-timing-function', 'linear(0, 1)') && CSS.supports('opacity', 'calc(sin(1deg))');
+  root.classList.toggle('is-rig', rig);
 
   const reducedMQ = window.matchMedia('(prefers-reduced-motion: reduce)');
   const canAnimate = () => 'animate' in Element.prototype && !reducedMQ.matches;
@@ -221,6 +227,7 @@ export function initLamp(root, { i18n } = {}) {
       btn.removeEventListener('click', onClick);
       document.removeEventListener('mtc:lang', onLang);
       btn.hidden = true;
+      root.classList.remove('is-rig');
     },
   };
 }

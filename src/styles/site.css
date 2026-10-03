@@ -5,6 +5,10 @@
 @layer tokens, base, components, sections, rig, play, motion, print;
 @import url("./stars.css") layer(sections);
 
+/* angulo del giro de la silla del hero (pose face, rig de desk.svg): registrada para poder transicionarla. Va fuera de
+   las capas: dentro de un @layer o de un @media el navegador ignora la regla */
+@property --desk-turn { syntax: '<angle>'; inherits: true; initial-value: 0deg; }
+
 /* -------------------------------------------------------------------------- */
 @layer tokens {
   :root {
@@ -865,7 +869,7 @@
   .hero__desk { position: relative; grid-area: 2 / 1; width: min(calc(var(--hero-w, 250px) * 1.04), 100%); aspect-ratio: 1000 / 440; }
   .hero__desk-art {
     position: absolute; inset: 0; pointer-events: none;
-    -webkit-mask-image: linear-gradient(#000 78%, transparent); mask-image: linear-gradient(#000 78%, transparent);
+    -webkit-mask-image: linear-gradient(#000 84%, transparent); mask-image: linear-gradient(#000 84%, transparent);
   }
   .hero__desk-art .desk__art { display: block; width: 100%; height: 100%; animation: desk-in 600ms var(--ease-out) both; }
   .hero__pull {
@@ -885,13 +889,18 @@
   .hero__desk-hint:not([hidden]) { animation: desk-hint 420ms var(--ease-out) both, hint-pulse 900ms var(--ease-out) 700ms 2; }
 
   .desk__art :is(.desk__cord, .desk__cord-pull, .desk__head, .desk__head-back, .desk__arm, .desk__fore, .desk__hand, .desk__mug,
-    .desk__mug-shadow, .desk__line, .desk__cursor, .desk__steam path, .desk__body, .desk__lid) { transform-box: view-box; }
+    .desk__mug-shadow, .desk__line, .desk__cursor, .desk__steam path, .desk__body, .desk__lid, .desk__spin, .desk__rig, .desk__chair,
+    .desk__chair-arm, .desk__mug-held, .desk__mug-tilt, .desk__steam-lean, .desk__skin, .desk__dark, .desk__room-mug) { transform-box: view-box; }
   /* luz: a oscuras solo alumbra el monitor; con la lampara, cono calido y la escena entera (la pantalla sigue encendida) */
   .desk__room, .desk__halo, .desk__glow, .desk__shade, .desk__rim, .desk__light, .desk__warm, .desk__steam, .desk__inner-on,
   .desk__inner-off, .desk__bulb-on, .desk__bulb-off, .desk__bulb-glow { transition: opacity 300ms var(--ease-out); }
   .desk__room { opacity: 0.34; }
   .desk__room--front { opacity: 0.5; }
   .desk__shade { opacity: 0.62; }
+  /* la silla en penumbra, como el teclado (sin transparentarse: tapa la espalda); --full para lo que va de frente,
+     cuya opacidad la pone su envolvente .desk__dark segun el angulo del giro. .is-lit las apaga igual */
+  .desk__shade--half { opacity: 0.5; }
+  .desk__shade--full { opacity: 1; }
   .desk__light, .desk__warm, .desk__steam, .desk__inner-on, .desk__bulb-on, .desk__bulb-glow { opacity: 0; }
   .desk__bead { transition: fill var(--dur-fast); }
   .hero__desk:has(.hero__pull:is(:hover, :focus-visible)) .desk__bead { fill: #f5f7fa; }
@@ -937,8 +946,8 @@
   .hero__desk.is-offscreen *, .hero__desk.is-hidden * { animation-play-state: paused !important; }
 
   /* la pausa (data-pose, la encadena lamp.js): gira la cabeza (400 ms) > el brazo va a la taza (450 ms) > la
-     levanta (280 ms) > se gira entero hacia ti (840 ms). Los tiempos de cada paso los marca la regla de la pose
-     de destino, asi la vuelta usa los mismos (salvo el giro, que tiene su propia vuelta en las reglas base). La
+     levanta (280 ms) > gira con la silla hacia ti (40 + 960 ms). Los tiempos de cada paso los marca la regla de la
+     pose de destino, asi la vuelta usa los mismos (salvo el giro, que tiene su propia vuelta en las reglas base). La
      cabeza cruza sus dos versiones en ~100 ms y la que llega entra antes de que se vaya la otra. */
   .desk__head { transform: translate(0, 0) rotate(0deg); transition: transform 400ms cubic-bezier(.3, .7, .25, 1); }
   .desk__head-back { transition: opacity 150ms linear; }
@@ -947,15 +956,10 @@
   .desk__arm, .desk__mug { transform: translate(0, 0) rotate(0deg); }
   .desk__fore { transform: rotate(0deg); }
   .desk__arm, .desk__fore, .desk__mug, .desk__mug-shadow { transition: transform 450ms cubic-bezier(.45, .05, .25, 1), opacity 450ms var(--ease-out); }
-  /* el giro entero (face) es un giro 2D: el cuerpo de espaldas (con la taza) se estrecha hasta quedar de canto y,
-     justo ahi, se cambia por el de frente, que se ensancha. Estas reglas base son la vuelta face > hold: el de
-     frente se estrecha (0-280 ms) y se va (240-300), el de espaldas aparece (260-320) y se ensancha (280-600). */
-  .desk__body--back { opacity: 1; transform: scaleX(1); transition: transform 320ms var(--ease-out) 280ms, opacity 60ms linear 260ms; }
-  .desk__body--front { opacity: 0; transform: scaleX(0.06); transition: transform 280ms cubic-bezier(.4, 0, 1, 1), opacity 60ms linear 240ms; }
   .desk__lid { transform: scaleY(0); }
-  /* de frente le da la espalda al monitor: a oscuras la cara queda en sombra del todo (solo el borde azul) */
-  .desk__body--front .desk__shade { opacity: 1; }
   .hero__desk:is([data-pose="turn"], [data-pose="reach"], [data-pose="hold"], [data-pose="face"]) .desk__head { transform: translate(3px, -2px) rotate(-4deg); }
+  /* en face la cabeza se endereza (sus 400 ms) mientras gira con el cuerpo */
+  .hero__desk[data-pose="face"] .desk__head { transform: translate(0, 0) rotate(0deg); }
   .hero__desk:is([data-pose="turn"], [data-pose="reach"], [data-pose="hold"], [data-pose="face"]) .desk__head-back { opacity: 0; transition-delay: 90ms; }
   .hero__desk:is([data-pose="turn"], [data-pose="reach"], [data-pose="hold"], [data-pose="face"]) .desk__head-turned { opacity: 1; transform: translate(0, 0); transition-duration: 100ms, 400ms; transition-delay: 0ms; }
   /* hombro y codo llevan la mano al asa (661,327); para levantar la taza 10 u el brazo sube girando, sin
@@ -968,14 +972,113 @@
   .hero__desk:is([data-pose="hold"], [data-pose="face"]) .desk__fore { transform: rotate(69.7deg); }
   .hero__desk:is([data-pose="hold"], [data-pose="face"]) .desk__mug { transform: translate(0, -10px) rotate(-6deg); }
   .hero__desk:is([data-pose="hold"], [data-pose="face"]) .desk__mug-shadow { transform: scale(0.8); opacity: 0.16; }
-  /* la ida hold > face: pausa de 200 ms, el de espaldas se estrecha (200-480) y se va (420-480), el de frente
-     aparece (460-520) y se ensancha con un pelin de rebote (480-840); ya de frente parpadea (dog-blink, como el
-     perro). Pausado fuera de pantalla y con la ficha abierta; reduced-motion lo anula (ojos abiertos). */
-  .hero__desk[data-pose="face"] .desk__body--back { opacity: 0; transform: scaleX(0.06); transition: transform 280ms cubic-bezier(.4, 0, 1, 1) 200ms, opacity 60ms linear 420ms; }
-  .hero__desk[data-pose="face"] .desk__body--front { opacity: 1; transform: scaleX(1); transition: opacity 60ms linear 460ms, transform 360ms cubic-bezier(.2, .7, .2, 1.08) 480ms; }
+  /* ya de frente parpadea (dog-blink, como el perro). Pausado fuera de pantalla y con la ficha abierta;
+     reduced-motion lo anula (ojos abiertos) */
   .hero__desk[data-pose="face"] .desk__lid { animation: dog-blink 4.6s linear 1.3s infinite; }
+
+  /* giro de la silla (face): rig 2.5D de un solo mando. --desk-turn (@property, arriba del todo) va de 0deg (de
+     espaldas) a 180deg (de frente) girando hacia la lampara (+x) sobre el eje vertical x = 470, y cada pieza deriva
+     de el su transform y su opacidad: una pieza a distancia r del eje y angulo inicial a queda en
+     x = 470 + r cos(a - t), con profundidad z = r sin(t - a) (hacia ti) que baja y = y0 + 0,14 z (camara algo alta).
+     La cabeza se adelanta (--dt-h = t + 12deg sin t) y codo, antebrazo y taza se retrasan (--dt-m = t - 15deg sin t);
+     los dos coinciden con t en 0 y 180, asi nada se descoloca al interrumpir. A 0deg todo es la identidad: las poses
+     typing/turn/reach/hold no cambian. REGLA: lo que depende del angulo cambia cada frame, asi que va siempre en
+     envolventes nuevos SIN transition (.desk__skin, .desk__spin, .desk__rig, .desk__chair, .desk__chair-arm,
+     .desk__mug-held, .desk__mug-tilt, .desk__steam-lean, .desk__dark, .desk__room-mug); en un grupo que ya
+     transiciona (.desk__arm, .desk__head-turned, .desk__mug...) reiniciaria la transicion en cada frame. Las piezas
+     se conmutan por angulo, no por tiempo: interrupciones, vuelta, &pose= y reduced-motion (salto seco a 180deg)
+     quedan coherentes sin JS. lamp.js pone .is-rig si el navegador tiene @property, linear() y sin(). */
+  .desk__marco {
+    --dt-h: calc(var(--desk-turn) + 12deg * sin(var(--desk-turn)));
+    --dt-m: calc(var(--desk-turn) - 15deg * sin(var(--desk-turn)));
+    --dt-abs: max(sin(var(--desk-turn)), -1 * sin(var(--desk-turn)));
+    /* hombro y codo (ajustados por minimos cuadrados para que el asa vaya por delante del pecho: 0deg (661,317),
+       57deg (594,341), 90deg (525,345), 123deg (457,339), 180deg (389,317)) */
+    --dt-arm: calc(0.08 * var(--dt-m) + 24deg * sin(var(--dt-m)));
+    --dt-fore: calc(-0.42 * var(--dt-m) - 16deg * sin(var(--dt-m)));
+  }
+  /* la vuelta (reglas base): deshace el mismo arco en 700 ms, sin anticipacion ni rebote */
+  .hero__desk.is-rig .desk__marco { --desk-turn: 0deg; transition: --desk-turn 700ms cubic-bezier(.45, .05, .25, 1) 40ms; }
+  /* la ida: 0-125 ms se recoge hacia el monitor (-7deg), pico de velocidad de perfil (0,5deg/ms), se pasa a 186deg
+     hacia los 730 ms y asienta a los 960 */
+  .hero__desk.is-rig[data-pose="face"] .desk__marco {
+    --desk-turn: 180deg;
+    transition: --desk-turn 960ms linear(0, -0.04 13%, 0 21%, 0.12 30%, 0.32 37%, 0.5 43%, 0.68 50%, 0.92 63%, 1.035 76%, 0.993 88%, 1) 40ms;
+  }
+  /* torso: se estrecha hasta el 70 % de perfil (|sin|: no se ensancha en la anticipacion ni en el rebote) */
+  .hero__desk.is-rig .desk__spin--torso { transform: translate(calc(12px * sin(var(--desk-turn))), 0) scaleX(calc(1 - 0.3 * var(--dt-abs))); }
+  /* cabeza: un solo contenedor (detras del torso) que se hunde 3 u de perfil */
+  .hero__desk.is-rig .desk__spin--head { transform: translate(0, calc(3px * sin(var(--dt-h)))); }
+  /* hombro derecho (las dos copias del brazo): 564 -> 470 (90deg, hacia ti) -> 376 (180deg) */
+  .hero__desk.is-rig .desk__spin--shoulder { transform: translate(calc(94px * (cos(var(--desk-turn)) - 1)), calc(13px * sin(var(--desk-turn)))); }
+  .hero__desk.is-rig .desk__rig--arm { transform: rotate(var(--dt-arm)); }
+  .hero__desk.is-rig .desk__rig--fore { transform: rotate(var(--dt-fore)); }
+  /* la taza en la mano: deshace el giro del brazo (queda derecha, con los -6deg de hold) y el cafe se echa atras
+     -10deg en el perfil; el vapor se queda atras */
+  .hero__desk.is-rig .desk__mug-tilt { transform: rotate(calc(-1 * (var(--dt-arm) + var(--dt-fore)) - 10deg * sin(var(--dt-m)))); }
+  .hero__desk.is-rig .desk__steam-lean { transform: skewX(calc(-14deg * sin(var(--dt-m)))); }
+  /* respaldo: barre hacia la izquierda, se pone de canto (x ~ 382 a 90deg, scaleX minimo 0,08) y ahi cambia de capa;
+     de frente queda detras, mas alto y algo mas pequeno */
+  .hero__desk.is-rig .desk__chair {
+    transform: translate(calc(-88px * sin(var(--desk-turn))), calc(14px * (cos(var(--desk-turn)) - 1))) scale(calc(0.96 + 0.04 * cos(var(--desk-turn)))) scaleX(max(0.08, cos(var(--desk-turn))));
+    opacity: clamp(0, sin(91.9deg - var(--desk-turn)) * 30, 1);
+  }
+  .hero__desk.is-rig .desk__chair--behind {
+    transform: translate(calc(-88px * sin(var(--desk-turn))), calc(14px * (cos(var(--desk-turn)) - 1))) scale(calc(0.96 + 0.04 * cos(var(--desk-turn)))) scaleX(max(0.08, -1 * cos(var(--desk-turn))));
+    opacity: clamp(0, sin(var(--desk-turn) - 88.1deg) * 30, 1);
+  }
+  /* reposabrazos (lado de la lampara): de punta en reposo y de lado a 90deg; solo se ve mientras barre hacia ti */
+  .hero__desk.is-rig .desk__chair-arm {
+    transform: translate(calc(100px * (cos(var(--desk-turn)) - 1)), calc(14px * sin(var(--desk-turn)))) scaleX(calc(0.28 + 0.72 * var(--dt-abs)));
+    opacity: clamp(0, 3 * var(--dt-abs) - 0.3, 1);
+  }
+  /* las dos tazas coinciden a 0deg (la de la mano lleva la matriz de hold): la de la mano entra antes de que se vaya
+     la de la mesa, tambien en la anticipacion (angulo negativo) */
+  .hero__desk.is-rig .desk__room-mug { opacity: clamp(0, min((sin(4deg) - max(sin(var(--dt-m)), -1 * sin(var(--dt-m)))) * 30, cos(var(--dt-m)) * 30), 1); }
+  .hero__desk.is-rig .desk__mug-held { opacity: clamp(0, max(sin(var(--dt-m)), -1 * sin(var(--dt-m)), -1 * cos(var(--dt-m))) * 30, 1); }
+  /* dibujos por angulo (skins, rampa de ~5deg). En cada corte c la que entra llega a 1 en c y la que sale empieza a
+     irse en c: nunca hay un instante con las dos a medias (se veria el monitor a traves del cuerpo).
+     Hasta c: clamp(0, sin(c + 4.8deg - t) * 12, 1); desde c: clamp(0, sin(t - c + 4.8deg) * 12, 1) */
+  .hero__desk.is-rig :is(.desk__skin--head-back, .desk__skin--head-turned, .desk__skin--neck-back) { opacity: clamp(0, sin(104.8deg - var(--dt-h)) * 12, 1); }
+  .hero__desk.is-rig .desk__skin--head-front { opacity: clamp(0, sin(var(--dt-h) - 95.2deg) * 12, 1); }
+  .hero__desk.is-rig .desk__skin--hand-l { opacity: clamp(0, sin(74.8deg - var(--desk-turn)) * 12, 1); }
+  .hero__desk.is-rig .desk__skin--arm-back { opacity: clamp(0, sin(61.8deg - var(--desk-turn)) * 12, 1); }
+  .hero__desk.is-rig .desk__skin--arm-front { opacity: clamp(0, sin(var(--desk-turn) - 52.2deg) * 12, 1); }
+  .hero__desk.is-rig :is(.desk__skin--sleeve-back, .desk__skin--hand-side) { opacity: clamp(0, sin(127.8deg - var(--desk-turn)) * 12, 1); }
+  .hero__desk.is-rig :is(.desk__skin--sleeve-front, .desk__skin--hand-front) { opacity: clamp(0, sin(var(--desk-turn) - 118.2deg) * 12, 1); }
+  .hero__desk.is-rig .desk__torso-back { opacity: clamp(0, sin(94.8deg - var(--desk-turn)) * 12, 1); }
+  .hero__desk.is-rig .desk__torso-front { opacity: clamp(0, sin(var(--desk-turn) - 85.2deg) * 12, 1); }
+  /* sombra a oscuras de lo que va de frente (torso, cara, brazo de frente): de espaldas pesa como la del resto
+     (0,62) y de frente, de espaldas al monitor, tapa del todo (1) entre 90 y ~110deg. La vuelta a typing es siempre
+     a oscuras. Sus .desk__shade--full llevan opacidad 1 propia y .is-lit las apaga */
+  .hero__desk.is-rig .desk__dark { opacity: calc(0.62 + 0.38 * clamp(0, sin(var(--desk-turn) - 90deg) * 3, 1)); }
+
+  /* sin rig (navegadores sin @property, linear() o sin(): Firefox < 128, Safari < 17.2; lamp.js no pone .is-rig):
+     --desk-turn salta y las piezas se cruzan por tiempo, sin estrechar el torso. La copia delantera del brazo y el
+     respaldo de atras se quedan en su postura de frente (solo se ven en face). Ida: respaldo a los 300 ms, entra lo
+     de frente a los 400, se va lo de espaldas a los 450 y la sombra de frente a los 520; la vuelta, al reves */
+  .hero__desk:not(.is-rig)[data-pose="face"] .desk__marco { --desk-turn: 180deg; }
+  .hero__desk:not(.is-rig) :is(.desk__skin--head-back, .desk__skin--head-turned, .desk__skin--neck-back, .desk__skin--hand-l, .desk__skin--arm-back, .desk__torso-back, .desk__room-mug) { opacity: 1; transition: opacity 80ms linear 400ms; }
+  .hero__desk:not(.is-rig) :is(.desk__skin--head-front, .desk__skin--arm-front, .desk__torso-front) { opacity: 0; transition: opacity 80ms linear 450ms; }
+  .hero__desk:not(.is-rig) .desk__chair--front { opacity: 1; transition: opacity 80ms linear 520ms; }
+  .hero__desk:not(.is-rig) .desk__chair--behind { opacity: 0; transition: opacity 80ms linear 520ms; transform: translate(0, -28px) scale(0.92); }
+  .hero__desk:not(.is-rig) .desk__dark { opacity: 0.62; transition: opacity 80ms linear 300ms; }
+  .hero__desk:not(.is-rig)[data-pose="face"] :is(.desk__skin--head-back, .desk__skin--head-turned, .desk__skin--neck-back, .desk__skin--hand-l, .desk__skin--arm-back, .desk__torso-back, .desk__room-mug) { opacity: 0; transition-delay: 450ms; }
+  .hero__desk:not(.is-rig)[data-pose="face"] :is(.desk__skin--head-front, .desk__skin--arm-front, .desk__torso-front) { opacity: 1; transition-delay: 400ms; }
+  .hero__desk:not(.is-rig)[data-pose="face"] .desk__chair--front { opacity: 0; transition-delay: 300ms; }
+  .hero__desk:not(.is-rig)[data-pose="face"] .desk__chair--behind { opacity: 1; transition-delay: 300ms; }
+  .hero__desk:not(.is-rig)[data-pose="face"] .desk__dark { opacity: 1; transition-delay: 520ms; }
+  .hero__desk:not(.is-rig) :is(.desk__skin--sleeve-back, .desk__skin--hand-side, .desk__chair-arm) { opacity: 0; }
+  .hero__desk:not(.is-rig) :is(.desk__skin--sleeve-front, .desk__skin--hand-front) { opacity: 1; }
+  .hero__desk:not(.is-rig) .desk__arm--r .desk__mug-held { opacity: 0; }
+  .hero__desk:not(.is-rig) .desk__arm--front .desk__mug-held { opacity: 1; }
+  .hero__desk:not(.is-rig) .desk__spin--shoulder-front { transform: translate(-188px, 0); }
+  .hero__desk:not(.is-rig) .desk__arm--front .desk__rig--arm { transform: rotate(14.4deg); }
+  .hero__desk:not(.is-rig) .desk__arm--front .desk__rig--fore { transform: rotate(-75.6deg); }
+  .hero__desk:not(.is-rig) .desk__arm--front .desk__mug-tilt { transform: rotate(61.2deg); }
+
   /* salto sin transicion (?lamp=on, &pose=, o al llamar a toggle() desde fuera) */
-  .hero__desk.is-snap :is(.desk__head, .desk__head-back, .desk__head-turned, .desk__body--back, .desk__body--front, .desk__arm, .desk__fore, .desk__mug, .desk__mug-shadow) { transition: none !important; }
+  .hero__desk.is-snap :is(.desk__head, .desk__head-back, .desk__head-turned, .desk__marco, .desk__skin, .desk__chair, .desk__mug-held, .desk__room-mug, .desk__dark, .desk__arm, .desk__fore, .desk__mug, .desk__mug-shadow) { transition: none !important; }
 
   @keyframes desk-in { from { opacity: 0; } }
   @keyframes desk-hint { from { opacity: 0; transform: translateY(4px); } }
