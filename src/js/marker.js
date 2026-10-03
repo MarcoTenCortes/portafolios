@@ -1,7 +1,8 @@
 // marker.js: el rotulador gigante. Un clic lo coge (sigue al puntero como si fuera el cursor), se pinta
 // manteniendo pulsado el boton principal, y se suelta con clic derecho (o Escape; en tactil, un toque sin
 // mover). La tinta vive solo en memoria y es relativa a la seccion donde empezo cada trazo (sec, w0), asi
-// que aguanta cambios de idioma y de ancho: un ResizeObserver re-ancla los grupos.
+// que aguanta cambios de idioma y de ancho: un ResizeObserver re-ancla los grupos (y vuelve a medir #ink desde 0
+// para que el documento pueda encoger).
 import { clamp, clampToViewport, fractionOf } from './play/geom.js';
 import { INK_LIMITS, appendPoint, midpointPathD, chunkStroke, simplify, evict, isFull, anchorTransform } from './play/ink.js';
 
@@ -78,6 +79,10 @@ export function initMarker(root, { i18n, showToast } = {}) {
     return g;
   }
   function anchorAll() {
+    // #ink forma parte del area de scroll: si se mide con su alto anterior, scrollHeight se incluye a si mismo y el
+    // documento nunca vuelve a encoger (hueco al pie al ensanchar la ventana, quitar el zoom o cerrar una ficha).
+    // No quitar la linea del 0: con alto 0 Chromium no pinta los trazos (overflow visible no basta).
+    ink.style.height = '0px';
     ink.style.height = `${document.documentElement.scrollHeight}px`;
     for (const [sec, g] of groups) groupTransform(sec, g);
   }
