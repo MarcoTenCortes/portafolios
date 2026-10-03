@@ -1750,6 +1750,351 @@
 </svg>
 <!-- /partial:desk -->
 </template>
+<!-- [lazy:secret] objetos ocultos del hero (src/js/secret.js): dentro de la lente que sigue a la luz del raton; el
+     rack con el perro se repite tenue (<use>) como pista cuando Marco esta de frente con la lampara encendida -->
+<template data-for="secrets">
+<div class="hero__secret-hint"><svg class="hero__secret-obj hero__secret-obj--rack" viewBox="0 0 400 300" aria-hidden="true" focusable="false"><use href="#secret-rack"/></svg></div>
+<div class="hero__secret-lens"><div class="hero__secret-art">
+<!-- partial:secret-window -->
+<svg class="hero__secret-obj hero__secret-obj--window" viewBox="0 0 320 220" width="100%" aria-hidden="true" focusable="false">
+ <!-- la ventana del cuarto, de noche: cuatro cuarterones, la luna con sus crateres, estrellas y, al fondo, la Giralda
+      (cuerpo de campanas, remates y el Giraldillo) sobre los tejados de la catedral; la cortina recogida a un lado -->
+ <g id="secret-window" stroke-linecap="round" stroke-linejoin="round">
+  <defs>
+   <radialGradient id="secret-w-moon"><stop offset=".35" stop-color="#f3eedb" stop-opacity=".2"/><stop offset="1" stop-color="#f3eedb" stop-opacity="0"/></radialGradient>
+   <linearGradient id="secret-w-sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0b0f18"/><stop offset=".62" stop-color="#111827"/><stop offset="1" stop-color="#26324c"/></linearGradient>
+  </defs>
+  <!-- cristal: el cielo, la luna, las estrellas y la ciudad -->
+  <path d="M42 30H258V180H42Z" fill="url(#secret-w-sky)"/>
+  <circle cx="214" cy="62" r="46" fill="url(#secret-w-moon)"/>
+  <path d="M194 62 C194 50 203 41 214 41 C226 41 234.6 50 234.6 62 C234.6 74 225.6 82.6 214 82.6 C202 82.6 194 73.6 194 62 Z" fill="var(--ill-cream,#f3eedb)"/>
+  <path d="M220 42 C230 46 236 55 234.4 66 C232.6 76 224 83 213 82.6 C224 78 230 69 229.4 59 C229 51 225.6 45.6 220 42 Z" fill="#c7bfaf"/>
+  <circle cx="207" cy="55" r="4.2" fill="#e4ddc8"/>
+  <circle cx="219" cy="70" r="3" fill="#e4ddc8"/>
+  <circle cx="204.6" cy="70.6" r="2" fill="#e4ddc8"/>
+  <path d="M199 52 C201 47 205 44 210 43" fill="none" stroke="#fbfaf1" stroke-width="3"/>
+  <path d="M58 44v6M55 47h6M132 58v5M129.6 60.4h5M174 40v6M171 43h6M64 88v4M62 90h4M240 98v4M238 100h4M180 92v3M178.6 93.6h3" stroke="var(--star,rgba(245,247,250,.55))" stroke-width="2"/>
+  <path d="M42 181V170H52V163H60V172H70V166H78V181Z" fill="#141a26"/>
+  <path d="M112 181V160H124V151L127 143L130 151V160H146V151L149 142L152 151V158H172V147L176 138L180 147V158H198C201 149 214 147 219 158H234V151L237 143L240 151V162H258V181Z" fill="#141a26"/>
+  <path d="M63 175h3M175 167h3M226 170h3" stroke="var(--action,#2997ff)" stroke-width="3" opacity=".3"/>
+  <!-- la Giralda: cana con sus ventanas, cuerpo de campanas, remates, cupula y el Giraldillo; la luna ilumina la cara
+       derecha -->
+  <path d="M84 181 L84.8 98 L109.2 97.8 L110 181 Z" fill="#1a2030"/>
+  <path d="M101 98 L109.2 97.8 L110 181 L101 181 Z" fill="#232c40"/>
+  <g fill="#1a2030">
+   <path d="M80.4 100.4 H113.6 V94.6 H80.4 Z M86.6 94.6 V76 H107.4 V94.6 Z M85 76.2 H109 V72.6 H85 Z M89 72.6 V63 H105 V72.6 Z M88 63.2 H106 V60.4 H88 Z M91.6 60.4 V53 H102.4 V60.4 Z M91.8 53.4 C92.2 46.4 101.8 46.4 102.2 53.4 Z"/>
+   <path d="M95.4 41.4 C95.2 37.6 98.8 37.6 98.6 41.4 L99.2 44.6 H94.8 Z M98.4 38 L104 35.6 L103 40.8 Z"/>
+  </g>
+  <path d="M97 47.6V43" stroke="#1a2030" stroke-width="2"/>
+  <path d="M101.6 94.6 H107.4 V76 H101.6 Z M100.6 72.6 H105 V63 H100.6 Z M99.4 60.4 H102.4 V53 H99.4 Z M106 100.4 H113.6 V94.6 H106 Z" fill="#232c40"/>
+  <path d="M89.2 81.6 C89.2 78.8 92.8 78.8 92.8 81.6 V91 H89.2Z M95.2 81.6 C95.2 78.8 98.8 78.8 98.8 81.6 V91 H95.2Z M101.2 81.6 C101.2 78.8 104.8 78.8 104.8 81.6 V91 H101.2Z" fill="#0b0e15"/>
+  <circle cx="97" cy="67.8" r="2.2" fill="#0b0e15"/>
+  <path d="M93.8 126 C93.8 122.4 100.2 122.4 100.2 126 V134 H93.8Z M93.8 149 C93.8 145.4 100.2 145.4 100.2 149 V157 H93.8Z" fill="var(--action,#2997ff)" opacity=".35"/>
+  <!-- marco de madera con su cruz y el alfeizar -->
+  <path d="M42 30 H258 V35 C190 35.6 110 35.4 42 35 Z M42 109 H258 V113 H42 Z" fill="#000" opacity=".3"/>
+  <path d="M30.4 18.4 C110 17.6 190 17.8 270 18.4 L269.6 192 C190 192.4 110 192.2 30 192 Z M42 30 V180 H258 V30 Z" fill="var(--ill-wood,#9c6840)" fill-rule="evenodd"/>
+  <path d="M146 30H154V180H146Z M42 101H258V109H42Z" fill="var(--ill-wood,#9c6840)"/>
+  <path d="M33 21.4 C110 20.6 190 20.8 267 21.4 M43 103 H145 M155 103 H257" fill="none" stroke="#b98457" stroke-width="2.5"/>
+  <path d="M42 179 H258 M147.6 32 V178" fill="none" stroke="#7a4f30" stroke-width="2.5"/>
+  <g fill="none" stroke="var(--ill-ink,#151a24)">
+   <path d="M34 18.2 C110 17.6 190 17.8 270 18.4 L269.6 192 C190 192.4 110 192.2 30 192 L30.4 24" stroke-width="4"/>
+   <path d="M42 30 H258 V180 H42 Z M146 30 V101 M154 30 V101 M146 109 V180 M154 109 V180 M42 101 H146 M154 101 H258 M42 109 H146 M154 109 H258" stroke-width="3"/>
+  </g>
+  <path d="M20 192.4 C100 191.4 200 191.8 282 192.4 L283.6 204 C200 205 100 204.6 18.4 204 Z" fill="var(--ill-wood,#9c6840)" stroke="var(--ill-ink,#151a24)" stroke-width="3.5"/>
+  <path d="M22 195 C100 194.4 200 194.6 280 195" fill="none" stroke="#b98457" stroke-width="2.5"/>
+  <path d="M26 207 H276 C268 214 34 214 26 207 Z" fill="#000" opacity=".3"/>
+  <!-- cortina recogida a la derecha y la barra -->
+  <path d="M250 12 C262 13 294 13 306 12 L305 116 C305 150 306.6 180 310 206 C296 208 278 208 264 206 C270 186 276 150 278 122 C270 90 256 50 250 12 Z" fill="#2b3447" stroke="var(--ill-ink,#151a24)" stroke-width="3.5"/>
+  <path d="M266 18 C270 50 282 86 290 118 M284 18 C288 52 294 86 296 118 M286 130 C284 160 282 186 280 204 M296 130 C296 160 297 186 298 204" fill="none" stroke="#34405a" stroke-width="3"/>
+  <path d="M276 18 C280 54 290 90 294 118 M291 130 C290 160 290 186 290 204" fill="none" stroke="#202839" stroke-width="3"/>
+  <path d="M276 116 C286 112.6 298 112.6 306.6 115 L306.4 125.4 C298 123 286 123.4 277 127 Z" fill="#3a4560" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+  <path d="M12 11 C110 10 210 10.4 310 11" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="6"/>
+  <path d="M12 11 C110 10 210 10.4 310 11" fill="none" stroke="#3a4560" stroke-width="2"/>
+  <circle cx="10" cy="11" r="5" fill="#3a4560" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+  <circle cx="312" cy="11" r="5" fill="#3a4560" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+ </g>
+</svg>
+<!-- /partial:secret-window -->
+<!-- partial:secret-board -->
+<svg class="hero__secret-obj hero__secret-obj--board" viewBox="0 0 380 240" width="100%" aria-hidden="true" focusable="false">
+ <!-- el corcho de la pared: un poster con el grafo de SIMPL, tres fotos (el perro, la farola del banco y el busto) y
+      una nota amarilla torcida, con chinchetas. Asoma por detras del medallon -->
+ <g id="secret-board" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M10 236 H374 C366 244 18 244 10 236 Z" fill="#000" opacity=".3"/>
+  <!-- marco y corcho -->
+  <path d="M6.4 6.4 C130 5.6 250 5.8 374 6.4 L373.6 234 C250 234.6 130 234.4 6 234 Z" fill="var(--ill-wood,#9c6840)"/>
+  <path d="M18 18 C130 17.6 250 17.8 362 18 L362 222 C250 222.4 130 222.2 18 222 Z" fill="#6f5438"/>
+  <path d="M18 18 H362 V25 C250 25.6 130 25.4 18 25 Z" fill="#000" opacity=".25"/>
+  <path d="M30 40h.1M52 60h.1M44 112h.1M26 168h.1M60 200h.1M98 214h.1M148 30h.1M150 122h.1M146 190h.1M238 26h.1M244 128h.1M236 206h.1M300 126h.1M350 40h.1M346 98h.1M352 156h.1M340 214h.1M210 120h.1M280 214h.1M128 214h.1M20 90h.1" stroke="#5a4430" stroke-width="4"/>
+  <path d="M36 52h.1M70 30h.1M30 136h.1M84 212h.1M140 76h.1M156 208h.1M226 120h.1M248 214h.1M320 30h.1M354 70h.1M330 130h.1M356 196h.1M200 214h.1M248 28h.1M20 196h.1" stroke="#846548" stroke-width="3.5"/>
+  <path d="M9 9.6 C130 8.8 250 9 371 9.6 M21 219 C130 219.4 250 219.6 359 219" fill="none" stroke="#b98457" stroke-width="2.5"/>
+  <path d="M20 21 V219 M360 21 V219" fill="none" stroke="#7a4f30" stroke-width="3"/>
+  <g fill="none" stroke="var(--ill-ink,#151a24)">
+   <path d="M12 6.2 C130 5.6 250 5.8 374 6.4 L373.6 234 C250 234.6 130 234.4 6 234 L6.4 14" stroke-width="4"/>
+   <path d="M18 18 C130 17.6 250 17.8 362 18 L362 222 C250 222.4 130 222.2 18 222 Z" stroke-width="3"/>
+  </g>
+  <!-- poster del grafo de SIMPL: tres nodos, dos aristas -->
+  <g transform="rotate(-2 82 117)">
+   <path d="M32 32 H138 V210 H32 Z" fill="#000" opacity=".25" transform="translate(3 4)"/>
+   <path d="M30 30 C64 29.4 100 29.6 136 30 L136.4 206 C100 206.6 64 206.4 30 206 Z" fill="var(--tile-2,#1a2030)" stroke="var(--ill-ink,#151a24)" stroke-width="3.5"/>
+   <path d="M44 46 H96 M44 56 H76" stroke="#c6cfdb" stroke-width="4" opacity=".7"/>
+   <path d="M60 94 L108 124 L70 168" fill="none" stroke="var(--action,#2997ff)" stroke-width="3.5" opacity=".6"/>
+   <circle cx="60" cy="94" r="10" fill="var(--action,#2997ff)" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+   <circle cx="108" cy="124" r="12" fill="var(--action,#2997ff)" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+   <circle cx="70" cy="168" r="9" fill="var(--action,#2997ff)" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+   <path d="M104 119.6 C106 118 109.6 118 111.6 120" fill="none" stroke="#8fc8ff" stroke-width="2.5"/>
+   <path d="M44 192 H70 M78 192 H120" stroke="#3a4560" stroke-width="3.5"/>
+  </g>
+  <!-- foto del perro -->
+  <g transform="rotate(-4 193 72)">
+   <path d="M158 32 H232 V116 H158 Z" fill="#000" opacity=".25" transform="translate(3 4)"/>
+   <path d="M156 30 C180 29.6 206 29.8 230 30 L230.4 114 C206 114.6 180 114.4 155.6 114 Z" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="3.5"/>
+   <path d="M163 37 H223 V97 H163 Z" fill="#8fa9bd"/>
+   <path d="M163 86 C180 82 204 82 223 86 V97 H163 Z" fill="#6f8ea4"/>
+   <path d="M172 97 C169 80 178 66 192 65 C204 64 210 72 211.4 78 C218 78 222.4 82 221.8 88 C221.2 94 216 97 210 97 Z" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="2.5"/>
+   <path d="M187 72 C191 67 200 68 202.4 74 C204 80 199 85 193 84.4 C187.4 84 184.6 77 187 72 Z" fill="#9c6840"/>
+   <path d="M179 67 C171 71 167 83 171 93 C175 97 181 93 183 85 C184 77 185 71 179 67 Z" fill="#9c6840" stroke="var(--ill-ink,#151a24)" stroke-width="2.5"/>
+   <circle cx="196" cy="77" r="2.4" fill="var(--ill-ink,#151a24)"/>
+   <circle cx="196.8" cy="76.2" r=".8" fill="#fff"/>
+   <ellipse cx="220" cy="83" rx="3.4" ry="2.8" fill="var(--ill-ink,#151a24)"/>
+   <path d="M211 90.6 C214 92.6 217 92.6 219.4 90.6" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2"/>
+   <path d="M180 95.6 C188 92.6 198 92.6 206 95.6" fill="none" stroke="var(--action,#2997ff)" stroke-width="4"/>
+  </g>
+  <!-- foto de la farola del banco, de noche -->
+  <g transform="rotate(5 283 78)">
+   <path d="M248 38 H322 V122 H248 Z" fill="#000" opacity=".25" transform="translate(3 4)"/>
+   <path d="M246 36 C270 35.6 296 35.8 320 36 L320.4 120 C296 120.6 270 120.4 245.6 120 Z" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="3.5"/>
+   <path d="M253 43 H313 V103 H253 Z" fill="#1a2030"/>
+   <circle cx="272" cy="60" r="16" fill="var(--action,#2997ff)" opacity=".18"/>
+   <path d="M272 66 V102" stroke="#3a4560" stroke-width="3"/>
+   <path d="M272 50 L279 54 V62 L272 66 L265 62 V54 Z" fill="var(--action,#2997ff)" opacity=".75"/>
+   <path d="M272 47 V50" stroke="#3a4560" stroke-width="2.5"/>
+   <path d="M284 94 H308 M286 88 H306 M288 94 V102 M304 94 V102" fill="none" stroke="#3a4560" stroke-width="3"/>
+   <path d="M290 50h.1M304 58h.1M298 46h.1" stroke="var(--star,rgba(245,247,250,.55))" stroke-width="2.5"/>
+  </g>
+  <!-- foto del busto (Marco con gafas y la chaqueta azul) -->
+  <g transform="rotate(3 197 170)">
+   <path d="M162 130 H236 V214 H162 Z" fill="#000" opacity=".25" transform="translate(3 4)"/>
+   <path d="M160 128 C184 127.6 210 127.8 234 128 L234.4 212 C210 212.6 184 212.4 159.6 212 Z" fill="var(--ill-cream,#f3eedb)" stroke="var(--ill-ink,#151a24)" stroke-width="3.5"/>
+   <path d="M167 135 H227 V195 H167 Z" fill="#c7a483"/>
+   <path d="M176 195 C178 182 186 176 197 176 C208 176 216 182 218 195 Z" fill="#6f8ea4" stroke="var(--ill-ink,#151a24)" stroke-width="2.5"/>
+   <path d="M192 176 L197 186 L202 176" fill="var(--ill-ink,#151a24)"/>
+   <path d="M186 160 C185 148 190 142 197 142 C204 142 209 148 208 160 C207 168 203 174 197 174 C191 174 187 168 186 160 Z" fill="#f6e3cf" stroke="var(--ill-ink,#151a24)" stroke-width="2.5"/>
+   <path d="M184 156 C182 144 190 136 199 137 C208 138 213 146 210 156 C206 150 200 146 192 147 C188 150 186 153 184 156 Z" fill="#6a3f26" stroke="var(--ill-ink,#151a24)" stroke-width="2"/>
+   <path d="M188 159 C188 156 194 156 194.6 159 C194.6 162 188.6 162 188 159 Z M199.4 159 C200 156 206 156 206 159 C205.4 162 199.4 162 199.4 159 Z M194.6 158.6 H199.4" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2"/>
+  </g>
+  <!-- nota amarilla, torcida, con garabatos -->
+  <g transform="rotate(-8 297 172)">
+   <path d="M260 136 H336 V210 H260 Z" fill="#000" opacity=".25" transform="translate(3 4)"/>
+   <path d="M258 134 C282 133.6 310 133.8 334 134 L334 196 L320 208 C300 208.4 278 208.2 258 208 Z" fill="#e8d27a" stroke="var(--ill-ink,#151a24)" stroke-width="3.5"/>
+   <path d="M320 208 L322 196 L334 196 Z" fill="#c9ad52" stroke="var(--ill-ink,#151a24)" stroke-width="2.5"/>
+   <path d="M260.6 137 H331.4 V144 H260.6 Z" fill="#f6e8a8"/>
+   <path d="M268 158 C276 155 284 160 292 157 C300 154 308 159 318 156 M268 172 C278 169 288 174 298 171 C304 169 310 172 314 171 M268 186 C276 183 284 188 296 185" fill="none" stroke="#8a6d2a" stroke-width="2.6"/>
+  </g>
+  <!-- chinchetas -->
+  <g stroke="var(--ill-ink,#151a24)" stroke-width="2.5">
+   <circle cx="40" cy="38" r="6" fill="var(--action,#2997ff)"/>
+   <circle cx="126" cy="36" r="6" fill="var(--danger,#ff6161)"/>
+   <circle cx="194" cy="35" r="6" fill="var(--danger,#ff6161)"/>
+   <circle cx="281" cy="41" r="6" fill="var(--action,#2997ff)"/>
+   <circle cx="196" cy="133" r="6" fill="var(--action,#2997ff)"/>
+   <circle cx="295" cy="141" r="6" fill="var(--danger,#ff6161)"/>
+  </g>
+  <path d="M38 36h.1M124 34h.1M192 33h.1M279 39h.1M194 131h.1M293 139h.1" stroke="#fff" stroke-width="3" opacity=".7"/>
+ </g>
+</svg>
+<!-- /partial:secret-board -->
+<!-- partial:secret-shelf -->
+<svg class="hero__secret-obj hero__secret-obj--shelf" viewBox="0 0 400 280" width="100%" aria-hidden="true" focusable="false">
+ <!-- baldas sobre el rack: la planta, el gato dormido, libros y el patito de depurar -->
+ <g id="secret-shelf" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M14 137H386C378 148 22 148 14 137ZM14 271H386C378 280 22 280 14 271Z" fill="#000" opacity=".3"/>
+  <g fill="#2b3447" stroke="var(--ill-ink,#151a24)" stroke-width="3.5">
+   <path d="M50 134V164C54 156 64 144 78 134ZM350 134V164C346 156 336 144 322 134Z"/>
+   <path d="M50 266V279C54 275 60 270 68 266ZM350 266V279C346 275 340 270 332 266Z"/>
+  </g>
+  <!-- libros -->
+  <g stroke="var(--ill-ink,#151a24)" stroke-width="3.5">
+   <path d="M22 165C27 164.6 33 164.8 39 165L39.6 252L22.4 252Z" fill="#2b3447"/>
+   <path d="M39 155C45.4 154.6 52 154.8 59 155.2L59 252L39.6 252Z" fill="#6a3f26"/>
+   <path d="M59 170C64 169.6 69 169.8 74.4 170.2L74 252L59 252Z" fill="var(--ill-cream,#f3eedb)"/>
+   <path d="M74.4 159C81 158.6 87.6 158.8 94 159.2L94 252L74 252Z" fill="#3a4560"/>
+   <path d="M94 166C99 165.6 104.4 165.8 110 166L110.4 252L94 252Z" fill="#2b3447"/>
+   <path d="M110 160C116 159.6 122 159.8 128 160.2L128.4 252L110.4 252Z" fill="#6a3f26"/>
+   <path d="M131 252L149.6 252L172 173L154 168.4Z" fill="#3a4560"/>
+   <path d="M206 237C236 236.4 266 236.6 296 237L296.4 252L205.6 252Z" fill="#3a4560"/>
+   <path d="M214 224C240 223.4 264 223.6 288 224L288.4 237L213.6 237Z" fill="var(--ill-cream,#f3eedb)"/>
+  </g>
+  <path d="M42 172H57M42 236H57M113 168H126M113 240H126M77 228H92M25 238H37" stroke="#9c6840" stroke-width="3"/>
+  <path d="M62 180H72M62 232H72M218 230.4H284" stroke="#c7bfaf" stroke-width="3"/>
+  <path d="M77 168H92M97 174H108M25 172H37M138 246L155 186" stroke="#4d5873" stroke-width="2.5"/>
+  <path d="M36 168V249M56 158V249M91 162V249M125 163V249" stroke="#000" stroke-width="3" opacity=".22"/>
+  <!-- el patito -->
+  <g stroke="var(--ill-ink,#151a24)" stroke-width="3.5">
+   <path d="M240 224C233 220 232.4 211 236 203.4C240 206.6 245 208.6 251 208.6C263 207.6 277 208 282.6 214C285 220.4 280 224 270 224Z" fill="#e8d27a"/>
+   <path stroke="none" d="M244 220C256 223 270 223 281 218C280 222 276 224 270 224L242 224Z" fill="#c9ad52"/>
+   <path d="M249 214C255 219 263 219 268 214.6" fill="none" stroke="#c9ad52" stroke-width="3"/>
+   <path d="M260 198C260 191 264.6 186.6 270.4 186.6C276.4 186.6 280.6 191.4 280.4 198C280.2 204.4 275.6 208.6 270 208.6C264 208.6 260 204 260 198Z" fill="#e8d27a"/>
+   <path d="M279.6 196.4C284.6 194.4 290.4 195.4 291.6 199C289.6 202.4 284.4 203.2 279.4 201.8" fill="#e8b56a" stroke-width="2.5"/>
+   <circle stroke="none" cx="273.4" cy="195.4" r="2" fill="var(--ill-ink,#151a24)"/>
+   <path d="M264 192C266 189.4 270 188.6 273 189.6" fill="none" stroke="#f6e8a8" stroke-width="2.5"/>
+  </g>
+  <path d="M10 252C130 251.2 270 251.4 390 252L390.4 266C270 266.6 130 266.4 9.6 266Z" fill="var(--ill-wood,#9c6840)"/>
+  <path d="M11 263C130 263.6 270 263.6 389 263L390.4 266C270 266.6 130 266.4 9.6 266Z" fill="#7a4f30"/>
+  <path d="M12 254.6C130 254 270 254.2 388 254.6" fill="none" stroke="#b98457" stroke-width="2.5"/>
+  <path d="M10 252C130 251.2 270 251.4 390 252L390.4 266C270 266.6 130 266.4 14 266" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4"/>
+  <!-- la planta del escritorio -->
+  <g transform="translate(-30.5 -114.5) scale(.75)">
+   <g stroke="var(--ill-ink,#151a24)" stroke-width="4">
+    <path d="M114 264C100 252 84 240 70 224C94 222 108 240 117 262Z" fill="#8a5230"/>
+    <path d="M117 264C104 238 91 208 96 176C113 196 123 228 120 263Z" fill="#7f9db2"/>
+    <path d="M121 264C122 228 125 192 136 160C147 191 138 232 123 264Z" fill="#9ab5c6"/>
+    <path d="M122 264C130 238 140 214 154 197C158 224 142 248 124 264Z" fill="#a86a42"/>
+    <path d="M123 264C136 255 152 247 168 245C158 257 142 264 125 265Z" fill="#6f8ea4"/>
+   </g>
+   <g fill="none" stroke-width="2.7">
+    <path d="M116 258C108 236 100 210 98 186" stroke="#5d7a8f"/>
+    <path d="M122 258C126 228 130 196 135 172" stroke="#6f8ea4"/>
+    <path d="M124 258C132 238 142 218 151 205" stroke="#7d4a2c"/>
+    <path d="M112 258C100 248 88 238 78 228" stroke="#6b3d22"/>
+    <path d="M100 196C104 190 108 188 110 190" stroke="#c9d8e2" stroke-width="3.3"/>
+   </g>
+   <path d="M90 263C108 261.4 128 262 149 262.8L143 309C127 310.4 111 310.2 97 309.4Z" fill="var(--ill-cream,#f3eedb)"/>
+   <path d="M94 290C110 291 130 291 145 290L143 309C127 310.4 111 310.2 97 309.4Z" fill="#c7bfaf"/>
+   <path d="M88 262C108 260.6 130 261 151 262L150 272.5C130 273.4 108 273 89 272.6Z" fill="#fbfaf1"/>
+   <path d="M91 268C110 267.2 128 267.4 148 268" fill="none" stroke="#e4ddc8" stroke-width="2.7"/>
+   <g fill="none" stroke="var(--ill-ink,#151a24)">
+    <path d="M88 261.8C108 260.2 130 260.8 151.5 261.8L150.5 272.8" stroke-width="4.7"/>
+    <path d="M89 263L89.4 272.8L97 309.6C111 310.6 127 310.8 143.4 309.2L149.4 274" stroke-width="5.3"/>
+   </g>
+  </g>
+  <!-- el gato -->
+  <path d="M190 118C184 96 202 76 246 74C290 72 322 86 328 106C330 113 327 118 322 118Z" fill="#8e98a8"/>
+  <path d="M192 112C232 116.6 296 116.6 327 108C327.6 114 326 118 322 118L190 118Z" fill="#66707f"/>
+  <path d="M214 84C242 76 282 76 312 88" fill="none" stroke="#aab3c1" stroke-width="5"/>
+  <path d="M244 76C248 84 248 92 244 98M264 75C268 84 268 92 264 99M284 78C288 86 287 94 283 100M302 84C305 90 305 96 302 101" fill="none" stroke="#66707f" stroke-width="4"/>
+  <path d="M200 102C196 86 212 75 246 74.6C288 73.4 320 86 327.6 104" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4"/>
+  <path d="M168 66L164 46C172 50 178 55 182 61ZM196 60C201 54 207 49 214 46L212 68Z" fill="#8e98a8" stroke="var(--ill-ink,#151a24)" stroke-width="3.5"/>
+  <path d="M169 61L167.6 52C171 54.6 174 57 176 60M202 60C205 56.6 207.4 54.6 209.6 53.4L209 61" fill="none" stroke="#c4a3a0" stroke-width="3"/>
+  <path d="M164 92C162 72 176 61 190 61C206 61 217 72 216 92C216 106 204 116 190 116C175 116 164 106 164 92Z" fill="#8e98a8"/>
+  <path d="M168 102C176 112 204 113 213 101C212 110 202 117 190 117C178 117 170 110 168 102Z" fill="#66707f"/>
+  <path d="M176 70C184 64 198 64 206 70" fill="none" stroke="#aab3c1" stroke-width="4"/>
+  <path d="M190 62V72M184 63L186 71M196 63L194 71" stroke="#66707f" stroke-width="2.5"/>
+  <path d="M165 88C165 71 177 61.4 191 61.4C205 61.4 216 72 215.6 90" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4"/>
+  <path d="M172 91Q177 95.4 182 91M198 91Q203 95.4 208 91" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+  <path d="M187.4 98.4L192.6 98.4L190 101.6Z" fill="#c4a3a0" stroke="var(--ill-ink,#151a24)" stroke-width="2"/>
+  <path d="M185 105Q187.6 107.6 190 105Q192.4 107.6 195 105" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="2"/>
+  <path d="M166 98L150 96M167 103L152 106M214 98L230 96M213 103L228 106" stroke="#c6cfdb" stroke-width="1.6" opacity=".55"/>
+  <path d="M174 112C180 107.4 196 107.4 204 112C206 116 204 118 202 118L176 118C173 117 172 115 174 112Z" fill="#aab3c1" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+  <path d="M186 113V117.6M193 113V117.6" stroke="var(--ill-ink,#151a24)" stroke-width="1.8"/>
+  <path d="M10 118C130 117.2 270 117.4 390 118L390.4 132C270 132.6 130 132.4 9.6 132Z" fill="var(--ill-wood,#9c6840)"/>
+  <path d="M11 129C130 129.6 270 129.6 389 129L390.4 132C270 132.6 130 132.4 9.6 132Z" fill="#7a4f30"/>
+  <path d="M12 120.6C130 120 270 120.2 388 120.6" fill="none" stroke="#b98457" stroke-width="2.5"/>
+  <path d="M14 132C130 132.4 270 132.6 390.4 132L390 118C270 117.4 130 117.2 10 118L9.6 128" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4"/>
+  <!-- su cola -->
+  <path d="M318 112C334 118 340 140 336 166C333 184 336 198 348 199" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="15"/>
+  <path d="M318 112C334 118 340 140 336 166C333 184 336 198 348 199" fill="none" stroke="#8e98a8" stroke-width="8"/>
+  <path d="M338 150l-6 -1M337 166l-6 -1M336 180l-6 1M341 194l-3 5" stroke="#66707f" stroke-width="3.5"/>
+  <path d="M333 126C337 134 339 142 339 150" fill="none" stroke="#aab3c1" stroke-width="2.5"/>
+ </g>
+</svg>
+<!-- /partial:secret-shelf -->
+<!-- partial:secret-rack -->
+<svg class="hero__secret-obj hero__secret-obj--rack" viewBox="0 0 400 300" width="100%" aria-hidden="true" focusable="false">
+ <!-- rack del homelab (los LEDs .secret__led parpadean) y el perro dormido en su cesta: la pista, pegada al escritorio -->
+ <g id="secret-rack" stroke-linecap="round" stroke-linejoin="round">
+  <defs><radialGradient id="secret-r-glow"><stop offset="0" stop-color="#2997ff" stop-opacity=".22"/><stop offset="1" stop-color="#2997ff" stop-opacity="0"/></radialGradient></defs>
+  <path d="M228 291a88 6 0 0 0 176 0a88 6 0 0 0-176 0M10 292a104 6 0 0 0 208 0a104 6 0 0 0-208 0" opacity=".3"/>
+  <g stroke="var(--ill-ink,#151a24)">
+   <path d="M266 287v5M380 287v5" stroke-width="7"/>
+   <path d="M237 55C243 52 248 49.5 254.5 47L256.6 287C250 286 244 285.4 238.6 284.4Z" fill="#1a2030" stroke-width="4"/>
+   <path d="M254.5 47C300 45.4 346 46 390.4 46.8C389.8 127 390.2 207 389.6 287.4C345 287.8 300 287.2 256.6 287Z" fill="#202839" stroke-width="4.5"/>
+   <path d="M266.4 60.4C304 59.8 342 60.2 378.2 60.6L378 274.4L266.2 274Z" fill="#131822" stroke-width="3"/>
+  </g>
+  <path d="M260 52.4C302 51.2 346 51.6 385 52.4" fill="none" stroke="#2b3447" stroke-width="3"/>
+  <ellipse cx="350" cy="168" rx="70" ry="120" fill="url(#secret-r-glow)"/>
+  <!-- panel de parcheo, switch, tres servidores 2U y el SAI -->
+  <g stroke="var(--ill-ink,#151a24)" stroke-width="3" fill="#262f44">
+   <path d="M270 66H374V82H270ZM270 217H374V225H270Z" fill="#1a2030"/>
+   <path d="M270 88H374V104H270ZM270 112H374V140H270ZM270 147H374V175H270ZM270 182H374V210H270ZM270 231H374V270H270Z"/>
+   <path d="M332 240H364V254H332Z" fill="#0e1119" stroke-width="2.5"/>
+  </g>
+  <path d="M273 114.5H371M273 149.5H371M273 184.5H371M273 233.5H371M273 90.5H371" stroke="#34405a" stroke-width="2"/>
+  <path d="M280 121H336M280 127H336M280 133H336M280 156H336M280 162H336M280 168H336M280 191H336M280 197H336M280 203H336M346 119v15M352 119v15M346 154v15M352 154v15M346 189v15M352 189v15M280 241H320M280 248H320M280 255H320M280 262H320" stroke="#1a2030" stroke-width="3.5"/>
+  <path d="M278 71h5v6h-5zM289 71h5v6h-5zM300 71h5v6h-5zM311 71h5v6h-5zM322 71h5v6h-5zM333 71h5v6h-5zM344 71h5v6h-5zM355 71h5v6h-5z" fill="#05070b"/>
+  <g fill="none">
+   <path d="M291 77C292 88 300 92 314 92.6C334 93.4 362 92 377 96M313 77C314 84 320 87 330 87.2C350 87.6 368 88 378 91" stroke="#c6cfdb" stroke-width="2.5" opacity=".7"/>
+   <path d="M347 77C348 94 360 104 384 108C392 112 393 150 391 190" stroke="#e8b56a" stroke-width="3"/>
+  </g>
+  <!-- luces fijas y LEDs -->
+  <path d="M280 96h.1M288 96h.1M296 96h.1M312 96h.1M320 96h.1M336 96h.1" stroke="var(--action,#2997ff)" stroke-width="3.5"/>
+  <path d="M337 247H355" stroke="var(--action,#2997ff)" stroke-width="3" opacity=".8"/>
+  <path d="M304 96h.1M328 96h.1M344 96h.1M364 128h.1M364 198h.1M337 251H348" stroke="#6bb8ff" stroke-width="3" opacity=".5"/>
+  <g fill="var(--action,#2997ff)">
+   <circle class="secret__led secret__led--1" cx="364" cy="120" r="3.6"/>
+   <circle class="secret__led secret__led--2" cx="364" cy="155" r="3.6"/>
+   <circle class="secret__led secret__led--3" cx="364" cy="190" r="3.6"/>
+   <circle class="secret__led" cx="368" cy="262" r="3"/>
+  </g>
+  <!-- cesta, manta y el perro del patio, enroscado -->
+  <g fill="none">
+   <path d="M18 224C22 202 64 191 114 190.6C164 191 206 202 210 224" stroke="var(--ill-ink,#151a24)" stroke-width="13"/>
+   <path d="M18 224C22 202 64 191 114 190.6C164 191 206 202 210 224" stroke="#7a4f30" stroke-width="7"/>
+  </g>
+  <path d="M22 226C26 207 66 197 114 197C162 197 202 207 206 226Z" fill="#5a3a22"/>
+  <path d="M26 226C34 210 70 203 112 203C156 203 192 210 202 224C176 232 146 234 112 234C78 234 46 232 26 226Z" fill="#3d5f8c"/>
+  <path d="M60 212C80 208 100 209 116 213M140 210C160 210 176 213 188 218" fill="none" stroke="#4d75a8" stroke-width="3"/>
+  <path d="M44 222C42 190 66 170 104 167.6C140 165.4 166 178 172 198C176 214 170 232 160 246L54 246C48 238 44 230 44 222Z" fill="var(--ill-cream,#f3eedb)"/>
+  <path d="M48 222C72 232 122 234 166 222C164 236 160 244 156 246L56 246C52 238 49 230 48 222Z" fill="#c7bfaf"/>
+  <path d="M72 176C88 168 110 168 120 176C124 188 110 196 94 194C80 192 70 186 72 176Z" fill="#9c6840"/>
+  <path d="M62 184C80 172 116 170 146 180" fill="none" stroke="#fbfaf1" stroke-width="5"/>
+  <path d="M47 210C45 188 70 169 106 168C138 167.4 160 178 168 194" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4"/>
+  <!-- mimbre, borde y cola -->
+  <path d="M16 225C18 258 46 285 114 286C182 285 210 258 212 225C196 239 160 246 114 246C68 246 32 239 16 225Z" fill="var(--ill-wood,#9c6840)"/>
+  <path d="M22 254C40 276 76 285 114 285C152 285 188 276 206 254C184 268 150 273 114 273C78 273 44 268 22 254Z" fill="#7a4f30"/>
+  <g fill="none">
+   <path d="M30 244l10 12M46 249l11 14M64 252l11 15M84 254l11 16M104 255l11 16M124 255l11 16M144 254l11 15M164 252l10 14M182 248l10 12M198 242l7 8" stroke="#6a4428" stroke-width="3"/>
+   <path d="M40 244l-8 10M58 250l-9 12M76 253l-9 13M96 255l-9 14M116 256l-9 14M136 255l-9 14M156 254l-9 13M174 251l-8 11M192 246l-7 9" stroke="#b98457" stroke-width="2.5" opacity=".7"/>
+   <g stroke="var(--ill-ink,#151a24)">
+    <path d="M16 226C18 258 46 285 114 286C182 285 210 258 212 226" stroke-width="4"/>
+    <path d="M15 224C22 241 62 249 114 249C166 249 205 241 213 224" stroke-width="13"/>
+   </g>
+   <path d="M15 224C22 241 62 249 114 249C166 249 205 241 213 224" stroke="#b98457" stroke-width="7"/>
+   <path d="M30 237C56 245 90 247 112 247" stroke="#d3a273" stroke-width="2.5"/>
+   <path d="M84 242C86 254 82 264 74 270C70 273 66 273 63 270" stroke="var(--ill-ink,#151a24)" stroke-width="15"/>
+   <path d="M84 242C86 254 82 264 74 270C70 273 66 273 63 270" stroke="var(--ill-cream,#f3eedb)" stroke-width="8"/>
+   <path d="M71 271.6C68 273.2 65.4 272.6 63 270" stroke="#9c6840" stroke-width="7"/>
+   <path d="M86.4 250C86.4 256 84.6 261 81.6 264.6" stroke="#c7bfaf" stroke-width="3"/>
+  </g>
+  <path d="M16 222C12 238 15 258 26 272C34 262 38 246 40 236C30 234 22 230 16 222Z" fill="#3d5f8c" stroke="var(--ill-ink,#151a24)" stroke-width="3"/>
+  <path d="M22 236C22 248 24 258 27 264" fill="none" stroke="#2e4a70" stroke-width="3"/>
+  <!-- la cabeza sobre las patas, dormido -->
+  <g stroke="var(--ill-ink,#151a24)" stroke-width="3.5">
+   <path d="M160 232C164 225 178 223.4 188 226C196 228 199 236 194 241C189 245.4 172 245.6 164 243C158 241 157.4 236 160 232Z" fill="#e4ddc8"/>
+   <path d="M176 228C184 223.6 200 223 208 227.6C214 231 213 238.6 207 241.4C200 244.4 186 244.2 179 241.6C173 239 171.6 232 176 228Z" fill="var(--ill-cream,#f3eedb)"/>
+   <path d="M199 234.6v5M205.6 233.6v5" stroke-width="2"/>
+  </g>
+  <path d="M154 196C152 180 164 171 178 171.4C194 172 206 183 206.4 199C207 213 196 225 180 225.4C164 226 155 212 154 196Z" fill="var(--ill-cream,#f3eedb)"/>
+  <path d="M157 208C166 220 186 224 202 216C196 225 182 228 170 225C162 222 158 216 157 208Z" fill="#c7bfaf"/>
+  <path d="M166 186C170 178 184 177 190 186C193 194 186 202 177 202C168 202 163 194 166 186Z" fill="#9c6840"/>
+  <g stroke="var(--ill-ink,#151a24)">
+   <path d="M192 203C202 199 215 203 217.4 213C218.4 221 210 226 199 225.4C191 224.6 188 214 192 203Z" fill="#fbfaf1" stroke-width="3"/>
+   <ellipse cx="214.4" cy="210" rx="4.6" ry="3.8" fill="var(--ill-ink,#151a24)" stroke="none"/>
+   <g fill="none">
+    <path d="M206 222Q211 225 215 221.6" stroke-width="2.2"/>
+    <path d="M172 194Q178.6 199.6 185 194" stroke-width="3"/>
+    <path d="M158 186C162 175 175 169.6 188 172C200 175 207 186 206.6 200M207 206C206 218 196 226 184 226.4" stroke-width="4"/>
+    <path d="M151 206C149.6 216 151.4 224 157 230" stroke-width="11"/>
+    <path d="M151 206C149.6 216 151.4 224 157 230" stroke="var(--action,#2997ff)" stroke-width="5.5"/>
+   </g>
+   <path d="M172 174C162 170 152 177 150.6 190C149.4 203 152 214 159 218C166 221 170 210 169 198C168.4 189 174 181 172 174Z" fill="var(--ill-cream,#f3eedb)" stroke-width="3.5"/>
+  </g>
+  <path d="M157 190C155 200 156 209 160 214" fill="none" stroke="#c7bfaf" stroke-width="4"/>
+ </g>
+</svg>
+<!-- /partial:secret-rack -->
+</div></div>
+</template>
 <template data-for="lava">
 <!-- partial:lava -->
 <svg class="lava__art" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 480" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false">

@@ -410,11 +410,11 @@
   html:not(.js) .nav__links { display: block; }
   html:not(.js) .nav__links ul { flex-wrap: wrap; }
   html:not(.js) .nav__burger { display: none; }
-  html:not(.js) :is(.play, .dog-peek, .yard, .skills__lava, .hero__desk, .experience__bg) { display: none !important; }
+  html:not(.js) :is(.play, .dog-peek, .yard, .skills__lava, .hero__desk, .hero__secret, .experience__bg) { display: none !important; }
   html:not(.js) .card__media[data-lazy] { display: none; }
 
   /* ---------- hero ---------- */
-  .hero { min-height: calc(100vh - var(--nav-h)); min-height: calc(100svh - var(--nav-h)); display: grid; align-items: center; padding-block: 56px; overflow: hidden; }
+  .hero { --hero-w: 232px; min-height: calc(100vh - var(--nav-h)); min-height: calc(100svh - var(--nav-h)); display: grid; align-items: center; padding-block: 56px; overflow: hidden; }
   .hero::before {
     content: ""; position: absolute; inset: 0; pointer-events: none;
     background: radial-gradient(720px circle at 72% 32%, var(--action-glow), transparent 65%);
@@ -427,8 +427,9 @@
   .hero__meta { display: grid; gap: 12px; }
   /* retrato (disco + busto en la misma celda) y debajo el escritorio de la lampara (.hero__desk, capa play).
      --hero-w es el ancho del busto; en escritorio se ajusta al alto de la ventana para que retrato y
-     escritorio quepan en el primer pantallazo (disco 1,04·w + escritorio 0,46·w ≈ 1,5·w). */
-  .hero__media { --hero-w: 232px; position: relative; display: grid; grid-template-columns: 100%; place-items: center; row-gap: 4px; order: -1; }
+     escritorio quepan en el primer pantallazo (disco 1,04·w + escritorio 0,46·w ≈ 1,5·w). Vive en .hero para
+     que la capa de los objetos ocultos (.hero__secret, capa play) la herede y se ancle al escritorio. */
+  .hero__media { position: relative; display: grid; grid-template-columns: 100%; place-items: center; row-gap: 4px; order: -1; }
   .hero__disc {
     position: relative; grid-area: 1 / 1; width: min(calc(var(--hero-w) * 1.04), 100%); aspect-ratio: 1; border-radius: 50%;
     background: var(--tile-1); border: 1px solid var(--hairline);
@@ -436,10 +437,11 @@
   .hero__bust { position: relative; grid-area: 1 / 1; width: var(--hero-w); height: auto; }
   @media (min-width: 768px) {
     .hero__grid { grid-template-columns: 1.1fr 0.9fr; gap: 48px; }
-    .hero__media { order: 0; --hero-w: clamp(300px, calc((100vh - 166px) / 1.5), 380px); --hero-w: clamp(300px, calc((100svh - 166px) / 1.5), 380px); }
+    .hero { --hero-w: clamp(300px, calc((100vh - 166px) / 1.5), 380px); --hero-w: clamp(300px, calc((100svh - 166px) / 1.5), 380px); }
+    .hero__media { order: 0; }
   }
   @media (min-width: 1080px) {
-    .hero__media { --hero-w: clamp(340px, calc((100vh - 166px) / 1.5), 480px); --hero-w: clamp(340px, calc((100svh - 166px) / 1.5), 480px); }
+    .hero { --hero-w: clamp(340px, calc((100vh - 166px) / 1.5), 480px); --hero-w: clamp(340px, calc((100svh - 166px) / 1.5), 480px); }
     .hero__copy { gap: 26px; }
   }
 
@@ -771,6 +773,69 @@
   .cursor-glow.is-on .cursor-glow__disc { transform: scale(1); will-change: transform; }
   html:is(.pdialog-open, .sheet-open) .cursor-glow { opacity: 0; visibility: hidden; }
   @media (forced-colors: active) { .cursor-glow { display: none; } }
+
+  /* [css:secret] objetos ocultos del hero (secret.js, plantilla secrets de lazy.html): solo se ven bajo la luz del
+     raton. La lente (.hero__secret-lens) es un disco del tamano de la luz movido con translate3d y dentro va el dibujo
+     del hero entero (.hero__secret-art) contra-trasladado: solo cambian dos transforms (compositor). La capa es el
+     primer hijo de .hero: pinta tras el halo y antes del texto, el medallon y el escritorio. Las posiciones
+     reproducen las columnas del hero con calc() (grid 1.1fr 0.9fr, gap 48) para anclar los objetos al escritorio:
+     --secret-w/h (tamano del hero) y --copy-top (hueco sobre el texto) los escribe secret.js, --hero-w la hereda de
+     .hero. Sin JS, sin la luz y en tactil (sin raton) no se muestra: secret.js pone .is-ready. */
+  .hero__secret {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none; display: none;
+    --sw: var(--secret-w, 100vw);
+    --sh: var(--secret-h, 100vh);
+    --c-w: min(var(--sw) - 2 * var(--gutter), var(--container));
+    --c-x: calc((var(--sw) - var(--c-w)) / 2);
+    --media-w: calc((var(--c-w) - 48px) * 0.45);
+    --desk-w: min(var(--hero-w) * 1.04, var(--media-w));                            /* ancho del disco y del escritorio */
+    --desk-x: calc(var(--c-x) + var(--c-w) - var(--media-w) / 2 - var(--desk-w) / 2);
+    --disc-r: calc(var(--desk-x) + var(--desk-w));                                  /* borde derecho del medallon */
+    --floor-y: calc(var(--sh) / 2 + var(--desk-w) * 0.72 + 20px);  /* pie del escritorio: (disco + 4 + mesa) / 2 + 18 del reveal */
+    --disc-y: calc(var(--floor-y) - var(--desk-w) * 1.44 - 4px);                    /* borde superior del medallon */
+  }
+  @media (min-width: 768px) { .hero__secret.is-ready { display: block; } }
+  .hero__secret-hint, .hero__secret-lens, .hero__secret-art { position: absolute; left: 0; top: 0; }
+  /* la pista: el rack con el perro, muy tenue, cuando Marco te mira con la lampara encendida */
+  .hero__secret-hint { inset: 0; opacity: 0; transition: opacity 1200ms var(--ease-out); }
+  .hero:has(.hero__desk.is-lit[data-pose="face"]) .hero__secret-hint { opacity: 0.16; }
+  .hero__secret-lens {
+    width: var(--cursor-glow-size); height: var(--cursor-glow-size);
+    margin: calc(var(--cursor-glow-size) / -2) 0 0 calc(var(--cursor-glow-size) / -2);
+    border-radius: 50%; overflow: hidden; opacity: 0; transform: translate3d(-9999px, -9999px, 0);
+    -webkit-mask-image: radial-gradient(circle closest-side, #000 55%, transparent); mask-image: radial-gradient(circle closest-side, #000 55%, transparent);
+    transition: opacity var(--dur-base) var(--ease-in-out);
+  }
+  .hero__secret-lens.is-on { opacity: 1; will-change: transform; transition: opacity var(--dur-slow) var(--ease-out); }
+  /* el dibujo empieza en el centro de la lente: con el contra-traslado (-lx, -ly) su origen cae en el del hero. La
+     opacidad es la exposicion: a pleno color destacarian sobre el escritorio a oscuras */
+  .hero__secret-art { left: calc(var(--cursor-glow-size) / 2); top: calc(var(--cursor-glow-size) / 2); width: var(--sw); height: var(--sh); opacity: 0.86; }
+  .hero__secret-lens.is-on .hero__secret-art { will-change: transform; }
+  html:is(.pdialog-open, .sheet-open) .hero__secret-lens { opacity: 0; }
+  .hero__secret-obj { position: absolute; display: block; height: auto; overflow: visible; }
+  /* rack con el perro (la pista): en el suelo, pegado a la izquierda del escritorio; estanteria encima; ventana sobre
+     el eyebrow (su alto se ajusta al hueco); corcho a la derecha del medallon: centrado en el margen si cabe, si no
+     pegado al borde y asomando por detras del disco. En ventanas estrechas el rack y la estanteria encogen para no
+     pisar el texto: 368 = 8 de hueco + el pie (botones y linea de Sevilla, ~340) + 20; 490 = 24 + la tagline (34ch,
+     446) + 20 */
+  .hero__secret-obj--rack { width: min(var(--desk-w) * 0.42, var(--desk-x) - var(--c-x) - 368px); right: calc(var(--sw) - var(--desk-x) + 8px); bottom: calc(var(--sh) - var(--floor-y)); }
+  .hero__secret-obj--shelf { width: min(var(--desk-w) * 0.38, var(--desk-x) - var(--c-x) - 490px); right: calc(var(--sw) - var(--desk-x) + 24px); bottom: calc(var(--sh) - var(--floor-y) + var(--desk-w) * 0.34); }
+  .hero__secret-obj--window { left: var(--c-x); top: 8px; width: auto; height: clamp(44px, calc(var(--copy-top, 120px) - 24px), 170px); }
+  .hero__secret-obj--board {
+    --bw: clamp(190px, (var(--sw) - var(--disc-r)) * 0.7, 250px);
+    width: var(--bw); top: calc(var(--disc-y) + var(--desk-w) * 0.1);
+    left: min(var(--disc-r) + (var(--sw) - var(--disc-r) - var(--bw)) / 2, var(--sw) - 12px - var(--bw));
+  }
+  @media (max-width: 1079px) { .hero__secret-obj--shelf, .hero__secret-obj--board { display: none; } }
+  @media (max-width: 959px) { .hero__secret-obj--rack { display: none; } }
+  /* LEDs del rack: lentos (steps: un repintado por paso) y solo mientras se ven */
+  .secret__led { animation: secret-led 4s steps(1, end) infinite; animation-play-state: paused; }
+  .secret__led--2 { animation-delay: -1.3s; }
+  .secret__led--3 { animation-delay: -2.6s; }
+  .hero__secret-lens.is-on .secret__led, .hero:has(.hero__desk.is-lit[data-pose="face"]) .hero__secret-hint .secret__led { animation-play-state: running; }
+  .hero__secret.is-offscreen *, .hero__secret.is-hidden * { animation-play-state: paused !important; }
+  @keyframes secret-led { 0%, 100% { opacity: 1; } 30% { opacity: 0.35; } 55% { opacity: 1; } 70% { opacity: 0.5; } }
+  @media (forced-colors: active) { .hero__secret { display: none; } }
 
   /* patio: caseta y hueso sueltos al pie de Contacto (franja a sangre; el perro entra por el borde) */
   .yard { position: relative; height: 216px; margin: 24px 0 calc(-1 * var(--section-y)); overflow: hidden; pointer-events: none; user-select: none; -webkit-user-select: none; }
@@ -1458,6 +1523,9 @@
     /* luz del raton: pegada al puntero (glow.js quita la cola), sin fundidos ni crecimiento */
     .cursor-glow, .cursor-glow__disc { transition: none; }
     .cursor-glow.is-on .cursor-glow__disc { transform: none; }
+    /* objetos ocultos: la lente pegada a la luz y la pista sin fundidos; los LEDs quietos */
+    .hero__secret-lens, .hero__secret-hint { transition: none; }
+    .hero__secret * { animation: none !important; }
   }
 }
 
@@ -1468,7 +1536,7 @@
     body { background: #fff; color: #111; }
     .tile, .tile--black, .tile--canvas, .tile--1, .tile--2, .tile--3 { background: #fff !important; padding-block: 24px; }
     h1, h2, h3, .body, .lead, .caption, .eyebrow, .chip, .action, .facts dd { color: #111 !important; }
-    .nav, .sheet, .skip, .hero__disc, .hero::before, .rig, .scene-window, .toast, #to-top, .rig__hit, .projects__more, .play, .dog-peek, .yard, .skills__lava, .hero__desk, .cursor-glow, .experience__bg { display: none !important; }
+    .nav, .sheet, .skip, .hero__disc, .hero::before, .rig, .scene-window, .toast, #to-top, .rig__hit, .projects__more, .play, .dog-peek, .yard, .skills__lava, .hero__desk, .hero__secret, .cursor-glow, .experience__bg { display: none !important; }
     .about__media::after { content: ""; display: block; width: 160px; height: 160px; background: url("../assets/img/rig/fallback.webp") center / contain no-repeat; }
     html.js [data-reveal] { opacity: 1 !important; transform: none !important; }
     a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 12px; color: #555; }

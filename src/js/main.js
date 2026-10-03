@@ -54,6 +54,8 @@ function bootPlay() {
     // [boot:lava]
     // [boot:glow] luz del raton: no depende de lazy.html; la capa se crea en el primer movimiento de raton
     if (playTokens.includes('glow')) jobs.push(import('./glow.js').then((m) => { window.MTC.glow = measure('initGlow', () => m.initGlow(document.body)); }));
+    // [boot:secret] objetos ocultos del hero: solo se ven bajo la luz del raton (token glow); se estampan desde lazy.html
+    if (playTokens.includes('glow') && document.querySelector('.hero__secret')) jobs.push(Promise.all([stamped, import('./secret.js')]).then(([, m]) => { window.MTC.secret = measure('initSecret', () => m.initSecret(document.getElementById('inicio'))); }));
     // [boot:exp] escenas de Experiencia: se estampan desde lazy.html y se encienden al pasar por cada entrada
     if (document.getElementById('exp-bg')) jobs.push(Promise.all([stamped, import('./experience.js')]).then(([, m]) => { window.MTC.experience = measure('initExperience', () => m.initExperience(document.getElementById('experiencia'))); }));
     // subpaginas de proyectos: el <dialog> ya esta en index.html; el modulo y cada ficha se cargan bajo demanda
