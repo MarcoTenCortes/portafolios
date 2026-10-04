@@ -1,20 +1,23 @@
-<svg class="exp__art" viewBox="0 0 1600 640" width="100%" height="100%" preserveAspectRatio="xMaxYMid slice" aria-hidden="true" focusable="false">
- <!-- Universidad: Marco de pie, de espaldas y en perfil perdido, llega con la mochila a la escuela (bloque moderno
-      sobre un portico de tres arcos) y sube el primer escalon; a lo lejos, bajo el velo, la Giralda.
-      Sin fondo propio: se ve el de la seccion. -->
+<svg class="exp__art" viewBox="0 0 1600 640" width="100%" height="100%" preserveAspectRatio="xMinYMid slice" aria-hidden="true" focusable="false">
+ <!-- Universidad (xMinYMid: a la izquierda, junto al titulo): Marco de pie, de espaldas y en perfil perdido,
+      camina con la mochila hacia la escuela (bloque moderno sobre un portico de tres arcos); a lo lejos, bajo el
+      velo, la Giralda. Sin fondo propio: se ve el de la seccion. -->
  <defs>
   <radialGradient id="edu-u-glow"><stop offset="0" stop-color="#2997ff" stop-opacity=".22"/><stop offset=".6" stop-color="#2997ff" stop-opacity=".06"/><stop offset="1" stop-color="#2997ff" stop-opacity="0"/></radialGradient>
  </defs>
  <g stroke-linecap="round" stroke-linejoin="round">
-  <!-- la ciudad lejana y la Giralda (ambiente, bajo el velo) -->
+  <!-- la ciudad lejana y la Giralda (ambiente, bajo el velo; reflejada para que el corte quede fuera) -->
+  <g transform="translate(1680 0) scale(-1 1)">
   <path d="M0 600V548H46V530H96V556H150V522H196V540H262V512H300V534H366V548H420V520H470V538H540V506H588V530H650V546H700V524H780V540H836V516H880V536H950V552H1010V532H1060V548H1110V600Z" fill="#1a2030"/>
   <path d="M726 600L728 394H756L758 600ZM722 394H762L760 386H724ZM730 386L731 352H753L754 386ZM734 352L735 330H749L750 352ZM737 330V316H747V330ZM736 317C736 306 748 306 748 317ZM742 307V296M739 296L742 286L745 296Z" fill="#1a2030" stroke="#1a2030" stroke-width="2"/>
   <path d="M736 362h4v10h-4zM745 362h4v10h-4zM740 340h4v8h-4z" fill="#131822"/>
   <path d="M740 420h4v9h-4zM740 470h4v9h-4zM740 520h4v9h-4zM172 530h6v8h-6zM560 516h6v8h-6zM900 526h6v8h-6z" fill="#f5c27a" opacity=".3"/>
+  </g>
   <!-- suelo -->
   <path d="M0 600C400 599 1000 601 1600 600V640H0Z" fill="#151a26" opacity=".6"/>
   <path d="M0 600C400 599 1000 601 1600 600" fill="none" stroke="var(--ill-ink,#151a24)" stroke-width="4"/>
-  <!-- la escuela: bloque moderno con franjas de ventanas, el nombre en el friso, portico de tres arcos -->
+  <!-- la escuela (movida en bloque): bloque moderno con franjas de ventanas, el nombre en el friso, portico de tres arcos -->
+  <g transform="translate(-1040 0)">
   <ellipse cx="1492" cy="540" rx="190" ry="90" fill="url(#edu-u-glow)"/>
   <g stroke="var(--ill-ink,#151a24)">
   <path d="M1356 182C1440 180 1540 181 1644 182L1644 442L1356 442Z" fill="#202839" stroke-width="4"/>
@@ -41,26 +44,27 @@
   <path d="M1320 588H1644V600H1320Z" fill="#1a2030"/>
   </g>
   <path d="M1348 565H1640M1336 578H1640M1324 591H1640" stroke="#2e3850" stroke-width="2.5"/>
-  <!-- arboles: uno a la espalda de Marco y otro delante del portico, cortado por el borde -->
+  </g>
+  <!-- arboles: uno junto a la Giralda y otro delante del extremo del portico -->
   <g stroke="var(--ill-ink,#151a24)" stroke-width="4">
   <path d="M1052 600C1055 570 1052 540 1056 506L1068 506C1065 540 1068 570 1070 600Z" fill="var(--ill-wood,#9c6840)" fill-opacity=".6"/>
   <path d="M1000 468C996 438 1016 412 1046 408C1062 394 1094 400 1102 422C1118 434 1120 464 1110 480C1104 500 1082 510 1060 508C1030 514 1002 498 1000 468Z" fill="#1f2a3b"/>
-  <path d="M1592 600C1594 560 1590 520 1594 486L1606 486C1603 520 1606 560 1608 600Z" fill="var(--ill-wood,#9c6840)" fill-opacity=".6"/>
-  <path d="M1556 446C1552 410 1572 382 1602 380C1632 378 1652 404 1650 436C1654 470 1630 496 1600 496C1570 498 1556 474 1556 446Z" fill="#1f2a3b"/>
+  <path d="M592 600C594 560 590 520 594 486L606 486C603 520 606 560 608 600Z" fill="var(--ill-wood,#9c6840)" fill-opacity=".6"/>
+  <path d="M556 446C552 410 572 382 602 380C632 378 652 404 650 436C654 470 630 496 600 496C570 498 556 474 556 446Z" fill="#1f2a3b"/>
   </g>
-  <path d="M1014 452C1018 432 1032 422 1050 420M1568 426C1574 402 1590 390 1610 388" fill="none" stroke="#263349" stroke-width="6"/>
-  <path d="M1064 502C1086 500 1102 490 1108 470M1604 490C1626 488 1642 476 1646 456" fill="none" stroke="#19222f" stroke-width="6"/>
-  <path d="M1063 512C1061 540 1064 570 1065 596M1601 492C1599 530 1602 566 1603 596" stroke="#7a5133" stroke-width="5"/>
+  <path d="M1014 452C1018 432 1032 422 1050 420M568 426C574 402 590 390 610 388" fill="none" stroke="#263349" stroke-width="6"/>
+  <path d="M1064 502C1086 500 1102 490 1108 470M604 490C626 488 642 476 646 456" fill="none" stroke="#19222f" stroke-width="6"/>
+  <path d="M1063 512C1061 540 1064 570 1065 596M601 492C599 530 602 566 603 596" stroke="#7a5133" stroke-width="5"/>
   <!-- Marco, caminando hacia la escuela: cabeza, cuello, jersey y brazo de desk.svg (como en Minsait) -->
-  <ellipse cx="1286" cy="601" rx="62" ry="7" fill="#000" opacity=".3"/>
-  <ellipse cx="1392" cy="589" rx="34" ry="4" fill="#000" opacity=".3"/>
-  <g transform="translate(1060 131.3) scale(0.56)">
+  <ellipse cx="121" cy="601" rx="62" ry="7" fill="#000" opacity=".3"/>
+  <ellipse cx="227" cy="601" rx="28" ry="4" fill="#000" opacity=".22"/>
+  <g id="edu-u-marco" transform="translate(-105 131.3) scale(0.56)">
   <!-- luz de borde azul de la escuela: detras de la silueta, asoma por fuera del contorno -->
   <g class="exp__rim" fill="none" stroke="#6bb8ff" stroke-width="15">
   <path d="M470 175C492 173 514 178 530 190C542 199 550 208 554 216M510 313C530 317 550 322 564 332C579 342 585 360 589 384"/>
   <path d="M580 500C590 540 602 590 612 640C620 690 622 736 618 784" opacity=".45"/>
   </g>
-  <!-- piernas: la de delante sube al primer escalon; la de atras, con el talon levantado, ensena la suela -->
+  <!-- piernas: la de delante, al paso, aun en el aire; la de atras, con el talon levantado, ensena la suela -->
   <path d="M362 500C356 560 348 620 344 680C341 720 340 760 342 790L400 792C404 750 420 690 440 640C450 614 460 594 468 574C476 594 490 620 506 650C528 696 544 742 554 788L618 784C622 736 620 690 612 640C602 590 590 540 580 500Z" fill="#3a3f4a"/>
   <path d="M468 574C460 594 450 614 440 640C420 690 404 750 400 792L382 792C390 740 408 680 432 620C444 596 456 580 466 566ZM472 574C484 596 496 620 510 648C530 696 544 742 554 788L574 786C564 740 544 690 520 640C506 612 490 588 476 566Z" fill="#2c3038"/>
   <path d="M362 560C356 630 352 700 354 770M596 560C606 620 612 690 612 752" fill="none" stroke="#4a505c" stroke-width="4"/>

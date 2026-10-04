@@ -488,6 +488,8 @@
      (como mucho la ventana), asi la escena queda entera en pantalla mientras se lee; el SVG (xMaxYMid slice)
      recorta por la izquierda y Marco queda a la derecha. Velo pintado una vez (::after) del color de la seccion
      (--scene-veil, rgb sin comas) para que el texto siga legible; solo se animan opacity y transform.
+     .scenes__scene--left: la escena espejada (edu-uni, xMinYMid slice: recorta por la derecha y Marco queda a la
+     izquierda, junto al titulo), con el velo y la deriva tambien espejados.
      --scene-rest-opacity: por si se quiere una escena tenue en reposo (ademas, visibility: visible en ella). */
   :is(.experience, .education) { overflow: clip; }
   :is(.experience, .education) > .container { position: relative; z-index: 1; }
@@ -508,12 +510,26 @@
       linear-gradient(90deg, rgb(var(--scene-veil)) 0%, rgb(var(--scene-veil) / 0.9) 38%, rgb(var(--scene-veil) / 0.6) 70%, rgb(var(--scene-veil) / 0.25) 100%),
       linear-gradient(180deg, rgb(var(--scene-veil)), transparent 16% 84%, rgb(var(--scene-veil)));
   }
+  /* espejada: casi transparente donde esta Marco (a la izquierda) y opaco hacia la derecha; la deriva se va hacia
+     dentro (a la derecha) para que el dibujo no se salga por el borde izquierdo. La escena se escala por el alto, asi
+     que Marco ocupa siempre los primeros ~300 px: por debajo de ~1150 px de ancho los tramos no bajan de 300/420/600 px
+     (con el % a secas, en movil Marco quedaria casi entero bajo el velo opaco) */
+  .scenes__scene--left::after {
+    background:
+      linear-gradient(90deg, rgb(var(--scene-veil) / 0.22) 0%, rgb(var(--scene-veil) / 0.5) max(26%, 300px), rgb(var(--scene-veil) / 0.88) max(50%, 420px), rgb(var(--scene-veil)) max(78%, 600px)),
+      linear-gradient(180deg, rgb(var(--scene-veil)), transparent 16% 84%, rgb(var(--scene-veil)));
+  }
+  .scenes__scene--left svg { animation-name: scene-drift-left; }
   .scenes__scene.is-on { opacity: var(--scene-opacity); visibility: visible; transition: opacity 520ms var(--ease-out) 40ms, visibility 0s; }
   .scenes__scene.is-on svg { animation-play-state: running; }
   .scenes.is-offscreen *, .scenes.is-hidden * { animation-play-state: paused !important; }
   @keyframes scene-drift {
     from { transform: scale(1.04) translate3d(0, 0, 0); }
     to { transform: scale(1.08) translate3d(-1.2%, 0.6%, 0); }
+  }
+  @keyframes scene-drift-left {
+    from { transform: scale(1.04) translate3d(0, 0, 0); }
+    to { transform: scale(1.08) translate3d(1.2%, 0.6%, 0); }
   }
   .timeline__org { transition: color var(--dur-base) var(--ease-out); }
   .timeline__item.is-active .timeline__org { color: var(--body); }
@@ -598,11 +614,15 @@
   @media (min-width: 768px) { .education__grid { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 1080px) { .education__grid { grid-template-columns: 7fr 5fr; gap: 64px; } }
   /* escenas de Formacion ([css:scenes], #edu-bg): la tarjeta opaca de certificaciones ocupa la columna derecha,
-     justo donde va Marco; mientras hay escena pasa a translucida (--certs-veil es el mando de la legibilidad de la
-     tabla; la transicion va en [data-reveal], capa motion), los textos pequenos llevan halo del color de su fondo
-     y el bloque activo se marca en azul (keycaps de los anos o el borde de la tarjeta) */
+     justo donde va Marco en la escena de certificaciones; mientras hay escena pasa a translucida (--certs-veil es
+     el mando de la legibilidad de la tabla; la transicion va en [data-reveal], capa motion) y los textos pequenos
+     llevan halo del color de su fondo. La de titulaciones va a la izquierda (--left) y en portatiles queda bajo el
+     arranque de la lista: por eso el halo alcanza tambien a los titulos de la lista. El bloque activo se marca en
+     azul (keycaps de los anos o el borde de la tarjeta) */
   .education:has(.scenes__scene.is-on) .education__certs { background-color: rgba(26, 32, 48, var(--certs-veil, 0.62)); }
-  .education:has(.scenes__scene.is-on) .edu :is(.caption, .body-sm) { text-shadow: 0 0 6px var(--tile-1), 0 0 2px var(--tile-1); }
+  .education:has(.scenes__scene.is-on) .edu :is(h3, .caption, .body-sm) { text-shadow: 0 0 6px var(--tile-1), 0 0 2px var(--tile-1); }
+  /* la pastilla del master cae sobre la cara de Marco en portatiles: el mismo color que en reposo, pero opaco */
+  .education:has(.scenes__scene.is-on) .edu .badge--action { background: linear-gradient(var(--action-soft), var(--action-soft)) var(--tile-1); }
   .education:has(.scenes__scene.is-on) .certs td { text-shadow: 0 0 6px var(--tile-2), 0 0 2px var(--tile-2); }
   .edu__year { transition: border-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out); }
   .education__main.is-active .edu__year { border-color: rgba(41, 151, 255, 0.45); color: var(--ink); }

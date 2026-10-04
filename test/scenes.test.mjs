@@ -18,7 +18,8 @@ const mod = read('src/js/experience.js');
 const readme = read('README.md');
 
 // section: clase de la <section>; bg: id de la capa; tpl: plantilla de lazy.html; key: data-<key> y ?<key>=;
-// prefix: prefijo de los parciales (y de sus ids, con la inicial de la escena); item/count: entradas en el HTML
+// prefix: prefijo de los parciales (y de sus ids, con la inicial de la escena); item/count: entradas en el HTML;
+// left: escenas ancladas a la izquierda (xMinYMid slice, con el modificador scenes__scene--left)
 const SETS = [
   {
     name: 'experiencia', section: 'experience', bg: 'exp-bg', tpl: 'exp-scenes', key: 'exp', prefix: 'exp-',
@@ -28,7 +29,7 @@ const SETS = [
   },
   {
     name: 'formacion', section: 'education', bg: 'edu-bg', tpl: 'edu-scenes', key: 'edu', prefix: 'edu-',
-    ids: ['uni', 'certs'],
+    ids: ['uni', 'certs'], left: ['uni'],
     itemRe: /class="education__(?:main|certs)"[^>]*\bdata-edu="([^"]+)"/g,
     countRe: /class="education__(?:main|certs)"/g,
   },
@@ -59,8 +60,10 @@ for (const set of SETS) {
       assert.ok(at >= 0, `falta <template data-for="${set.tpl}">`);
       const tpl = lazy.slice(at, lazy.indexOf('</template>', at));
       assert.match(tpl, /<div class="scenes__stage">/);
-      const scenes = [...tpl.matchAll(new RegExp(`<div class="scenes__scene" data-${set.key}="([^"]+)">`, 'g'))].map((m) => m[1]);
-      assert.deepEqual(scenes, set.ids);
+      const scenes = [...tpl.matchAll(new RegExp(`<div class="scenes__scene( scenes__scene--left)?" data-${set.key}="([^"]+)">`, 'g'))];
+      assert.deepEqual(scenes.map((m) => m[2]), set.ids);
+      // las ancladas a la izquierda llevan el modificador del velo y la deriva espejados; las demas, no
+      assert.deepEqual(scenes.filter((m) => m[1]).map((m) => m[2]), set.left || [], 'scenes__scene--left solo en las escenas de set.left');
       for (const id of set.ids) {
         const name = `${set.prefix}${id}`;
         assert.ok(tpl.includes(`<!-- partial:${name} -->`) && tpl.includes(`<!-- /partial:${name} -->`), `faltan los marcadores de ${name}`);
@@ -74,8 +77,10 @@ for (const set of SETS) {
         const svg = read(file);
         const root = svg.match(/<svg\b[^>]*>/)[0];
         assert.match(root, /viewBox="0 0 1600 640"/);
-        // recorte por la izquierda: Marco y el objeto clave quedan en el tercio derecho a cualquier ancho
-        assert.match(root, /preserveAspectRatio="xMaxYMid slice"/);
+        // por defecto, recorte por la izquierda: Marco y el objeto clave quedan en el tercio derecho a cualquier
+        // ancho; las de set.left, al reves (xMinYMid: recorte por la derecha y Marco a la izquierda, junto al titulo)
+        const anchor = (set.left || []).includes(id) ? 'xMinYMid' : 'xMaxYMid';
+        assert.match(root, new RegExp(`preserveAspectRatio="${anchor} slice"`));
         assert.match(root, /aria-hidden="true"/);
         assert.doesNotMatch(svg, /\bfilter=|<filter\b/, 'sin filtros (se anima la escena entera)');
         assert.doesNotMatch(svg, /<text\b/, 'sin texto legible');
@@ -122,6 +127,18 @@ describe('escenas: lo comun', () => {
     assert.match(css, /rgb\(var\(--scene-veil\) \/ 0\.9\)/);
     assert.match(css, /@keyframes scene-drift/);
     assert.doesNotMatch(css, /experience__scene|experience__stage|exp-drift|--exp-opacity/, 'quedan nombres del sistema antiguo');
+  });
+
+  it('site.css: la escena espejada (--left) tiene su velo y su deriva, y la lista sigue legible sobre Marco', () => {
+    // velo casi transparente a la izquierda (donde esta Marco) y opaco hacia la derecha, con el mismo fundido vertical;
+    // los tramos no bajan de unos px fijos para que en movil Marco no quede bajo el velo opaco
+    assert.match(css, /\.scenes__scene--left::after \{\s*background:\s*linear-gradient\(90deg, rgb\(var\(--scene-veil\) \/ 0\.22\) 0%, rgb\(var\(--scene-veil\) \/ 0\.5\) max\(26%, \d+px\), [^;]*rgb\(var\(--scene-veil\)\) max\(78%, \d+px\)\),\s*linear-gradient\(180deg, /);
+    // la deriva se va hacia dentro (a la derecha) para no sacar a Marco por el borde izquierdo
+    assert.match(css, /\.scenes__scene--left svg \{ animation-name: scene-drift-left; \}/);
+    assert.match(css, /@keyframes scene-drift-left \{\s*from \{ transform: scale\(1\.04\)[^}]*\}\s*to \{ transform: scale\(1\.08\) translate3d\(1\.2%, 0\.6%, 0\); \}/);
+    assert.match(css, /\.education:has\(\.scenes__scene\.is-on\) \.edu :is\(h3, \.caption, \.body-sm\) \{ text-shadow: /);
+    // la pastilla del master (translucida) cae sobre la cara de Marco en portatiles: con escena, el mismo color pero opaco
+    assert.match(css, /\.education:has\(\.scenes__scene\.is-on\) \.edu \.badge--action \{ background: linear-gradient\(var\(--action-soft\), var\(--action-soft\)\) var\(--tile-1\); \}/);
   });
 
   it('site.css: la tarjeta de certificaciones se vuelve translucida con una escena encendida', () => {
