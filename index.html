@@ -242,7 +242,7 @@
 
     <!-- ============ EXPERIENCIA ============ -->
     <section class="experience tile tile--2" id="experiencia" aria-labelledby="exp-title">
-      <div class="experience__bg" id="exp-bg" aria-hidden="true" data-lazy="exp-scenes"></div>
+      <div class="scenes experience__bg" id="exp-bg" aria-hidden="true" data-lazy="exp-scenes"></div>
       <div class="container">
         <p class="eyebrow" data-reveal data-i18n="experience.eyebrow">Experiencia</p>
         <h2 class="display-lg" id="exp-title" data-reveal data-i18n="experience.title">Dónde he trabajado</h2>
@@ -658,8 +658,9 @@
 
     <!-- ============ FORMACIÓN + CERTIFICACIONES ============ -->
     <section class="education tile tile--1" id="formacion" aria-labelledby="edu-title">
+      <div class="scenes education__bg" id="edu-bg" aria-hidden="true" data-lazy="edu-scenes"></div>
       <div class="container education__grid">
-        <div class="education__main">
+        <div class="education__main" data-edu="uni">
           <p class="eyebrow" data-reveal data-i18n="education.eyebrow">Formación</p>
           <h2 class="display-lg" id="edu-title" data-reveal data-i18n="education.title">Dónde he estudiado</h2>
           <ol class="edu">
@@ -697,7 +698,7 @@
             </li>
           </ol>
         </div>
-        <aside class="education__certs" data-reveal aria-labelledby="certs-title">
+        <aside class="education__certs" data-edu="certs" data-reveal aria-labelledby="certs-title">
           <h3 class="heading-lg" id="certs-title" data-i18n="certs.title">Certificaciones</h3>
           <table class="certs">
             <tbody>

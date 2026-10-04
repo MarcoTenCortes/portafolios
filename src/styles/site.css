@@ -410,7 +410,7 @@
   html:not(.js) .nav__links { display: block; }
   html:not(.js) .nav__links ul { flex-wrap: wrap; }
   html:not(.js) .nav__burger { display: none; }
-  html:not(.js) :is(.play, .dog-peek, .yard, .skills__lava, .hero__desk, .hero__secret, .experience__bg) { display: none !important; }
+  html:not(.js) :is(.play, .dog-peek, .yard, .skills__lava, .hero__desk, .hero__secret, .scenes) { display: none !important; }
   html:not(.js) .card__media[data-lazy] { display: none; }
 
   /* ---------- hero ---------- */
@@ -482,33 +482,36 @@
     .timeline__item.is-in::before { transform: scale(1); }
   }
 
-  /* [css:exp] escenas de Experiencia (src/js/experience.js, src/partials/exp-*.svg): detras de toda la seccion,
-     una escena por entrada que se enciende al pasar el raton (en tactil, la entrada que cruza el centro). El
-     escenario es pegajoso y mide lo que se ve de la seccion (como mucho la ventana), asi la escena queda entera
-     en pantalla mientras se lee; el SVG (xMaxYMid slice) recorta por la izquierda y Marco queda a la derecha.
-     Velo pintado una vez (::after) para que el texto siga legible; solo se animan opacity y transform.
-     --exp-rest-opacity: por si se quiere una escena tenue en reposo (ademas, visibility: visible en ella). */
-  .experience { overflow: clip; }
-  .experience > .container { position: relative; z-index: 1; }
-  .experience__bg { position: absolute; inset: 0; z-index: 0; pointer-events: none; --exp-opacity: 1; --exp-rest-opacity: 0; }
-  .experience__stage { position: sticky; top: 0; height: min(100%, 100vh); overflow: hidden; }
-  .experience__scene {
-    position: absolute; inset: 0; opacity: var(--exp-rest-opacity); visibility: hidden; isolation: isolate;
+  /* [css:scenes] escenas detras de una seccion (src/js/experience.js initScenes: Experiencia #exp-bg con
+     src/partials/exp-*.svg y Formacion #edu-bg con edu-*.svg): una escena por entrada que se enciende al pasar el
+     raton (en tactil, la entrada que cruza el centro). El escenario es pegajoso y mide lo que se ve de la seccion
+     (como mucho la ventana), asi la escena queda entera en pantalla mientras se lee; el SVG (xMaxYMid slice)
+     recorta por la izquierda y Marco queda a la derecha. Velo pintado una vez (::after) del color de la seccion
+     (--scene-veil, rgb sin comas) para que el texto siga legible; solo se animan opacity y transform.
+     --scene-rest-opacity: por si se quiere una escena tenue en reposo (ademas, visibility: visible en ella). */
+  :is(.experience, .education) { overflow: clip; }
+  :is(.experience, .education) > .container { position: relative; z-index: 1; }
+  .scenes { position: absolute; inset: 0; z-index: 0; pointer-events: none; --scene-opacity: 1; --scene-rest-opacity: 0; }
+  .experience__bg { --scene-veil: 26 32 48; } /* --tile-2 */
+  .education__bg { --scene-veil: 19 24 34; } /* --tile-1 */
+  .scenes__stage { position: sticky; top: 0; height: min(100%, 100vh); overflow: hidden; }
+  .scenes__scene {
+    position: absolute; inset: 0; opacity: var(--scene-rest-opacity); visibility: hidden; isolation: isolate;
     transition: opacity 200ms cubic-bezier(0.4, 0, 1, 1), visibility 0s linear 200ms;
   }
   /* la deriva (Ken Burns) corre solo con la escena encendida; al apagarse se congela donde este para que el
      fundido de salida no dé un salto de escala */
-  .experience__scene svg { display: block; width: 100%; height: 100%; animation: exp-drift 16s ease-in-out infinite alternate paused; }
-  .experience__scene::after {
+  .scenes__scene svg { display: block; width: 100%; height: 100%; animation: scene-drift 16s ease-in-out infinite alternate paused; }
+  .scenes__scene::after {
     content: ""; position: absolute; inset: 0;
     background:
-      linear-gradient(90deg, var(--tile-2) 0%, rgba(26, 32, 48, 0.9) 38%, rgba(26, 32, 48, 0.6) 70%, rgba(26, 32, 48, 0.25) 100%),
-      linear-gradient(180deg, var(--tile-2), transparent 16% 84%, var(--tile-2));
+      linear-gradient(90deg, rgb(var(--scene-veil)) 0%, rgb(var(--scene-veil) / 0.9) 38%, rgb(var(--scene-veil) / 0.6) 70%, rgb(var(--scene-veil) / 0.25) 100%),
+      linear-gradient(180deg, rgb(var(--scene-veil)), transparent 16% 84%, rgb(var(--scene-veil)));
   }
-  .experience__scene.is-on { opacity: var(--exp-opacity); visibility: visible; transition: opacity 520ms var(--ease-out) 40ms, visibility 0s; }
-  .experience__scene.is-on svg { animation-play-state: running; }
-  .experience__bg.is-offscreen *, .experience__bg.is-hidden * { animation-play-state: paused !important; }
-  @keyframes exp-drift {
+  .scenes__scene.is-on { opacity: var(--scene-opacity); visibility: visible; transition: opacity 520ms var(--ease-out) 40ms, visibility 0s; }
+  .scenes__scene.is-on svg { animation-play-state: running; }
+  .scenes.is-offscreen *, .scenes.is-hidden * { animation-play-state: paused !important; }
+  @keyframes scene-drift {
     from { transform: scale(1.04) translate3d(0, 0, 0); }
     to { transform: scale(1.08) translate3d(-1.2%, 0.6%, 0); }
   }
@@ -524,12 +527,12 @@
   }
   /* tactil (y no «sin puntero», que es lo que anuncia un Chrome headless): la escena va mas tenue */
   @media (hover: none) and (pointer: coarse) {
-    .experience__bg { --exp-opacity: 0.6; }
+    .scenes { --scene-opacity: 0.6; }
   }
   /* halo del color de la seccion alrededor de las letras: separa el texto de las zonas claras de la escena (caras,
      manos, LEDs). Solo con una escena encendida: aunque es del mismo color que el fondo, el desenfoque oscurece
      3-7 niveles el fondo junto a las letras y en reposo la seccion debe quedar como siempre */
-  .experience:has(.experience__scene.is-on) .timeline :is(.body, .bullets li) { text-shadow: 0 0 6px var(--tile-2), 0 0 2px var(--tile-2); }
+  .experience:has(.scenes__scene.is-on) .timeline :is(.body, .bullets li) { text-shadow: 0 0 6px var(--tile-2), 0 0 2px var(--tile-2); }
 
   /* ---------- proyectos ---------- */
   .projects__subtitle { margin-top: 12px; max-width: 40ch; }
@@ -594,6 +597,16 @@
   .certs td { font-size: 14px; color: var(--mute); }
   @media (min-width: 768px) { .education__grid { grid-template-columns: 1fr 1fr; } }
   @media (min-width: 1080px) { .education__grid { grid-template-columns: 7fr 5fr; gap: 64px; } }
+  /* escenas de Formacion ([css:scenes], #edu-bg): la tarjeta opaca de certificaciones ocupa la columna derecha,
+     justo donde va Marco; mientras hay escena pasa a translucida (--certs-veil es el mando de la legibilidad de la
+     tabla; la transicion va en [data-reveal], capa motion), los textos pequenos llevan halo del color de su fondo
+     y el bloque activo se marca en azul (keycaps de los anos o el borde de la tarjeta) */
+  .education:has(.scenes__scene.is-on) .education__certs { background-color: rgba(26, 32, 48, var(--certs-veil, 0.62)); }
+  .education:has(.scenes__scene.is-on) .edu :is(.caption, .body-sm) { text-shadow: 0 0 6px var(--tile-1), 0 0 2px var(--tile-1); }
+  .education:has(.scenes__scene.is-on) .certs td { text-shadow: 0 0 6px var(--tile-2), 0 0 2px var(--tile-2); }
+  .edu__year { transition: border-color var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out); }
+  .education__main.is-active .edu__year { border-color: rgba(41, 151, 255, 0.45); color: var(--ink); }
+  .education__certs.is-active { border-color: rgba(41, 151, 255, 0.3); }
 
   /* ---------- prensa ---------- */
   .press__inner { display: grid; gap: 24px; max-width: 900px; }
@@ -1462,6 +1475,13 @@
   html.js .hero [data-reveal] { opacity: 1; transform: translateY(12px); }
   html.js .hero [data-reveal-media] { transform: translateY(18px); }
   html.js .timeline__item[data-reveal] { transform: translateY(12px); }
+  /* la tarjeta de certificaciones funde tambien su fondo y su borde al encenderse una escena de Formacion. El
+     escalonado de los reveals (site.js: transitionDelay en linea, 60 ms por elemento con tope de 6) le da 360 ms, que
+     valen para el reveal pero no para el fondo: retardo por propiedad */
+  html.js .education__certs[data-reveal] {
+    transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out), background-color 320ms var(--ease-out), border-color 320ms var(--ease-out);
+    transition-delay: 360ms, 360ms, 0s, 0s !important;
+  }
 
   /* escena del banco */
   .scene__leg { animation: foot-tap 3.6s linear infinite; }
@@ -1511,7 +1531,7 @@
     .hero__desk.is-lit .desk__steam path { opacity: 0.35; }
     .yard.is-near .house__shake { animation: none; }
     .skills__lava *, .skills__lava::before, .skills__lava::after { animation: none !important; transition: none !important; }
-    .experience__scene, .experience__scene svg, .timeline__item::before, .timeline__org { transition: none; animation: none; }
+    .scenes__scene, .scenes__scene svg, .timeline__item::before, .timeline__org, .edu__year, html.js .education__certs[data-reveal] { transition: none; animation: none; }
     /* pose fija: la cera deformada como a media subida */
     .lava__blob--3 { scale: 1.16 .86; }
     .lava__blob--4 { scale: .92 1.14; }
@@ -1536,13 +1556,13 @@
     body { background: #fff; color: #111; }
     .tile, .tile--black, .tile--canvas, .tile--1, .tile--2, .tile--3 { background: #fff !important; padding-block: 24px; }
     h1, h2, h3, .body, .lead, .caption, .eyebrow, .chip, .action, .facts dd { color: #111 !important; }
-    .nav, .sheet, .skip, .hero__disc, .hero::before, .rig, .scene-window, .toast, #to-top, .rig__hit, .projects__more, .play, .dog-peek, .yard, .skills__lava, .hero__desk, .hero__secret, .cursor-glow, .experience__bg { display: none !important; }
+    .nav, .sheet, .skip, .hero__disc, .hero::before, .rig, .scene-window, .toast, #to-top, .rig__hit, .projects__more, .play, .dog-peek, .yard, .skills__lava, .hero__desk, .hero__secret, .cursor-glow, .scenes { display: none !important; }
     .about__media::after { content: ""; display: block; width: 160px; height: 160px; background: url("../assets/img/rig/fallback.webp") center / contain no-repeat; }
     html.js [data-reveal] { opacity: 1 !important; transform: none !important; }
     a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 12px; color: #555; }
     .card, .timeline__item, .edu__item, .skills__group { break-inside: avoid; border-color: #ddd; }
     .chip, .keycap, .badge { background: #f2f2f2; border-color: #ddd; }
     /* sobre papel blanco el halo del color de la seccion seria una mancha oscura */
-    .experience .timeline :is(.body, .bullets li) { text-shadow: none; }
+    .experience .timeline :is(.body, .bullets li), .education .edu :is(.caption, .body-sm), .education .certs td { text-shadow: none; }
   }
 }
