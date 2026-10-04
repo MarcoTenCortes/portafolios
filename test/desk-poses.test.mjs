@@ -3,12 +3,14 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
+import { GESTURES } from '../src/js/play/gesture-machine.js';
 
 // Como partials.test.mjs: CRLF normalizado para no depender del checkout.
 const read = (rel) => readFileSync(new URL(`../${rel}`, import.meta.url), 'utf8').replace(/\r\n/g, '\n');
 const lamp = read('src/js/lamp.js');
 const css = read('src/styles/site.css');
 const svg = read('src/partials/desk.svg');
+const main = read('src/js/main.js');
 
 const poses = [...lamp.match(/const POSES = \[([^\]]*)\]/)[1].matchAll(/'([a-z]+)'/g)].map((m) => m[1]);
 const stepKeys = [...lamp.match(/const STEP_MS = \{([^}]*)\}/)[1].matchAll(/([a-z]+):\s*\d+/g)].map((m) => m[1]);
@@ -276,5 +278,97 @@ describe('capas del rig (desk.svg)', () => {
     const tagIn = (skin) => group(svg, `<g class="desk__skin ${skin}"`).match(/<g transform="matrix\([^)]*\)">/)[0];
     near(matrixOf(tagIn('desk__skin--sleeve-front')), chain(inv(wArm), SHIFT), 'manga de frente');
     near(matrixOf(tagIn('desk__skin--hand-front')), chain(inv(wFore), SHIFT), 'puno de frente');
+  });
+});
+
+describe('gestos de Marco de frente (data-gesture)', () => {
+  const marco = group(svg, '<g class="desk__marco"');
+  const armFront = group(marco, '<g class="desk__arm desk__arm--front"');
+  const keyframes = new Set(rules.filter((r) => r.sel.startsWith('@keyframes ')).map((r) => r.sel.slice(11).trim()));
+
+  for (const [name, { ms, end }] of Object.entries(GESTURES)) {
+    it(`${name}: reglas [data-gesture="${name}"] de ${ms} ms y su keyframe final @keyframes ${end}`, () => {
+      const own = rules.filter((r) => r.sel.includes(`[data-gesture="${name}"]`));
+      assert.ok(own.length, `falta [data-gesture="${name}"] en site.css`);
+      assert.ok(keyframes.has(end), `falta @keyframes ${end}`);
+      for (const r of own.filter((x) => /(^|;)\s*animation\s*:/.test(x.body))) {
+        assert.ok(r.body.includes(`${ms}ms`), `${r.sel}: todas las animaciones del gesto duran ${ms}ms`);
+        const kf = r.body.match(/animation:\s*([\w-]+)/)[1];
+        assert.ok(keyframes.has(kf), `${r.sel}: falta @keyframes ${kf}`);
+      }
+      assert.ok(own.some((r) => r.body.includes(`animation: ${end} `)), `ninguna regla de ${name} usa ${end}`);
+    });
+  }
+
+  it('cada keyframe de gesto empieza y acaba en la identidad (al quitar el atributo no hay salto)', () => {
+    const names = new Set(rules.filter((r) => r.sel.includes('[data-gesture=')).map((r) => r.body.match(/animation:\s*([\w-]+)/)?.[1]).filter(Boolean));
+    const identity = /^(?:(?:translate\(0(?:px)?,\s*0(?:px)?\)|rotate\(0deg\)|scale[XY]?\(1(?:,\s*1)?\))\s*)+$|^none$/;
+    for (const kf of names) {
+      const frames = rules.filter((r) => r.sel === `@keyframes ${kf}`);
+      assert.equal(frames.length, 1, `@keyframes ${kf}`);
+      const steps = rules.filter((r) => r.parents.at(-1) === `@keyframes ${kf}`);
+      for (const edge of [/(^|,\s*)(0%|from)(\s*,|$)/, /(^|,\s*)(100%|to)(\s*,|$)/]) {
+        const step = steps.find((x) => edge.test(x.sel));
+        assert.ok(step, `@keyframes ${kf}: falta el ${edge.source.includes('100') ? 'final' : 'inicio'}`);
+        const tf = step.body.match(/transform:\s*([^;]+)/)?.[1].trim();
+        const op = step.body.match(/opacity:\s*([^;]+)/)?.[1].trim();
+        // los parpados en reposo estan cerrados hacia arriba (scaleY(0), como .desk__lid y dog-blink)
+        const lidRest = kf.includes('lid') || kf === 'desk-wink';
+        if (tf) assert.ok(lidRest ? tf === 'scaleY(0)' : identity.test(tf), `@keyframes ${kf} (${step.sel}): ${tf}`);
+        if (op) assert.equal(op, '1', `@keyframes ${kf} (${step.sel}): opacidad ${op}`);
+        assert.ok(tf || op, `@keyframes ${kf} (${step.sel}) sin transform ni opacity`);
+      }
+    }
+  });
+
+  it('.desk__gest esta en la lista transform-box y ninguna regla con transition lo menciona', () => {
+    const list = css.match(/\.desk__art :is\(([^)]*)\)\s*\{\s*transform-box:\s*view-box/);
+    assert.ok(list[1].split(',').map((x) => x.trim()).includes('.desk__gest'));
+    for (const r of rules.filter((x) => /(^|;)\s*transition(-[a-z]+)?\s*:/.test(x.body))) {
+      assert.ok(!r.sel.includes('desk__gest'), `${r.sel}: los gestos van en @keyframes, nunca con transition`);
+    }
+    for (const r of rules.filter((x) => x.sel.includes('desk__gest') && !x.sel.includes('[data-gesture='))) {
+      assert.ok(!/(^|;)\s*(transform|animation)\s*:/.test(r.body), `${r.sel}: un envolvente de gesto solo se mueve con data-gesture`);
+    }
+  });
+
+  it('los envolventes van dentro de su grupo, nunca en las clases del rig ni en .desk__hand', () => {
+    const inGroup = (open, cls) => assert.ok(hasClass(group(svg, open), cls), `${cls} debe ir dentro de ${open}`);
+    inGroup('<g class="desk__head-front"', 'desk__gest--head');
+    inGroup('<g class="desk__gest desk__gest--head"', 'desk__gest--mouth');
+    inGroup('<g class="desk__skin desk__skin--sleeve-l"', 'desk__gest--wave-arm');
+    inGroup('<g class="desk__gest desk__gest--wave-arm"', 'desk__gest--wave');
+    inGroup('<g class="desk__gest desk__gest--wave"', 'desk__gest--wave-hand');
+    const rigArm = group(armFront, '<g class="desk__rig desk__rig--arm"');
+    assert.ok(hasClass(rigArm, 'desk__gest--arm'), '--arm dentro de .desk__rig--arm (copia delantera)');
+    inGroup('<g class="desk__gest desk__gest--arm"', 'desk__rig--fore');
+    const rigFore = group(armFront, '<g class="desk__rig desk__rig--fore"');
+    assert.ok(hasClass(rigFore, 'desk__gest--fore'), '--fore dentro de .desk__rig--fore');
+    assert.ok(hasClass(group(rigFore, '<g class="desk__gest desk__gest--fore"'), 'desk__skin--hand-front'), '--fore lleva el puno');
+    const tilt = group(armFront, '<g class="desk__mug-tilt"');
+    assert.ok(hasClass(tilt, 'desk__gest--mug'), '--mug dentro de .desk__mug-tilt');
+    assert.ok(hasClass(group(tilt, '<g class="desk__gest desk__gest--mug"'), 'desk__gest--steam'), '--steam dentro de --mug');
+    // un envolvente de gesto es solo eso: ni clases del rig ni .desk__hand (que se pausa en las poses)
+    const forbidden = ['desk__skin', 'desk__spin', 'desk__rig', 'desk__chair', 'desk__mug-held', 'desk__mug-tilt', 'desk__steam-lean', 'desk__dark', 'desk__hand', 'desk__head', 'desk__arm', 'desk__fore', 'desk__mug'];
+    for (const l of classLists(svg).filter((x) => x.includes('desk__gest'))) {
+      assert.ok(!l.some((c) => forbidden.includes(c)), `class="${l.join(' ')}"`);
+    }
+    assert.ok(!hasClass(group(svg, '<g class="desk__gest desk__gest--wave-arm"'), 'desk__hand'), 'el brazo izquierdo no usa .desk__hand');
+    // los envolventes solo en la copia delantera (la que se ve de frente)
+    assert.ok(!hasClass(group(marco, '<g class="desk__body desk__body--back"'), 'desk__gest'), 'nada de gestos en el cuerpo de espaldas');
+  });
+
+  it('siguen siendo dos parpados y el derecho (lado de la lampara) es el del guino', () => {
+    assert.equal(countClass(svg, 'desk__lid'), 2);
+    assert.equal(countClass(svg, 'desk__lid--r'), 1);
+    assert.ok(svg.includes('<g class="desk__lid desk__lid--r" style="transform-origin:490.8px 245.8px">'));
+  });
+
+  it('lamp.js usa gesture-machine.js, escribe data-gesture y main.js tiene &gesture=', () => {
+    assert.match(lamp, /from '\.\/play\/gesture-machine\.js'/);
+    assert.match(lamp, /from '\.\/play\/pausable-timer\.js'/);
+    assert.match(lamp, /dataset\.gesture = /);
+    assert.match(lamp, /delete root\.dataset\.gesture/);
+    assert.ok(main.includes("params.get('gesture')"), 'falta el gancho &gesture= en main.js');
   });
 });
