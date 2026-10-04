@@ -67,7 +67,7 @@ const afterFirstPaint = (fn) => requestAnimationFrame(() => requestAnimationFram
 if (document.readyState === 'complete') afterFirstPaint(bootPlay);
 else window.addEventListener('load', () => afterFirstPaint(bootPlay), { once: true });
 
-// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo&glow=<x>,<y>&lamp=on&pose=typing|turn|reach|hold|face&exp=minsait|ntt|dynos
+// Gancho solo en desarrollo: ?shot=<id-seccion>&rig=<estado>&dog=shown|alert|running|entering|playing|peek-left|peek-right|hidden&bone=near|dropped&marker=grabbed&ink=demo&glow=<x>,<y>&lamp=on&pose=typing|turn|reach|hold|face&gesture=wave|toast|wink|nod|tilt&exp=minsait|ntt|dynos
 if (import.meta.env.DEV) {
   const params = new URLSearchParams(window.location.search);
   const shot = params.get('shot');
@@ -108,6 +108,9 @@ if (import.meta.env.DEV) {
       // [hook:pose] &pose=typing|turn|reach|hold|face: el escritorio salta a esa pose sin transiciones (y con la luz que le toca)
       const deskPose = params.get('pose');
       if (deskPose) window.MTC.lamp?.snap(deskPose);
+      // [hook:gesture] &gesture=wave|toast|wink|nod|tilt: Marco hace ese gesto ya (con &pose=face)
+      const gestureName = params.get('gesture');
+      if (gestureName) window.MTC.lamp?.gesture(gestureName);
       // [hook:exp] ?exp=minsait|ntt|dynos: enciende esa escena de Experiencia
       const expId = params.get('exp');
       if (expId) window.MTC.experience?.show(expId);

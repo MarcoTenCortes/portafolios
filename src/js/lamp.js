@@ -6,10 +6,17 @@
 // face (con la taza en la mano gira con la silla hacia ti y te mira, parpadeando de vez en cuando: un rig 2.5D en el que
 // cada pieza deriva su transform y su opacidad del angulo --desk-turn, que el CSS transiciona; .is-rig lo activa
 // si el navegador tiene @property, linear() y sin(), y si no las piezas se cruzan por tiempo).
+// Ya de frente, cada 6-10 s hace un gesto al azar sin repetir el anterior (data-gesture: saluda, brinda y da un
+// sorbo, guina un ojo, asiente o ladea la cabeza; @keyframes del CSS, que no frenan la coreografia, y la logica pura
+// en play/gesture-machine.js). Se detienen al apagar y se pausan fuera de pantalla, con la pestana oculta o una ficha
+// abierta.
 // Otro tiron apaga y deshace la pausa en orden inverso hasta volver a programar. Cada paso espera a que acaben
 // las transiciones CSS que lanza (getAnimations + finished), asi que un tiron a mitad invierte desde donde este.
 // Con prefers-reduced-motion las dos poses extremas (typing y face) cambian de golpe. Maquina de estados en
 // data-lamp: off -> pulling -> on -> pulling -> off. No se guarda: cada visita empieza a oscuras.
+
+import { GESTURES, nextGestureDelay, pickGesture, gestureTimeout, gestureGate } from './play/gesture-machine.js';
+import { pausableTimer } from './play/pausable-timer.js';
 
 const EASE_IN = 'cubic-bezier(.4,0,1,1)';
 const EASE_OUT = 'cubic-bezier(.2,.7,.2,1)';
@@ -22,6 +29,7 @@ const POSES = ['typing', 'turn', 'reach', 'hold', 'face'];
 // respaldo si no hay getAnimations (igual que el CSS); face = 40 de arranque + 960 del giro de la silla
 const STEP_MS = { typing: 400, turn: 450, reach: 450, hold: 280, face: 1000 };
 const REACT_MS = 90; // lo que tarda Marco en darse cuenta de que ha cambiado la luz
+const GESTURE_LOG = 50; // gestos que recuerda gestures.log (sondas y depuracion)
 
 function storage(kind) {
   try { return window[kind]; } catch { return null; }
@@ -86,6 +94,7 @@ export function initLamp(root, { i18n } = {}) {
   function setPose(i) {
     poseIdx = i;
     root.dataset.pose = POSES[i];
+    if (i !== POSES.length - 1) stopGestures(); // los gestos son solo de frente
   }
   // espera a las transiciones CSS en curso del dibujo (getAnimations recalcula antes los estilos); las
   // interrumpidas por un tiron nuevo tambien cuentan como acabadas
@@ -102,6 +111,8 @@ export function initLamp(root, { i18n } = {}) {
       setPose(poseIdx + (target > poseIdx ? 1 : -1));
       await transitionsDone(POSES[poseIdx]);
     }
+    // ya de frente (el giro ha terminado): empiezan los gestos
+    if (my === choreo && toLit && poseIdx === POSES.length - 1) startGestures();
   }
   // cambio de pose sin transiciones (arranque, ?lamp=on, reduced motion)
   function snapPose(i) {
@@ -111,6 +122,8 @@ export function initLamp(root, { i18n } = {}) {
     setPose(i);
     void getComputedStyle(svg.querySelector('.desk__head') || svg).transform; // aplica la pose ya, con .is-snap puesto
     snapFrame = requestAnimationFrame(() => root.classList.remove('is-snap'));
+    if (i === POSES.length - 1 && lit && canAnimate()) startGestures();
+    else stopGestures();
   }
 
   // ---------- tiron ----------
@@ -131,6 +144,7 @@ export function initLamp(root, { i18n } = {}) {
   }
   async function pull() {
     if (state === 'pulling') return state;
+    stopGestures(); // un gesto a medias se corta en seco: la vuelta (o el apagado) empieza desde la pose limpia
     pulls++;
     hideHint();
     const target = !lit;
@@ -178,6 +192,71 @@ export function initLamp(root, { i18n } = {}) {
     return state;
   }
 
+  // ---------- gestos: de frente y con la lampara, uno al azar cada 6-10 s (play/gesture-machine.js) ----------
+  // data-gesture activa las @keyframes de [css:gest]; animationend (o el tope, si estaba en pausa) lo quita
+  const html = document.documentElement;
+  let gestOn = false; // planificador armado: solo de frente y con la luz
+  let gestTimer = null; // pausableTimer del siguiente intento
+  let gestEnd = 0; // tope de seguridad del gesto en curso
+  let gestLast = null;
+  const gestLog = [];
+  const gestGate = () => gestureGate({
+    hidden: document.hidden,
+    offscreen: root.classList.contains('is-offscreen'),
+    dialogOpen: html.classList.contains('dialog-open') || html.classList.contains('pdialog-open'),
+    reduced: reducedMQ.matches,
+    lit,
+    pose: POSES[poseIdx],
+  });
+  function endGesture() {
+    clearTimeout(gestEnd);
+    gestEnd = 0;
+    delete root.dataset.gesture;
+  }
+  function playGesture(name) {
+    if (!GESTURES[name]) return false;
+    endGesture();
+    void getComputedStyle(svg.querySelector('.desk__gest') || svg).animationName; // recalculo: el mismo gesto seguido vuelve a empezar
+    root.dataset.gesture = name;
+    gestLast = name;
+    gestLog.push({ name, at: Math.round(performance.now()) });
+    if (gestLog.length > GESTURE_LOG) gestLog.shift();
+    gestEnd = setTimeout(endGesture, gestureTimeout(name)); // en pausa (fuera de pantalla, ficha) no llega animationend
+    return true;
+  }
+  function armGesture(ms) {
+    gestTimer?.cancel();
+    gestTimer = null;
+    if (!gestOn || reducedMQ.matches) return;
+    gestTimer = pausableTimer(tryGesture, ms ?? nextGestureDelay(), { hidden: document.hidden });
+  }
+  function tryGesture() {
+    if (!gestOn) return;
+    if (gestGate() && !root.dataset.gesture) playGesture(pickGesture(Math.random, gestLast));
+    armGesture(); // si la puerta falla (fuera de pantalla, ficha abierta) lo intenta en el siguiente hueco
+  }
+  function startGestures() {
+    if (gestOn) return;
+    gestOn = true;
+    armGesture();
+  }
+  function stopGestures() {
+    gestOn = false;
+    gestTimer?.cancel();
+    gestTimer = null;
+    endGesture();
+  }
+  const onGestureEnd = (e) => {
+    const g = root.dataset.gesture;
+    if (g && e.animationName === GESTURES[g]?.end) endGesture();
+  };
+  const onGestureVisibility = () => {
+    if (document.hidden) gestTimer?.pause();
+    else gestTimer?.resume();
+  };
+  svg.addEventListener('animationend', onGestureEnd);
+  document.addEventListener('visibilitychange', onGestureVisibility);
+
   // ---------- pista: una vez por sesion, ~1,8 s despues de que el escritorio este a la vista ----------
   function hideHint() {
     clearTimeout(hintTimer);
@@ -219,8 +298,16 @@ export function initLamp(root, { i18n } = {}) {
     toggle,
     pull,
     snap,
+    // fuerza un gesto ya, sin puerta ni planificador (desarrollo: &gesture=, sondas)
+    gesture(name) { return playGesture(name); },
+    get gestures() {
+      return { last: gestLast, current: root.dataset.gesture || null, armed: !!gestTimer && !gestTimer.done, log: gestLog.slice() };
+    },
     destroy() {
       stopAnimations();
+      stopGestures();
+      svg.removeEventListener('animationend', onGestureEnd);
+      document.removeEventListener('visibilitychange', onGestureVisibility);
       choreo++;
       cancelAnimationFrame(snapFrame);
       hideHint();

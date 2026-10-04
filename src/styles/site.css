@@ -890,7 +890,8 @@
 
   .desk__art :is(.desk__cord, .desk__cord-pull, .desk__head, .desk__head-back, .desk__arm, .desk__fore, .desk__hand, .desk__mug,
     .desk__mug-shadow, .desk__line, .desk__cursor, .desk__steam path, .desk__body, .desk__lid, .desk__spin, .desk__rig, .desk__chair,
-    .desk__chair-arm, .desk__chair-edge, .desk__mug-held, .desk__mug-tilt, .desk__steam-lean, .desk__skin, .desk__dark, .desk__room-mug) { transform-box: view-box; }
+    .desk__chair-arm, .desk__chair-edge, .desk__mug-held, .desk__mug-tilt, .desk__steam-lean, .desk__skin, .desk__dark, .desk__room-mug,
+    .desk__gest) { transform-box: view-box; }
   /* luz: a oscuras solo alumbra el monitor; con la lampara, cono calido y la escena entera (la pantalla sigue encendida) */
   .desk__room, .desk__halo, .desk__glow, .desk__shade, .desk__rim, .desk__light, .desk__warm, .desk__steam, .desk__inner-on,
   .desk__inner-off, .desk__bulb-on, .desk__bulb-off, .desk__bulb-glow { transition: opacity 300ms var(--ease-out); }
@@ -975,6 +976,27 @@
   /* ya de frente parpadea (dog-blink, como el perro). Pausado fuera de pantalla y con la ficha abierta;
      reduced-motion lo anula (ojos abiertos) */
   .hero__desk[data-pose="face"] .desk__lid { animation: dog-blink 4.6s linear 1.3s infinite; }
+
+  /* [css:gest] gestos de Marco de frente (data-gesture en #hero-desk: lamp.js elige uno cada 6-10 s): @keyframes sobre
+     envolventes .desk__gest nuevos, anidados dentro de los grupos por angulo y sin transition (no bloquean
+     transitionsDone ni pisan el rig). Todas las animaciones de un gesto duran lo mismo (GESTURES en
+     play/gesture-machine.js) y empiezan y acaban en la identidad: al quitar el atributo no hay salto. Heredan las
+     pausas de arriba (fuera de pantalla, pestana oculta) y la de html.dialog-open; reduced-motion las anula. */
+  .hero__desk[data-gesture="wave"] .desk__gest--wave-arm { animation: desk-wave-arm 2200ms cubic-bezier(.3, .7, .25, 1) both; }
+  .hero__desk[data-gesture="wave"] .desk__gest--wave { animation: desk-wave 2200ms cubic-bezier(.3, .7, .25, 1) both; }
+  .hero__desk[data-gesture="wave"] .desk__gest--wave-hand { animation: desk-wave-hand 2200ms ease-in-out both; }
+  .hero__desk[data-gesture="toast"] .desk__gest--arm { animation: desk-toast-arm 2400ms cubic-bezier(.45, .05, .25, 1) both; }
+  .hero__desk[data-gesture="toast"] .desk__gest--fore { animation: desk-toast-fore 2400ms cubic-bezier(.45, .05, .25, 1) both; }
+  .hero__desk[data-gesture="toast"] .desk__gest--mug { animation: desk-toast-mug 2400ms cubic-bezier(.45, .05, .25, 1) both; }
+  .hero__desk[data-gesture="toast"] .desk__gest--steam { animation: desk-sip-steam 2400ms linear both; }
+  .hero__desk[data-gesture="toast"] .desk__lid { animation: desk-sip-lids 2400ms linear both; }
+  /* guino: los dos parpados cambian de animacion a la vez y al acabar reanudan dog-blink sincronizados */
+  .hero__desk[data-gesture="wink"] .desk__lid { animation: desk-lid-open 1400ms linear both; }
+  .hero__desk[data-gesture="wink"] .desk__lid--r { animation: desk-wink 1400ms cubic-bezier(.4, 0, .2, 1) both; }
+  .hero__desk[data-gesture="wink"] .desk__gest--mouth { animation: desk-smile 1400ms var(--ease-out) both; }
+  .hero__desk[data-gesture="wink"] .desk__gest--head { animation: desk-wink-head 1400ms ease-in-out both; }
+  .hero__desk[data-gesture="nod"] .desk__gest--head { animation: desk-nod 1400ms ease-in-out both; }
+  .hero__desk[data-gesture="tilt"] .desk__gest--head { animation: desk-tilt 1400ms cubic-bezier(.3, .7, .25, 1) both; }
 
   /* giro de la silla (face): rig 2.5D de un solo mando. --desk-turn (@property, arriba del todo) va de 0deg (de
      espaldas) a 180deg (de frente) girando hacia la lampara (+x) sobre el eje vertical x = 470, y cada pieza deriva
@@ -1137,6 +1159,43 @@
     93%, 100% { transform: translate(-276px, -105px); }
   }
   @keyframes desk-blink { 50% { opacity: 0; } }
+  /* gestos ([css:gest]). Saludo (2,2 s): el brazo izquierdo se separa del cuerpo sobre el hombro (568,344) y el
+     antebrazo sube sobre el codo (594,396) hasta -166deg en total (la mano junto a la cara, por encima de la mesa);
+     la mano se agita tres veces sobre la muneca y todo baja en 0,6 s */
+  @keyframes desk-wave-arm { 0% { transform: rotate(0deg); } 26%, 74% { transform: rotate(-30deg); } 100% { transform: rotate(0deg); } }
+  @keyframes desk-wave { 0% { transform: rotate(0deg); } 30%, 72% { transform: rotate(-136deg); } 100% { transform: rotate(0deg); } }
+  @keyframes desk-wave-hand { 0%, 30%, 76%, 100% { transform: rotate(0deg); } 38%, 58% { transform: rotate(18deg); } 48% { transform: rotate(-16deg); } 68% { transform: rotate(-12deg); } }
+  /* brindis y sorbo (2,4 s): 0-20 % la taza sale hacia ti (hombro -8deg, codo -10deg) y crece un 14 % con un
+     chin-chin al 27 %; 36-54 % hombro -27deg y codo +30deg la llevan a los labios, la taza se inclina hacia la boca
+     (+14 -> +20deg) y el vapor se apaga para no tapar la cara; ojos cerrados del 60 al 72 %; 78-100 % vuelve */
+  @keyframes desk-toast-arm { 0% { transform: rotate(0deg); } 20%, 36% { transform: rotate(-8deg); } 54%, 78% { transform: rotate(-27deg); } 100% { transform: rotate(0deg); } }
+  @keyframes desk-toast-fore { 0% { transform: rotate(0deg); } 20%, 36% { transform: rotate(-10deg); } 54%, 78% { transform: rotate(30deg); } 100% { transform: rotate(0deg); } }
+  @keyframes desk-toast-mug {
+    0% { transform: rotate(0deg) scale(1); }
+    20%, 36% { transform: rotate(-6deg) scale(1.14); }
+    27% { transform: rotate(-11deg) scale(1.16); }
+    54%, 78% { transform: rotate(14deg) scale(1); }
+    63%, 70% { transform: rotate(20deg) scale(1); }
+    100% { transform: rotate(0deg) scale(1); }
+  }
+  @keyframes desk-sip-steam { 0%, 40%, 92%, 100% { opacity: 1; } 48%, 80% { opacity: 0; } }
+  @keyframes desk-sip-lids { 0%, 56%, 76%, 100% { transform: scaleY(0); } 60%, 72% { transform: scaleY(1); } }
+  /* guino (1,4 s): el ojo derecho se cierra rapido y la sonrisa se ensancha y se hace mas honda sobre su centro (470,285) */
+  @keyframes desk-lid-open { from, to { transform: scaleY(0); } }
+  @keyframes desk-wink { 0%, 80%, 100% { transform: scaleY(0); } 14%, 66% { transform: scaleY(1); } }
+  @keyframes desk-smile { 0%, 100% { transform: scale(1, 1); } 26%, 76% { transform: scale(1.2, 1.25); } }
+  /* y la cabeza se ladea 3deg hacia la taza sobre el cuello (470,300) mientras dura el guino, para que se lea a 1280 */
+  @keyframes desk-wink-head { 0%, 14%, 86%, 100% { transform: rotate(0deg); } 30%, 66% { transform: rotate(-3deg); } }
+  /* asentir (dos cabeceos: la cabeza baja 6 u y se acorta un 4 % hacia el cuello, como si se inclinara hacia
+     delante, con un poco de giro; el segundo algo menor) y ladear (-7deg, 700 ms quieto) sobre el cuello (470,300) */
+  @keyframes desk-nod {
+    0%, 100% { transform: translate(0, 0) rotate(0deg) scaleY(1); }
+    22% { transform: translate(0, 6px) rotate(1.5deg) scaleY(0.96); }
+    42% { transform: translate(0, 0) rotate(-0.5deg) scaleY(1); }
+    62% { transform: translate(0, 5px) rotate(1deg) scaleY(0.965); }
+    82% { transform: translate(0, 0) rotate(-0.3deg) scaleY(1); }
+  }
+  @keyframes desk-tilt { 0%, 100% { transform: rotate(0deg); } 22%, 72% { transform: rotate(-7deg); } }
 
   /* [css:lava] lampara de lava: ocupa las celdas que sobran en la ultima fila de Habilidades.
      El SVG va en absoluto para no empujar la fila: la altura la marca la tarjeta vecina (o el min-height). */
