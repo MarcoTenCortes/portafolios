@@ -2,7 +2,8 @@
 // La capa fija se crea en el primer movimiento de raton que pase la puerta (en tactil nunca existe y no pesa en el
 // HTML) y solo se mueve con translate3d en un unico rAF que se para al llegar: nada se repinta al mover el raton.
 // Se apaga al salir de la ventana, con blur, con la pestana oculta y con ficha o menu abiertos (site.css la oculta
-// al instante; el siguiente movimiento la da por apagada) y renace bajo el puntero al volver.
+// al instante; el siguiente movimiento la da por apagada) y renace bajo el puntero al volver. Cada frame que la mueve,
+// y al apagarse, avisa con el evento mtc:glow en document ({ x, y, on }, px de cliente): lo usa secret.js.
 import { GLOW_TAU, followStep, hasArrived, glowGate } from './play/glow-follow.js';
 
 export function initGlow(host = document.body) {
@@ -44,8 +45,10 @@ export function initGlow(host = document.body) {
     host.append(root);
     void getComputedStyle(root).opacity; // estilo de partida (apagada) para que el primer encendido tambien funda
   }
+  const emit = (on) => document.dispatchEvent(new CustomEvent('mtc:glow', { detail: { x: cur ? cur.x : null, y: cur ? cur.y : null, on } }));
   function place(p) {
     pos.style.transform = `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0)`;
+    emit(true);
   }
   function stop() {
     if (raf) cancelAnimationFrame(raf);
@@ -84,6 +87,7 @@ export function initGlow(host = document.body) {
     stop();
     state = 'off';
     root.classList.remove('is-on');
+    emit(false);
   }
 
   function onMove(e) {
@@ -113,6 +117,7 @@ export function initGlow(host = document.body) {
       html.removeEventListener('mouseleave', off);
       window.removeEventListener('blur', off);
       document.removeEventListener('visibilitychange', onVisibility);
+      emit(false);
       root?.remove();
       root = null;
       pos = null;
